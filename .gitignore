@@ -1,0 +1,6 @@
+# 配布用ZIP(manuals/ から再生成可能なため追跡しない)
+*.zip
+
+# Python/生成物のキャッシュ
+__pycache__/
+*.pyc
