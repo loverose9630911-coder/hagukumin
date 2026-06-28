@@ -9,7 +9,7 @@ HubSpot の記事『国内の主要SFAツール10選＆特徴や選び方を解�
 
 | 区分 | ファイル(.docx / .pdf) | 内容 |
 |---|---|---|
-| 共通編 | `00_共通編_Claude×MCP連携の基礎` | MCPの基礎・3つの連携方式・準備・早見表・セキュリティ |
+| 共通編 | `00_Common_Claude_MCP_Guide` | MCPの基礎・3つの連携方式・準備・早見表・セキュリティ |
 | 01 | `01_HubSpot_Sales_Hub` | HubSpot Sales Hub(HubSpot)― 公式リモートMCPで、CRMデータを自然言語で操作 |
 | 02 | `02_Salesforce_Sales_Cloud` | Salesforce Sales Cloud(Salesforce)― 公式 Hosted MCP で、商談・ToDo・SOQLを会話操作 |
 | 03 | `03_eSalesManager` | eセールスマネージャー(ソフトブレーン)― Web APIをMCP化し、日本式営業の入力負荷をAIで削減 |
@@ -45,7 +45,7 @@ python tools/build.py   # 図版生成→docx組版→PDF変換まで一括
 
 ## 生成物一覧
 
-- `manuals/00_共通編_Claude×MCP連携の基礎.docx` / `manuals/00_共通編_Claude×MCP連携の基礎.pdf`
+- `manuals/00_Common_Claude_MCP_Guide.docx` / `manuals/00_Common_Claude_MCP_Guide.pdf`
 - `manuals/01_HubSpot_Sales_Hub.docx` / `manuals/01_HubSpot_Sales_Hub.pdf`
 - `manuals/02_Salesforce_Sales_Cloud.docx` / `manuals/02_Salesforce_Sales_Cloud.pdf`
 - `manuals/03_eSalesManager.docx` / `manuals/03_eSalesManager.pdf`

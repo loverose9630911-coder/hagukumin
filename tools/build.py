@@ -292,7 +292,7 @@ def build_common():
         "の順で進めると、事故を防ぎつつ定着させやすくなります。",
     ])
 
-    path = os.path.join(OUT, "00_共通編_Claude×MCP連携の基礎.docx")
+    path = os.path.join(OUT, "00_Common_Claude_MCP_Guide.docx")
     doc.save(path)
     return path
 
@@ -413,7 +413,7 @@ def build_readme(docx_paths):
              "",
              "| 区分 | ファイル(.docx / .pdf) | 内容 |",
              "|---|---|---|",
-             "| 共通編 | `00_共通編_Claude×MCP連携の基礎` | MCPの基礎・3つの連携方式・準備・早見表・セキュリティ |"]
+             "| 共通編 | `00_Common_Claude_MCP_Guide` | MCPの基礎・3つの連携方式・準備・早見表・セキュリティ |"]
     for s in SERVICES:
         lines.append(f"| {s['id']} | `{s['file']}` | {s['name']}({s['vendor']})― {s['tagline']} |")
     lines += [

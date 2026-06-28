@@ -195,7 +195,7 @@ def doc_template(path):
 
 
 def build_common():
-    path = os.path.join(OUT, "00_共通編_Claude×MCP連携の基礎.pdf")
+    path = os.path.join(OUT, "00_Common_Claude_MCP_Guide.pdf")
     s = []
     s += cover(COMMON["title"], COMMON["subtitle"])
     s.append(heading("はじめに", 1)); s.append(body(COMMON["intro"]))
