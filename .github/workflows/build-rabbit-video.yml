@@ -10,6 +10,9 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout (required for gh release)
+        uses: actions/checkout@v4
+
       - name: Install ffmpeg
         run: |
           sudo apt-get update -y
@@ -22,9 +25,7 @@ jobs:
           mkdir -p work
           cd work
           BASE="https://d8j0ntlcm91z4.cloudfront.net/user_3FXRw0QbkyIIBK4oAfto9a5HESB"
-          # Single canonical character image (used in EVERY scene → zero character drift)
           curl -fsSL -o usa.png  "$BASE/hf_20260630_221848_d4210ab1-7fc2-4de4-8d3c-663337d56334.png"
-          # 8 audio segments (MiniMax / natural Japanese)
           curl -fsSL -o b0.mp3   "$BASE/hf_20260630_221851_67df1408-1b1a-4647-885d-6bbf1c6f185b.mp3"
           curl -fsSL -o b1.mp3   "$BASE/hf_20260630_221853_795e2dec-53db-4a3d-9598-9e531e2ef482.mp3"
           curl -fsSL -o b2.mp3   "$BASE/hf_20260630_221855_42026006-edbc-4eb2-a6a5-42124a894c1f.mp3"
@@ -35,25 +36,23 @@ jobs:
           curl -fsSL -o b6.mp3   "$BASE/hf_20260630_221908_e551dd37-f48e-4091-b4c1-b9728647af91.mp3"
           ls -la
 
-      - name: Build 8 slideshow segments (same image + each audio + subtle Ken Burns)
+      - name: Build 8 slideshow segments
         run: |
           set -euo pipefail
           cd work
-          # Pre-scale source image once to a hi-res working canvas so zoompan stays sharp
           ffmpeg -y -i usa.png -vf "scale=2560:1440:force_original_aspect_ratio=decrease,pad=2560:1440:(ow-iw)/2:(oh-ih)/2:white" hi.png
 
           build_segment() {
             local audio="$1"
             local out="$2"
-            local zoom_dir="$3"   # in | out | left | right
+            local zoom_dir="$3"
             local dur
             dur=$(ffprobe -v error -show_entries format=duration -of default=nokey=1:noprint_wrappers=1 "$audio")
-            # Number of output frames = duration * 30
             local frames
             frames=$(python3 -c "import math; print(max(60, int(math.ceil(${dur}*30))))")
             local zexpr xexpr yexpr
             case "$zoom_dir" in
-              in)    zexpr="min(zoom+0.0008,1.20)"; xexpr="iw/2-(iw/zoom/2)";       yexpr="ih/2-(ih/zoom/2)" ;;
+              in)    zexpr="min(zoom+0.0008,1.20)"; xexpr="iw/2-(iw/zoom/2)"; yexpr="ih/2-(ih/zoom/2)" ;;
               out)   zexpr="if(lte(zoom,1.0),1.20,max(zoom-0.0008,1.00))"; xexpr="iw/2-(iw/zoom/2)"; yexpr="ih/2-(ih/zoom/2)" ;;
               left)  zexpr="1.12"; xexpr="(iw-iw/zoom)*on/${frames}"; yexpr="ih/2-(ih/zoom/2)" ;;
               right) zexpr="1.12"; xexpr="iw-iw/zoom-((iw-iw/zoom)*on/${frames})"; yexpr="ih/2-(ih/zoom/2)" ;;
