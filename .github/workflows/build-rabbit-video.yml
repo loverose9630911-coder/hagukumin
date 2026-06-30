@@ -21,21 +21,24 @@ jobs:
           sudo apt-get install -y ffmpeg
           ffmpeg -version | head -1
 
-      - name: Download clips
+      - name: Download clips (V-0 narration + 7 regenerated Wan 2.7 lipsync videos)
         run: |
           set -euo pipefail
           mkdir -p work
           cd work
           BASE="https://d8j0ntlcm91z4.cloudfront.net/user_3FXRw0QbkyIIBK4oAfto9a5HESB"
+          # V-0 narration (unchanged kling)
           curl -fsSL -o v0.mp4 "$BASE/hf_20260630_144815_2a21e734-1636-46a8-8404-760168646734.mp4"
-          curl -fsSL -o v1.mp4 "$BASE/hf_20260630_145343_62399d48-4dcd-4356-b241-bc407545f362.mp4"
-          curl -fsSL -o v2.mp4 "$BASE/hf_20260630_145305_b6a0fa2b-628a-4f22-8b84-ef0de1c2b997.mp4"
-          curl -fsSL -o v3.mp4 "$BASE/hf_20260630_145309_1b906171-911d-47af-9adb-36f95ecb2d3b.mp4"
-          curl -fsSL -o v4.mp4 "$BASE/hf_20260630_145313_317792f3-1ac0-475f-80ad-657bba83ec13.mp4"
-          curl -fsSL -o v5a.mp4 "$BASE/hf_20260630_145405_f222cdfa-b09f-4b1e-a3f4-4f39b5a10ec9.mp4"
-          curl -fsSL -o v5b.mp4 "$BASE/hf_20260630_145408_eabdb3dd-4d89-4a77-8310-a6b597c89d21.mp4"
-          curl -fsSL -o v6.mp4 "$BASE/hf_20260630_145318_d81f8189-a20b-4440-8b30-d4dfc80de95f.mp4"
+          # B-0 narration audio
           curl -fsSL -o b0.wav "$BASE/hf_20260630_144054_75429b2a-a172-48b7-9ed5-190af18a5b93.wav"
+          # V-1..V-6 NEW (character-locked Wan 2.7 regeneration)
+          curl -fsSL -o v1.mp4  "$BASE/hf_20260630_213408_bd6fc891-c641-4cdb-8e84-fe8c871915ea.mp4"
+          curl -fsSL -o v2.mp4  "$BASE/hf_20260630_213415_e7372d8e-2242-42bc-842f-739c2f503c5f.mp4"
+          curl -fsSL -o v3.mp4  "$BASE/hf_20260630_213420_b095ee40-69b6-4e3a-b653-2bd18d02adef.mp4"
+          curl -fsSL -o v4.mp4  "$BASE/hf_20260630_213426_7a5858f2-e7eb-42da-8fa0-c5ff3b90c680.mp4"
+          curl -fsSL -o v5a.mp4 "$BASE/hf_20260630_213432_f2f0b9fb-b8da-4c1d-99ca-644f09e640fb.mp4"
+          curl -fsSL -o v5b.mp4 "$BASE/hf_20260630_213436_8e086764-bc2c-4de2-b95b-22059557e7e0.mp4"
+          curl -fsSL -o v6.mp4  "$BASE/hf_20260630_213442_456cf566-ad7f-4f66-abb6-93921c79b83c.mp4"
           ls -la
 
       - name: Attach narration to V-0
