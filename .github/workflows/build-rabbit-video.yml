@@ -1,0 +1,99 @@
+name: Build Rabbit Video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: claude/animal-character-personification-vi6pee
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -1
+
+      - name: Download clips
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          cd work
+          BASE="https://d8j0ntlcm91z4.cloudfront.net/user_3FXRw0QbkyIIBK4oAfto9a5HESB"
+          curl -fsSL -o v0.mp4 "$BASE/hf_20260630_144815_2a21e734-1636-46a8-8404-760168646734.mp4"
+          curl -fsSL -o v1.mp4 "$BASE/hf_20260630_145343_62399d48-4dcd-4356-b241-bc407545f362.mp4"
+          curl -fsSL -o v2.mp4 "$BASE/hf_20260630_145305_b6a0fa2b-628a-4f22-8b84-ef0de1c2b997.mp4"
+          curl -fsSL -o v3.mp4 "$BASE/hf_20260630_145309_1b906171-911d-47af-9adb-36f95ecb2d3b.mp4"
+          curl -fsSL -o v4.mp4 "$BASE/hf_20260630_145313_317792f3-1ac0-475f-80ad-657bba83ec13.mp4"
+          curl -fsSL -o v5a.mp4 "$BASE/hf_20260630_145405_f222cdfa-b09f-4b1e-a3f4-4f39b5a10ec9.mp4"
+          curl -fsSL -o v5b.mp4 "$BASE/hf_20260630_145408_eabdb3dd-4d89-4a77-8310-a6b597c89d21.mp4"
+          curl -fsSL -o v6.mp4 "$BASE/hf_20260630_145318_d81f8189-a20b-4440-8b30-d4dfc80de95f.mp4"
+          curl -fsSL -o b0.wav "$BASE/hf_20260630_144054_75429b2a-a172-48b7-9ed5-190af18a5b93.wav"
+          ls -la
+
+      - name: Attach narration to V-0
+        run: |
+          set -euo pipefail
+          cd work
+          ffmpeg -y -i v0.mp4 -i b0.wav \
+            -filter_complex "[1:a]apad=pad_dur=10[a]" \
+            -map 0:v -map "[a]" -shortest \
+            -c:v copy -c:a aac -b:a 192k \
+            v0_audio.mp4
+
+      - name: Normalize all clips to 1280x720 30fps h264 aac
+        run: |
+          set -euo pipefail
+          cd work
+          for f in v0_audio v1 v2 v3 v4 v5a v5b v6; do
+            ffmpeg -y -i "${f}.mp4" \
+              -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:black,setsar=1,fps=30" \
+              -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p \
+              -c:a aac -b:a 192k -ar 48000 -ac 2 \
+              "${f}_norm.mp4"
+          done
+          ls -la *_norm.mp4
+
+      - name: Concatenate
+        run: |
+          set -euo pipefail
+          cd work
+          cat > list.txt <<EOF
+          file 'v0_audio_norm.mp4'
+          file 'v1_norm.mp4'
+          file 'v2_norm.mp4'
+          file 'v3_norm.mp4'
+          file 'v4_norm.mp4'
+          file 'v5a_norm.mp4'
+          file 'v5b_norm.mp4'
+          file 'v6_norm.mp4'
+          EOF
+          ffmpeg -y -f concat -safe 0 -i list.txt -c copy ../momo_rabbit_intro.mp4
+          ffprobe -v error -show_entries format=duration -of default=nokey=1:noprint_wrappers=1 ../momo_rabbit_intro.mp4
+          ls -la ../momo_rabbit_intro.mp4
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: momo_rabbit_intro
+          path: momo_rabbit_intro.mp4
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Create / update release with the mp4
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG="rabbit-video-latest"
+          gh release delete "$TAG" -y || true
+          gh release create "$TAG" momo_rabbit_intro.mp4 \
+            --title "うさぎのもも 自己紹介動画" \
+            --notes "Auto-built by Actions. Download momo_rabbit_intro.mp4 and upload to YouTube as-is."
