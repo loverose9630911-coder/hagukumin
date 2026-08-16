@@ -25,9 +25,12 @@ ITERATIONS = 5       # 位置補正の反復回数
 STIFFNESS = 0.85     # 1 回でめり込みをどれだけ戻すか
 MAX_SPEED = 2600.0
 SLEEP_EPS = 0.45     # 1 ステップでこの距離しか動かなければ静止とみなす
-SETTLE_SPEED = 55.0  # いちばん速い円がこれ未満になったら「落下おわり」
+SETTLE_SPEED = 55.0  # 下向きの速さがこれ未満になったら「落下おわり」
 SETTLE_MIN_STEPS = 10   # 落ち始めを静止と誤判定しないための下限
+SETTLE_QUIET_FRAMES = 4 # 静かなステップがこれだけ続いたら打ち切る
 SETTLE_MAX_STEPS = 150  # 念のための上限
+SETTLE_LANDING_STEPS = 90  # 浮いた円を着地させる仕上げの上限
+CONTACT_TOLERANCE = 2.0    # これ以内なら「触れている」とみなす
 SLEEP_FRAMES = 4     # 静止が続いたらねむる
 PAIR_SLACK = 8.0     # ペアを作るときの余裕（反復中に動くぶん）
 FRICTION = 0.22      # 接触面の摩擦（転がりつづけるのを止める／大きすぎると山がすかすかになる）
@@ -318,6 +321,41 @@ class World:
                 b._still = 0
         return moved_max
 
+    def floating_bodies(self, tolerance: float = CONTACT_TOLERANCE) -> List[Body]:
+        """床にも他の円にも触れていない（＝宙に浮いている）円を返す。"""
+        self._build_grid()
+        grid = self._grid
+        cell = self.cell
+        out: List[Body] = []
+        for a in self.bodies:
+            if a.y + a.r >= self.floor - tolerance:
+                continue                                  # 床の上
+            ax, ay, ar = a.x, a.y, a.r
+            gx = int(ax // cell)
+            gy = int(ay // cell)
+            touching = False
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    bucket = grid.get((gx + dx, gy + dy))
+                    if not bucket:
+                        continue
+                    for c in bucket:
+                        if c is a:
+                            continue
+                        reach = ar + c.r + tolerance
+                        ddx = c.x - ax
+                        ddy = c.y - ay
+                        if ddx * ddx + ddy * ddy <= reach * reach:
+                            touching = True
+                            break
+                    if touching:
+                        break
+                if touching:
+                    break
+            if not touching:
+                out.append(a)
+        return out
+
     # ------------------------------------------------------------------ 静止まで回す
 
     def settle(self, dt: float = 1.0 / 60.0, max_steps: int = SETTLE_MAX_STEPS,
@@ -329,21 +367,42 @@ class World:
         「もう落ちているものが無い」状態なので、いちばん速い円の速さが
         speed_eps を下回った時点で打ち切り、全部を静止させる
         （このあと次の操作があるまで盤面は動かない）。
+
+        見るのは「下向きの速さ」だけにしている。ゆるい山は横方向にいつまでも
+        小さくゆれるので、速さ全体で判定すると毎回上限まで回ってしまい、
+        まだ落ちている途中の円をそのまま固めてしまうため。
+        押し戻されて上へはねた円は頂点で一瞬 速さ 0 になるので、
+        静かなステップが SETTLE_QUIET_FRAMES 回つづいたときだけ打ち切る。
         """
         steps = 0
+        quiet = 0
         for _ in range(max_steps):
             if self.awake_count() == 0:
                 break
             self.step(dt)
             steps += 1
             if steps >= SETTLE_MIN_STEPS:
-                fastest = 0.0
+                falling = 0.0
                 for b in self.bodies:
-                    speed = abs(b.vx) + abs(b.vy)
-                    if speed > fastest:
-                        fastest = speed
-                if fastest < speed_eps:
-                    break
+                    if b.vy > falling:
+                        falling = b.vy
+                if falling < speed_eps:
+                    quiet += 1
+                    if quiet >= SETTLE_QUIET_FRAMES:
+                        break
+                else:
+                    quiet = 0
+
+        # 仕上げ：どこにも触れていない円が残っていたら、着地するまで回す。
+        # ここを通すことで「宙に浮いたまま固まったツム」が絶対に残らない。
+        for _ in range(SETTLE_LANDING_STEPS):
+            floating = self.floating_bodies()
+            if not floating:
+                break
+            for b in floating:
+                b.wake()
+            self.step(dt)
+            steps += 1
         # 残っていた速度も 0 にして完全に止める
         for b in self.bodies:
             b.vx = 0.0

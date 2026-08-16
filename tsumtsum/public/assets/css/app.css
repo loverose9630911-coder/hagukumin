@@ -396,3 +396,8 @@ body.playing #stage { background: #CFEBFB; }
 .skill-icon img { display: block; margin-top: -6px; }
 #hud { display: block; }
 .res-char img { display: block; }
+
+.hud-buttons { display: flex; gap: 6px; pointer-events: none; }
+.hud-buttons > * { pointer-events: auto; }
+.icon-btn.off { opacity: .5; }
+button.icon-btn { font-family: inherit; }

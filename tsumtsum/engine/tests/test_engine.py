@@ -110,6 +110,16 @@ class PhysicsTest(unittest.TestCase):
         world.settle()
         self.assertEqual(world.awake_count(), 0)
 
+    def test_nothing_is_left_floating(self):
+        # 落ちている途中で盤面を固めてしまうと、宙に浮いたツムが残ってしまう
+        world = World(540, 1080)
+        for i in range(50):
+            body = world.add(Body(i + 1, 40 + (i * 83) % 460, -i * 45, 34))
+            body.vy = 60.0
+        world.settle()
+        self.assertEqual(world.floating_bodies(), [],
+                         "宙に浮いたまま固まった円があります")
+
 
 # ------------------------------------------------------------------ 盤面
 
@@ -160,6 +170,17 @@ class BoardTest(unittest.TestCase):
         info = self.board.clear(bodies)
         self.assertEqual(info["cleared"], 3)
         self.assertEqual(len(self.board.bodies), before - 3)
+
+    def test_board_never_leaves_a_floating_tsum(self):
+        # 消す → 補充 → 静止 をくり返しても、浮いたツムは残らない
+        for _ in range(6):
+            chain = self._find_chain(3)
+            _, _, bodies = self.board.validate_chain([b.id for b in chain])
+            self.board.clear(bodies)
+            self.board.refill()
+            self.board.settle()
+            self.assertEqual(self.board.world.floating_bodies(), [],
+                             "宙に浮いたまま固まったツムがあります")
 
     def test_refill_restores_count(self):
         chain = self._find_chain(3)

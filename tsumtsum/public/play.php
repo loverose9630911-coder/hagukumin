@@ -33,7 +33,10 @@ layout_head('プレイ中 ― ハグミン ツムツム', 'playing');
       </div>
     </div>
     <div class="hud-right">
-      <a class="icon-btn" href="index.php" aria-label="やめる">×</a>
+      <div class="hud-buttons">
+        <button class="icon-btn" id="btn-sound" aria-label="音のオンオフ">♪</button>
+        <a class="icon-btn" href="index.php" aria-label="やめる">×</a>
+      </div>
       <div class="timer" id="hud-timer">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <circle class="t-bg" cx="50" cy="50" r="42"></circle>
@@ -83,5 +86,6 @@ layout_head('プレイ中 ― ハグミン ツムツム', 'playing');
 <div id="toast"></div>
 
 <script>window.BOOT = <?= json_encode($boot, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;</script>
+<script src="assets/js/audio.js"></script>
 <script src="assets/js/client.js"></script>
 <?php layout_foot();

@@ -154,10 +154,15 @@
 
   function syncState(state) {
     if (!state) return;
+    var wasFever = G.fever;
     G.score = state.score;
     G.combo = state.combo;
     G.time = state.time_left;
     G.fever = state.fever;
+    if (state.fever !== wasFever) {
+      if (state.fever) Sound.fever();
+      Sound.bgmRate(state.fever);
+    }
     G.feverRatio = state.fever_ratio;
     G.skillRatio = state.skill_ratio;
     setSkillReady(state.skill_ready);
@@ -167,6 +172,7 @@
   /* ---------------------------------------------------------- 演出 */
 
   function playEffects(res) {
+    if ((res.cleared || []).length) Sound.pop(res.cleared.length);
     (res.cleared || []).forEach(function (item) {
       G.popping.push({ item: item, t: 1 });
       burst(item);
@@ -180,6 +186,7 @@
       else if (fx.fx === 'band') G.bands.push({ x: fx.x, y: fx.y, w: fx.w, h: fx.h, color: fx.color, t: 1, rainbow: fx.rainbow });
       else if (fx.fx === 'flash') G.flash = { color: fx.color, t: 1 };
       else if (fx.fx === 'shake') G.shake = Math.max(G.shake, fx.power);
+      else if (fx.fx === 'boom') Sound.bomb();
       else if (fx.fx === 'label') G.label = { text: fx.text, t: 1 };
       else if (fx.fx === 'time') addPop(W / 2, H * 0.32, '+' + fx.sec + 'びょう', '#7EF5E0', 1.2);
       else if (fx.fx === 'bomb_born') addPop(fx.x, fx.y - 54, fx.time ? 'タイムボム!' : 'ボム!', '#7EF5E0', 1.1);
@@ -235,6 +242,22 @@
     return dx * dx + dy * dy <= reach * reach;
   }
 
+  function bindSoundToggle() {
+    var button = document.getElementById('btn-sound');
+    if (!button) return;
+    var label = function () {
+      button.textContent = Sound.isEnabled() ? '♪' : '♪̸';
+      button.classList.toggle('off', !Sound.isEnabled());
+    };
+    label();
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      Sound.resume();
+      Sound.setEnabled(!Sound.isEnabled());
+      label();
+    });
+  }
+
   function bindInput() {
     function point(e) {
       if (e.touches) {
@@ -250,10 +273,12 @@
       var p = point(e);
       if (!p) return;
       G.pointer = p;
+      Sound.resume();
       var t = tsumAt(p.x, p.y);
       if (!t) return;
       if (t.k) { sendBomb(t); return; }
       G.chain = [t];
+      Sound.chainTick(0);
     }
 
     function move(e) {
@@ -270,7 +295,10 @@
         if (idx === G.chain.length - 2) G.chain.pop();   // ひとつ戻る
         return;
       }
-      if (canChain(G.chain[G.chain.length - 1], t)) G.chain.push(t);
+      if (canChain(G.chain[G.chain.length - 1], t)) {
+        G.chain.push(t);
+        Sound.chainTick(G.chain.length - 1);
+      }
     }
 
     function up() {
@@ -278,7 +306,8 @@
       var chain = G.chain;
       G.chain = [];
       G.pointer = null;
-      if (G.phase !== 'play' || chain.length < 3) return;
+      if (G.phase !== 'play') return;
+      if (chain.length < 3) { Sound.ng(); return; }
       sendChain(chain);
     }
 
@@ -291,10 +320,12 @@
     window.addEventListener('touchcancel', up);
 
     document.getElementById('btn-skill').addEventListener('click', function () {
+      Sound.resume();
       if (G.phase !== 'play' || G.busy || !G.skillReady) {
-        if (!G.skillReady) toast('スキルゲージが まだです');
+        if (!G.skillReady) { Sound.ng(); toast('スキルゲージが まだです'); }
         return;
       }
+      Sound.skill();
       run(action('skill'));
     });
   }
@@ -613,7 +644,10 @@
     tweenBoard(dt);
 
     if (G.phase === 'ready') {
+      var before = Math.ceil(G.countdown);
       G.countdown -= dt;
+      var after = Math.ceil(G.countdown);
+      if (after !== before && after >= 0 && after <= 3) Sound.countdown(after === 0);
       if (G.countdown <= 0) startPlay();
     } else if (G.phase === 'play') {
       G.time -= dt;
@@ -650,6 +684,7 @@
 
   function startPlay() {
     G.phase = 'play';
+    Sound.bgmStart(false);
     action('start').then(function (res) { syncState(res.state); });
   }
 
@@ -660,6 +695,8 @@
     finishing = true;
     G.phase = 'over';
     G.chain = [];
+    Sound.bgmStop();
+    Sound.finish();
     post('api/finish.php', {}).then(showResult).catch(function () {
       toast('結果を ほぞんできませんでした');
     });
@@ -701,6 +738,7 @@
     resize();
     window.addEventListener('resize', resize);
     bindInput();
+    bindSoundToggle();
     requestAnimationFrame(loop);
 
     loadImages().then(function () {

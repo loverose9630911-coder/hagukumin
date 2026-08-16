@@ -180,6 +180,7 @@ class GameSession:
         radius = (board_mod.TIME_BOMB_RADIUS if bomb.time_bomb
                   else board_mod.BOMB_RADIUS)
         effects = [
+            {"fx": "boom", "time": bomb.time_bomb},
             {"fx": "ring", "x": round(bomb.x, 1), "y": round(bomb.y, 1),
              "r": radius, "color": "#4FD1C5" if bomb.time_bomb else "#FFB03A"},
             {"fx": "shake", "power": 14},
