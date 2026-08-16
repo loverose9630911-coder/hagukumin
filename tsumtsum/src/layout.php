@@ -17,6 +17,7 @@ function layout_head(string $title, string $bodyClass = ''): void
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#8FD3F4">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ぞうさんとなかまたち">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>{$t}</title>
     <link rel="manifest" href="manifest.webmanifest">

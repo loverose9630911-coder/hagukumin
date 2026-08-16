@@ -1,0 +1,27 @@
+# Render に置くときの設定（GitHub とつなぐと、この設定を読んでくれます）
+#
+#   1. https://dashboard.render.com/ → New → Blueprint
+#   2. このリポジトリを選ぶ → Apply
+#   3. できた URL を iPad の Safari で開いて「ホーム画面に追加」
+#
+# 無料プランは 15 分アクセスがないと眠るので、次にひらくとき 30〜60 秒待たされます。
+# 待たせたくない場合は plan を starter に変えてください。
+services:
+  - type: web
+    name: zousan-game
+    runtime: docker
+    dockerfilePath: ./tsumtsum/Dockerfile
+    dockerContext: ./tsumtsum
+    plan: free
+    region: singapore
+    healthCheckPath: /index.php
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: PHP_CLI_SERVER_WORKERS
+        value: 4
+    disk:
+      # セーブデータ（コイン・所持キャラ・ランキング）を残す
+      name: data
+      mountPath: /app/data
+      sizeGB: 1
