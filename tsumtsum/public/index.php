@@ -5,14 +5,14 @@ declare(strict_types=1);
 require __DIR__ . '/../src/App.php';
 require __DIR__ . '/../src/layout.php';
 
-use Doubutsu\App;
+use Zousan\App;
 
 $app = App::boot();
 $p = $app->player;
 $selected = $app->character($app->selectedId());
 $engineUp = $app->engine->isUp();
 
-layout_head('どうぶつツムツム', 'page');
+layout_head('ぞうさんと仲間たち', 'page');
 ?>
 <section class="screen show center">
   <div class="title-deco">
@@ -21,7 +21,7 @@ layout_head('どうぶつツムツム', 'page');
     <?php endforeach; ?>
   </div>
 
-  <h1 class="logo"><span>どうぶつ</span><em>ツムツム</em></h1>
+  <h1 class="logo"><span>ぞうさんと</span><em>仲間たち</em></h1>
   <p class="tagline">つないで、はじけて、なかよくなろう！</p>
 
   <div class="stat-row">

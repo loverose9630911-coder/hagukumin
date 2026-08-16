@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Doubutsu;
+namespace Zousan;
 
 use RuntimeException;
 

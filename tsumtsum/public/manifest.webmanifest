@@ -1,6 +1,6 @@
 {
-  "name": "どうぶつツムツム",
-  "short_name": "どうぶつ",
+  "name": "ぞうさんと仲間たち",
+  "short_name": "ぞうさん",
   "description": "自作の動物キャラクターでつなげて消す、ツムツム風パズルゲーム。",
   "lang": "ja",
   "start_url": "./index.php",

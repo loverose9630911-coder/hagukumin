@@ -1,4 +1,4 @@
-# どうぶつツムツム
+# ぞうさんと仲間たち
 
 .PHONY: help setup assets serve test sim clean
 
@@ -25,4 +25,4 @@ sim:
 	python3 engine/simulate.py
 
 clean:
-	rm -rf engine/.cache engine/doubutsu/__pycache__ engine/tests/__pycache__ data
+	rm -rf engine/.cache engine/zousan/__pycache__ engine/tests/__pycache__ data

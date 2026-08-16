@@ -5,13 +5,13 @@ declare(strict_types=1);
 require __DIR__ . '/../src/App.php';
 require __DIR__ . '/../src/layout.php';
 
-use Doubutsu\App;
+use Zousan\App;
 
 $app = App::boot();
 $owned = $app->store->ownedIds((int)$app->player['id']);
 $selected = $app->selectedId();
 
-layout_head('キャラクター ― どうぶつツムツム', 'page');
+layout_head('キャラクター ― ぞうさんと仲間たち', 'page');
 ?>
 <section class="screen show">
   <header class="sc-head">

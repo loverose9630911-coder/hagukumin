@@ -5,7 +5,7 @@
  *   php tools/render_assets.php
  *
  * 色やキャラの並びは Python が書き出した public/assets/config.json を読むので、
- * キャラを増やすときは engine/doubutsu/characters.py だけ直せばよい。
+ * キャラを増やすときは engine/zousan/characters.py だけ直せばよい。
  * 画像ファイルは一切使わず、すべてこのスクリプトが図形を組み合わせて描く。
  * アプリアイコンは「ぞうさん」（config の icon_id）で作る。
  */
@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../src/Draw.php';
 
-use Doubutsu\Draw;
+use Zousan\Draw;
 
 const SS = 4;              // スーパーサンプリング倍率（描いてから縮めて滑らかにする）
 const SPRITE_R = 110;      // スプライト内でのツム半径

@@ -1,5 +1,5 @@
 /* =========================================================
- *  どうぶつツムツム ― 音
+ *  ぞうさんと仲間たち ― 音
  *
  *  音源ファイルは持たず、WebAudio でその場で合成する。
  *  ブラウザの制限で、最初のタップまで音は鳴らせないので
@@ -9,7 +9,7 @@
 var Sound = (function () {
   'use strict';
 
-  var KEY = 'doubutsu_sound';
+  var KEY = 'zousan_sound';
   var ctx = null, master = null, bgmGain = null;
   var bgmTimer = null, bgmStep = 0, bgmFast = false;
   var enabled = true;

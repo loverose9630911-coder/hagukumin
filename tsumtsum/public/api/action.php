@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../src/App.php';
 
-use Doubutsu\App;
+use Zousan\App;
 
 $app = App::boot();
 App::requirePost();
