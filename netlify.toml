@@ -1,22 +1,24 @@
 # Netlify の設定
-# tsumtsum/dist/ にできあがった静的サイト（オフラインで遊べる PWA）を公開する。
-# ビルドは不要（dist/ はリポジトリに入っています）。
-# 作りなおすときは手元で `cd tsumtsum && make static` を実行してコミットしてください。
+#
+# tsumtsum/dist/ にできあがった静的サイト（オフラインで遊べる PWA）を公開します。
+# ビルドは不要です（dist/ はリポジトリに入っています）。
+# 中身を変えたときは、手元で `cd tsumtsum && make static` を実行してコミットしてください。
 
 [build]
   publish = "tsumtsum/dist"
-  command = ""
+
+# index.html と Service Worker はキャッシュさせない（更新がすぐ反映されるように）
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
 
 [[headers]]
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
 
-[[headers]]
-  for = "/index.html"
-  [headers.values]
-    Cache-Control = "no-cache"
-
+# 画像・CSS・JS は Service Worker が持つので長めに
 [[headers]]
   for = "/assets/*"
   [headers.values]
