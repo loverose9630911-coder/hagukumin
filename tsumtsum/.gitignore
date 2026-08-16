@@ -1,0 +1,5 @@
+# 実行時に作られるもの
+data/
+engine/.cache/
+__pycache__/
+*.pyc

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Python のゲームエンジンと PHP の Web アプリを両方立ち上げる。
+#
+#   bin/serve            → http://localhost:8080
+#   PORT=3000 bin/serve  → ポートを変える
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+PORT="${PORT:-8080}"
+ENGINE_PORT="${ENGINE_PORT:-8765}"
+export ENGINE_URL="http://127.0.0.1:${ENGINE_PORT}"
+
+if [ ! -f public/assets/config.json ]; then
+  echo "▶ キャラ定義を書き出します"
+  python3 engine/export_config.py
+fi
+if [ ! -f public/assets/img/icon-512.png ]; then
+  echo "▶ キャラ画像とアプリアイコンを描きます"
+  php tools/render_assets.php
+fi
+
+cleanup() {
+  [ -n "${ENGINE_PID:-}" ] && kill "$ENGINE_PID" 2>/dev/null || true
+}
+trap cleanup EXIT INT TERM
+
+echo "▶ Python エンジンを起動します (port ${ENGINE_PORT})"
+PYTHONPATH=engine ENGINE_PORT="$ENGINE_PORT" python3 -m hagukumin.server &
+ENGINE_PID=$!
+
+for _ in $(seq 1 60); do
+  if curl -sf "http://127.0.0.1:${ENGINE_PORT}/health" >/dev/null 2>&1; then break; fi
+  sleep 0.5
+done
+
+echo "▶ PHP を起動します  →  http://localhost:${PORT}"
+php -S "0.0.0.0:${PORT}" -t public
