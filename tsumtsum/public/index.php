@@ -12,7 +12,7 @@ $p = $app->player;
 $selected = $app->character($app->selectedId());
 $engineUp = $app->engine->isUp();
 
-layout_head('ぞうさんと仲間たち', 'page');
+layout_head('ぞうさんとなかまたち', 'page');
 ?>
 <section class="screen show center">
   <div class="title-deco">
@@ -21,7 +21,7 @@ layout_head('ぞうさんと仲間たち', 'page');
     <?php endforeach; ?>
   </div>
 
-  <h1 class="logo"><span>ぞうさんと</span><em>仲間たち</em></h1>
+  <h1 class="logo"><span>ぞうさんと</span><em>なかまたち</em></h1>
   <p class="tagline">つないで、はじけて、なかよくなろう！</p>
 
   <div class="stat-row">

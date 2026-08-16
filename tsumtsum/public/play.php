@@ -19,7 +19,7 @@ $boot = [
     'selected' => $selected['id'],
 ];
 
-layout_head('プレイ中 ― ぞうさんと仲間たち', 'playing');
+layout_head('プレイ中 ― ぞうさんとなかまたち', 'playing');
 ?>
 <canvas id="cv"></canvas>
 

@@ -10,7 +10,7 @@ use Zousan\App;
 $app = App::boot();
 $rules = $app->config['rules'];
 
-layout_head('あそびかた ― ぞうさんと仲間たち', 'page');
+layout_head('あそびかた ― ぞうさんとなかまたち', 'page');
 ?>
 <section class="screen show">
   <header class="sc-head">

@@ -1,4 +1,4 @@
-# ぞうさんと仲間たち
+# ぞうさんとなかまたち
 
 .PHONY: help setup assets serve test sim clean
 

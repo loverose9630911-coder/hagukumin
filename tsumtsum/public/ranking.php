@@ -10,7 +10,7 @@ use Zousan\App;
 $app = App::boot();
 $rows = $app->store->ranking(20);
 
-layout_head('ランキング ― ぞうさんと仲間たち', 'page');
+layout_head('ランキング ― ぞうさんとなかまたち', 'page');
 ?>
 <section class="screen show">
   <header class="sc-head">

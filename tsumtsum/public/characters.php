@@ -11,7 +11,7 @@ $app = App::boot();
 $owned = $app->store->ownedIds((int)$app->player['id']);
 $selected = $app->selectedId();
 
-layout_head('キャラクター ― ぞうさんと仲間たち', 'page');
+layout_head('キャラクター ― ぞうさんとなかまたち', 'page');
 ?>
 <section class="screen show">
   <header class="sc-head">

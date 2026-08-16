@@ -122,7 +122,7 @@ def play_one(char_id: str, seed: Optional[int] = None, verbose: bool = False):
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="ぞうさんと仲間たち 自動プレイ")
+    ap = argparse.ArgumentParser(description="ぞうさんとなかまたち 自動プレイ")
     ap.add_argument("--games", type=int, default=3)
     ap.add_argument("--char", default=None, help="省略すると全キャラを 1 回ずつ")
     ap.add_argument("--verbose", action="store_true")
