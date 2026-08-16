@@ -18,9 +18,9 @@ from typing import List, Optional
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from hagukumin import characters              # noqa: E402
-from hagukumin.board import CHAIN_REACH       # noqa: E402
-from hagukumin.session import GameSession     # noqa: E402
+from doubutsu import characters              # noqa: E402
+from doubutsu.board import CHAIN_REACH       # noqa: E402
+from doubutsu.session import GameSession     # noqa: E402
 
 
 class FakeClock:
@@ -122,7 +122,7 @@ def play_one(char_id: str, seed: Optional[int] = None, verbose: bool = False):
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="ハグミン ツムツム 自動プレイ")
+    ap = argparse.ArgumentParser(description="どうぶつツムツム 自動プレイ")
     ap.add_argument("--games", type=int, default=3)
     ap.add_argument("--char", default=None, help="省略すると全キャラを 1 回ずつ")
     ap.add_argument("--verbose", action="store_true")

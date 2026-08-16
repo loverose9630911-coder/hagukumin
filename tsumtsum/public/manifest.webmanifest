@@ -1,6 +1,6 @@
 {
-  "name": "ハグミン ツムツム",
-  "short_name": "ハグミン",
+  "name": "どうぶつツムツム",
+  "short_name": "どうぶつ",
   "description": "自作の動物キャラクターでつなげて消す、ツムツム風パズルゲーム。",
   "lang": "ja",
   "start_url": "./index.php",

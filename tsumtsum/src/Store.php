@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace Hagukumin;
+namespace Doubutsu;
 
 use PDO;
 
@@ -18,7 +18,7 @@ final class Store
 
     public function __construct(?string $path = null)
     {
-        $path ??= dirname(__DIR__) . '/data/hagukumin.sqlite';
+        $path ??= dirname(__DIR__) . '/data/doubutsu.sqlite';
         $dir = dirname($path);
         if (!is_dir($dir)) {
             mkdir($dir, 0775, true);

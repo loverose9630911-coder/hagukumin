@@ -26,7 +26,7 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "▶ Python エンジンを起動します (port ${ENGINE_PORT})"
-PYTHONPATH=engine ENGINE_PORT="$ENGINE_PORT" python3 -m hagukumin.server &
+PYTHONPATH=engine ENGINE_PORT="$ENGINE_PORT" python3 -m doubutsu.server &
 ENGINE_PID=$!
 
 for _ in $(seq 1 60); do

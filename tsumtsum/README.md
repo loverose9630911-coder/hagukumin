@@ -1,4 +1,4 @@
-# ハグミン ツムツム（PHP + Python 版）
+# どうぶつツムツム（PHP + Python 版）
 
 生成AIで制作したオリジナル動物キャラクター **6匹（ぞう・うさぎ・カピバラ・キリン・パンダ・ビーバー）**
 でつなげて消す、ツムツム系のパズルゲームです。
@@ -92,7 +92,7 @@ make assets  # キャラ画像とアプリアイコンを描きなおす
 ```
 tsumtsum/
 ├─ engine/                  【Python】ゲームエンジン（ルールの本体）
-│  ├─ hagukumin/
+│  ├─ doubutsu/
 │  │  ├─ characters.py      キャラ・スキル・レベルの定義（ここが唯一の情報源）
 │  │  ├─ physics.py         円の積み上げ物理（位置ベース／PBD）
 │  │  ├─ board.py           盤面・チェーン判定・ボム・補充
@@ -133,7 +133,7 @@ tsumtsum/
 
 ## 中身のはなし
 
-### 物理（`engine/hagukumin/physics.py`）
+### 物理（`engine/doubutsu/physics.py`）
 
 速度をそのまま積分すると、支えられた円に重力が溜まりつづけて山が永久に振動します。
 そこで **位置ベース（PBD）** にしています。
@@ -168,7 +168,7 @@ tsumtsum/
 色や種族は `characters.py` の定義を読むので、**キャラを増やすときは Python 側を直すだけ**です。
 
 ```python
-# engine/hagukumin/characters.py に 1 件足す
+# engine/doubutsu/characters.py に 1 件足す
 Character(
     id="kuma", name="くまさん", tagline="もりの ともだち",
     kind="beaver",              # 描きかたの種類（render_assets.php の switch）
@@ -184,11 +184,11 @@ make assets   # 定義の書き出し → 画像の生成。選択画面にも�
 ```
 
 新しい絵の描きかたを増やしたいときは `tools/render_assets.php` の `drawByKind()` に
-`case` をひとつ足します。新しいスキル効果は `engine/hagukumin/skills.py` の `TABLE` に足します。
+`case` をひとつ足します。新しいスキル効果は `engine/doubutsu/skills.py` の `TABLE` に足します。
 
 ### データ
 
-`data/hagukumin.sqlite` が自動で作られます（プレイヤー・所持キャラ・経験値・ランキング）。
+`data/doubutsu.sqlite` が自動で作られます（プレイヤー・所持キャラ・経験値・ランキング）。
 プレイヤーの見分けは Cookie のセッションだけで、ログインは要りません。
 
 ---

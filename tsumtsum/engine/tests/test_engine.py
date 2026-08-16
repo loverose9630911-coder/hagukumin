@@ -11,11 +11,11 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from hagukumin import board as board_mod          # noqa: E402
-from hagukumin import characters, rules           # noqa: E402
-from hagukumin.board import Board                 # noqa: E402
-from hagukumin.physics import Body, World         # noqa: E402
-from hagukumin.session import GameSession         # noqa: E402
+from doubutsu import board as board_mod          # noqa: E402
+from doubutsu import characters, rules           # noqa: E402
+from doubutsu.board import Board                 # noqa: E402
+from doubutsu.physics import Body, World         # noqa: E402
+from doubutsu.session import GameSession         # noqa: E402
 
 
 class FakeClock:

@@ -1,4 +1,4 @@
-# ハグミン ツムツム
+# どうぶつツムツム
 
 .PHONY: help setup assets serve test sim clean
 
@@ -25,4 +25,4 @@ sim:
 	python3 engine/simulate.py
 
 clean:
-	rm -rf engine/.cache engine/hagukumin/__pycache__ engine/tests/__pycache__ data
+	rm -rf engine/.cache engine/doubutsu/__pycache__ engine/tests/__pycache__ data

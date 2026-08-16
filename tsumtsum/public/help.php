@@ -5,12 +5,12 @@ declare(strict_types=1);
 require __DIR__ . '/../src/App.php';
 require __DIR__ . '/../src/layout.php';
 
-use Hagukumin\App;
+use Doubutsu\App;
 
 $app = App::boot();
 $rules = $app->config['rules'];
 
-layout_head('あそびかた ― ハグミン ツムツム', 'page');
+layout_head('あそびかた ― どうぶつツムツム', 'page');
 ?>
 <section class="screen show">
   <header class="sc-head">

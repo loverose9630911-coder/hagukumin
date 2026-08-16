@@ -5,12 +5,12 @@ declare(strict_types=1);
 require __DIR__ . '/../src/App.php';
 require __DIR__ . '/../src/layout.php';
 
-use Hagukumin\App;
+use Doubutsu\App;
 
 $app = App::boot();
 $rows = $app->store->ranking(20);
 
-layout_head('ランキング ― ハグミン ツムツム', 'page');
+layout_head('ランキング ― どうぶつツムツム', 'page');
 ?>
 <section class="screen show">
   <header class="sc-head">

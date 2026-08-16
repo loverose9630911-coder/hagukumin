@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Hagukumin;
+namespace Doubutsu;
 
 require_once __DIR__ . '/Engine.php';
 require_once __DIR__ . '/Store.php';

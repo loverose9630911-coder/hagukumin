@@ -3,7 +3,7 @@
 
 declare(strict_types=1);
 
-use Hagukumin\App;
+use Doubutsu\App;
 
 function layout_head(string $title, string $bodyClass = ''): void
 {

@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace Hagukumin;
+namespace Doubutsu;
 
 use GdImage;
 

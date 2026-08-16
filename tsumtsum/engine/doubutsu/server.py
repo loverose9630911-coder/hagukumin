@@ -62,7 +62,7 @@ STORE = SessionStore()
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "HagukuminEngine/1.0"
+    server_version = "DoubutsuEngine/1.0"
     protocol_version = "HTTP/1.1"
 
     # ------------------------------------------------------------------ 基本

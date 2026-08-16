@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../src/App.php';
 require __DIR__ . '/../src/layout.php';
 
-use Hagukumin\App;
+use Doubutsu\App;
 
 $app = App::boot();
 $selected = $app->character($app->selectedId());
@@ -19,7 +19,7 @@ $boot = [
     'selected' => $selected['id'],
 ];
 
-layout_head('プレイ中 ― ハグミン ツムツム', 'playing');
+layout_head('プレイ中 ― どうぶつツムツム', 'playing');
 ?>
 <canvas id="cv"></canvas>
 
