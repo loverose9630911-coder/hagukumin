@@ -8,6 +8,9 @@
 - **Web アプリは PHP**（画面・セーブ・ショップ・ランキング・画像生成）
 - ブラウザ側の JavaScript は **描画と指の動きを送るだけ**
 
+iPad などに入れて遊ぶための **オフラインで動く静的版（PWA）** も
+`make static` で書き出せます → [iPad に入れる](#ipad-に入れる)。
+
 画像素材・音声素材・外部ライブラリは一切使っていません。キャラクターの絵は
 PHP-GD が図形を組み合わせてその場で描き出し、効果音と BGM は WebAudio で合成しています。
 
@@ -25,6 +28,7 @@ bin/serve                 # → http://localhost:8080
 
 ```bash
 make setup   # キャラ定義の書き出し＋画像の生成だけ
+make static  # iPad 用の静的サイト（dist/）を書き出す
 make test    # エンジンのテスト（42 件）
 make sim     # ブラウザ無しで自動プレイしてバランスを確認
 make assets  # キャラ画像とアプリアイコンを描きなおす
@@ -58,6 +62,66 @@ make assets  # キャラ画像とアプリアイコンを描きなおす
 
 1 手あたりのエンジンの計算は実測 **平均 39ms / 最大 75ms**。
 落下アニメーション（0.42 秒）のあいだに終わるので、待たされる感じはありません。
+
+---
+
+## iPad に入れる
+
+サーバー（PHP / Python）が要らない **静的版** を書き出して、Netlify に置いて
+ホーム画面に追加すれば、ふつうのアプリと同じように遊べます。**機内モードでも動きます。**
+
+### 1. 書き出す
+
+```bash
+cd tsumtsum
+make static        # → tsumtsum/dist/ ができる（20 ファイル / 約 0.4MB）
+```
+
+`dist/` はリポジトリにも入れてあるので、書き出さずにそのまま使ってもかまいません。
+
+### 2. Netlify に置く
+
+どちらか好きなほうで。
+
+**A. ドラッグ＆ドロップ（いちばん手軽）**
+
+1. <https://app.netlify.com/drop> を開く
+2. `tsumtsum/dist` フォルダを**まるごと**ドラッグ＆ドロップ
+3. `https://〇〇.netlify.app` が発行される（`Site settings → Change site name` で名前を変えられます）
+
+**B. GitHub とつなぐ（更新が自動になる）**
+
+1. Netlify で `Add new site → Import an existing project` からこのリポジトリを選ぶ
+2. 設定はさわらなくて大丈夫です（リポジトリ直下の `netlify.toml` で
+   公開フォルダを `tsumtsum/dist` に指定してあります。ビルドコマンドは無し）
+3. 以降は `make static` して push すれば自動で反映されます
+
+### 3. iPad のホーム画面に追加する
+
+1. **Safari** でそのURLを開く（Chrome だとホーム画面に追加できません）
+2. 下（または上）の **共有ボタン** <kbd>↑</kbd> をタップ
+3. **「ホーム画面に追加」** をタップ → 名前はそのままで「追加」
+
+これで、ぞうさんのアイコンがホーム画面に並びます。
+アイコンから起動すると Safari のバーが出ない全画面になり、
+**一度ひらいたあとはオフラインでも遊べます**（Service Worker が中身を持っておきます）。
+
+> 保存されるもの（コイン・所持キャラ・レベル・ハイスコア）はその iPad の中だけです。
+> 別の端末とは共有されません。
+
+### サーバー版とのちがい
+
+| | 静的版（iPad 用） | サーバー版（PHP + Python） |
+| --- | --- | --- |
+| 置き場所 | Netlify など静的ホスティング | PHP と Python が動くサーバー |
+| オフライン | ○ | × |
+| ゲームのルール | ブラウザ内エンジン（`assets/js/engine-local.js`） | Python エンジン |
+| セーブ | localStorage（その端末だけ） | SQLite（みんなで共有） |
+| ランキング | 自分のきろく 20 件 | 全員のランキング |
+| スコアの改ざん | できてしまう（手元で完結するため） | できない（サーバーが計算） |
+
+数値（重力・スコア式・フィーバー条件…）は両方とも `config.json` を読むので、
+`engine/zousan/` の Python を直せば両方に反映されます。
 
 ---
 
@@ -118,13 +182,18 @@ tsumtsum/
 │  ├─ ranking.php / help.php
 │  ├─ api/                  session / action / finish / player
 │  └─ assets/
-│     ├─ js/client.js       描画と入力だけの薄い層
+│     ├─ js/client.js       描画と入力だけの薄い層（サーバー版と静的版で共通）
+│     ├─ js/engine-local.js 静的版のブラウザ内エンジン（Python の移植）
+│     ├─ js/shell.js        静的版の画面まわり（PHP のページの代わり）
 │     ├─ js/audio.js        効果音と BGM（WebAudio で合成／音源ファイル無し）
 │     ├─ css/app.css
 │     ├─ img/               PHP-GD が描いたキャラ画像とアプリアイコン
 │     └─ config.json        Python が書き出したマスタデータ
 │
-├─ tools/render_assets.php  【PHP】キャラ画像とアプリアイコンを描く
+├─ tools/
+│  ├─ render_assets.php     【PHP】キャラ画像とアプリアイコンを描く
+│  └─ build_static.php      【PHP】iPad 用の静的サイトを dist/ に書き出す
+├─ dist/                    書き出した静的サイト（Netlify にそのまま置ける）
 ├─ bin/serve                エンジンと Web アプリをまとめて起動
 └─ Makefile
 ```
@@ -185,6 +254,24 @@ make assets   # 定義の書き出し → 画像の生成。選択画面にも�
 
 新しい絵の描きかたを増やしたいときは `tools/render_assets.php` の `drawByKind()` に
 `case` をひとつ足します。新しいスキル効果は `engine/zousan/skills.py` の `TABLE` に足します。
+
+### 静的版のエンジン（`public/assets/js/engine-local.js`）
+
+オフラインで遊ぶには、ルールがブラウザの中に無いといけません。
+そこで Python エンジンと**同じ手順**で動く JavaScript 版を置いています。
+数値はどちらも `config.json`（もとは `engine/zousan/` の Python）を読むので、
+二か所で数字を持つことはありません。
+
+描画側（`client.js`）は、サーバーに投げるかわりにこのエンジンへ問い合わせるだけなので、
+**サーバー版と静的版で同じコード**が動いています。
+
+```js
+// client.js の中身（抜粋）
+if (window.LocalEngine && window.LocalEngine.enabled) {
+  return LocalEngine.request(url, body);   // 静的版：ブラウザの中で計算
+}
+return fetch(url, ...);                    // サーバー版：PHP → Python
+```
 
 ### データ
 

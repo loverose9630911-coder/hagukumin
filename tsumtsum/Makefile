@@ -1,6 +1,6 @@
 # ぞうさんとなかまたち
 
-.PHONY: help setup assets serve test sim clean
+.PHONY: help setup assets serve static test sim clean
 
 help:
 	@echo "make setup   キャラ定義の書き出しと画像の生成"
@@ -8,6 +8,7 @@ help:
 	@echo "make test    エンジンのテスト"
 	@echo "make sim     自動プレイでバランスを確認"
 	@echo "make assets  キャラ画像とアプリアイコンを描きなおす"
+	@echo "make static  iPad 用の静的サイト(dist/)を書き出す"
 
 setup: assets
 
@@ -17,6 +18,10 @@ assets:
 
 serve:
 	bin/serve
+
+# Netlify に置く用（オフラインで遊べる PWA）
+static: assets
+	php tools/build_static.php
 
 test:
 	python3 -m unittest discover -s engine/tests -t engine -v

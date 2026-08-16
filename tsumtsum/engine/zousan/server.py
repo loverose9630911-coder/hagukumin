@@ -15,7 +15,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Dict, Optional, Tuple
 
 from . import board as board_mod
-from . import characters, rules
+from . import characters, physics, rules
 from .session import GameSession
 
 SESSION_TTL = 60 * 20      # 20 分さわられなければ捨てる
@@ -183,19 +183,50 @@ def build_config() -> Dict:
             "play_time": rules.PLAY_TIME,
             "max_time": rules.MAX_TIME,
             "combo_hold": rules.COMBO_HOLD,
+            "combo_cap": rules.COMBO_CAP,
+            "base_score": rules.BASE_SCORE,
             "fever_need": rules.FEVER_NEED,
             "fever_time": rules.FEVER_TIME,
+            "fever_time_bonus": rules.FEVER_TIME_BONUS,
+            "fever_multiplier": rules.FEVER_MULTIPLIER,
             "bomb_chain": board_mod.BOMB_CHAIN,
             "time_bomb_chain": board_mod.TIME_BOMB_CHAIN,
             "time_bomb_bonus": rules.TIME_BOMB_BONUS,
+            "bomb_radius": board_mod.BOMB_RADIUS,
+            "time_bomb_radius": board_mod.TIME_BOMB_RADIUS,
+            "deck_size": board_mod.DECK_SIZE,
+            "coin_per_score": rules.COIN_PER_SCORE,
+            "coin_per_combo": rules.COIN_PER_COMBO,
+            "exp_per_own": rules.EXP_PER_OWN,
+            "exp_per_score": rules.EXP_PER_SCORE,
         },
         "field": {
             "w": board_mod.WIDTH,
             "h_min": board_mod.HEIGHT_MIN,
             "h_max": board_mod.HEIGHT_MAX,
+            "floor_pad": board_mod.FLOOR_PAD,
             "tsum_r": board_mod.TSUM_R,
             "big_r": board_mod.BIG_R,
+            "bomb_r": board_mod.BOMB_R,
             "chain_reach": board_mod.CHAIN_REACH,
+        },
+        # 静的版（オフライン PWA）の JavaScript エンジンも同じ数値を使う
+        "physics": {
+            "gravity": physics.GRAVITY,
+            "damping": physics.DAMPING,
+            "iterations": physics.ITERATIONS,
+            "stiffness": physics.STIFFNESS,
+            "max_speed": physics.MAX_SPEED,
+            "friction": physics.FRICTION,
+            "pair_slack": physics.PAIR_SLACK,
+            "sleep_eps": physics.SLEEP_EPS,
+            "sleep_frames": physics.SLEEP_FRAMES,
+            "settle_speed": physics.SETTLE_SPEED,
+            "settle_min_steps": physics.SETTLE_MIN_STEPS,
+            "settle_quiet_frames": physics.SETTLE_QUIET_FRAMES,
+            "settle_max_steps": physics.SETTLE_MAX_STEPS,
+            "settle_landing_steps": physics.SETTLE_LANDING_STEPS,
+            "contact_tolerance": physics.CONTACT_TOLERANCE,
         },
     }
 

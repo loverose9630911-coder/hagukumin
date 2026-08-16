@@ -34,12 +34,18 @@ def chain_score(units: int, combo: int, fever: bool) -> int:
     return int(round(base * chain_bonus * combo_bonus * fever_bonus))
 
 
+COIN_PER_SCORE = 120        # このスコアごとに 1 コイン
+COIN_PER_COMBO = 2          # 最大コンボ 1 につきもらえるコイン
+EXP_PER_OWN = 6             # 自分のツム 1 個ぶんの経験値
+EXP_PER_SCORE = 400         # このスコアごとに 1 経験値
+
+
 def coins_earned(score: int, max_combo: int) -> int:
-    return score // 120 + max_combo * 2
+    return score // COIN_PER_SCORE + max_combo * COIN_PER_COMBO
 
 
 def exp_earned(own_cleared: int, score: int) -> int:
-    return own_cleared * 6 + score // 400
+    return own_cleared * EXP_PER_OWN + score // EXP_PER_SCORE
 
 
 def clamp_time(seconds: float) -> float:
