@@ -9,6 +9,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="すうじと なかまたち ― すうじを なぞると どうぶつが そのかずだけ あそびにくる、さんすうの れんしゅうアプリ。">
 <title>すうじと なかまたち</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -29,7 +32,7 @@ button{font-family:inherit;cursor:pointer}
 .logo{font-size:clamp(28px,5.5vw,42px);color:#FF8A3D;text-shadow:0 2px 0 #fff;letter-spacing:.04em}
 .logo em{color:#3FA9F5;font-style:normal}
 .friends{display:flex;gap:6px;justify-content:center;margin:8px 0 2px}
-.friends svg{width:46px;height:46px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.12))}
+.friends .ch{width:46px;height:46px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.12))}
 .tagline{color:#7A6A50;font-size:15px;margin-bottom:6px}
 .menu-scroll{flex:1;overflow-y:auto;width:min(720px,94%);padding:4px 4px 20px;-webkit-overflow-scrolling:touch}
 .sec-label{margin:16px 0 8px;color:#7A6A50;font-size:15px;font-weight:700}
@@ -71,12 +74,12 @@ button{font-family:inherit;cursor:pointer}
 .tf-grid{display:grid;grid-template-columns:repeat(5,var(--slot,64px));grid-auto-rows:var(--slot,64px);gap:6px}
 .slot{display:flex;align-items:center;justify-content:center}
 .slot.empty::before{content:'';width:60%;height:60%;border:2.5px dashed #E0D3B4;border-radius:50%}
-.slot svg{width:94%;height:94%;transform:scale(0);filter:drop-shadow(0 2px 2px rgba(0,0,0,.10))}
-.slot.pop svg{animation:pop .3s forwards}
+.slot .ch{width:94%;height:94%;transform:scale(0);filter:drop-shadow(0 2px 2px rgba(0,0,0,.10))}
+.slot.pop .ch{animation:pop .3s forwards}
 @keyframes pop{0%{transform:scale(0)}65%{transform:scale(1.22)}100%{transform:scale(1)}}
 .tf-label{text-align:center;font-size:13px;color:#C77F00;font-weight:700;height:17px;margin-top:4px;opacity:0;transition:.3s}
 .tf.full .tf-label{opacity:1}
-.party .slot.pop svg{animation:hop .55s ease-in-out infinite alternate}
+.party .slot.pop .ch{animation:hop .55s ease-in-out infinite alternate}
 @keyframes hop{from{transform:translateY(0) scale(1)}to{transform:translateY(-13%) scale(1.05)}}
 .cele-bottom{min-height:150px;display:flex;align-items:center;justify-content:center;
   padding-bottom:calc(14px + env(safe-area-inset-bottom))}
@@ -292,83 +295,25 @@ function buildNumber(n) {
 }
 
 /* =====================================================================
- * どうぶつキャラクター（すべてコード描画のSVG・画像ファイルなし）
- * 既存アプリの自作キャラに差し替えるときは この配列の svg を入れ替える
+ * どうぶつキャラクター（Gemini生成のオリジナルキャラを丸バッジ画像に加工）
+ * 画像は assets/img/ch-*.png。差し替えは img のパスを変えるだけ。
+ * img を省略して svg:'<circle …>' を入れれば コード描画キャラにも戻せる。
  * =================================================================== */
 var ANIMALS = [
-  { id: 'zou', name: 'ぞうさん', svg:
-    '<circle cx="20" cy="52" r="15" fill="#93A9C9"/><circle cx="80" cy="52" r="15" fill="#93A9C9"/>' +
-    '<circle cx="20" cy="52" r="9" fill="#C4D4E9"/><circle cx="80" cy="52" r="9" fill="#C4D4E9"/>' +
-    '<circle cx="50" cy="55" r="30" fill="#AFC3DE"/>' +
-    '<path d="M50 58 Q48 74 49 82 Q50 90 59 88" stroke="#93A9C9" stroke-width="11" fill="none" stroke-linecap="round"/>' +
-    '<circle cx="39" cy="50" r="3.4" fill="#3B3125"/><circle cx="40.2" cy="48.8" r="1.1" fill="#fff"/>' +
-    '<circle cx="61" cy="50" r="3.4" fill="#3B3125"/><circle cx="62.2" cy="48.8" r="1.1" fill="#fff"/>' +
-    '<ellipse cx="29" cy="61" rx="5" ry="3.2" fill="#FFADBF" opacity=".65"/>' +
-    '<ellipse cx="71" cy="61" rx="5" ry="3.2" fill="#FFADBF" opacity=".65"/>' },
-  { id: 'usagi', name: 'うさぎさん', svg:
-    '<ellipse cx="38" cy="27" rx="9" ry="21" fill="#FDF6F0" stroke="#E9D5C6" stroke-width="2" transform="rotate(-9 38 27)"/>' +
-    '<ellipse cx="62" cy="27" rx="9" ry="21" fill="#FDF6F0" stroke="#E9D5C6" stroke-width="2" transform="rotate(9 62 27)"/>' +
-    '<ellipse cx="38" cy="29" rx="4" ry="13" fill="#FFC7D6" transform="rotate(-9 38 29)"/>' +
-    '<ellipse cx="62" cy="29" rx="4" ry="13" fill="#FFC7D6" transform="rotate(9 62 29)"/>' +
-    '<circle cx="50" cy="62" r="27" fill="#FDF6F0" stroke="#E9D5C6" stroke-width="2"/>' +
-    '<circle cx="40" cy="58" r="3.4" fill="#3B3125"/><circle cx="41.2" cy="56.8" r="1.1" fill="#fff"/>' +
-    '<circle cx="60" cy="58" r="3.4" fill="#3B3125"/><circle cx="61.2" cy="56.8" r="1.1" fill="#fff"/>' +
-    '<circle cx="50" cy="64" r="2.6" fill="#FF9DB6"/>' +
-    '<path d="M44 69 q6 6 12 0" stroke="#5B4636" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
-    '<ellipse cx="31" cy="68" rx="5" ry="3.2" fill="#FFADBF" opacity=".7"/>' +
-    '<ellipse cx="69" cy="68" rx="5" ry="3.2" fill="#FFADBF" opacity=".7"/>' },
-  { id: 'kapibara', name: 'カピバラさん', svg:
-    '<circle cx="30" cy="35" r="6" fill="#A87E4C"/><circle cx="70" cy="35" r="6" fill="#A87E4C"/>' +
-    '<ellipse cx="50" cy="58" rx="30" ry="27" fill="#C79A63"/>' +
-    '<ellipse cx="50" cy="70" rx="16" ry="11" fill="#E0BE8F"/>' +
-    '<circle cx="45" cy="67" r="1.8" fill="#6B4E2E"/><circle cx="55" cy="67" r="1.8" fill="#6B4E2E"/>' +
-    '<path d="M46 75 q4 3 8 0" stroke="#6B4E2E" stroke-width="2.2" fill="none" stroke-linecap="round"/>' +
-    '<circle cx="37" cy="52" r="3.4" fill="#3B3125"/><circle cx="38.2" cy="50.8" r="1.1" fill="#fff"/>' +
-    '<circle cx="63" cy="52" r="3.4" fill="#3B3125"/><circle cx="64.2" cy="50.8" r="1.1" fill="#fff"/>' +
-    '<ellipse cx="27" cy="62" rx="5" ry="3.2" fill="#FFADBF" opacity=".6"/>' +
-    '<ellipse cx="73" cy="62" rx="5" ry="3.2" fill="#FFADBF" opacity=".6"/>' },
-  { id: 'kirin', name: 'キリンさん', svg:
-    '<rect x="38" y="18" width="4" height="14" rx="2" fill="#C98A3B"/>' +
-    '<rect x="58" y="18" width="4" height="14" rx="2" fill="#C98A3B"/>' +
-    '<circle cx="40" cy="17" r="4.5" fill="#C98A3B"/><circle cx="60" cy="17" r="4.5" fill="#C98A3B"/>' +
-    '<ellipse cx="23" cy="42" rx="8" ry="5" fill="#F8CB4E" transform="rotate(-20 23 42)"/>' +
-    '<ellipse cx="77" cy="42" rx="8" ry="5" fill="#F8CB4E" transform="rotate(20 77 42)"/>' +
-    '<ellipse cx="50" cy="60" rx="27" ry="26" fill="#F8CB4E"/>' +
-    '<circle cx="30" cy="48" r="4" fill="#E5A63C" opacity=".85"/><circle cx="68" cy="44" r="3.5" fill="#E5A63C" opacity=".85"/>' +
-    '<circle cx="33" cy="74" r="3" fill="#E5A63C" opacity=".85"/><circle cx="70" cy="70" r="3" fill="#E5A63C" opacity=".85"/>' +
-    '<ellipse cx="50" cy="72" rx="14" ry="10" fill="#FBE29B"/>' +
-    '<circle cx="45" cy="70" r="1.8" fill="#8A6224"/><circle cx="55" cy="70" r="1.8" fill="#8A6224"/>' +
-    '<path d="M46 77 q4 3 8 0" stroke="#8A6224" stroke-width="2.2" fill="none" stroke-linecap="round"/>' +
-    '<circle cx="38" cy="54" r="3.4" fill="#3B3125"/><circle cx="39.2" cy="52.8" r="1.1" fill="#fff"/>' +
-    '<circle cx="62" cy="54" r="3.4" fill="#3B3125"/><circle cx="63.2" cy="52.8" r="1.1" fill="#fff"/>' },
-  { id: 'panda', name: 'パンダさん', svg:
-    '<circle cx="28" cy="36" r="11" fill="#3B3B3B"/><circle cx="72" cy="36" r="11" fill="#3B3B3B"/>' +
-    '<circle cx="50" cy="58" r="28" fill="#FFFFFF" stroke="#E8E0D5" stroke-width="2"/>' +
-    '<ellipse cx="39" cy="55" rx="8" ry="10" fill="#3B3B3B" transform="rotate(-12 39 55)"/>' +
-    '<ellipse cx="61" cy="55" rx="8" ry="10" fill="#3B3B3B" transform="rotate(12 61 55)"/>' +
-    '<circle cx="40" cy="55" r="3" fill="#fff"/><circle cx="60" cy="55" r="3" fill="#fff"/>' +
-    '<circle cx="40.8" cy="55.6" r="1.4" fill="#3B3B3B"/><circle cx="60.8" cy="55.6" r="1.4" fill="#3B3B3B"/>' +
-    '<ellipse cx="50" cy="66" rx="3.5" ry="2.5" fill="#3B3B3B"/>' +
-    '<path d="M46 71 q4 4 8 0" stroke="#3B3B3B" stroke-width="2.2" fill="none" stroke-linecap="round"/>' +
-    '<ellipse cx="30" cy="66" rx="5" ry="3.2" fill="#FFC7D6" opacity=".8"/>' +
-    '<ellipse cx="70" cy="66" rx="5" ry="3.2" fill="#FFC7D6" opacity=".8"/>' },
-  { id: 'beaver', name: 'ビーバーさん', svg:
-    '<ellipse cx="77" cy="77" rx="14" ry="9" fill="#7E5433" transform="rotate(35 77 77)"/>' +
-    '<circle cx="30" cy="35" r="8" fill="#7E5433"/><circle cx="70" cy="35" r="8" fill="#7E5433"/>' +
-    '<circle cx="30" cy="35" r="4" fill="#B98A5C"/><circle cx="70" cy="35" r="4" fill="#B98A5C"/>' +
-    '<circle cx="50" cy="58" r="27" fill="#9B6B43"/>' +
-    '<ellipse cx="50" cy="70" rx="15" ry="12" fill="#C79A63"/>' +
-    '<ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#5C3D22"/>' +
-    '<rect x="44.5" y="69" width="5" height="9" rx="1.5" fill="#fff" stroke="#E8E0D5"/>' +
-    '<rect x="50.5" y="69" width="5" height="9" rx="1.5" fill="#fff" stroke="#E8E0D5"/>' +
-    '<circle cx="39" cy="52" r="3.4" fill="#3B3125"/><circle cx="40.2" cy="50.8" r="1.1" fill="#fff"/>' +
-    '<circle cx="61" cy="52" r="3.4" fill="#3B3125"/><circle cx="62.2" cy="50.8" r="1.1" fill="#fff"/>' +
-    '<ellipse cx="28" cy="64" rx="5" ry="3.2" fill="#FFADBF" opacity=".6"/>' +
-    '<ellipse cx="72" cy="64" rx="5" ry="3.2" fill="#FFADBF" opacity=".6"/>' }
+  { id: 'zou',      name: 'ぞうさん',     img: 'assets/img/ch-zou.png' },
+  { id: 'usagi',    name: 'うさぎさん',   img: 'assets/img/ch-usagi.png' },
+  { id: 'kapibara', name: 'カピバラさん', img: 'assets/img/ch-kapibara.png' },
+  { id: 'kirin',    name: 'キリンさん',   img: 'assets/img/ch-kirin.png' },
+  { id: 'panda',    name: 'パンダさん',   img: 'assets/img/ch-panda.png' },
+  { id: 'beaver',   name: 'ビーバーさん', img: 'assets/img/ch-beaver.png' },
+  { id: 'kozou',    name: 'こぞうさん',   img: 'assets/img/ch-kozou.png' }
 ];
-function animalSVG(a) {
-  return '<svg viewBox="0 0 100 100" aria-hidden="true">' + a.svg + '</svg>';
+function animalHTML(a) {
+  if (a.img) return '<img class="ch" src="' + a.img + '" alt="' + a.name + '">';
+  return '<svg class="ch" viewBox="0 0 100 100" aria-hidden="true">' + a.svg + '</svg>';
 }
+/* 初回のおいわいで待たせないよう先に読み込んでおく */
+ANIMALS.forEach(function (a) { if (a.img) { var im = new Image(); im.src = a.img; } });
 
 /* =====================================================================
  * 汎用カウントロジック（10の塊）
@@ -801,7 +746,7 @@ function celebrate(n) {
       var g = Math.floor((i - 1) / 10);
       var idx = (i - 1) % 10;
       var sl = slots[i - 1];
-      sl.innerHTML = animalSVG(plan.groups[g].animal);
+      sl.innerHTML = animalHTML(plan.groups[g].animal);
       sl.classList.remove('empty');
       sl.classList.add('pop');
       sfx.pop(idx);
@@ -863,7 +808,7 @@ function buildMenu() {
     (n <= 10 ? basic : adv).appendChild(b);
   });
 }
-$('friends').innerHTML = ANIMALS.map(animalSVG).join('');
+$('friends').innerHTML = ANIMALS.map(animalHTML).join('');
 
 /* ボタンたち */
 $('btn-back').addEventListener('click', function () { rafOn = false; show('scr-menu'); });
@@ -908,6 +853,11 @@ window.addEventListener('resize', fitView);
 window.addEventListener('orientationchange', function () { setTimeout(fitView, 250); });
 
 buildMenu();
+
+/* オフライン対応（Netlifyなどで公開したときだけ。file:// では何もしない） */
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('sw.js').catch(function () {});
+}
 
 /* 自動テスト・デバッグ用フック（アプリの動作には使わない） */
 window.__nz = {
