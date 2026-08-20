@@ -1,5 +1,5 @@
 /* すうじとなかまたち Service Worker（cache-first・一度ひらけばオフラインで動く） */
-var CACHE = 'suuji-v1';
+var CACHE = 'suuji-v2';
 var ASSETS = [
   './',
   'index.html',

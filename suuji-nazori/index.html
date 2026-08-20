@@ -124,6 +124,10 @@ button{font-family:inherit;cursor:pointer}
       <div class="num-grid" id="grid-basic"></div>
       <h2 class="sec-label">🌟 ２けたに チャレンジ！（１１〜３０）</h2>
       <div class="num-grid" id="grid-adv"></div>
+      <h2 class="sec-label">🚀 もっと チャレンジ！（３１〜５０）</h2>
+      <div class="num-grid" id="grid-adv2"></div>
+      <h2 class="sec-label">👑 おおきな すうじ（６０〜１００）</h2>
+      <div class="num-grid" id="grid-big"></div>
     </div>
     <div class="menu-foot">
       <button class="chip" id="btn-sound">♪ おと ON</button>
@@ -198,7 +202,8 @@ var CFG = {
   endSlack : 3,    // 終点の手前この点数まで来たら「書けた」とみなす
   step     : 4,    // ストロークを等間隔サンプリングする間隔
   popMsFew : 650,  // 10以下のとき 1匹出すごとの間隔(ms)
-  popMsMany: 240,  // 11以上のとき 1匹出すごとの間隔(ms)
+  popMsMany: 240,  // 11〜50のとき 1匹出すごとの間隔(ms)
+  popMsLots: 150,  // 51以上のとき 1匹出すごとの間隔(ms)（100でも長すぎないように）
   groupMs  : 550   // 「10のまとまり」完成の見せ場の間(ms)
 };
 
@@ -338,6 +343,7 @@ function countPlan(n) {
 function yomi(n) {
   var d = ['', 'いち', 'に', 'さん', 'よん', 'ご', 'ろく', 'なな', 'はち', 'きゅう'];
   if (n === 0) return 'ぜろ';
+  if (n === 100) return 'ひゃく';
   if (n < 10) return d[n];
   var t = Math.floor(n / 10), o = n % 10;
   return (t === 1 ? 'じゅう' : d[t] + 'じゅう') + (o ? d[o] : '');
@@ -655,7 +661,8 @@ function show(id) {
 }
 
 var NUMBERS = [];
-for (var i = 1; i <= 30; i++) NUMBERS.push(i);   // メニューに出す数字。増やすときはここ
+for (var i = 1; i <= 50; i++) NUMBERS.push(i);   // メニューに出す数字。増やすときはここ
+[60, 70, 80, 90, 100].forEach(function (n) { NUMBERS.push(n); });
 
 function openTrace(n) {
   tr.model = buildNumber(n);
@@ -678,7 +685,7 @@ var celebrating = false;
 function sizeSlots(plan) {
   var stage = $('cele-stage');
   var G = plan.groups.length;
-  var perRow = G <= 1 ? 1 : (G <= 4 ? 2 : 3);
+  var perRow = G <= 1 ? 1 : (G <= 4 ? 2 : (G <= 6 ? 3 : 4));
   var rows = Math.ceil(G / perRow);
   var W = stage.clientWidth - 28, H = stage.clientHeight - 28;
   var groupW = W / perRow - 20, groupH = H / rows - 42;
@@ -759,7 +766,7 @@ function celebrate(n) {
         await sleep(CFG.popMsFew);
       } else {
         if (i % 10 === 0 || i === n) tts.say(yomi(i), { rate: 1.05 });
-        await sleep(CFG.popMsMany);
+        await sleep(n <= 50 ? CFG.popMsMany : CFG.popMsLots);
       }
       if (idx === 9) {                       // 10匹そろった＝まとまり完成の見せ場
         groupEls[g].classList.add('full');
@@ -797,15 +804,15 @@ function celebrate(n) {
 function buildMenu() {
   var stars = {};
   try { stars = JSON.parse(store('suuji.stars') || '{}'); } catch (e) {}
-  var basic = $('grid-basic'), adv = $('grid-adv');
-  basic.innerHTML = ''; adv.innerHTML = '';
+  var basic = $('grid-basic'), adv = $('grid-adv'), adv2 = $('grid-adv2'), big = $('grid-big');
+  basic.innerHTML = ''; adv.innerHTML = ''; adv2.innerHTML = ''; big.innerHTML = '';
   NUMBERS.forEach(function (n) {
     var b = document.createElement('button');
     b.className = 'numbtn' + (n > 10 ? ' adv' : '');
     b.dataset.n = n;
     b.innerHTML = '<b>' + n + '</b><i>' + '★'.repeat(stars[n] || 0) + '</i>';
     b.addEventListener('click', function () { sfx.ensure(); openTrace(n); });
-    (n <= 10 ? basic : adv).appendChild(b);
+    (n <= 10 ? basic : (n <= 30 ? adv : (n <= 50 ? adv2 : big))).appendChild(b);
   });
 }
 $('friends').innerHTML = ANIMALS.map(animalHTML).join('');
@@ -864,6 +871,7 @@ window.__nz = {
   tr: tr,
   buildNumber: buildNumber,
   countPlan: countPlan,
+  yomi: yomi,
   celebrate: celebrate,
   toClient: function (gxv, gyv) {
     var r = cv.getBoundingClientRect();
