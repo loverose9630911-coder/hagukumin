@@ -1,5 +1,30 @@
-# Netlify のビルド設定（このリポジトリは静的サイト。ビルド工程なし）
-# 公開するのは「すうじとなかまたち」のフォルダ
+# Netlify の設定
+#
+# Git 連携している Netlify サイト（すうじとなかまたち）はこの設定で
+# suuji-nazori/ をそのまま公開します（静的サイト・ビルド工程なし）。
+#
+# ※「ぞうさんとなかまたち」(tsumtsum/dist) は tsumtsum/README.md の通り
+#   Netlify Drop への手動ドラッグ＆ドロップで公開する運用のため、この設定は使いません。
+#   もし tsumtsum も Git 連携する場合は、そのサイトの設定で
+#   Base directory を tsumtsum に、Publish directory を tsumtsum/dist にしてください。
+
 [build]
   publish = "suuji-nazori"
   command = "true"
+
+# index.html と Service Worker はキャッシュさせない（更新がすぐ反映されるように）
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# 画像は Service Worker が持つので長めにキャッシュ
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"

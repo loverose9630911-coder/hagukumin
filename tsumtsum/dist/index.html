@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#8FD3F4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ぞうさんとなかまたち">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="ぞうさんとなかまたち ― 自作の どうぶつキャラで つなげて消す パズルゲーム。">
+<title>ぞうさんとなかまたち</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="shell">
+<div id="stage">
+  <canvas id="cv"></canvas>
+
+  <div id="hud">
+    <div class="hud-top">
+      <div class="hud-left">
+        <div class="score-label">SCORE</div>
+        <div class="score-value" id="hud-score">0</div>
+        <div class="combo" id="hud-combo">
+          <span class="combo-num" id="hud-combo-num">0</span><span class="combo-txt">Combo</span>
+        </div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-buttons">
+          <button class="icon-btn" id="btn-sound" aria-label="おとの オンオフ">♪</button>
+          <button class="icon-btn" id="btn-quit" aria-label="やめる">×</button>
+        </div>
+        <div class="timer" id="hud-timer">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="t-bg" cx="50" cy="50" r="42"></circle>
+            <circle class="t-fg" id="hud-timer-arc" cx="50" cy="50" r="42"></circle>
+          </svg>
+          <span id="hud-time">60</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fever-wrap">
+      <div class="fever-label">FEVER</div>
+      <div class="fever-bar"><i id="hud-fever-bar"></i></div>
+    </div>
+
+    <button class="skill-btn locked" id="btn-skill">
+      <span class="skill-ring"><svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="s-bg" cx="50" cy="50" r="44"></circle>
+        <circle class="s-fg" id="hud-skill-arc" cx="50" cy="50" r="44"></circle>
+      </svg></span>
+      <span class="skill-icon" id="hud-skill-icon"></span>
+      <span class="skill-text" id="hud-skill-text">スキル</span>
+    </button>
+  </div>
+
+  <section class="screen center" id="scr-title">
+    <div class="title-deco" id="title-deco"></div>
+    <h1 class="logo"><span>ぞうさんと</span><em>なかまたち</em></h1>
+    <p class="tagline">つないで、はじけて、なかよくなろう！</p>
+    <div class="stat-row">
+      <div><b id="t-high">0</b><span>ハイスコア</span></div>
+      <div><b id="t-coin">0</b><span>コイン</span></div>
+      <div><b id="t-plays">0</b><span>プレイ</span></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <div class="btn-col">
+      <button class="btn primary" id="btn-play">ゲームスタート</button>
+      <button class="btn" id="btn-chars">キャラクター</button>
+      <button class="btn" id="btn-rank">ランキング</button>
+      <button class="btn ghost" id="btn-help">あそびかた</button>
+    </div>
+    <form class="name-form" id="name-form">
+      <label for="name-input">なまえ</label>
+      <input type="text" id="name-input" maxlength="12" value="ななしさん">
+      <button type="submit">かえる</button>
+    </form>
+  </section>
+
+  <section class="screen" id="scr-chars">
+    <header class="sc-head">
+      <button class="back" id="btn-back-chars">‹</button>
+      <h2>キャラクター</h2>
+      <div class="coin-pill"><i></i><span id="s-coin">0</span></div>
+    </header>
+    <div class="char-list" id="char-list"></div>
+    <div class="sc-foot"><button class="btn primary" id="btn-play2">このキャラで あそぶ</button></div>
+  </section>
+
+  <section class="screen" id="scr-rank">
+    <header class="sc-head">
+      <button class="back" id="btn-back-rank">‹</button>
+      <h2>ランキング</h2>
+      <div style="width:44px"></div>
+    </header>
+    <div id="rank-body" style="flex:1;overflow-y:auto"></div>
+  </section>
+
+  <section class="screen" id="scr-help">
+    <header class="sc-head">
+      <button class="back" id="btn-back-help">‹</button>
+      <h2>あそびかた</h2>
+      <div style="width:44px"></div>
+    </header>
+    <div class="help-body">
+      <div class="help-item"><b>1. なぞって つなげる</b>
+        <p>おなじ どうぶつの ツムを <b>3こ いじょう</b> なぞって はなすと 消えます。となり どうしの ツムだけ つながります。</p></div>
+      <div class="help-item"><b>2. コンボを つなげる</b>
+        <p>つづけて 消すと コンボが ふえて、スコアの ばいりつが アップ。2.2びょう いないに つぎを 消そう！</p></div>
+      <div class="help-item"><b>3. ボムを つくる</b>
+        <p><b>7こ いじょう</b> つなげると ボムが でます。タップすると まわりの ツムを まとめて 消します。<br>
+        <b>9こ いじょう</b> なら タイムボム！ こわすと のこり じかんが +5びょう。</p></div>
+      <div class="help-item"><b>4. スキルを つかう</b>
+        <p>えらんだ どうぶつの ツムを 消すと、みぎ下の スキルゲージが たまります。光ったら タップして はつどう！</p></div>
+      <div class="help-item"><b>5. フィーバー</b>
+        <p>ツムを 消すと 上の ゲージが たまり、まんタンで <b>FEVER</b>！ 10びょうかん スコアが 2ばいに なります。</p></div>
+      <div class="help-item"><b>6. コインで なかまを ふやす</b>
+        <p>あそぶと もらえる コインで、あたらしい どうぶつを おむかえ できます。つかうほど レベルが 上がって スキルが つよくなります。</p></div>
+    </div>
+  </section>
+
+  <section class="screen dim" id="scr-result">
+    <div class="panel result">
+      <div class="res-badge" id="res-badge">RESULT</div>
+      <div class="res-score" id="res-score">0</div>
+      <div class="res-char" id="res-char"></div>
+      <ul class="res-list">
+        <li><span>さいだい コンボ</span><b id="res-combo">0</b></li>
+        <li><span>消した ツム</span><b id="res-tsum">0</b></li>
+        <li><span>フィーバー</span><b id="res-fever">0</b></li>
+        <li><span>スキル はつどう</span><b id="res-skill">0</b></li>
+        <li><span>ランキング</span><b id="res-rank">-</b></li>
+        <li class="coin"><span>もらえる コイン</span><b id="res-coin">0</b></li>
+      </ul>
+      <div class="res-level" id="res-level"></div>
+      <div class="btn-col">
+        <button class="btn primary" id="btn-retry">もういちど</button>
+        <button class="btn ghost" id="btn-home">ホームへ</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast"></div>
+</div>
+
+<script>
+window.SHELL_MODE = true;
+window.CONFIG = {"characters":[{"id":"zou","name":"ぞうさん","tagline":"あさがおに 水やりする やさしい子","kind":"elephant","body":"#B9C4CE","shade":"#75858F","inner":"#F3AAAA","cheek":"#FF9C9C","accent":"#4A82C4","price":0,"skill":{"id":"rainbow","name":"にじのシャワー","desc":"はなから にじを ふきだして よこ一列を 消す","need":[22,20,18,16,14],"power":[96,112,128,146,166]},"index":0},{"id":"usagi","name":"うさちゃん","tagline":"えんがわで すいかを たべる 人気者","kind":"rabbit","body":"#FDFAF4","shade":"#C7B6A6","inner":"#FFC3CE","cheek":"#FF9C9C","accent":"#E8C98A","price":0,"skill":{"id":"burst","name":"すいかバースト","desc":"まんなかの ツムを まるく まとめて 消す","need":[22,20,18,16,14],"power":[112,128,144,162,182]},"index":1},{"id":"kapibara","name":"カピバラくん","tagline":"うきわで かわに ぷかぷか","kind":"capybara","body":"#B5865B","shade":"#7C5533","inner":"#E7D0B4","cheek":"#FF9C9C","accent":"#FFFFFF","price":0,"skill":{"id":"wave","name":"ぷかぷかウェーブ","desc":"たて一列を なみで ながして 消す","need":[24,22,20,18,16],"power":[112,128,144,162,182]},"index":2},{"id":"kirin","name":"キリンさん","tagline":"うみべで ゆうやけを ながめる","kind":"giraffe","body":"#F2C464","shade":"#B4762E","inner":"#FCE2A8","cheek":"#FF9C9C","accent":"#D9483B","price":600,"skill":{"id":"cross","name":"ゆうやけクロス","desc":"じゅうじに ツムを 消す","need":[26,24,22,20,18],"power":[86,98,110,124,140]},"index":3},{"id":"panda","name":"パンダくん","tagline":"なつまつりの やたいで ラムネ","kind":"panda","body":"#FBFBFB","shade":"#3A3A3A","inner":"#E9E9E9","cheek":"#FF9C9C","accent":"#E4682E","price":1000,"skill":{"id":"ramune","name":"ラムネクラッシュ","desc":"ランダムに 消して じかんを +3びょう","need":[26,24,22,20,18],"power":[10,13,16,19,23]},"index":4},{"id":"beaver","name":"ビーバーくん","tagline":"むぎわらぼうしで かわづり","kind":"beaver","body":"#9C6C46","shade":"#66412A","inner":"#DCC0A0","cheek":"#FF9C9C","accent":"#E8C98A","price":1500,"skill":{"id":"dam","name":"かわづりダム","desc":"ツムを 大ツムに そだてる","need":[26,24,22,20,18],"power":[3,4,5,6,8]},"index":5}],"free_ids":["zou","usagi","kapibara"],"icon_id":"zou","exp_table":[0,300,900,2000,4200],"max_level":5,"rules":{"play_time":60,"max_time":80,"combo_hold":2.2,"combo_cap":50,"base_score":100,"fever_need":55,"fever_time":10,"fever_time_bonus":2,"fever_multiplier":2,"bomb_chain":7,"time_bomb_chain":9,"time_bomb_bonus":5,"bomb_radius":175,"time_bomb_radius":150,"deck_size":5,"coin_per_score":120,"coin_per_combo":2,"exp_per_own":6,"exp_per_score":400},"field":{"w":540,"h_min":960,"h_max":1180,"floor_pad":8,"tsum_r":34,"big_r":54,"bomb_r":38.080000000000005,"chain_reach":1.34},"physics":{"gravity":2100,"damping":0.986,"iterations":5,"stiffness":0.85,"max_speed":2600,"friction":0.22,"pair_slack":8,"sleep_eps":0.45,"sleep_frames":4,"settle_speed":55,"settle_min_steps":10,"settle_quiet_frames":4,"settle_max_steps":150,"settle_landing_steps":90,"contact_tolerance":2}};
+window.BOOT = {"characters":[{"id":"zou","name":"ぞうさん","tagline":"あさがおに 水やりする やさしい子","kind":"elephant","body":"#B9C4CE","shade":"#75858F","inner":"#F3AAAA","cheek":"#FF9C9C","accent":"#4A82C4","price":0,"skill":{"id":"rainbow","name":"にじのシャワー","desc":"はなから にじを ふきだして よこ一列を 消す","need":[22,20,18,16,14],"power":[96,112,128,146,166]},"index":0},{"id":"usagi","name":"うさちゃん","tagline":"えんがわで すいかを たべる 人気者","kind":"rabbit","body":"#FDFAF4","shade":"#C7B6A6","inner":"#FFC3CE","cheek":"#FF9C9C","accent":"#E8C98A","price":0,"skill":{"id":"burst","name":"すいかバースト","desc":"まんなかの ツムを まるく まとめて 消す","need":[22,20,18,16,14],"power":[112,128,144,162,182]},"index":1},{"id":"kapibara","name":"カピバラくん","tagline":"うきわで かわに ぷかぷか","kind":"capybara","body":"#B5865B","shade":"#7C5533","inner":"#E7D0B4","cheek":"#FF9C9C","accent":"#FFFFFF","price":0,"skill":{"id":"wave","name":"ぷかぷかウェーブ","desc":"たて一列を なみで ながして 消す","need":[24,22,20,18,16],"power":[112,128,144,162,182]},"index":2},{"id":"kirin","name":"キリンさん","tagline":"うみべで ゆうやけを ながめる","kind":"giraffe","body":"#F2C464","shade":"#B4762E","inner":"#FCE2A8","cheek":"#FF9C9C","accent":"#D9483B","price":600,"skill":{"id":"cross","name":"ゆうやけクロス","desc":"じゅうじに ツムを 消す","need":[26,24,22,20,18],"power":[86,98,110,124,140]},"index":3},{"id":"panda","name":"パンダくん","tagline":"なつまつりの やたいで ラムネ","kind":"panda","body":"#FBFBFB","shade":"#3A3A3A","inner":"#E9E9E9","cheek":"#FF9C9C","accent":"#E4682E","price":1000,"skill":{"id":"ramune","name":"ラムネクラッシュ","desc":"ランダムに 消して じかんを +3びょう","need":[26,24,22,20,18],"power":[10,13,16,19,23]},"index":4},{"id":"beaver","name":"ビーバーくん","tagline":"むぎわらぼうしで かわづり","kind":"beaver","body":"#9C6C46","shade":"#66412A","inner":"#DCC0A0","cheek":"#FF9C9C","accent":"#E8C98A","price":1500,"skill":{"id":"dam","name":"かわづりダム","desc":"ツムを 大ツムに そだてる","need":[26,24,22,20,18],"power":[3,4,5,6,8]},"index":5}],"field":{"w":540,"h_min":960,"h_max":1180,"floor_pad":8,"tsum_r":34,"big_r":54,"bomb_r":38.080000000000005,"chain_reach":1.34},"rules":{"play_time":60,"max_time":80,"combo_hold":2.2,"combo_cap":50,"base_score":100,"fever_need":55,"fever_time":10,"fever_time_bonus":2,"fever_multiplier":2,"bomb_chain":7,"time_bomb_chain":9,"time_bomb_bonus":5,"bomb_radius":175,"time_bomb_radius":150,"deck_size":5,"coin_per_score":120,"coin_per_combo":2,"exp_per_own":6,"exp_per_score":400},"sprites":{"sprite_r":110,"box_w":2.7,"box_h":2.95,"box_base":1.25}};
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () { /* オフライン化できなくても遊べる */ });
+  });
+}
+</script>
+<script src="assets/js/engine-local.js"></script>
+<script src="assets/js/audio.js"></script>
+<script src="assets/js/client.js"></script>
+<script src="assets/js/shell.js"></script>
+
+</body>
+</html>

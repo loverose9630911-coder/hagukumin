@@ -1,0 +1,10 @@
+# docker compose up   →  http://localhost:8080
+services:
+  game:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      # セーブデータ（コイン・所持キャラ・ランキング）をコンテナの外に残す
+      - ./data:/app/data
+    restart: unless-stopped
