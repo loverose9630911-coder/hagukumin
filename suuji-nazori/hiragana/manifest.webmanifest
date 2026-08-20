@@ -1,0 +1,16 @@
+{
+  "name": "ひらがな たつじん",
+  "short_name": "ひらがな",
+  "description": "なぞり・うすがき・そらがきの 3だんかいで、ひらがなを かくちからを きたえるアプリ",
+  "lang": "ja",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#EAF7EF",
+  "theme_color": "#EAF7EF",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,11 +1,16 @@
 # Netlify の設定
 #
-# tsumtsum/dist/ にできあがった静的サイト（オフラインで遊べる PWA）を公開します。
-# ビルドは不要です（dist/ はリポジトリに入っています）。
-# 中身を変えたときは、手元で `cd tsumtsum && make static` を実行してコミットしてください。
+# Git 連携している Netlify サイト（すうじとなかまたち）はこの設定で
+# suuji-nazori/ をそのまま公開します（静的サイト・ビルド工程なし）。
+#
+# ※「ぞうさんとなかまたち」(tsumtsum/dist) は tsumtsum/README.md の通り
+#   Netlify Drop への手動ドラッグ＆ドロップで公開する運用のため、この設定は使いません。
+#   もし tsumtsum も Git 連携する場合は、そのサイトの設定で
+#   Base directory を tsumtsum に、Publish directory を tsumtsum/dist にしてください。
 
 [build]
-  publish = "tsumtsum/dist"
+  publish = "suuji-nazori"
+  command = "true"
 
 # index.html と Service Worker はキャッシュさせない（更新がすぐ反映されるように）
 [[headers]]
@@ -18,7 +23,7 @@
   [headers.values]
     Cache-Control = "no-cache"
 
-# 画像・CSS・JS は Service Worker が持つので長めに
+# 画像は Service Worker が持つので長めにキャッシュ
 [[headers]]
   for = "/assets/*"
   [headers.values]

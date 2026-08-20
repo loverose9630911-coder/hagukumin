@@ -1,0 +1,16 @@
+{
+  "name": "すうじと なかまたち",
+  "short_name": "すうじ",
+  "description": "すうじを なぞると どうぶつが そのかずだけ あそびにくる、さんすうの れんしゅうアプリ",
+  "lang": "ja",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFF6D8",
+  "theme_color": "#FFF6D8",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
