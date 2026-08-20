@@ -132,6 +132,7 @@ button{font-family:inherit;cursor:pointer}
     <div class="menu-foot">
       <button class="chip" id="btn-sound">♪ おと ON</button>
       <button class="chip" id="btn-name">⚙ なまえ</button>
+      <button class="chip" id="btn-hira">🐰 ひらがなたつじんへ</button>
     </div>
   </section>
 
@@ -855,6 +856,7 @@ $('btn-name-save').addEventListener('click', function () {
 $('btn-name-close').addEventListener('click', function () {
   $('dlg-name').classList.add('hidden');
 });
+$('btn-hira').addEventListener('click', function () { location.href = 'hiragana/'; });
 
 window.addEventListener('resize', fitView);
 window.addEventListener('orientationchange', function () { setTimeout(fitView, 250); });

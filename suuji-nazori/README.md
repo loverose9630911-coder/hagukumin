@@ -141,11 +141,16 @@ countPlan(n)  →  { total:23, tens:2, ones:3, groups:[
 suuji-nazori/
 ├─ index.html            アプリ本体（画面・なぞり判定・カウント演出）
 ├─ manifest.webmanifest  PWA設定（ホーム画面の名前とアイコン）
-├─ sw.js                 Service Worker（cache-first・オフライン対応）
-└─ assets/img/
-   ├─ ch-*.png           キャラの丸バッジ 7匹（Gemini制作キャラのスチルから切り出し）
-   ├─ apple-touch-icon.png / icon-192.png / icon-512.png   アプリアイコン
-   └─ favicon-32.png     ブラウザタブ用（こぞうさんの顔）
+├─ sw.js                 Service Worker（cache-first・オフライン対応。ひらがな側も担当）
+├─ assets/img/
+│  ├─ ch-*.png           キャラの丸バッジ 7匹（Gemini制作キャラのスチルから切り出し）
+│  ├─ apple-touch-icon.png / icon-192.png / icon-512.png   アプリアイコン
+│  └─ favicon-32.png     ブラウザタブ用（こぞうさんの顔）
+└─ hiragana/             ひらがなたつじん（下記参照。同じサイトの /hiragana/ で公開）
+   ├─ index.html         アプリ本体（3段階レベル・ことば・きいてかく）
+   ├─ strokes.js         ひらがな71字の書き順点列（KanjiVG由来）
+   ├─ manifest.webmanifest
+   └─ img/               アイコン（うさぎ＋「あいう」）
 ```
 
 キャラ画像を差し替えるときは、同名の丸型PNG（透過・256×256 目安）を
@@ -163,3 +168,27 @@ Chromium（Playwright）で指の動きをシミュレートして確認して�
 - キャラ画像（丸バッジ）のメニュー表示とおいわい表示、名前呼び、★保存、JSエラーなし
 
 `window.__nz` にテスト用フック（モデル・座標変換・`celebrate` 直呼び）があります。
+
+---
+
+## ひらがなたつじん（`hiragana/`）
+
+ひらがなドリルを卒業した子向けの**技能習得版**。同じなぞりエンジンを使い、
+補助を3段階でフェードさせて「見なくても書ける」へ導きます。
+
+| レベル | 画面 | 判定 |
+|---|---|---|
+| ① なぞり | 太い道＋動くお手本＋開始● | ゆるい（corr 20） |
+| ② うすがき | うすい点線だけ | 少しきびしい（corr 16） |
+| ③ そらがき | 開始●だけ。👁ボタンで1.2秒だけお手本 | ゆるめ（corr 24） |
+
+- **もじで きたえる**: 清音46＋濁音・半濁音25。①をクリアすると②、②で③が解放
+- **ことばを かく**: りんご・ねこ など24語を1字ずつ②うすがきで書き切る
+- **きいて かく**: 声で出題→③そらがきで書く。出題は①クリア済みの字から
+- 進捗は `hira.stars`（字×レベル）と `hira.words`（ことば）に保存。
+  名前・おと設定（`suuji.name.*` / `suuji.sound`）はすうじ側と共通
+- テスト用フックは `window.__hz`
+
+**書き順データ**: `strokes.js` は [KanjiVG](https://kanjivg.tagaini.net)
+（© Ulrich Apel, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)）の
+SVGを点列化して生成したものです。再配布時はこの表記を残してください。

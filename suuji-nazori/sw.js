@@ -1,9 +1,17 @@
-/* すうじとなかまたち Service Worker（cache-first・一度ひらけばオフラインで動く） */
-var CACHE = 'suuji-v2';
+/* すうじとなかまたち＋ひらがなたつじん Service Worker（cache-first・一度ひらけばオフラインで動く） */
+var CACHE = 'suuji-v3';
 var ASSETS = [
   './',
   'index.html',
   'manifest.webmanifest',
+  'hiragana/',
+  'hiragana/index.html',
+  'hiragana/strokes.js',
+  'hiragana/manifest.webmanifest',
+  'hiragana/img/apple-touch-icon.png',
+  'hiragana/img/favicon-32.png',
+  'hiragana/img/icon-192.png',
+  'hiragana/img/icon-512.png',
   'assets/img/ch-zou.png',
   'assets/img/ch-usagi.png',
   'assets/img/ch-kapibara.png',
