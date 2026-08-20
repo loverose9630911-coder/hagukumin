@@ -1,0 +1,5 @@
+# Netlify のビルド設定（このリポジトリは静的サイト。ビルド工程なし）
+# 公開するのは「すうじとなかまたち」のフォルダ
+[build]
+  publish = "suuji-nazori"
+  command = "true"
