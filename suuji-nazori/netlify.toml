@@ -1,0 +1,40 @@
+# Netlify の設定（このファイルは「すうじとなかまたち」のサイト用）
+#
+# Netlify で新しいサイトを作るときに、
+#   Base directory      … suuji-nazori
+#   Publish directory   … suuji-nazori
+#   Build command       … （空のまま）
+# と設定してください。Base directory を指定すると Netlify はこのファイルを読み、
+# リポジトリ直下の netlify.toml（ぞうさんとなかまたち用）は使いません。
+#
+# ビルド工程はありません。このフォルダの中身がそのまま公開されます。
+
+[build]
+  publish = "."
+
+# index.html と Service Worker はキャッシュさせない（更新がすぐ反映されるように）
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/hiragana/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# 画像は Service Worker が持つので長めにキャッシュ
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/hiragana/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
