@@ -1,16 +1,22 @@
-# Netlify の設定
+# Netlify の設定（このファイルは「ぞうさんとなかまたち」のサイト用）
 #
-# Git 連携している Netlify サイト（すうじとなかまたち）はこの設定で
-# suuji-nazori/ をそのまま公開します（静的サイト・ビルド工程なし）。
+# このリポジトリには 2 つのアプリが入っていて、Netlify のサイトも 2 つに分けています。
 #
-# ※「ぞうさんとなかまたち」(tsumtsum/dist) は tsumtsum/README.md の通り
-#   Netlify Drop への手動ドラッグ＆ドロップで公開する運用のため、この設定は使いません。
-#   もし tsumtsum も Git 連携する場合は、そのサイトの設定で
-#   Base directory を tsumtsum に、Publish directory を tsumtsum/dist にしてください。
+#   ぞうさんとなかまたち（ツムツム風パズル） … このファイル。tsumtsum/dist/ を公開
+#   すうじとなかまたち（数字なぞり・ひらがな） … suuji-nazori/netlify.toml。
+#                                              サイト側で Base directory を
+#                                              suuji-nazori に設定してください
+#
+# ★ここを別のフォルダに書きかえると、ぞうさんのサイトが
+#   まるごと別のアプリに差しかわります（iPad のアイコンはそのままで中身だけ変わります）。
+#   アプリを増やすときは、このファイルを書きかえるのではなく
+#   Netlify のサイトを追加して、そのフォルダに netlify.toml を置いてください。
+#
+# ビルドは不要です（dist/ はリポジトリに入っています）。
+# 中身を変えたときは、手元で `cd tsumtsum && make static` を実行してコミットしてください。
 
 [build]
-  publish = "suuji-nazori"
-  command = "true"
+  publish = "tsumtsum/dist"
 
 # index.html と Service Worker はキャッシュさせない（更新がすぐ反映されるように）
 [[headers]]
@@ -23,7 +29,7 @@
   [headers.values]
     Cache-Control = "no-cache"
 
-# 画像は Service Worker が持つので長めにキャッシュ
+# 画像・CSS・JS は Service Worker が持つので長めに
 [[headers]]
   for = "/assets/*"
   [headers.values]
