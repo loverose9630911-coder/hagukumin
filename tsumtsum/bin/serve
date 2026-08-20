@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Python のゲームエンジンと PHP の Web アプリを両方立ち上げる。
+#
+#   bin/serve            → http://localhost:8080
+#   PORT=3000 bin/serve  → ポートを変える
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+PORT="${PORT:-8080}"
+ENGINE_PORT="${ENGINE_PORT:-8765}"
+export ENGINE_URL="http://127.0.0.1:${ENGINE_PORT}"
+# PHP の内蔵サーバーは既定だと 1 リクエストずつしか返せないので、
+# 画像の読み込みとゲームの通信がぶつからないように何本か用意する
+export PHP_CLI_SERVER_WORKERS="${PHP_CLI_SERVER_WORKERS:-4}"
+
+if [ ! -f public/assets/config.json ]; then
+  echo "▶ キャラ定義を書き出します"
+  python3 engine/export_config.py
+fi
+if [ ! -f public/assets/img/icon-512.png ]; then
+  echo "▶ キャラ画像とアプリアイコンを描きます"
+  php tools/render_assets.php
+fi
+
+cleanup() {
+  [ -n "${ENGINE_PID:-}" ] && kill "$ENGINE_PID" 2>/dev/null || true
+}
+trap cleanup EXIT INT TERM
+
+echo "▶ Python エンジンを起動します (port ${ENGINE_PORT})"
+PYTHONPATH=engine ENGINE_PORT="$ENGINE_PORT" python3 -m zousan.server &
+ENGINE_PID=$!
+
+ready=""
+for _ in $(seq 1 120); do
+  if curl -sf "http://127.0.0.1:${ENGINE_PORT}/health" >/dev/null 2>&1; then ready=1; break; fi
+  if ! kill -0 "$ENGINE_PID" 2>/dev/null; then
+    echo "✗ エンジンが起動できませんでした" >&2
+    exit 1
+  fi
+  sleep 0.5
+done
+if [ -z "$ready" ]; then
+  echo "✗ エンジンの応答がありません" >&2
+  exit 1
+fi
+
+# 同じ Wi-Fi の iPad から開くためのアドレスを出しておく
+lan="$(hostname -I 2>/dev/null | awk '{print $1}')"
+if [ -z "$lan" ]; then
+  lan="$(ipconfig getifaddr en0 2>/dev/null || true)"
+fi
+
+echo
+echo "▶ PHP を起動します"
+echo "   このパソコン  →  http://localhost:${PORT}"
+if [ -n "$lan" ]; then
+  echo "   iPad など     →  http://${lan}:${PORT}   （同じ Wi-Fi につないでください）"
+fi
+echo
+php -S "0.0.0.0:${PORT}" -t public

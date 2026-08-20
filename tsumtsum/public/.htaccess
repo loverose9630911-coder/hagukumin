@@ -1,0 +1,3 @@
+# public/ を Web ルートにする前提。ソース類は外に置いてあるので公開されない。
+Options -Indexes
+DirectoryIndex index.php
