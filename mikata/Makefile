@@ -6,8 +6,9 @@
 #   make test    … テストを走らせる
 #   make browser … ブラウザでの動作確認（Playwright が入っていれば）
 #   make lint    … PHP と JavaScript の構文チェック
+#   make icons   … アイコンを作り直す
 
-.PHONY: serve seed fresh test browser lint clean
+.PHONY: serve seed fresh test browser lint icons clean
 
 serve:
 	bin/serve
@@ -27,6 +28,9 @@ browser:
 lint:
 	@find src public tools tests -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null && echo "✓ PHP OK"
 	@node tools/lint-js.mjs
+
+icons:
+	node tools/render-icons.mjs
 
 clean:
 	rm -f data/mikata.sqlite data/mikata.sqlite-wal data/mikata.sqlite-shm

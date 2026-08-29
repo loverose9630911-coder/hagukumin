@@ -15,7 +15,7 @@ export function loginView(root, onDone) {
     root.replaceChildren(el('div', { class: 'gate' },
       el('div', { class: 'gate-card' },
         el('div', { class: 'gate-brand' },
-          el('div', { class: 'mark' }, '見'),
+          el('img', { class: 'mark', src: '/assets/icon.svg', width: 60, height: 60, alt: '' }),
           el('h1', {}, 'ミカタ'),
           el('p', {}, 'チームと個人のタスクを、1枚で見えるようにする')),
 

@@ -63,12 +63,14 @@ header('Cache-Control: no-cache');
 <meta name="color-scheme" content="light dark">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/css/app.css?v=1">
 </head>
 <body>
 <div id="app" class="app-boot">
   <div class="boot">
-    <div class="boot-mark" aria-hidden="true">見</div>
+    <img class="boot-mark" src="/assets/icon.svg" width="56" height="56" alt="" aria-hidden="true">
     <p>読みこんでいます…</p>
   </div>
 </div>
