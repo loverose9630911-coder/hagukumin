@@ -1,0 +1,5 @@
+# セーブデータ（各自の環境のもの。共有しない）
+data/
+
+# 開発用に Playwright を入れたときのもの
+node_modules/

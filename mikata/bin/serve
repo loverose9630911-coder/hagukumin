@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# ミカタを立ち上げる。
+#
+#   bin/serve            → http://localhost:8080
+#   PORT=3000 bin/serve  → ポートを変える
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+PORT="${PORT:-8080}"
+export PHP_CLI_SERVER_WORKERS="${PHP_CLI_SERVER_WORKERS:-4}"
+
+mkdir -p data
+
+if [ ! -f data/mikata.sqlite ]; then
+  echo "▶ 初回の起動なので、デモデータを入れます"
+  bin/seed || true
+fi
+
+# 同じ Wi-Fi のスマホ・タブレットから開くためのアドレスも出しておく。
+lan="$(hostname -I 2>/dev/null | awk '{print $1}')"
+[ -z "$lan" ] && lan="$(ipconfig getifaddr en0 2>/dev/null || true)"
+
+echo
+echo "▶ ミカタを起動します"
+echo "   このパソコン  →  http://localhost:${PORT}"
+[ -n "$lan" ] && echo "   スマホなど    →  http://${lan}:${PORT}   （同じ Wi-Fi につないでください）"
+echo
+echo "   デモ用ログイン:  demo / demo1234"
+echo
+
+exec php -S "0.0.0.0:${PORT}" -t public public/index.php
