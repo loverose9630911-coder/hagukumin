@@ -1,0 +1,34 @@
+#!/bin/sh
+# コンテナの中で動かすときの入口（Docker / Render 用）。
+#
+# 手元で動かすときは bin/serve を使ってください。こちらは
+#   ・データの置き場所を用意する
+#   ・MIKATA_SEED=1 のときだけ、まっさらならデモデータを入れる
+#   ・PHP を起動する
+# の3つだけをやります。
+#
+# なぜ「まっさらなら」なのか:
+#   無料プランのようにディスクを付けない構成では、眠って起き直すたびに
+#   中身が空になります。そのままだとログイン画面で誰も入れなくなるので、
+#   空のときだけデモの4人ぶんを入れて、すぐ触れる状態にしています。
+#   すでに誰か登録していれば Seed 側が断るので、上書きされることはありません。
+set -eu
+
+cd "$(dirname "$0")/.."
+
+PORT="${PORT:-8080}"
+mkdir -p data
+
+if [ "${MIKATA_SEED:-}" = "1" ]; then
+  php -r '
+    require "tools/bootstrap.php";
+    try {
+        $r = Mikata\Seed::run();
+        fwrite(STDERR, "[mikata] デモデータを入れました（ログイン: {$r["login"]} / {$r["password"]}）\n");
+    } catch (Throwable $e) {
+        fwrite(STDERR, "[mikata] デモデータは入れませんでした: " . $e->getMessage() . "\n");
+    }
+  '
+fi
+
+exec php -S "0.0.0.0:${PORT}" -t public public/index.php

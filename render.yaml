@@ -1,12 +1,29 @@
-# Render に置くときの設定（GitHub とつなぐと、この設定を読んでくれます）
+# Render に置くときの設定
 #
 #   1. https://dashboard.render.com/ → New → Blueprint
-#   2. このリポジトリを選ぶ → Apply
-#   3. できた URL を iPad の Safari で開いて「ホーム画面に追加」
+#   2. このリポジトリを選ぶ
+#   3. Blueprint Name に好きな名前を入れる（例: hagukumin）※ここは必須です
+#   4. Apply
 #
-# 無料プランは 15 分アクセスがないと眠るので、次にひらくとき 30〜60 秒待たされます。
-# 待たせたくない場合は plan を starter に変えてください。
+# ─────────────────────────────────────────────────────────────
+# 【大事】無料プランでは「ディスク」が使えません
+# ─────────────────────────────────────────────────────────────
+# Render の無料プランに disk: を書くと
+#   「disks are not supported for free tier services」
+# と言われて Apply が止まります。そのため、この設定では disk: を外しています。
+#
+# その代わり、無料プランには次の性質があります。
+#   ・15 分アクセスがないと眠り、次にひらくとき 30〜60 秒待たされます
+#   ・眠って起き直すと、保存したデータは消えます（お試し用と思ってください）
+#
+# ■ データを残したい（実際に業務で使う）場合
+#   下の各サービスで、
+#     plan: free  →  plan: starter        （有料。1サービスあたり月 7 ドル程度）
+#   に変えたうえで、そのサービスの末尾に disk: の 4 行を足してください。
+#   書き方は各サービスのコメントに載せてあります。
+
 services:
+  # ぞうさんとなかまたち（ツムツム風パズル）
   - type: web
     name: zousan-game
     runtime: docker
@@ -20,17 +37,14 @@ services:
         value: 8080
       - key: PHP_CLI_SERVER_WORKERS
         value: 4
-    disk:
-      # セーブデータ（コイン・所持キャラ・ランキング）を残す
-      name: data
-      mountPath: /app/data
-      sizeGB: 1
+    # コイン・所持キャラ・ランキングを残したい場合は plan を starter にして、
+    # 次の4行のコメントを外してください。
+    # disk:
+    #   name: data
+    #   mountPath: /app/data
+    #   sizeGB: 1
 
   # ミカタ（チームと個人のタスクを1枚で見るアプリ）
-  #
-  #   同じく New → Blueprint → Apply で一緒に立ち上がります。
-  #   タスク・会話・目標は /app/data の SQLite に入るので、
-  #   ディスクを付けておかないと再起動のたびに消えます。
   - type: web
     name: mikata
     runtime: docker
@@ -46,7 +60,14 @@ services:
         value: Asia/Tokyo
       - key: PHP_CLI_SERVER_WORKERS
         value: 4
-    disk:
-      name: mikata-data
-      mountPath: /app/data
-      sizeGB: 1
+      # 中身が空のときだけデモデータを入れて、開いてすぐ触れる状態にする。
+      # （ログイン: demo / demo1234）
+      # 実際に業務で使うときは、この2行を消すか value を空にしてください。
+      - key: MIKATA_SEED
+        value: 1
+    # タスク・会話・目標を残したい場合は plan を starter にして、
+    # 次の4行のコメントを外し、上の MIKATA_SEED は消してください。
+    # disk:
+    #   name: mikata-data
+    #   mountPath: /app/data
+    #   sizeGB: 1
