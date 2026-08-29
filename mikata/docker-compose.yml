@@ -1,0 +1,12 @@
+# docker compose up  → http://localhost:8080
+services:
+  mikata:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      # タスクと会話はここに残る。消すと初期状態に戻る。
+      - ./data:/app/data
+    environment:
+      MIKATA_TZ: Asia/Tokyo
+    restart: unless-stopped

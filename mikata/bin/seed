@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# デモデータを入れる。
+#
+#   bin/seed          → data/mikata.sqlite に入れる
+#   bin/seed --fresh  → いまのデータを消してから入れ直す
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if [ "${1:-}" = "--fresh" ]; then
+  rm -f data/mikata.sqlite data/mikata.sqlite-wal data/mikata.sqlite-shm
+  echo "▶ いまのデータを消しました"
+fi
+
+php -r '
+require __DIR__ . "/tools/bootstrap.php";
+try {
+  $r = Mikata\Seed::run();
+  echo "✓ デモデータを入れました\n";
+  echo "  チーム   : {$r["team"]["name"]}（参加コード {$r["team"]["join_code"]}）\n";
+  echo "  タスク   : {$r["tasks"]}件\n";
+  echo "  ログイン : {$r["login"]} / {$r["password"]}\n";
+  echo "  他の人   : " . implode(", ", $r["people"]) . "（パスワードは同じ）\n";
+} catch (Mikata\ApiError $e) {
+  fwrite(STDERR, "✗ " . $e->getMessage() . "\n");
+  exit(1);
+}
+'
