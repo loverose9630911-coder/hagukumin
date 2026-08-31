@@ -19,6 +19,8 @@ cd "$(dirname "$0")/.."
 PORT="${PORT:-8080}"
 mkdir -p data
 
+# デモデータの投入は「おまけ」なので、ここで何が起きてもサーバーは必ず起動させる。
+# （set -e があるため、|| を付けないと失敗した瞬間にコンテナが落ちてしまう）
 if [ "${MIKATA_SEED:-}" = "1" ]; then
   php -r '
     require "tools/bootstrap.php";
@@ -28,7 +30,8 @@ if [ "${MIKATA_SEED:-}" = "1" ]; then
     } catch (Throwable $e) {
         fwrite(STDERR, "[mikata] デモデータは入れませんでした: " . $e->getMessage() . "\n");
     }
-  '
+  ' || echo "[mikata] デモデータの投入でエラーが出ましたが、起動は続けます" >&2
 fi
 
+echo "[mikata] ポート ${PORT} で起動します" >&2
 exec php -S "0.0.0.0:${PORT}" -t public public/index.php

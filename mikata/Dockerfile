@@ -6,14 +6,21 @@
 #
 # Render / Railway / Fly.io などにもこのまま置けます。
 # ※ data/ を残しておかないと、タスクも会話も消えます（上の -v 指定が大事）。
+#    VOLUME 宣言はあえて書いていません（Render など、ディスクを付けない環境では
+#    かえって起動の邪魔になることがあるため）。
 #    ディスクを付けられない環境で「とりあえず見たい」ときは MIKATA_SEED=1 を渡すと、
 #    中身が空のときだけデモデータを入れてから起動します。
 
 FROM php:8.3-cli-bookworm
 
-# セーブに使う pdo_sqlite だけ入れる（画像も外部ライブラリも使っていない）
-RUN docker-php-ext-install -j"$(nproc)" pdo_sqlite \
- && rm -rf /var/lib/apt/lists/*
+# セーブに使う pdo_sqlite は、公式 PHP イメージに最初から組み込まれている
+# （--with-pdo-sqlite=/usr でビルドされているため）。
+# docker-php-ext-install で入れ直そうとすると、材料になるヘッダ（libsqlite3-dev）が
+# イメージ完成時に消されているせいでビルドが必ず失敗する。
+# なので「入れない」。代わりに、本当にあることをここで確かめておく。
+# ベースイメージの構成が将来変わったら、この行で気づける。
+RUN php -m | grep -qx pdo_sqlite \
+ || { echo "pdo_sqlite が見つかりません。ベースイメージの構成が変わった可能性があります" >&2; exit 1; }
 
 WORKDIR /app
 COPY . /app
@@ -26,10 +33,9 @@ ENV PORT=8080 \
     MIKATA_SEED=
 
 EXPOSE 8080
-VOLUME ["/app/data"]
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
   CMD php -r 'exit(@file_get_contents("http://127.0.0.1:".getenv("PORT")."/api/me") ? 0 : 1);'
 
 # 内蔵サーバーを使う（小さなチームなら十分。台数を増やすときは nginx + php-fpm へ）
-CMD ["bin/start"]
+CMD ["/app/bin/start"]
