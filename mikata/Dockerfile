@@ -13,9 +13,14 @@
 
 FROM php:8.3-cli-bookworm
 
-# セーブに使う pdo_sqlite だけ入れる（画像も外部ライブラリも使っていない）
-RUN docker-php-ext-install -j"$(nproc)" pdo_sqlite \
- && rm -rf /var/lib/apt/lists/*
+# セーブに使う pdo_sqlite は、公式 PHP イメージに最初から組み込まれている
+# （--with-pdo-sqlite=/usr でビルドされているため）。
+# docker-php-ext-install で入れ直そうとすると、材料になるヘッダ（libsqlite3-dev）が
+# イメージ完成時に消されているせいでビルドが必ず失敗する。
+# なので「入れない」。代わりに、本当にあることをここで確かめておく。
+# ベースイメージの構成が将来変わったら、この行で気づける。
+RUN php -m | grep -qx pdo_sqlite \
+ || { echo "pdo_sqlite が見つかりません。ベースイメージの構成が変わった可能性があります" >&2; exit 1; }
 
 WORKDIR /app
 COPY . /app

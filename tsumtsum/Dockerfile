@@ -8,15 +8,21 @@
 
 FROM php:8.3-cli-bookworm
 
-# PHP の拡張（画像を描く gd と、セーブに使う pdo_sqlite）と Python を入れる
+# 画像を描く gd と Python を入れる。
+# セーブに使う pdo_sqlite は公式 PHP イメージに最初から入っているので入れない
+# （入れ直そうとすると、材料のヘッダが消されているためビルドが失敗する）。
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       python3 \
       libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
- && docker-php-ext-install -j"$(nproc)" gd pdo_sqlite \
+ && docker-php-ext-install -j"$(nproc)" gd \
  && apt-get purge -y --auto-remove libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
  && rm -rf /var/lib/apt/lists/*
+
+# gd と pdo_sqlite が本当に使えることを、ビルドの時点で確かめておく
+RUN php -m | grep -qx gd && php -m | grep -qx pdo_sqlite \
+ || { echo "必要な PHP 拡張が見つかりません" >&2; exit 1; }
 
 WORKDIR /app
 COPY . /app
