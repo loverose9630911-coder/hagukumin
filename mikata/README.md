@@ -162,6 +162,7 @@ report のための report を書かなくてよくする、というのがこ�
 mikata/
 ├── bin/serve            起動（これだけ叩けば動く）
 ├── bin/seed             デモデータを入れる
+├── bin/start            コンテナの中での起動（Docker / Render 用）
 ├── src/                 サーバー側（PHP）
 │   ├── Db.php           SQLite の接続とテーブル作成
 │   ├── Auth.php         ログイン（パスワードは password_hash で保存）
@@ -251,8 +252,26 @@ make test
 ### Render（Docker）
 
 リポジトリ直下の `render.yaml` に `mikata` サービスを用意してあります。
-Render の **New → Blueprint** でこのリポジトリを選ぶだけです。
-`/app/data` にディスクを付けているので、再起動してもタスクと会話は消えません。
+Render の **New → Blueprint** でこのリポジトリを選び、Blueprint Name を入れて Apply するだけです。
+
+**無料プランではディスク（保存領域）が使えません。** disk: を書いたまま Apply すると
+`disks are not supported for free tier services` と言われて止まるので、
+`render.yaml` では disk: を外してあります。無料プランの性質は次の2つです。
+
+- 15分アクセスがないと眠り、次にひらくとき30〜60秒待たされます
+- 眠って起き直すとデータが消えます（お試し用）
+
+そのままだと起き直したあと誰もログインできなくなるので、無料プランでは
+`MIKATA_SEED=1` を渡しています。**中身が空のときだけ**デモデータを入れて、
+開いてすぐ触れる状態にするためのものです（すでに誰か登録していれば何もしません）。
+
+**データを残して業務で使う場合**は、`render.yaml` の `mikata` サービスで
+
+1. `plan: free` を `plan: starter` に変える（有料。月7ドル程度）
+2. コメントアウトしてある `disk:` の4行を有効にする
+3. `MIKATA_SEED` の2行を消す
+
+の3つを行ってください。
 
 ### 自前のサーバー / 社内 PC
 
