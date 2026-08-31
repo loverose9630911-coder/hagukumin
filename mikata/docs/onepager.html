@@ -1,0 +1,381 @@
+<title>ミカタができるまで</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Roboto+Mono:wght@500;700&display=swap">
+<style>
+  /* 色はアプリ本体から引き継いでいる。
+     藍 = 自分 / 空色 = チーム というダッシュボードの対比をそのまま紙面に持ち込む。 */
+  :root {
+    --paper:   #ffffff;
+    --ground:  #f6f6fa;   /* 藍にわずかに寄せた中間色 */
+    --line:    #e2e3ea;
+    --line-2:  #eeeef4;
+    --ink:     #15171d;
+    --ink-2:   #545a68;
+    --ink-3:   #8a90a0;
+    --self:    #4f46e5;   /* 藍 = 自分 */
+    --team:    #0284c7;   /* 空色 = チーム */
+    --snag:    #b45309;   /* つまずいた工程 */
+    --font: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+    --mono: "Roboto Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:  #14161c;
+      --ground: #0d0f14;
+      --line:   #2a2d38;
+      --line-2: #21242e;
+      --ink:    #e9eaee;
+      --ink-2:  #a6acba;
+      --ink-3:  #767d8d;
+      --self:   #8b83f5;
+      --team:   #38bdf8;
+      --snag:   #f59e0b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:  #14161c;
+    --ground: #0d0f14;
+    --line:   #2a2d38;
+    --line-2: #21242e;
+    --ink:    #e9eaee;
+    --ink-2:  #a6acba;
+    --ink-3:  #767d8d;
+    --self:   #8b83f5;
+    --team:   #38bdf8;
+    --snag:   #f59e0b;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 22px 16px 40px;
+    background: var(--ground); color: var(--ink);
+    font-family: var(--font); font-weight: 400;
+    line-height: 1.6; font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    width: 210mm; max-width: 100%; min-height: 297mm;
+    margin: 0 auto; padding: 11mm 12mm 9mm;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(20,24,40,.05), 0 18px 44px -28px rgba(20,24,40,.3);
+    display: flex; flex-direction: column; gap: 4.5mm;
+  }
+
+  /* ---- 見出し ---- */
+  header { display: flex; align-items: flex-end; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 9px; }
+  .mark { width: 34px; height: 34px; flex: none; }
+  .lede { flex: 1; min-width: 0; }
+  h1 { font-size: 21px; font-weight: 700; margin: 0; letter-spacing: -.01em; line-height: 1.25; }
+  h1 small { font-weight: 500; font-size: 12.5px; color: var(--ink-2); margin-left: 9px; letter-spacing: 0; }
+  .url { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); text-align: right; line-height: 1.7; white-space: nowrap; }
+  .url b { color: var(--self); font-weight: 700; }
+
+  /* ---- セクション見出し ---- */
+  .eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: .14em;
+    color: var(--ink-3); margin: 0 0 7px;
+  }
+
+  /* ---- 本文2段組み ---- */
+  .cols { display: grid; grid-template-columns: 1.55fr 1fr; gap: 8mm; align-items: start; }
+
+  /* ---- 工程（この紙の主役） ---- */
+  .flow { display: grid; gap: 0; }
+  .step {
+    display: grid; grid-template-columns: 28px 1fr; gap: 10px;
+    padding: 6px 0 7px; border-top: 1px solid var(--line-2);
+  }
+  .step:first-child { border-top: 0; padding-top: 0; }
+  .no {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    color: var(--self); padding-top: 1px; letter-spacing: -.02em;
+  }
+  .step.snag .no { color: var(--snag); }
+  .step h3 { margin: 0 0 2px; font-size: 13.5px; font-weight: 700; line-height: 1.4; }
+  .step.snag h3::after {
+    content: "つまずいた"; font-family: var(--font); font-size: 9.5px; font-weight: 700;
+    letter-spacing: .04em; color: var(--snag); border: 1px solid currentColor;
+    border-radius: 3px; padding: 0 4px; margin-left: 7px; vertical-align: 2px;
+  }
+  .step p { margin: 0; font-size: 11.3px; color: var(--ink-2); line-height: 1.62; }
+  .step .out { color: var(--ink); font-weight: 500; }
+
+  .done {
+    display: flex; align-items: center; gap: 9px; margin-top: 7px;
+    padding: 7px 11px; border-radius: 5px;
+    background: color-mix(in srgb, var(--team) 9%, transparent);
+    font-size: 12px; font-weight: 700; color: var(--team);
+  }
+  .done span { font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--ink-2); margin-left: auto; }
+
+  /* ---- 右段 ---- */
+  aside { display: grid; gap: 5mm; align-content: start; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); }
+  .stat { background: var(--paper); padding: 8px 10px; }
+  .stat b { display: block; font-family: var(--mono); font-size: 17px; font-weight: 700; letter-spacing: -.03em; line-height: 1.2; }
+  .stat b i { font-style: normal; font-size: 11px; font-weight: 500; color: var(--ink-3); margin-left: 2px; }
+  .stat span { font-size: 10.5px; color: var(--ink-3); font-weight: 500; }
+  .stat.zero b { color: var(--team); }
+
+  .pts { display: grid; gap: 9px; }
+  .pt { display: grid; grid-template-columns: 13px 1fr; gap: 8px; }
+  .pt .bar { width: 3px; border-radius: 2px; background: var(--self); margin-top: 3px; height: calc(100% - 4px); }
+  .pt:nth-child(2) .bar { background: var(--team); }
+  .pt:nth-child(3) .bar { background: var(--ink-3); }
+  .pt b { display: block; font-size: 12.2px; font-weight: 700; line-height: 1.45; margin-bottom: 1px; }
+  .pt p { margin: 0; font-size: 11px; color: var(--ink-2); line-height: 1.65; }
+
+  /* ---- 下段：難所 ---- */
+  .snagbox { border: 1px solid var(--line); border-left: 3px solid var(--snag); padding: 9px 11px; }
+  .snagbox .eyebrow { color: var(--snag); margin-bottom: 6px; }
+  /* 切り分けの手順は「順番そのもの」が中身なので、縦に積んで筋道として見せる */
+  .chain { margin: 0 0 7px; padding: 0; display: grid; gap: 3px; }
+  .chain li {
+    list-style: none; font-size: 10.8px; font-weight: 500; line-height: 1.45;
+    padding-left: 13px; position: relative; color: var(--ink-2);
+  }
+  .chain li::before {
+    content: "▸"; position: absolute; left: 0; top: 0;
+    color: var(--ink-3); font-size: 9px;
+  }
+  .chain li:last-child { color: var(--snag); font-weight: 700; }
+  .chain li:last-child::before { color: var(--snag); }
+  .snagbox p { margin: 0; font-size: 10.8px; color: var(--ink-2); line-height: 1.68; }
+  .snagbox p b { color: var(--ink); font-weight: 700; }
+
+  .quote {
+    margin: 0; padding: 8px 0 0; border-top: 1px solid var(--line-2);
+    font-size: 11.5px; color: var(--ink-2); line-height: 1.65;
+  }
+  .quote b { color: var(--ink); font-weight: 500; }
+
+  footer { margin-top: auto; padding-top: 6px; border-top: 1px solid var(--line-2); display: flex; gap: 12px; align-items: baseline; }
+  footer p { margin: 0; font-size: 10px; color: var(--ink-3); line-height: 1.6; }
+  footer .stack { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); margin-left: auto; text-align: right; white-space: nowrap; }
+
+
+  /* ---- 下段：どう作ったか / つまずき ---- */
+  .band { display: grid; grid-template-columns: 1fr 1.15fr; gap: 8mm; padding-top: 8px; border-top: 1px solid var(--line-2); }
+  .band section { min-width: 0; }
+
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 11px; margin: 0 0 8px; align-items: baseline; }
+  .kv dt { font-size: 10px; font-weight: 700; color: var(--ink-3); letter-spacing: .04em; white-space: nowrap; }
+  .kv dd { margin: 0; font-size: 11.3px; color: var(--ink-2); line-height: 1.6; }
+  .kv dd b { color: var(--ink); font-weight: 700; }
+
+  /* 手を動かした時間と、着手から公開までの差を、そのまま棒の長さで見せる */
+  .gap { display: grid; gap: 4px; margin: 0 0 7px; }
+  .gap div { display: grid; grid-template-columns: 78px 1fr auto; gap: 8px; align-items: center; font-size: 10.5px; }
+  .gap span:first-child { color: var(--ink-3); font-weight: 500; }
+  .gap i { display: block; height: 7px; border-radius: 2px; }
+  .gap .hand i { width: 12%; background: var(--self); }
+  .gap .all  i { width: 100%; background: color-mix(in srgb, var(--team) 30%, transparent); }
+  .gap b { font-family: var(--mono); font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+  .gap .hand b { color: var(--self); }
+  .gap .all  b { color: var(--team); }
+
+  .band p.note { margin: 0; font-size: 10.8px; color: var(--ink-2); line-height: 1.65; }
+  .band p.note b { color: var(--ink); font-weight: 700; }
+
+  .oops { margin: 0 0 8px; padding: 0; display: grid; gap: 4px; }
+  .oops li {
+    list-style: none; font-size: 10.8px; color: var(--ink-2); line-height: 1.5;
+    padding-left: 14px; position: relative;
+  }
+  .oops li::before { content: "×"; position: absolute; left: 1px; top: 0; color: var(--snag); font-weight: 700; }
+  .good {
+    padding: 7px 10px; border-radius: 4px;
+    background: color-mix(in srgb, var(--team) 8%, transparent);
+    font-size: 10.8px; color: var(--ink-2); line-height: 1.6;
+  }
+  .good > b:first-child { display: block; color: var(--team); font-weight: 700; font-size: 10.5px; margin-bottom: 2px; }
+  .good b { color: var(--ink); font-weight: 700; }
+
+  @media (max-width: 640px) { .band { grid-template-columns: 1fr; gap: 6mm; } }
+
+  /* ---- 印刷（A4 1枚に収める） ---- */
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    body { padding: 0; background: #fff; }
+    .sheet { width: auto; min-height: auto; margin: 0; border: 0; box-shadow: none; padding: 10mm 12mm 8mm; }
+    :root { --paper: #fff; --ground: #f6f6fa; --ink: #15171d; --ink-2: #545a68; --ink-3: #8a90a0; }
+  }
+  @media (max-width: 640px) {
+    .cols { grid-template-columns: 1fr; gap: 7mm; }
+    .sheet { padding: 8mm 6mm; min-height: auto; }
+    header { flex-wrap: wrap; gap: 10px; }
+    .url { text-align: left; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header>
+    <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="ミカタのアイコン">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/>
+        </linearGradient>
+      </defs>
+      <rect width="64" height="64" rx="14" fill="url(#g)"/>
+      <g transform="rotate(-90 32 32)" fill="none" stroke-linecap="round">
+        <circle cx="32" cy="32" r="20" stroke="#fff" stroke-opacity=".26" stroke-width="8"/>
+        <circle cx="32" cy="32" r="20" stroke="#fff" stroke-width="8" stroke-dasharray="80 45.66"/>
+      </g>
+      <circle cx="32" cy="32" r="6.5" fill="#fff"/>
+    </svg>
+    <div class="lede">
+      <h1>ミカタ<small>個人とチームのタスクを、同じものさしで1枚に</small></h1>
+    </div>
+    <div class="url">
+      <b>mikata-jdyf.onrender.com</b><br>
+      demo / demo1234
+    </div>
+  </header>
+
+  <div class="cols">
+
+    <section>
+      <p class="eyebrow">作った流れ</p>
+      <div class="flow">
+
+        <div class="step">
+          <div class="no">01</div>
+          <div>
+            <h3>目的と、ものさしを決める</h3>
+            <p>「個人とチームを同じ基準で見えるようにする」を目的に据え、<span class="out">数字の定義を4つに絞った</span>。残り／遅れ／負荷／進捗。指標を増やすほど誰も見なくなるため。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="no">02</div>
+          <div>
+            <h3>データの形を決める</h3>
+            <p>プロジェクトを「タスクの入れ物」と「会話の場所」の両方にした。SQLite 8テーブル。<span class="out">自分とチームは同じ関数で集計する</span>形に決めておく。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="no">03</div>
+          <div>
+            <h3>作る</h3>
+            <p>サーバーはPHP、保存はSQLite1ファイル、画面は素のJavaScript。グラフも自前のSVGで、<span class="out">外部ライブラリとビルド工程は使わない</span>方針で通した。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="no">04</div>
+          <div>
+            <h3>ズレても気づけない所を固める</h3>
+            <p>テストは集計ロジックに寄せた。<span class="out">完了率が5%ずれても誰も気づかない</span>から。境目の日付・ゼロ除算・権限まで102件。別途ブラウザで12件。</p>
+          </div>
+        </div>
+
+        <div class="step snag">
+          <div class="no">05</div>
+          <div>
+            <h3>公開しようとして止まる</h3>
+            <p>「無料プランではディスクが使えない」。データを残すか無料かの二択と捉え、<span class="out">今回は無料を選んでデータを捨てた</span>。代わりに空のときだけデモデータが入る仕組みを足した。</p>
+          </div>
+        </div>
+
+        <div class="step snag">
+          <div class="no">06</div>
+          <div>
+            <h3>2つとも、ビルドが必ず失敗する</h3>
+            <p>ログが見られない環境だったため、<span class="out">「両方落ちているなら共通部分が怪しい」</span>と切り分け。公式イメージの定義を実際に読んで原因を確定させた。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="done">
+        公開（Deploy live）<span>マージ後 1分で成功</span>
+      </div>
+    </section>
+
+    <aside>
+      <div>
+        <p class="eyebrow">数字</p>
+        <div class="stats">
+          <div class="stat"><b>約5,000<i>行</i></b><span>手で書いたコード</span></div>
+          <div class="stat zero"><b>0<i>個</i></b><span>外部ライブラリ</span></div>
+          <div class="stat"><b>114<i>件</i></b><span>テスト（集計102・画面12）</span></div>
+          <div class="stat"><b>8<i>表</i></b><span>SQLite のテーブル</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">こだわった3点</p>
+        <div class="pts">
+          <div class="pt"><div class="bar"></div><div>
+            <b>自分とチームを同じ関数で計算</b>
+            <p>別々に書くと必ずズレる。ズレても綺麗に表示されてしまうので、構造で防いだ。</p>
+          </div></div>
+          <div class="pt"><div class="bar"></div><div>
+            <b>目標に「予定線」を引く</b>
+            <p>40%は早いのか遅いのか、期限と並べて初めて分かる。ゲージに縦線を1本重ねた。</p>
+          </div></div>
+          <div class="pt"><div class="bar"></div><div>
+            <b>動かすと会話に流れる</b>
+            <p>ステータスを変えると自動でスレッドに1行出る。報告のための報告をなくすため。</p>
+          </div></div>
+        </div>
+      </div>
+      <div class="snagbox">
+        <p class="eyebrow">いちばんの難所 ― 06 の切り分け</p>
+        <ul class="chain">
+          <li>2つとも失敗している</li>
+          <li>違う所ではなく、同じ所が怪しい</li>
+          <li>差分を取ると共通の1行が残る</li>
+          <li>推測せず、公式の定義を読みに行く</li>
+          <li>原因を確定</li>
+        </ul>
+        <p>正体は「<b>すでに入っているものを、材料が無い状態で作り直そうとしていた</b>」こと。直すときは行を消すだけにせず、<b>次に同じことが起きたらビルドがその場で止まる</b>検証行を足した。</p>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="band">
+
+    <section>
+      <p class="eyebrow">どう作ったか</p>
+      <dl class="kv">
+        <dt>道具</dt>
+        <dd><b>Claude Code</b>（AIコーディングツール）。コードの多くはAIが書いています。</dd>
+        <dt>私の役割</dt>
+        <dd>何を作るか決める / 出てきたものを見て違うと言う / 公開まで運ぶ</dd>
+      </dl>
+      <div class="gap">
+        <div class="hand"><span>手を動かした</span><i></i><b>約1.5時間</b></div>
+        <div class="all"><span>着手から公開</span><i></i><b>実質2日</b></div>
+      </div>
+      <p class="note">本体が形になるまでは<b>約40分</b>。差の大半は<b>「決める時間」と「つまずく時間」</b>でした。手を動かす時間が短いほど、<b>何を作るか決める力</b>のほうが効いてくる、というのが今回の実感です。</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">つまずいたのは、コードより手前と後ろ</p>
+      <ul class="oops">
+        <li>GitHubの「マージ」ボタンが見つからない。ページ最下部にあると知らなかった</li>
+        <li>Renderの「Blueprint Name」が必須と気づかず、赤枠のまま先へ進めずにいた</li>
+        <li>デプロイ失敗中なのにURLを探していた。<b>成功して初めてURLが出る</b>と知らなかった</li>
+      </ul>
+      <div class="good">
+        <b>逆に、自分で気づけたこと</b>
+        画面の文字がひらがな中心で業務アプリらしくないと感じ、全部を漢字に直しました（「未着手」「確認待ち」など）。動くかどうかとは別に、<b>誰が何のために使うか</b>で言葉を選ぶ必要がある、と分かった場面です。
+      </div>
+    </section>
+
+  </div>
+
+  <p class="quote"><b>話すときの一言 ——</b> 「ダッシュボードは指標を増やすほど誰も見なくなるので、意図的に4つに絞りました。」</p>
+
+  <footer>
+    <p>デモは無料プランのため15分で休止します。お見せする5分前に一度開いてください。</p>
+    <p class="stack">PHP 8 / SQLite / 素のJavaScript / Docker / Render</p>
+  </footer>
+
+</div>
