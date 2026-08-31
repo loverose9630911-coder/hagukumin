@@ -35,4 +35,4 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s \
   CMD php -r 'exit(@file_get_contents("http://127.0.0.1:".getenv("PORT")."/index.php") ? 0 : 1);'
 
-CMD ["bin/serve"]
+CMD ["/app/bin/serve"]
