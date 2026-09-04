@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# デモデータを入れる。
+#
+#   bin/seed           … 空のときだけ入れる
+#   bin/seed --fresh   … いまのデータを消してから入れ直す
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+mkdir -p data
+
+if [ "${1:-}" = "--fresh" ]; then
+  rm -f data/canter.sqlite data/canter.sqlite-wal data/canter.sqlite-shm
+  rm -rf data/uploads
+  echo "▶ いまのデータを消しました"
+fi
+
+php -r '
+  require "tools/bootstrap.php";
+  try {
+      $r = Canter\Seed::run();
+      echo "✓ デモデータを入れました（ログイン: {$r["login"]} / {$r["password"]}、デザイン {$r["designs"]}枚）\n";
+  } catch (Throwable $e) {
+      echo "… " . $e->getMessage() . "\n";
+  }
+'

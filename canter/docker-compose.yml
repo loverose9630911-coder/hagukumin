@@ -1,0 +1,19 @@
+# docker compose up  → http://localhost:8090
+services:
+  canter:
+    build: .
+    ports:
+      - "8090:8080"
+    volumes:
+      # デザイン・画像・接続設定はここに残る。消すと初期状態に戻る。
+      - ./data:/app/data
+    environment:
+      CANTER_TZ: Asia/Tokyo
+      # 手元で動かしているあいだは、外から見えないので Instagram などには出せません。
+      # 外に置いたら、ここに外から見えるアドレスを入れてください。
+      # CANTER_PUBLIC_URL: https://canter.example.com
+      #
+      # トークンの暗号化に使う鍵。入れないと data/secret.key が使われます
+      # （data/ ごと持ち運ぶなら、それでも構いません）。
+      # CANTER_SECRET: ここに長いランダムな文字列
+    restart: unless-stopped

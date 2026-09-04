@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# 時間が来た予約投稿を送る。cron から呼ぶためのもの。
+#
+#   *  *  *  *  *  cd /path/to/canter && bin/tick >> data/tick.log 2>&1
+#
+# 画面を開いている間はブラウザからも同じことをするので、
+# 「開きっぱなしの人がいる」職場ではこれを仕掛けなくても動く。
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+php -r '
+  require "tools/bootstrap.php";
+  $sent = Canter\Publish::runDue(null, 20);
+  $ok   = 0;
+  foreach ($sent as $p) { if (($p["status"] ?? "") === "done") { $ok++; } }
+  if ($sent !== []) {
+      echo date("Y-m-d H:i:s") . "  送信 " . count($sent) . "件（成功 {$ok}件）\n";
+  }
+'

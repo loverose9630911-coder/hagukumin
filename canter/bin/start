@@ -1,0 +1,25 @@
+#!/bin/sh
+# コンテナの中で動かすときの入口（Docker / Render 用）。
+# 手元で動かすときは bin/serve を使ってください。
+set -eu
+
+cd "$(dirname "$0")/.."
+
+PORT="${PORT:-8080}"
+mkdir -p data
+
+# デモデータの投入は「おまけ」なので、ここで何が起きてもサーバーは必ず起動させる。
+if [ "${CANTER_SEED:-}" = "1" ]; then
+  php -r '
+    require "tools/bootstrap.php";
+    try {
+        $r = Canter\Seed::run();
+        fwrite(STDERR, "[canter] デモデータを入れました（ログイン: {$r["login"]} / {$r["password"]}）\n");
+    } catch (Throwable $e) {
+        fwrite(STDERR, "[canter] デモデータは入れませんでした: " . $e->getMessage() . "\n");
+    }
+  ' || echo "[canter] デモデータの投入でエラーが出ましたが、起動は続けます" >&2
+fi
+
+echo "[canter] ポート ${PORT} で起動します" >&2
+exec php -S "0.0.0.0:${PORT}" -t public public/index.php
