@@ -71,3 +71,44 @@ services:
     #   name: mikata-data
     #   mountPath: /app/data
     #   sizeGB: 1
+
+  # canter（つくって、そのまま出すデザイン道具）
+  - type: web
+    name: canter
+    runtime: docker
+    dockerfilePath: ./canter/Dockerfile
+    dockerContext: ./canter
+    plan: free
+    region: singapore
+    healthCheckPath: /api/me
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: CANTER_TZ
+        value: Asia/Tokyo
+      - key: PHP_CLI_SERVER_WORKERS
+        value: 4
+      # ★ここが大事★
+      # Instagram・Threads・Notion は「画像の URL」を受け取って取りに来る作りなので、
+      # canter が外から見えるアドレスを知っている必要があります。
+      # Apply して払い出されたアドレス（https://canter-xxxx.onrender.com）を、
+      # Render の Environment 画面でここに入れ直してください。
+      # 入れないと、この3つには画像を渡せません（X とミカタは入れなくても出せます）。
+      - key: CANTER_PUBLIC_URL
+        sync: false
+      # 外部サービスのトークンを暗号化する鍵。
+      # 入れないと data/secret.key が使われますが、ディスクの無い無料プランでは
+      # 眠って起き直すたびに鍵が変わり、保存した接続設定が読めなくなります。
+      - key: CANTER_SECRET
+        generateValue: true
+      # 中身が空のときだけデモデータを入れて、開いてすぐ触れる状態にする。
+      # （ログイン: demo / demo1234）
+      # 実際に業務で使うときは、この2行を消すか value を空にしてください。
+      - key: CANTER_SEED
+        value: 1
+    # デザイン・画像・接続設定を残したい場合は plan を starter にして、
+    # 次の4行のコメントを外し、上の CANTER_SEED は消してください。
+    # disk:
+    #   name: canter-data
+    #   mountPath: /app/data
+    #   sizeGB: 1
