@@ -159,6 +159,7 @@ canvas#out{max-width:100%;height:auto;border-radius:6px;box-shadow:var(--shadow)
             <label class="pill"><input type="radio" name="mode" id="modeCut" value="cut" checked><span>くっきり（文字の形で切りぬく）</span></label>
             <label class="pill"><input type="radio" name="mode" id="modeBlock" value="block"><span>ブロック（四角い写真を並べる）</span></label>
           </div>
+          <p class="hint">ブロックは写真の大きさを「極小」にし、ポップかまるゴシックの書体にすると文字が読みやすくなります。</p>
         </div>
         <div class="row">
           <div class="field">
@@ -504,6 +505,12 @@ async function doRender() {
   const layout = layoutLines(mctx, lines, font, W, H, margin, leading, fitLines);
   mctx.fillStyle = '#000';
   drawLines(mctx, layout, 'fill');
+  if (mode === 'block') {
+    // thicken every stroke by about half a tile so the letters stay connected once they become squares
+    mctx.strokeStyle = '#000'; mctx.lineJoin = 'round';
+    mctx.lineWidth = tile * 0.6;
+    drawLines(mctx, layout, 'stroke');
+  }
 
   // 2) how much of each tile the letters cover
   const S = 8;
@@ -526,7 +533,7 @@ async function doRender() {
   }
 
   // 3) lay the photos
-  const threshold = mode === 'block' ? 0.3 : 0.01;
+  const threshold = mode === 'block' ? 0.45 : 0.01;
   const tiles = state.photos.length ? state.photos.map(p => p.thumb) : sampleTiles();
   const deck = new Deck(tiles.length, state.seed);
   const canvas = $('out');
