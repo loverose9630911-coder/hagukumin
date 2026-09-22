@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>おめでとうモザイク</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@900&family=Zen+Maru+Gothic:wght@900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#F3F6FA; --surface:#FFFFFF; --surface-2:#E9EFF5; --ink:#1E2733; --muted:#5F6B7A; --line:#D7DFE8;
+  --accent:#EF6A5C; --accent-ink:#FFFFFF; --accent-soft:#FDE4E0; --sun:#F8C94B; --sun-ink:#1E2733;
+  --mint:#CDEDE0; --focus:#2F80ED; --danger:#C93B2E;
+  --radius:14px; --shadow:0 8px 28px rgba(30,39,51,.10);
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","Meiryo",sans-serif;
+  --display:"Mochiy Pop One","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121821; --surface:#1B242F; --surface-2:#232E3B; --ink:#EDF2F7; --muted:#9AA7B6; --line:#2E3947;
+    --accent:#F4877A; --accent-ink:#1A1010; --accent-soft:#3A2A28; --sun:#E7B93F; --sun-ink:#1E2733;
+    --mint:#2B4A41; --focus:#6FA8FF; --danger:#F08A7E; --shadow:0 8px 28px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121821; --surface:#1B242F; --surface-2:#232E3B; --ink:#EDF2F7; --muted:#9AA7B6; --line:#2E3947;
+  --accent:#F4877A; --accent-ink:#1A1010; --accent-soft:#3A2A28; --sun:#E7B93F; --sun-ink:#1E2733;
+  --mint:#2B4A41; --focus:#6FA8FF; --danger:#F08A7E; --shadow:0 8px 28px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:1140px;margin:0 auto;padding-block:20px 56px;padding-inline:16px}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-bottom:18px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(26px,4.2vw,36px);line-height:1.2;margin:0;letter-spacing:.02em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{color:var(--muted);margin:6px 0 0;max-width:36em}
+.layout{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:960px){
+  .layout{grid-template-columns:400px minmax(0,1fr);align-items:start}
+  .preview{position:sticky;top:16px}
+}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px 16px}
+.panel + .panel{margin-top:18px}
+.step{display:flex;align-items:center;gap:10px;margin:0 0 14px}
+.step .no{font-family:var(--display);flex:none;width:30px;height:30px;border-radius:50%;background:var(--sun);color:var(--sun-ink);display:grid;place-items:center;font-size:16px}
+.step h2{font-size:17px;font-weight:700;margin:0}
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field > label, .field > .lbl{font-weight:500;font-size:14px}
+.hint{font-size:12.5px;color:var(--muted);margin:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+select,textarea,input[type="text"]{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);width:100%;min-width:0}
+textarea{resize:vertical;min-height:72px;font-family:var(--display);font-size:20px;line-height:1.35;letter-spacing:.04em}
+select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:34px}
+input[type="range"]{width:100%;accent-color:var(--accent)}
+input[type="color"]{width:44px;height:36px;padding:2px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.swatches{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.swatch{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.swatch[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--surface) inset}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{position:relative}
+.pill input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.pill span{display:inline-block;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:500}
+.pill input:checked + span{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.pill input:focus-visible + span{outline:2px solid var(--focus);outline-offset:2px}
+.check{display:flex;align-items:center;gap:8px;font-weight:500;font-size:14px}
+.check input{width:18px;height:18px;accent-color:var(--accent)}
+.btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--surface-2);color:var(--ink);min-height:46px;line-height:1.2}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.big{width:100%;font-size:17px;padding:16px 18px}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible,.swatch:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.btn svg{width:20px;height:20px;flex:none}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.photo-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.photo-meta .count{font-weight:700;font-variant-numeric:tabular-nums}
+.strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.strip canvas{width:52px;height:52px;border-radius:8px;background:var(--surface-2)}
+.strip .more{width:52px;height:52px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:12px}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
+@media (prefers-reduced-motion: reduce){.progress i{transition:none}}
+.drop{border:2px dashed transparent;border-radius:var(--radius);transition:border-color .15s}
+.drop.over{border-color:var(--accent)}
+.stage{background:var(--surface-2);border-radius:12px;padding:10px;display:grid;place-items:center;min-height:200px}
+canvas#out{max-width:100%;height:auto;border-radius:6px;box-shadow:var(--shadow);background:#fff}
+.status{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin:10px 0 0;display:flex;gap:6px 14px;flex-wrap:wrap}
+.status b{color:var(--ink);font-weight:500}
+.actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+@media (min-width:480px){.actions{grid-template-columns:minmax(0,1fr) auto auto}}
+.actions select{width:auto}
+.note{background:var(--mint);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:12px}
+.note p{margin:0}
+.note p + p{margin-top:4px}
+.result{margin-top:14px;display:grid;gap:8px}
+.result img{width:100%;height:auto;border-radius:8px;box-shadow:var(--shadow);background:#fff}
+.err{color:var(--danger);font-size:13.5px;margin:8px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;box-shadow:var(--shadow);z-index:10;max-width:calc(100% - 32px)}
+.howto{margin-top:18px;color:var(--muted);font-size:13.5px}
+.howto summary{cursor:pointer;font-weight:500;color:var(--ink)}
+.howto ol{padding-left:1.4em;margin:8px 0 0}
+.howto li + li{margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>おめでとう<em>モザイク</em></h1>
+      <p class="lede">スマホの写真を選ぶだけで、「4さい おめでとう」の文字を写真で敷きつめたコラージュができます。写真はこの端末の中だけで処理され、どこにも送られません。</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="controls">
+      <section class="panel drop" id="photoPanel" aria-labelledby="s1">
+        <div class="step"><span class="no" aria-hidden="true">1</span><h2 id="s1">写真をえらぶ</h2></div>
+        <input class="visually-hidden" type="file" id="photos" accept="image/*" multiple>
+        <label class="btn primary big" for="photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.2-2h5.6L16 5"/></svg>
+          アルバムから写真をえらぶ
+        </label>
+        <p class="hint" style="margin-top:8px">iPhone は「写真ライブラリ」、Android は「ギャラリー」を選ぶと複数枚まとめて選べます。20〜60枚くらいが目安です。</p>
+        <div class="progress" id="progress" hidden><i id="progressBar"></i></div>
+        <div class="photo-meta">
+          <span class="count" id="photoCount">写真 0枚（サンプル表示中）</span>
+          <button type="button" class="btn ghost" id="clearPhotos" hidden>全部けす</button>
+        </div>
+        <div class="strip" id="strip"></div>
+        <p class="err" id="photoErr" hidden></p>
+      </section>
+
+      <section class="panel" aria-labelledby="s2">
+        <div class="step"><span class="no" aria-hidden="true">2</span><h2 id="s2">文字とデザイン</h2></div>
+        <div class="field">
+          <label for="text">文字（改行で行をわけます）</label>
+          <textarea id="text" rows="2" spellcheck="false">4さい
+おめでとう</textarea>
+        </div>
+        <div class="field">
+          <label for="font">書体</label>
+          <select id="font">
+            <option value="pop">ポップ（Mochiy Pop One）</option>
+            <option value="dela">ふとゴシック（Dela Gothic One）</option>
+            <option value="mplus">まるゴシック（M PLUS Rounded）</option>
+            <option value="zenmaru">まる・やわらか（Zen Maru Gothic）</option>
+          </select>
+        </div>
+        <div class="field">
+          <span class="lbl" id="modeLbl">仕上がり</span>
+          <div class="pills" role="radiogroup" aria-labelledby="modeLbl">
+            <label class="pill"><input type="radio" name="mode" id="modeCut" value="cut" checked><span>くっきり（文字の形で切りぬく）</span></label>
+            <label class="pill"><input type="radio" name="mode" id="modeBlock" value="block"><span>ブロック（四角い写真を並べる）</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="tiles">写真の大きさ</label>
+            <select id="tiles">
+              <option value="10">大（横に10枚）</option>
+              <option value="16" selected>中（横に16枚）</option>
+              <option value="24">小（横に24枚）</option>
+              <option value="34">極小（横に34枚）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="gap">写真のすきま</label>
+            <select id="gap">
+              <option value="0">なし</option>
+              <option value="0.06" selected>ほそい</option>
+              <option value="0.14">ふとい</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="fitLines" checked>各行を幅いっぱいに大きくする</label>
+        </div>
+        <div class="field" id="outlineField">
+          <div class="swatches">
+            <label class="check"><input type="checkbox" id="outline" checked>文字のふちどり</label>
+            <input type="color" id="outlineColor" value="#f8c94b" aria-label="ふちどりの色">
+          </div>
+        </div>
+        <div class="field">
+          <span class="lbl" id="bgLbl">背景の色</span>
+          <div class="swatches" id="swatches" aria-labelledby="bgLbl">
+            <button type="button" class="swatch" data-color="#ffffff" style="background:#ffffff" aria-label="白" aria-pressed="true"></button>
+            <button type="button" class="swatch" data-color="#fff4c2" style="background:#fff4c2" aria-label="クリーム"></button>
+            <button type="button" class="swatch" data-color="#ffd9df" style="background:#ffd9df" aria-label="ピンク"></button>
+            <button type="button" class="swatch" data-color="#d6ecff" style="background:#d6ecff" aria-label="水色"></button>
+            <button type="button" class="swatch" data-color="#dff5d8" style="background:#dff5d8" aria-label="きみどり"></button>
+            <button type="button" class="swatch" data-color="#2b2f45" style="background:#2b2f45" aria-label="こん"></button>
+            <input type="color" id="bg" value="#ffffff" aria-label="背景の色（自由に選ぶ）">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="size">サイズ（用途）</label>
+            <select id="size">
+              <option value="a4l" selected>A4 よこ（印刷）</option>
+              <option value="a4p">A4 たて（印刷）</option>
+              <option value="sq">正方形（SNS）</option>
+              <option value="phone">スマホ画面 たて</option>
+              <option value="wide">ワイド 16:9</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="leading">行の間隔 <span id="leadingVal">1.15</span></label>
+            <input type="range" id="leading" min="0.9" max="1.6" step="0.05" value="1.15">
+          </div>
+        </div>
+        <div class="field">
+          <button type="button" class="btn ghost" id="shuffle">写真の並びをかえる</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel preview" aria-labelledby="s3">
+      <div class="step"><span class="no" aria-hidden="true">3</span><h2 id="s3">できあがり</h2></div>
+      <div class="stage"><canvas id="out" width="1754" height="1240" aria-label="コラージュのプレビュー"></canvas></div>
+      <p class="status" id="status"><span>準備中…</span></p>
+      <div class="actions">
+        <button type="button" class="btn primary" id="save">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>
+          画像を保存
+        </button>
+        <select id="format" aria-label="保存形式">
+          <option value="jpg" selected>JPEG（印刷・共有向き）</option>
+          <option value="png">PNG（高画質・大きい）</option>
+        </select>
+        <button type="button" class="btn ghost" id="showImage">画像を表示</button>
+      </div>
+      <p class="err" id="saveErr" hidden></p>
+      <div class="note" id="saveNote" hidden>
+        <p>下に表示した画像を<b>長押し</b>して「写真に追加」または「画像を保存」を選ぶと、アルバムに入ります。</p>
+      </div>
+      <div class="result" id="result" hidden><img id="resultImg" alt="できあがったコラージュ"></div>
+      <details class="howto">
+        <summary>印刷して飾るときは</summary>
+        <ol>
+          <li>サイズを「A4 よこ」か「A4 たて」にして、JPEG で保存します。</li>
+          <li>コンビニのネットプリントや写真屋さんのアプリに、保存した画像をそのまま送ります。</li>
+          <li>細かい写真をはっきり見せたいときは「写真の大きさ」を大きめにします。</li>
+        </ol>
+      </details>
+    </section>
+  </div>
+</div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+(() => {
+'use strict';
+const $ = (id) => document.getElementById(id);
+
+const FONTS = {
+  pop:     { family: 'Mochiy Pop One',    weight: '400' },
+  dela:    { family: 'Dela Gothic One',   weight: '400' },
+  mplus:   { family: 'M PLUS Rounded 1c', weight: '900' },
+  zenmaru: { family: 'Zen Maru Gothic',   weight: '900' },
+};
+const FALLBACK = '"Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP","Noto Sans CJK JP","Yu Gothic","Meiryo",sans-serif';
+const SIZES = {
+  a4l:   { w: 3508, h: 2480, label: 'A4よこ' },
+  a4p:   { w: 2480, h: 3508, label: 'A4たて' },
+  sq:    { w: 2048, h: 2048, label: '正方形' },
+  phone: { w: 1080, h: 1920, label: 'スマホたて' },
+  wide:  { w: 1920, h: 1080, label: 'ワイド' },
+};
+const THUMB = 320;
+const STORE_KEY = 'omedetou-mosaic-v1';
+
+const state = {
+  photos: [],        // { thumb: HTMLCanvasElement, name: string }
+  failed: 0,
+  seed: 1,
+  rendering: false,
+  pending: false,
+  fontLoaded: true,
+  lastStats: null,
+};
+
+// downloads capability of the claude.ai viewer (null anywhere else)
+const downloadsReady = (window.claude && typeof window.claude.use === 'function')
+  ? window.claude.use('downloads').catch(() => null)
+  : Promise.resolve(null);
+
+// ---------- small helpers ----------
+function makeCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('decode'));
+    img.src = url;
+  });
+}
+let toastTimer = null;
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
+}
+function currentMode() { return $('modeBlock').checked ? 'block' : 'cut'; }
+
+// ---------- photos ----------
+async function fileToThumb(file) {
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await loadImage(url);
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    if (!iw || !ih) throw new Error('empty');
+    const c = makeCanvas(THUMB, THUMB);
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingQuality = 'high';
+    const s = Math.max(THUMB / iw, THUMB / ih);
+    const dw = iw * s, dh = ih * s;
+    // portrait photos: keep the upper part (faces are usually there)
+    const anchorY = ih > iw * 1.15 ? 0.32 : 0.5;
+    ctx.drawImage(img, (THUMB - dw) / 2, (THUMB - dh) * anchorY, dw, dh);
+    return c;
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+function showProgress(done, total) {
+  const p = $('progress'); p.hidden = false;
+  $('progressBar').style.width = Math.round(done / total * 100) + '%';
+  $('photoCount').textContent = `読み込み中… ${done} / ${total}`;
+}
+
+async function addFiles(fileList) {
+  const files = Array.from(fileList || []).filter(f => !f.type || f.type.startsWith('image/'));
+  if (!files.length) return;
+  let done = 0, failedNow = 0;
+  showProgress(0, files.length);
+  for (const f of files) {
+    try {
+      state.photos.push({ thumb: await fileToThumb(f), name: f.name });
+    } catch (e) {
+      failedNow++;
+    }
+    done++;
+    showProgress(done, files.length);
+  }
+  state.failed += failedNow;
+  $('progress').hidden = true;
+  updatePhotoUI();
+  scheduleRender();
+  if (failedNow) toast(`${failedNow}枚は読み込めませんでした`);
+  else toast(`${files.length}枚を読み込みました`);
+}
+
+function updatePhotoUI() {
+  const n = state.photos.length;
+  $('photoCount').textContent = n ? `写真 ${n}枚` : '写真 0枚（サンプル表示中）';
+  $('clearPhotos').hidden = n === 0;
+  const err = $('photoErr');
+  if (state.failed) { err.hidden = false; err.textContent = `読み込めなかった写真: ${state.failed}枚（HEIC など、この端末のブラウザで開けない形式の可能性があります）`; }
+  else err.hidden = true;
+  const strip = $('strip'); strip.textContent = '';
+  const show = Math.min(n, 14);
+  for (let i = 0; i < show; i++) {
+    const c = makeCanvas(104, 104);
+    c.getContext('2d').drawImage(state.photos[i].thumb, 0, 0, 104, 104);
+    strip.appendChild(c);
+  }
+  if (n > show) { const m = document.createElement('span'); m.className = 'more'; m.textContent = `+${n - show}`; strip.appendChild(m); }
+}
+
+// ---------- sample tiles (shown until photos are chosen) ----------
+let sampleCache = null;
+function sampleTiles() {
+  if (sampleCache) return sampleCache;
+  const colors = ['#F9CFCB', '#FBE3A6', '#BFE7D5', '#C7DDF6', '#E3D2F4', '#FFD3AE', '#D4EFBF', '#F7C5DB', '#FFF0B3', '#BDE3F1'];
+  sampleCache = colors.map((col, i) => {
+    const c = makeCanvas(THUMB, THUMB);
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = col; ctx.fillRect(0, 0, THUMB, THUMB);
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+    const m = THUMB / 2, r = THUMB * 0.3;
+    ctx.beginPath();
+    switch (i % 4) {
+      case 0: ctx.arc(m, m, r, 0, Math.PI * 2); break;
+      case 1: ctx.roundRect ? ctx.roundRect(m - r, m - r, r * 2, r * 2, r * 0.35) : ctx.rect(m - r, m - r, r * 2, r * 2); break;
+      case 2: for (let k = 0; k < 5; k++) { const a = -Math.PI / 2 + k * 2 * Math.PI / 5; const b = a + Math.PI / 5; ctx.lineTo(m + Math.cos(a) * r, m + Math.sin(a) * r); ctx.lineTo(m + Math.cos(b) * r * 0.45, m + Math.sin(b) * r * 0.45); } ctx.closePath(); break;
+      default: ctx.moveTo(m, m - r); ctx.lineTo(m + r, m + r * 0.75); ctx.lineTo(m - r, m + r * 0.75); ctx.closePath();
+    }
+    ctx.fill();
+    return c;
+  });
+  return sampleCache;
+}
+
+// ---------- shuffled deck that avoids repeating a neighbour ----------
+class Deck {
+  constructor(n, seed) { this.n = n; this.rand = mulberry32(seed); this.q = []; }
+  refill() {
+    const a = Array.from({ length: this.n }, (_, i) => i);
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(this.rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    this.q = a;
+  }
+  next(avoidA, avoidB) {
+    if (!this.q.length) this.refill();
+    if (this.n > 2) {
+      const lim = Math.min(this.q.length, 6);
+      for (let t = 0; t < lim; t++) { const k = this.q[t]; if (k !== avoidA && k !== avoidB) { this.q.splice(t, 1); return k; } }
+    }
+    return this.q.shift();
+  }
+}
+
+// ---------- fonts ----------
+const fontCache = new Map();
+async function ensureFont(f, text) {
+  const key = f.family + '|' + text;
+  if (fontCache.has(key)) return fontCache.get(key);
+  let ok = false;
+  try {
+    if (document.fonts && document.fonts.load) {
+      const spec = `${f.weight} 100px "${f.family}"`;
+      const res = await Promise.race([
+        document.fonts.load(spec, text),
+        new Promise(r => setTimeout(() => r(null), 7000)),
+      ]);
+      ok = Array.isArray(res) && res.length > 0;
+    }
+  } catch (e) { ok = false; }
+  const out = { weight: f.weight, css: ok ? `"${f.family}", ${FALLBACK}` : FALLBACK, loaded: ok };
+  fontCache.set(key, out);
+  return out;
+}
+
+// ---------- text layout ----------
+function layoutLines(ctx, lines, font, W, H, margin, leading, fitLines) {
+  const availW = W - margin * 2, availH = H - margin * 2;
+  ctx.font = `${font.weight} 100px ${font.css}`;
+  const widths = lines.map(l => Math.max(ctx.measureText(l).width, 1) / 100); // width per 1px of font size
+  let sizes;
+  if (fitLines) sizes = widths.map(w => availW / w);
+  else { const s = availW / Math.max(...widths); sizes = lines.map(() => s); }
+  let total = sizes.reduce((a, s) => a + s * leading, 0);
+  if (total > availH) { const k = availH / total; sizes = sizes.map(s => s * k); total = availH; }
+  let y = (H - total) / 2;
+  const items = lines.map((text, i) => {
+    const s = sizes[i];
+    const item = { text, size: s, x: W / 2, y: y + s * leading / 2 };
+    y += s * leading;
+    return item;
+  });
+  return { items, font };
+}
+function drawLines(ctx, layout, op) {
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  for (const it of layout.items) {
+    ctx.font = `${layout.font.weight} ${it.size}px ${layout.font.css}`;
+    if (op === 'fill') ctx.fillText(it.text, it.x, it.y); else ctx.strokeText(it.text, it.x, it.y);
+  }
+}
+
+// ---------- render ----------
+let renderTimer = null;
+function scheduleRender() { clearTimeout(renderTimer); renderTimer = setTimeout(render, 120); }
+
+async function render() {
+  if (state.rendering) { state.pending = true; return; }
+  state.rendering = true;
+  $('save').disabled = true;
+  try { await doRender(); }
+  catch (e) { $('status').innerHTML = ''; const s = document.createElement('span'); s.textContent = 'つくれませんでした: ' + (e && e.message ? e.message : e); $('status').appendChild(s); }
+  $('save').disabled = false;
+  state.rendering = false;
+  if (state.pending) { state.pending = false; scheduleRender(); }
+}
+
+async function doRender() {
+  const size = SIZES[$('size').value] || SIZES.a4l;
+  const W = size.w, H = size.h;
+  let lines = $('text').value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  if (!lines.length) lines = ['おめでとう'];
+  const fontDef = FONTS[$('font').value] || FONTS.pop;
+  const font = await ensureFont(fontDef, lines.join(''));
+  state.fontLoaded = font.loaded;
+  const mode = currentMode();
+  const cols = Math.max(4, +$('tiles').value || 16);
+  const tile = W / cols;
+  const rows = Math.ceil(H / tile);
+  const gap = tile * (+$('gap').value || 0);
+  const leading = +$('leading').value || 1.15;
+  const fitLines = $('fitLines').checked;
+  const margin = Math.round(Math.min(W, H) * 0.05);
+
+  // 1) text mask at full size
+  const mask = makeCanvas(W, H);
+  const mctx = mask.getContext('2d');
+  const layout = layoutLines(mctx, lines, font, W, H, margin, leading, fitLines);
+  mctx.fillStyle = '#000';
+  drawLines(mctx, layout, 'fill');
+
+  // 2) how much of each tile the letters cover
+  const S = 8;
+  const small = makeCanvas(cols * S, rows * S);
+  const sctx = small.getContext('2d', { willReadFrequently: true });
+  sctx.scale(S / tile, S / tile);
+  sctx.drawImage(mask, 0, 0);
+  const px = sctx.getImageData(0, 0, cols * S, rows * S).data;
+  const cov = new Float32Array(cols * rows);
+  const rowStride = cols * S * 4;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      let sum = 0;
+      for (let y = 0; y < S; y++) {
+        let i = (r * S + y) * rowStride + c * S * 4 + 3;
+        for (let x = 0; x < S; x++, i += 4) sum += px[i];
+      }
+      cov[r * cols + c] = sum / (S * S * 255);
+    }
+  }
+
+  // 3) lay the photos
+  const threshold = mode === 'block' ? 0.3 : 0.01;
+  const tiles = state.photos.length ? state.photos.map(p => p.thumb) : sampleTiles();
+  const deck = new Deck(tiles.length, state.seed);
+  const canvas = $('out');
+  if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
+  const ctx = canvas.getContext('2d');
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.clearRect(0, 0, W, H);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  const assigned = new Int32Array(cols * rows).fill(-1);
+  let placed = 0;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      if (cov[i] < threshold) continue;
+      const left = c > 0 ? assigned[i - 1] : -1;
+      const up = r > 0 ? assigned[i - cols] : -1;
+      const k = deck.next(left, up);
+      assigned[i] = k;
+      ctx.drawImage(tiles[k], c * tile + gap / 2, r * tile + gap / 2, tile - gap, tile - gap);
+      placed++;
+    }
+  }
+  if (mode === 'cut') {
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.drawImage(mask, 0, 0);
+    if ($('outline').checked) {
+      ctx.globalCompositeOperation = 'destination-over';
+      ctx.strokeStyle = $('outlineColor').value || '#ffffff';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = Math.max(6, Math.min(W, H) * 0.014) * 2; // half of it shows outside the letters
+      drawLines(ctx, layout, 'stroke');
+    }
+  }
+  ctx.globalCompositeOperation = 'destination-over';
+  ctx.fillStyle = $('bg').value || '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'source-over';
+
+  state.lastStats = { placed, cols, rows, W, H, photos: state.photos.length, font: font.loaded ? fontDef.family : 'fallback' };
+  const st = $('status'); st.textContent = '';
+  const parts = [
+    ['写真', state.photos.length ? `${state.photos.length}枚` : 'サンプル'],
+    ['写真の数', `${placed}こ`],
+    ['サイズ', `${size.label} ${W}×${H}`],
+  ];
+  if (!font.loaded) parts.push(['書体', '端末のフォント（Webフォントを読み込めませんでした）']);
+  for (const [k, v] of parts) { const s = document.createElement('span'); s.textContent = k + ' '; const b = document.createElement('b'); b.textContent = v; s.appendChild(b); st.appendChild(s); }
+}
+
+// ---------- save ----------
+function canvasBlob(canvas, fmt) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(b => b ? resolve(b) : reject(new Error('画像に変換できませんでした')), fmt === 'png' ? 'image/png' : 'image/jpeg', 0.94);
+  });
+}
+function baseName() {
+  // ASCII only, with a timestamp so several versions never overwrite each other
+  const d = new Date(), z = n => String(n).padStart(2, '0');
+  return `omedetou-mosaic-${d.getFullYear()}${z(d.getMonth() + 1)}${z(d.getDate())}-${z(d.getHours())}${z(d.getMinutes())}`;
+}
+async function save() {
+  const btn = $('save'); btn.disabled = true;
+  $('saveErr').hidden = true;
+  try {
+    const fmt = $('format').value;
+    const blob = await canvasBlob($('out'), fmt);
+    const filename = `${baseName()}.${fmt}`;
+    const dl = await downloadsReady;
+    if (dl) {
+      try {
+        await dl.save({ filename, data: blob });
+        toast('保存しました');
+        return;
+      } catch (e) {
+        if (e && e.code === 'declined') return;
+        if (e && (e.code === 'rate_limited')) { showSaveErr('少し待ってからもう一度押してください'); return; }
+        // any other failure: fall through to the browser's own ways
+      }
+    }
+    const file = new File([blob], filename, { type: blob.type });
+    if (navigator.canShare && navigator.share) {
+      try {
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: 'おめでとうモザイク' });
+          return;
+        }
+      } catch (e) {
+        if (e && e.name === 'AbortError') return;
+      }
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 20000);
+    $('saveNote').hidden = false;
+    await showImage(blob);
+  } catch (e) {
+    showSaveErr('保存できませんでした: ' + (e && e.message ? e.message : e));
+  } finally {
+    btn.disabled = false;
+  }
+}
+function showSaveErr(msg) { const el = $('saveErr'); el.textContent = msg; el.hidden = false; }
+let lastImgUrl = null;
+async function showImage(blob) {
+  if (!blob) blob = await canvasBlob($('out'), $('format').value);
+  if (lastImgUrl) URL.revokeObjectURL(lastImgUrl);
+  lastImgUrl = URL.createObjectURL(blob);
+  const img = $('resultImg');
+  img.src = lastImgUrl;
+  $('result').hidden = false;
+  $('saveNote').hidden = false;
+  img.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ---------- settings memory (per device, best effort) ----------
+const SETTING_IDS = ['text', 'font', 'tiles', 'gap', 'fitLines', 'outline', 'outlineColor', 'bg', 'size', 'leading', 'format'];
+function saveSettings() {
+  try {
+    const o = {};
+    for (const id of SETTING_IDS) { const el = $(id); o[id] = el.type === 'checkbox' ? el.checked : el.value; }
+    o.mode = currentMode();
+    localStorage.setItem(STORE_KEY, JSON.stringify(o));
+  } catch (e) { /* storage unavailable: ignore */ }
+}
+function loadSettings() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const o = JSON.parse(raw);
+    for (const id of SETTING_IDS) {
+      if (!(id in o)) continue;
+      const el = $(id);
+      if (el.type === 'checkbox') el.checked = !!o[id]; else el.value = o[id];
+    }
+    if (o.mode === 'block') $('modeBlock').checked = true; else $('modeCut').checked = true;
+  } catch (e) { /* ignore corrupt or blocked storage */ }
+}
+
+// ---------- wiring ----------
+function syncControls() {
+  $('outlineField').hidden = currentMode() !== 'cut';
+  $('leadingVal').textContent = (+$('leading').value).toFixed(2);
+  const bg = $('bg').value.toLowerCase();
+  document.querySelectorAll('.swatch').forEach(b => b.setAttribute('aria-pressed', b.dataset.color.toLowerCase() === bg ? 'true' : 'false'));
+}
+
+$('photos').addEventListener('change', async (e) => {
+  const files = e.target.files;
+  await addFiles(files);
+  e.target.value = '';
+});
+$('clearPhotos').addEventListener('click', () => {
+  state.photos = []; state.failed = 0; state.seed = 1;
+  updatePhotoUI(); scheduleRender(); toast('写真をすべて外しました');
+});
+const dropPanel = $('photoPanel');
+['dragenter', 'dragover'].forEach(ev => dropPanel.addEventListener(ev, e => { e.preventDefault(); dropPanel.classList.add('over'); }));
+['dragleave', 'drop'].forEach(ev => dropPanel.addEventListener(ev, e => { e.preventDefault(); dropPanel.classList.remove('over'); }));
+dropPanel.addEventListener('drop', e => { if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+
+for (const id of SETTING_IDS) {
+  $(id).addEventListener('input', () => { syncControls(); saveSettings(); if (id !== 'format') scheduleRender(); });
+  $(id).addEventListener('change', () => { syncControls(); saveSettings(); if (id !== 'format') scheduleRender(); });
+}
+document.querySelectorAll('input[name="mode"]').forEach(r => r.addEventListener('change', () => { syncControls(); saveSettings(); scheduleRender(); }));
+document.querySelectorAll('.swatch').forEach(b => b.addEventListener('click', () => { $('bg').value = b.dataset.color; syncControls(); saveSettings(); scheduleRender(); }));
+$('shuffle').addEventListener('click', () => { state.seed = (state.seed % 100000) + 1; scheduleRender(); });
+$('save').addEventListener('click', save);
+$('showImage').addEventListener('click', () => showImage().catch(e => showSaveErr('表示できませんでした: ' + e.message)));
+
+// expose a little for testing / debugging
+window.__mosaic = { state, render: () => render() };
+
+loadSettings();
+syncControls();
+render();
+})();
+</script>
+</body>
+</html>
