@@ -1,0 +1,811 @@
+<title>購買管理 入社後プラン</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout: 社内の計画書（稟議書）の体裁。見出しの右に段階ごとの「承認欄」を置き、段階を終えると朱の「済」印が押される。本文はタブで4つに分ける。 */
+:root{
+  --paper:#EEF1F5;
+  --sheet:#FFFFFF;
+  --ink:#1A2432;
+  --muted:#596577;
+  --rule:#D3DAE3;
+  --indigo:#23427C;
+  --indigo-soft:#E4EBF6;
+  --shu:#BF3B26;
+  --shu-soft:#F7E5E0;
+  --ok:#2C6A5C;
+  --ok-soft:#DFEFEA;
+  --font-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --font-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI","Meiryo","Noto Sans JP",sans-serif;
+  --step--1:0.8125rem;
+  --step-0:0.9375rem;
+  --step-1:1.0625rem;
+  --step-2:1.375rem;
+  --step-3:clamp(1.625rem,1.2rem + 1.8vw,2.25rem);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11161D;--sheet:#192029;--ink:#E3E8EF;--muted:#9AA6B6;--rule:#2C3644;
+    --indigo:#93B3EC;--indigo-soft:#1E2B43;--shu:#F07D64;--shu-soft:#3A231E;--ok:#7DC6B2;--ok-soft:#172F29;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11161D;--sheet:#192029;--ink:#E3E8EF;--muted:#9AA6B6;--rule:#2C3644;
+  --indigo:#93B3EC;--indigo-soft:#1E2B43;--shu:#F07D64;--shu-soft:#3A231E;--ok:#7DC6B2;--ok-soft:#172F29;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--step-0);line-height:1.8;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.4;margin:0;text-wrap:balance;font-weight:800}
+p{margin:0}
+a{color:var(--indigo)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:4px}
+
+.wrap{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---- 見出し ---- */
+.doc-head{padding-block:28px 20px}
+.meta-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font-size:var(--step--1);color:var(--muted);border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:18px}
+.meta-row strong{color:var(--ink);letter-spacing:.12em}
+.head-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 32px;align-items:end}
+.applicant{font-size:var(--step--1);color:var(--muted);margin-bottom:6px}
+h1{font-size:var(--step-3);letter-spacing:.04em}
+.thesis{margin-top:10px;font-size:var(--step-1);font-weight:700}
+.thesis em{font-style:normal;color:var(--shu)}
+
+.stamps{display:grid;grid-template-columns:repeat(4,4.75rem);border:1.5px solid var(--ink);background:var(--sheet)}
+.stamp-cell{display:grid;grid-template-rows:auto 4.25rem;border-left:1px solid var(--ink)}
+.stamp-cell:first-child{border-left:0}
+.stamp-cell .lbl{font-size:.6875rem;text-align:center;border-bottom:1px solid var(--ink);padding:2px 0;letter-spacing:.08em;white-space:nowrap}
+.stamp-cell .body{display:grid;place-items:center;font-size:var(--step--1);color:var(--muted);font-variant-numeric:tabular-nums}
+.hanko{width:2.9rem;height:2.9rem;border:2px solid var(--shu);border-radius:50%;display:grid;place-items:center;color:var(--shu);font-family:var(--font-display);font-weight:800;font-size:1.15rem;transform:rotate(-12deg);background:color-mix(in srgb,var(--shu-soft) 55%,transparent)}
+@media (prefers-reduced-motion:no-preference){.hanko.fresh{animation:press .35s ease-out}}
+@keyframes press{from{transform:rotate(-12deg) scale(1.5);opacity:0}to{transform:rotate(-12deg) scale(1);opacity:1}}
+
+/* ---- タブ ---- */
+.tabs-band{border-block:1px solid var(--rule);background:var(--sheet)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:0;background:none;padding:12px 14px;cursor:pointer;color:var(--muted);font-weight:700;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--indigo)}
+.tab:hover{color:var(--ink)}
+
+main{padding-block:28px 48px}
+section[role="tabpanel"]{display:grid;gap:28px}
+.lead{max-width:44rem;font-size:var(--step-1)}
+.h2{font-size:var(--step-2);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.h2 small{font-family:var(--font-body);font-size:var(--step--1);color:var(--muted);font-weight:400}
+.note{font-size:var(--step--1);color:var(--muted)}
+
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:20px}
+
+/* ---- 概要 ---- */
+.overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ov{display:grid;gap:8px;align-content:start;text-align:left;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:18px;cursor:pointer}
+.ov:hover{border-color:var(--indigo)}
+.ov .k{font-size:var(--step--1);color:var(--muted);letter-spacing:.06em}
+.ov .v{font-family:var(--font-display);font-size:var(--step-2);font-weight:800}
+.ov .d{font-size:var(--step--1);color:var(--muted)}
+.meter{height:6px;background:var(--indigo-soft);border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--indigo);width:0;transition:width .3s}
+
+.duty-list{display:grid;gap:0;border-top:1px solid var(--rule)}
+.duty{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr);gap:6px 20px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.duty .src{font-size:var(--step--1);color:var(--muted)}
+.duty .src b{display:block;color:var(--ink);font-size:var(--step-0)}
+.duty ul{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.duty li{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:8px;align-items:baseline}
+.when{justify-self:start;font-size:.6875rem;font-weight:700;color:var(--indigo);background:var(--indigo-soft);border-radius:3px;padding:0 6px;white-space:nowrap}
+
+/* ---- 1年の進め方 ---- */
+.phases{display:grid;gap:18px}
+.phase{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.phase-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--rule)}
+.phase-no{font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums}
+.phase-title{display:grid;gap:2px}
+.phase-title h3{font-size:var(--step-1)}
+.phase-title .period{font-size:var(--step--1);color:var(--muted)}
+.phase-count{font-size:var(--step--1);font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.phase-count.done{color:var(--ok)}
+.phase-goal{padding:10px 18px;background:var(--indigo-soft);font-size:var(--step--1)}
+.items{list-style:none;margin:0;padding:0}
+.item{border-top:1px solid var(--rule)}
+.item:first-child{border-top:0}
+.item label{display:grid;grid-template-columns:1.25rem minmax(0,1fr);gap:12px;padding:12px 18px;cursor:pointer}
+.item input{width:1.125rem;height:1.125rem;margin:.3rem 0 0;accent-color:var(--ok)}
+.item .txt{display:grid;gap:6px}
+.item.checked .t{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 60%,transparent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.6875rem;border:1px solid var(--rule);border-radius:3px;padding:0 6px;color:var(--muted);white-space:nowrap}
+.sync{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.sync .where{font-size:var(--step--1);color:var(--muted)}
+.btn{border:1px solid var(--rule);background:var(--sheet);border-radius:4px;padding:6px 12px;cursor:pointer;font-size:var(--step--1)}
+.btn:hover{border-color:var(--ink)}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:var(--step--1)}
+.btn.danger{border-color:var(--shu);color:var(--shu)}
+
+/* ---- 浸透プラン ---- */
+.stance{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:center}
+.stance .from,.stance .to{padding:16px;border-radius:6px;text-align:center}
+.stance .from{border:1px dashed var(--rule);color:var(--muted)}
+.stance .to{border:1.5px solid var(--indigo);background:var(--indigo-soft)}
+.stance .from b,.stance .to b{display:block;font-family:var(--font-display);font-size:var(--step-1);color:var(--ink)}
+.stance .arrow{font-size:1.5rem;color:var(--indigo)}
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:14px}
+.idea{display:grid;gap:10px;align-content:start}
+.idea h3{font-size:var(--step-1)}
+.idea dl{margin:0;display:grid;gap:8px}
+.idea dt{font-size:.6875rem;font-weight:700;color:var(--indigo);letter-spacing:.08em}
+.idea dd{margin:0}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:s}
+.step{position:relative;padding:16px;border:1px solid var(--rule);background:var(--sheet);margin-left:-1px;display:grid;gap:8px;align-content:start;counter-increment:s}
+.step:first-child{margin-left:0;border-radius:6px 0 0 6px}
+.step:last-child{border-radius:0 6px 6px 0}
+.step h3{font-size:var(--step-1);display:flex;gap:8px;align-items:baseline}
+.step h3::before{content:counter(s);font-size:var(--step--1);color:var(--sheet);background:var(--indigo);border-radius:50%;width:1.4rem;height:1.4rem;display:inline-grid;place-items:center;font-family:var(--font-body);flex:0 0 auto}
+.step p{font-size:var(--step--1)}
+.step .lab{font-size:.6875rem;font-weight:700;color:var(--muted);letter-spacing:.08em;display:block}
+.replies{display:grid;gap:0;border-top:1px solid var(--rule)}
+.reply{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:6px 20px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.reply .said{font-weight:700}
+.reply .said::before{content:"「";color:var(--muted)}
+.reply .said::after{content:"」";color:var(--muted)}
+.role{border-left:4px solid var(--shu);padding:4px 0 4px 16px;display:grid;gap:6px}
+.role b{font-family:var(--font-display);font-size:var(--step-2)}
+
+/* ---- みんなでチェック ---- */
+.status{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:16px 18px;border:1.5px solid var(--shu);border-radius:6px;background:var(--shu-soft)}
+.status .pill{font-size:var(--step--1);font-weight:700;color:var(--sheet);background:var(--shu);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:10px;list-style:none;margin:0;padding:0}
+.topics li{border:1px solid var(--rule);background:var(--sheet);border-radius:6px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.topics li span:last-child{font-size:.6875rem;color:var(--muted);white-space:nowrap}
+.anatomy{display:grid;gap:0;border:1px solid var(--rule);border-radius:6px;overflow:hidden;background:var(--sheet)}
+.anatomy div{display:grid;grid-template-columns:6rem minmax(0,1fr);gap:12px;padding:10px 16px;border-top:1px solid var(--rule)}
+.anatomy div:first-child{border-top:0}
+.anatomy b{font-size:var(--step--1);color:var(--indigo)}
+.anatomy span{font-size:var(--step--1)}
+.score{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.stack{display:grid;gap:28px}
+.stack.tight{gap:18px}
+.qlist{display:grid;gap:14px}
+.qcard{display:grid;gap:12px}
+.qcard .scene{font-size:var(--step--1);color:var(--muted)}
+.qcard h3{font-size:var(--step-1)}
+.choices{display:grid;gap:8px}
+.choice{text-align:left;border:1px solid var(--rule);background:var(--sheet);border-radius:6px;padding:10px 14px;cursor:pointer;line-height:1.6}
+.choice:hover:not(:disabled){border-color:var(--indigo)}
+.choice:disabled{cursor:default}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.wrong{border-color:var(--shu);background:var(--shu-soft)}
+.result{display:grid;gap:6px;padding:12px 14px;border-radius:6px;background:var(--paper)}
+.result .verdict{font-weight:700}
+.result .verdict.ok{color:var(--ok)}
+.result .verdict.ng{color:var(--shu)}
+.source{font-size:var(--step--1);color:var(--muted)}
+
+footer{border-top:1px solid var(--rule);padding-block:20px 32px;font-size:var(--step--1);color:var(--muted)}
+footer ul{margin:6px 0 0;padding-left:1.2em}
+
+@media (max-width:760px){
+  .head-grid{grid-template-columns:minmax(0,1fr)}
+  .tab{padding:10px 9px;font-size:var(--step--1)}
+  .stamps{grid-template-columns:repeat(4,minmax(0,1fr));justify-self:stretch}
+  .overview{grid-template-columns:minmax(0,1fr)}
+  .duty,.reply{grid-template-columns:minmax(0,1fr)}
+  .stance{grid-template-columns:minmax(0,1fr)}
+  .stance .arrow{transform:rotate(90deg);justify-self:center}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .step{margin-left:0;margin-top:-1px}
+  .step:first-child{margin-top:0;border-radius:6px 6px 0 0}
+  .step:last-child{border-radius:0 0 6px 6px}
+  .phase-head{grid-template-columns:auto minmax(0,1fr)}
+  .phase-count{grid-column:2}
+  .anatomy div{grid-template-columns:minmax(0,1fr);gap:2px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="doc-head">
+  <div class="wrap">
+    <div class="meta-row"><strong>入社後計画書</strong><span>2026年10月17日 作成</span></div>
+    <div class="head-grid">
+      <div>
+        <p class="applicant">応募先：三菱ふそうトラック・バス株式会社 購買部門「購買管理スタッフ（富山）」</p>
+        <h1>購買管理 入社後プラン</h1>
+        <p class="thesis">ルールの主語を「わたし」から<em>「法律と事実」</em>に変える。</p>
+      </div>
+      <div class="stamps" id="stamps" aria-label="段階ごとの進み具合"></div>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-band">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="計画書の章">
+      <button class="tab" role="tab" id="tab-top" aria-controls="top" data-tab="top">概要</button>
+      <button class="tab" role="tab" id="tab-roadmap" aria-controls="roadmap" data-tab="roadmap">1年の進め方</button>
+      <button class="tab" role="tab" id="tab-shinto" aria-controls="shinto" data-tab="shinto">浸透プラン</button>
+      <button class="tab" role="tab" id="tab-check" aria-controls="check" data-tab="check">みんなでチェック</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- 概要 -->
+  <section role="tabpanel" id="top" aria-labelledby="tab-top">
+    <p class="lead">求人票にある仕事を、入社から1年で4つの段階に分けて進めます。いちばんの難所は、経験豊富なバイヤーの皆さんに新しいルールを浸透させることです。わたしが言うのではなく、法律と公式資料と実際の事例に語らせ、ふだんの作業の中で自然に守れる仕組みにします。</p>
+
+    <div class="overview">
+      <button class="ov" data-go="roadmap">
+        <span class="k">1年の進め方</span>
+        <span class="v" id="ov-roadmap">4段階</span>
+        <span class="meter" aria-hidden="true"><i id="ov-meter"></i></span>
+        <span class="d" id="ov-roadmap-d">知る・聞く → 見える化 → 仕組みに埋め込む → 根づかせる</span>
+      </button>
+      <button class="ov" data-go="shinto">
+        <span class="k">浸透プラン</span>
+        <span class="v">5つの工夫</span>
+        <span class="d">主語を変える／違いだけを伝える／ベテランを先生役に／覚えなくても守れる形に／短く、続ける</span>
+      </button>
+      <button class="ov" data-go="check">
+        <span class="k">みんなでチェック</span>
+        <span class="v" id="ov-check">準備中</span>
+        <span class="d" id="ov-check-d">取適法の問題は、公式資料で裏付けが取れたものだけを載せます</span>
+      </button>
+    </div>
+
+    <div class="sheet">
+      <h2 class="h2">求人票の仕事と、このプランの対応 <small>左が求人票の記載、右がこのプランでやること</small></h2>
+      <div class="duty-list" id="duty-list" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- 1年の進め方 -->
+  <section role="tabpanel" id="roadmap" aria-labelledby="tab-roadmap" hidden>
+    <p class="lead">最初の1か月はルールの話をせず、現場を知ることに使います。違いが見えてから直し方を決め、最後は「覚えていなくても守れる」形に組み込みます。終えた項目にチェックを入れると、段階ごとに右上の承認欄に「済」が押されます。</p>
+    <div class="phases" id="phases"></div>
+    <div class="sync">
+      <span class="where" id="sync-where">チェックはこの端末のブラウザに保存されます。</span>
+      <span id="reset-area"><button class="btn" id="reset-btn">チェックをすべて外す</button></span>
+    </div>
+  </section>
+
+  <!-- 浸透プラン -->
+  <section role="tabpanel" id="shinto" aria-labelledby="tab-shinto" hidden>
+    <p class="lead">バイヤーの皆さんは30〜50代の経験豊富な方々です（求人票より）。新しく来た人が自分の言葉でルールを伝えると、個人の意見に聞こえてしまうおそれがあります。そこで、話の主語を変えます。</p>
+
+    <div class="stance">
+      <div class="from"><b>「わたしが言うから守ってください」</b>新任者の意見として受け取られる</div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="to"><b>「法律でこう決まっています。みんなで守りましょう」</b>話し合う相手が「わたし」から「ルール」に変わる</div>
+    </div>
+
+    <div>
+      <h2 class="h2">5つの工夫</h2>
+      <div class="ideas" style="margin-top:12px" id="ideas"></div>
+    </div>
+
+    <div>
+      <h2 class="h2">浸透の4段階 <small>バイヤーの皆さんの側から見た順番</small></h2>
+      <ol class="steps" style="margin-top:12px" id="steps"></ol>
+    </div>
+
+    <div class="sheet">
+      <h2 class="h2">よくある反応と、返し方</h2>
+      <div class="replies" style="margin-top:12px" id="replies"></div>
+    </div>
+
+    <div class="role">
+      <b>ルールを決める人ではなく、ルールを守りやすくする人</b>
+      <p>法律を決めるのは国、社内のルールを決めるのは会社です。わたしの仕事は、それをバイヤーの皆さんの毎日の仕事に無理なくつなぐことです。</p>
+    </div>
+  </section>
+
+  <!-- みんなでチェック -->
+  <section role="tabpanel" id="check" aria-labelledby="tab-check" hidden>
+    <p class="lead">バイヤーの皆さんが、取適法を自分の取引に当てはめて確かめるためのクイズと事例カードです。正解の数を競うものではありません。迷った問題を集めて、社内のQ&Aに育てます。</p>
+
+    <div id="quiz-empty" class="stack">
+      <div class="status">
+        <span class="pill">確認中</span>
+        <p>このタブの問題は、公正取引委員会・中小企業庁などの公式資料で裏付けが取れたものだけを載せます。いまは公式資料を確認している途中のため、問題はまだありません。日付や金額などの数字も、確認できるまでは載せません。</p>
+      </div>
+      <div>
+        <h2 class="h2">載せる予定のテーマ</h2>
+        <ul class="topics" style="margin-top:12px" id="topics"></ul>
+      </div>
+      <div>
+        <h2 class="h2">1問の形</h2>
+        <div class="anatomy" style="margin-top:12px">
+          <div><b>場面</b><span>どんな取引の、どんな場面か（例：取引先から値上げの相談があった）</span></div>
+          <div><b>問い</b><span>その場面で、どう対応するのが正しいか</span></div>
+          <div><b>選択肢</b><span>現場で実際に迷いそうな対応を並べる</span></div>
+          <div><b>解説</b><span>なぜそれが正しいのかを、公式資料の言葉で説明する</span></div>
+          <div><b>出典</b><span>資料名とページ。わたしの意見ではなく、ここに書いてあるという形で示す</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz-area" class="stack tight" hidden>
+      <div class="sync score">
+        <span id="quiz-score" class="where"></span>
+        <span id="quiz-reset-area"><button class="btn" id="quiz-reset">答えをすべて消す</button></span>
+      </div>
+      <div class="qlist" id="qlist"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>このページについて</b>
+    <ul>
+      <li>仕事の内容・チーム構成は、応募先の求人票（公開情報）に書かれていることだけを使っています。</li>
+      <li>取適法の内容は、公式資料で確認できたものだけを載せます。確認できていないことは「確認中」と表示します。</li>
+      <li>社内の非公開情報は含みません。1年の進め方と浸透の工夫は、わたしの計画（提案）です。</li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ===== 内容（ここを書き換えると画面が変わる） ===== */
+
+  var TAGS = {
+    gov:"ガバナンス・コンプライアンス", select:"サプライヤー選定", contract:"契約管理",
+    law:"規制のキャッチアップ", training:"トレーニング", cert:"認証業務",
+    audit:"当局調査対応", strategy:"中期戦略・合意形成", support:"バイヤー支援"
+  };
+
+  var PHASES = [
+    { id:"p1", no:"1", stamp:"知る", title:"知る・聞く", period:"入社〜1か月",
+      goal:"現場の流れと困りごとを、評価せずに知る。この時期はルールの話をしない。",
+      items:[
+        ["p1a","部長・マネージャーと話し、この役割に期待されていることと優先順位を確認する。",["gov"]],
+        ["p1b","バイヤー6名・アシスタントの方と1対1で話し、仕事の流れと困りごとを聞く。",["support"]],
+        ["p1c","4つのサブチーム（外装部品・内装部品・MFTBC部品・ガバナンス）ごとに、発注から支払までの流れを図にする。",["gov"]],
+        ["p1d","社内規程、承認フロー、承認閾値、契約書のひな形の現行版を集める。",["select","contract"]],
+        ["p1e","転籍先の新会社とARCHION体制のもとで、規程と承認権限がどう決まっているかを確認する。",["gov"]],
+        ["p1f","認証業務の中身と、1年のスケジュールを確認する。",["cert"]],
+        ["p1g","取適法の対象になる取引先・取引の範囲を、法務・経理と一緒に確認する。",["law"]]
+      ]},
+    { id:"p2", no:"2", stamp:"見える化", title:"違いを見える化する", period:"〜3か月",
+      goal:"今のやり方と、法律・社内規程との違いを一覧にして、直す順番を合意する。",
+      items:[
+        ["p2a","発注書・契約書に書いている項目と、公式テキストが求める項目を突き合わせる。",["law","contract"]],
+        ["p2b","取引先ごとの支払条件と支払方法を一覧にし、法律のルールと照らし合わせる。",["law"]],
+        ["p2c","価格の見直しについて、取引先との協議をどう記録しているかを確認する。",["law","support"]],
+        ["p2d","当局（経産省・公正取引委員会など）の調査があったとき、求められる書類をすぐ出せるかを確かめる。",["audit"]],
+        ["p2e","見つかった違いを「すぐ直す」「仕組みで直す」「判断が要る」の3つに分け、マネージャーと優先順位を合意する。",["strategy","gov"]]
+      ]},
+    { id:"p3", no:"3", stamp:"仕組み", title:"仕組みに埋め込む", period:"〜6か月",
+      goal:"覚えていなくても、ふだんの作業をするだけでルールが守られる形にする。",
+      items:[
+        ["p3a","発注書・契約書のひな形に、必要な項目を最初から入れておく。",["contract"]],
+        ["p3b","価格協議の記録シートを作る（いつ・誰と・何を話し・どう決めたか）。",["law","support"]],
+        ["p3c","承認フローにチェック項目を足し、承認する人が見ればわかる形にする。",["select"]],
+        ["p3d","月1回10分の事例共有を始める。進行はバイヤーの皆さんの持ち回りにする。",["training"]],
+        ["p3e","「みんなでチェック」をバイヤーの皆さんに使ってもらい、迷った問題を集める。",["training"]]
+      ]},
+    { id:"p4", no:"4", stamp:"根づく", title:"根づかせ、測る", period:"〜1年",
+      goal:"半年前と比べて何が変わったかを記録で示し、次の計画につなげる。",
+      items:[
+        ["p4a","発注書と記録シートを抜き取りで確認し、実際に使われているかを見る。",["audit","gov"]],
+        ["p4b","書類の保存状態を確認し、当局の調査に備える。",["audit"]],
+        ["p4c","集まった「迷った問題」をもとに、社内Q&Aを作って共有する。",["training"]],
+        ["p4d","1年の結果を、次年度のトレーニング計画と中期の購買管理戦略に反映する。",["strategy","training"]],
+        ["p4e","認証業務をふり返り、次回に向けた準備を前倒しする。",["cert"]]
+      ]}
+  ];
+
+  /* 求人票の記載（左）と、このプランの項目（右） */
+  var DUTIES = [
+    ["主な業務分野","ガバナンスとコンプライアンスの徹底と、購買プロセス全般の正しい運用をリードする",["p1c","p2e","p4a"]],
+    ["主な業務分野","承認プロセスと承認閾値などのサプライヤー選定のプロセスマネジメント",["p1d","p3c"]],
+    ["主な業務分野","契約管理および関連する規制のキャッチアップと情報共有",["p1g","p2a","p3a"]],
+    ["主な業務分野","持続可能な調達プロセスと知識更新を維持するためのトレーニング調整",["p3d","p3e","p4c"]],
+    ["主な業務分野","調達チームの代表としての認証業務",["p1f","p4e"]],
+    ["主なタスク","当局による調査（経産省・公正取引委員会等）のような、購買関連法規に関する業務対応",["p2d","p4b"]],
+    ["主なタスク","中期的な購買管理戦略の策定と社内合意形成",["p2e","p4d"]],
+    ["主なタスク","購買バイヤーの指導を通した正当な購買活動の維持、契約締結とプロセス全般のサポート",["p1b","p2c","p3b"]]
+  ];
+
+  var IDEAS = [
+    ["主語を変える","公式テキストと、公表された事例をそのまま見せる。自分の言葉で言い換えない。","新しく来た人の言葉は、個人の意見に聞こえやすい。資料が語れば、話し合う相手は「わたし」ではなく「ルール」になる。"],
+    ["違いだけを伝える","これまでのやり方と比べて、変わった点だけを1枚にまとめる。","経験のある人に一から教えると、経験を否定されたと感じさせてしまう。変わった点に絞れば、これまでの経験はそのまま生きる。"],
+    ["ベテランを先生役に","事例共有の進行を持ち回りにし、「現場ではこう起きやすい」を話してもらう。","教える側に回ると、ルールが「言われたこと」から「自分たちのもの」に変わる。若手にとっても、身近な先輩の言葉がいちばん届く。"],
+    ["覚えなくても守れる形に","発注書のひな形、価格協議の記録シート、承認フローのチェック項目に組み込む。","忙しいときでも、いつもの作業をするだけで守れる。人の注意力に頼らない。"],
+    ["短く、続ける","月1回10分、事例を1件ずつ。","長い研修を年に1回やるより、短くても続くほうが身につく。予定にも入れやすい。"]
+  ];
+
+  var STEPS = [
+    ["知る","他社で実際に起きたことを知る。","公表された事例（月1回10分の事例共有）","事例共有への参加"],
+    ["分かる","自分の取引に当てはめて考える。","みんなでチェック（クイズ・事例カード）","正解の数ではなく、迷った問題を集める"],
+    ["使う","ふだんの発注・協議・承認で使う。","発注書のひな形、価格協議の記録シート、承認フローのチェック項目","記録シートが実際に使われているか"],
+    ["根づく","ベテランが新しく来た人に教える。","事例共有の持ち回り、社内Q&A","進行役をバイヤーの皆さんで回せているか"]
+  ];
+
+  var REPLIES = [
+    ["今までこれで問題なかった","これまでのやり方が悪かったという話ではありません。法律の側が変わったので、変わった部分だけ一緒に確認させてください。"],
+    ["それはあなたの意見でしょう","わたしの意見ではなく、公式テキストのこのページに書かれています。一緒に見ていただけますか。"],
+    ["忙しくて、そんな時間はない","月1回10分だけです。必要なことは発注書のひな形に入れておくので、ふだんの作業は増やしません。"],
+    ["取引先とは長い付き合いで、信頼関係がある","その関係を守るためのルールだと考えています。記録が残っていれば、もしものときに会社と取引先の両方を守れます。"],
+    ["細かいことは法務に任せればいい","法務とも連携します。ただ、発注書を書くのは現場なので、現場で守りやすい形にしたいと考えています。"]
+  ];
+
+  var TOPICS = ["対象になる取引の見分け方","発注のときに伝えること","代金の支払いのルール","してはいけないこと","改正で変わったこと","違反したときに起こること"];
+
+  /* 公式資料で裏付けが取れた問題だけをここに入れる。
+     形：{id, topic, scene, q, choices:[...], answer:正解の番号(0始まり), explain, source:{title, where, url}} */
+  var QUIZ = [];
+
+  /* ===== 保存（アカウント → だめならこの端末） ===== */
+
+  var LS_KEY = "kobai-plan-v1";
+  var LS_TAB = "kobai-plan-tab";
+  var state = { done:{}, quiz:{} };
+  var cloud = { ref:null, dirty:false, saving:false, again:false, timer:null };
+
+  function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  function clean(o){ var r={}; if(o&&typeof o==="object"){ for(var k in o){ if(Object.prototype.hasOwnProperty.call(o,k)) r[k]=o[k]; } } return r; }
+
+  (function loadLocal(){
+    var s = lsGet(LS_KEY);
+    if(!s) return;
+    try{ var j = JSON.parse(s); state.done = clean(j.done); state.quiz = clean(j.quiz); }catch(e){}
+  })();
+
+  function save(){
+    lsSet(LS_KEY, JSON.stringify(state));
+    if(!cloud.ref) return;
+    cloud.dirty = true;
+    clearTimeout(cloud.timer);
+    cloud.timer = setTimeout(flush, 500);
+  }
+
+  function flush(retried){
+    if(!cloud.ref) return;
+    if(cloud.saving){ cloud.again = true; return; }
+    cloud.saving = true;
+    var body = { done:clean(state.done), quiz:clean(state.quiz) };
+    cloud.ref.set(body).then(function(){
+      cloud.saving = false;
+      if(cloud.again){ cloud.again = false; flush(); } else { cloud.dirty = false; }
+    }, function(err){
+      cloud.saving = false;
+      if(err && err.code === "unavailable" && !retried){
+        setTimeout(function(){ flush(true); }, 600 + Math.random()*900);
+      } else {
+        cloud.ref = null; cloud.dirty = false;
+        setWhere("local");
+      }
+    });
+  }
+
+  function setWhere(mode){
+    var el = document.getElementById("sync-where");
+    el.textContent = mode === "cloud"
+      ? "チェックは、あなたのclaude.aiアカウントに保存されます。スマホとPCで同じ状態になり、ほかの人には見えません。"
+      : "チェックはこの端末のブラウザに保存されます。";
+  }
+
+  function connect(){
+    if(!window.claude || typeof window.claude.use !== "function") return;
+    Promise.all([window.claude.use("db"), window.claude.use("user")]).then(function(r){
+      var db = r[0], user = r[1];
+      if(!db || !user) return;
+      return user.id().then(function(uid){
+        if(!uid) return;
+        var ref = db.doc("data/users/" + uid + "/progress");
+        var first = true;
+        ref.onSnapshot(function(snap){
+          if(first){
+            first = false;
+            cloud.ref = ref;
+            setWhere("cloud");
+            if(!snap.exists){
+              if(Object.keys(state.done).length || Object.keys(state.quiz).length){ cloud.dirty = true; flush(); }
+              return;
+            }
+          }
+          if(cloud.dirty || cloud.saving || !snap.exists) return;
+          var d = snap.data() || {};
+          state.done = clean(d.done); state.quiz = clean(d.quiz);
+          lsSet(LS_KEY, JSON.stringify(state));
+          renderProgress(); syncChecks(); renderQuiz();
+        }, function(){
+          cloud.ref = null;
+          setWhere("local");
+        });
+      });
+    }).catch(function(){});
+  }
+
+  /* ===== 画面 ===== */
+
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, text){ var e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; }
+  var itemIndex = {};
+  PHASES.forEach(function(p){ p.items.forEach(function(it){ itemIndex[it[0]] = p; }); });
+  var TOTAL = Object.keys(itemIndex).length;
+
+  function phaseDone(p){ return p.items.filter(function(it){ return state.done[it[0]] === true; }).length; }
+
+  var stamped = {};
+  function renderStamps(){
+    var box = $("stamps");
+    box.replaceChildren();
+    PHASES.forEach(function(p){
+      var c = el("div","stamp-cell");
+      c.appendChild(el("div","lbl",p.stamp));
+      var b = el("div","body");
+      var n = phaseDone(p);
+      if(n === p.items.length){
+        var h = el("span","hanko","済");
+        if(stamped[p.id] === false) h.classList.add("fresh");
+        stamped[p.id] = true;
+        b.appendChild(h);
+        b.setAttribute("aria-label", p.title + "：完了");
+      } else {
+        stamped[p.id] = false;
+        b.textContent = n + "/" + p.items.length;
+        b.setAttribute("aria-label", p.title + "：" + p.items.length + "項目中" + n + "項目");
+      }
+      c.appendChild(b);
+      box.appendChild(c);
+    });
+  }
+
+  function renderProgress(){
+    renderStamps();
+    var all = 0;
+    PHASES.forEach(function(p){
+      var n = phaseDone(p); all += n;
+      var c = $("count-" + p.id);
+      if(c){ c.textContent = n + " / " + p.items.length; c.classList.toggle("done", n === p.items.length); }
+    });
+    $("ov-roadmap").textContent = "4段階・" + TOTAL + "項目";
+    $("ov-meter").style.width = Math.round(all / TOTAL * 100) + "%";
+    $("ov-roadmap-d").textContent = all ? ("終えた項目 " + all + " / " + TOTAL) : "知る・聞く → 見える化 → 仕組みに埋め込む → 根づかせる";
+  }
+
+  function renderPhases(){
+    var wrap = $("phases");
+    PHASES.forEach(function(p){
+      var art = el("article","phase");
+      var head = el("div","phase-head");
+      head.appendChild(el("span","phase-no",p.no));
+      var t = el("div","phase-title");
+      t.appendChild(el("h3",null,p.title));
+      t.appendChild(el("span","period",p.period));
+      head.appendChild(t);
+      var cnt = el("span","phase-count"); cnt.id = "count-" + p.id;
+      head.appendChild(cnt);
+      art.appendChild(head);
+      art.appendChild(el("p","phase-goal",p.goal));
+      var ul = el("ul","items");
+      p.items.forEach(function(it){
+        var li = el("li","item"); li.id = "item-" + it[0];
+        var lab = el("label");
+        var cb = el("input"); cb.type = "checkbox"; cb.id = "chk-" + it[0];
+        cb.addEventListener("change", function(){
+          if(cb.checked) state.done[it[0]] = true; else delete state.done[it[0]];
+          li.classList.toggle("checked", cb.checked);
+          renderProgress(); save();
+        });
+        var txt = el("span","txt");
+        txt.appendChild(el("span","t",it[1]));
+        var tags = el("span","tags");
+        it[2].forEach(function(k){ tags.appendChild(el("span","tag",TAGS[k])); });
+        txt.appendChild(tags);
+        lab.appendChild(cb); lab.appendChild(txt);
+        li.appendChild(lab);
+        ul.appendChild(li);
+      });
+      art.appendChild(ul);
+      wrap.appendChild(art);
+    });
+  }
+
+  function syncChecks(){
+    Object.keys(itemIndex).forEach(function(id){
+      var on = state.done[id] === true;
+      var cb = $("chk-" + id); if(cb) cb.checked = on;
+      var li = $("item-" + id); if(li) li.classList.toggle("checked", on);
+    });
+  }
+
+  function itemText(id){
+    var p = itemIndex[id];
+    for(var i=0;i<p.items.length;i++){ if(p.items[i][0] === id) return p.items[i][1]; }
+    return "";
+  }
+
+  function renderDuties(){
+    var box = $("duty-list");
+    DUTIES.forEach(function(d){
+      var row = el("div","duty");
+      var src = el("div","src");
+      src.appendChild(document.createTextNode(d[0]));
+      src.appendChild(el("b",null,d[1]));
+      row.appendChild(src);
+      var ul = el("ul");
+      d[2].forEach(function(id){
+        var li = el("li");
+        li.appendChild(el("span","when",itemIndex[id].period));
+        li.appendChild(el("span",null,itemText(id)));
+        ul.appendChild(li);
+      });
+      row.appendChild(ul);
+      box.appendChild(row);
+    });
+  }
+
+  function renderShinto(){
+    var ideas = $("ideas");
+    IDEAS.forEach(function(x){
+      var a = el("article","sheet idea");
+      a.appendChild(el("h3",null,x[0]));
+      var dl = el("dl");
+      dl.appendChild(el("dt",null,"何をするか")); dl.appendChild(el("dd",null,x[1]));
+      dl.appendChild(el("dt",null,"なぜ")); dl.appendChild(el("dd",null,x[2]));
+      a.appendChild(dl);
+      ideas.appendChild(a);
+    });
+    var steps = $("steps");
+    STEPS.forEach(function(s){
+      var li = el("li","step");
+      li.appendChild(el("h3",null,s[0]));
+      li.appendChild(el("p",null,s[1]));
+      var t = el("p"); t.appendChild(el("span","lab","使う道具")); t.appendChild(document.createTextNode(s[2])); li.appendChild(t);
+      var c = el("p"); c.appendChild(el("span","lab","確かめ方")); c.appendChild(document.createTextNode(s[3])); li.appendChild(c);
+      steps.appendChild(li);
+    });
+    var rep = $("replies");
+    REPLIES.forEach(function(r){
+      var row = el("div","reply");
+      row.appendChild(el("p","said",r[0]));
+      row.appendChild(el("p",null,r[1]));
+      rep.appendChild(row);
+    });
+    var tp = $("topics");
+    TOPICS.forEach(function(t){
+      var li = el("li");
+      li.appendChild(el("span",null,t));
+      li.appendChild(el("span",null,"確認中"));
+      tp.appendChild(li);
+    });
+  }
+
+  /* ===== みんなでチェック ===== */
+
+  function renderQuiz(){
+    var empty = $("quiz-empty"), area = $("quiz-area");
+    if(!QUIZ.length){
+      empty.hidden = false; area.hidden = true;
+      $("ov-check").textContent = "準備中";
+      return;
+    }
+    empty.hidden = true; area.hidden = false;
+    var list = $("qlist");
+    list.replaceChildren();
+    var answered = 0, right = 0;
+    QUIZ.forEach(function(q){
+      var picked = state.quiz[q.id];
+      var has = typeof picked === "number" && picked >= 0 && picked < q.choices.length;
+      if(has){ answered++; if(picked === q.answer) right++; }
+      var card = el("article","sheet qcard");
+      var tags = el("div","tags"); tags.appendChild(el("span","tag",q.topic)); card.appendChild(tags);
+      card.appendChild(el("p","scene",q.scene));
+      card.appendChild(el("h3",null,q.q));
+      var ch = el("div","choices");
+      q.choices.forEach(function(c, i){
+        var b = el("button","choice",c); b.type = "button";
+        if(has){
+          b.disabled = true;
+          if(i === q.answer) b.classList.add("right");
+          else if(i === picked) b.classList.add("wrong");
+        }
+        b.addEventListener("click", function(){ state.quiz[q.id] = i; save(); renderQuiz(); });
+        ch.appendChild(b);
+      });
+      card.appendChild(ch);
+      if(has){
+        var res = el("div","result");
+        var ok = picked === q.answer;
+        res.appendChild(el("p","verdict " + (ok ? "ok" : "ng"), ok ? "正解です" : "もう一度、解説を見てみましょう"));
+        res.appendChild(el("p",null,q.explain));
+        var src = el("p","source");
+        src.appendChild(document.createTextNode("出典：" + q.source.title + (q.source.where ? "　" + q.source.where : "") + "　"));
+        if(q.source.url){ var a = el("a",null,"資料を開く"); a.href = q.source.url; a.target = "_blank"; a.rel = "noopener"; src.appendChild(a); }
+        res.appendChild(src);
+        card.appendChild(res);
+      }
+      list.appendChild(card);
+    });
+    $("quiz-score").textContent = "答えた問題 " + answered + " / " + QUIZ.length + "　正解 " + right;
+    $("ov-check").textContent = QUIZ.length + "問";
+    $("ov-check-d").textContent = "答えた問題 " + answered + " / " + QUIZ.length + "。どの問題にも出典が付いています";
+  }
+
+  /* ===== 確認つきのリセット（confirm() は使えないため画面内で確認する） ===== */
+
+  function confirmReset(areaId, label, onYes){
+    var area = $(areaId);
+    var original = area.firstElementChild;
+    var box = el("span","confirm");
+    box.appendChild(el("span",null,label));
+    var yes = el("button","btn danger","消す"); yes.type = "button";
+    var no = el("button","btn","やめる"); no.type = "button";
+    function back(){ area.replaceChildren(original); original.focus(); }
+    yes.addEventListener("click", function(){ onYes(); back(); });
+    no.addEventListener("click", back);
+    box.appendChild(yes); box.appendChild(no);
+    area.replaceChildren(box);
+    no.focus();
+  }
+
+  $("reset-btn").addEventListener("click", function(){
+    confirmReset("reset-area","チェックをすべて外しますか？", function(){
+      state.done = {}; syncChecks(); renderProgress(); save();
+    });
+  });
+  $("quiz-reset").addEventListener("click", function(){
+    confirmReset("quiz-reset-area","答えをすべて消しますか？", function(){
+      state.quiz = {}; renderQuiz(); save();
+    });
+  });
+
+  /* ===== タブ ===== */
+
+  var TABS = ["top","roadmap","shinto","check"];
+  function show(name, focus){
+    if(TABS.indexOf(name) < 0) name = "top";
+    TABS.forEach(function(t){
+      var on = t === name;
+      $(t).hidden = !on;
+      var b = $("tab-" + t);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+      if(on && focus) b.focus();
+    });
+    lsSet(LS_TAB, name);
+    if(location.hash.slice(1) !== name){ try{ history.replaceState(null, "", "#" + name); }catch(e){} }
+  }
+  document.querySelectorAll(".tab").forEach(function(b){
+    b.addEventListener("click", function(){ show(b.dataset.tab); });
+    b.addEventListener("keydown", function(e){
+      var i = TABS.indexOf(b.dataset.tab);
+      if(e.key === "ArrowRight"){ e.preventDefault(); show(TABS[(i+1)%TABS.length], true); }
+      if(e.key === "ArrowLeft"){ e.preventDefault(); show(TABS[(i+TABS.length-1)%TABS.length], true); }
+    });
+  });
+  document.querySelectorAll("[data-go]").forEach(function(b){
+    b.addEventListener("click", function(){ show(b.dataset.go); window.scrollTo(0, 0); });
+  });
+  window.addEventListener("hashchange", function(){ show(location.hash.slice(1)); });
+
+  /* ===== 起動 ===== */
+
+  renderPhases();
+  renderDuties();
+  renderShinto();
+  syncChecks();
+  renderProgress();
+  renderQuiz();
+  setWhere("local");
+  show(location.hash.slice(1) || lsGet(LS_TAB) || "top");
+  connect();
+
+})();
+</script>
