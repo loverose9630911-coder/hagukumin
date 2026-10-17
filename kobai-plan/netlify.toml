@@ -1,0 +1,30 @@
+# 「購買管理 入社後プラン」を Netlify で公開するための設定
+#
+# Netlify でこのリポジトリから新しいサイトを作るとき、
+# Base directory を kobai-plan にすると、この設定が使われます（ビルド工程なし）。
+# ルートの netlify.toml は「すうじとなかまたち」用なので、そちらは触りません。
+
+[build]
+  publish = "."
+  command = "true"
+
+# 画面本体と Service Worker はキャッシュさせない（更新がすぐ反映されるように）
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "no-cache"
