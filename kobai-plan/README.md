@@ -6,7 +6,7 @@
 | | claude.ai のリンク版 | ホーム画面のアプリ版（このフォルダ） |
 |---|---|---|
 | 開き方 | https://claude.ai/artifact/Mo9HhwZifXRoUydPzp2xu2 | Netlify に置いた URL をホーム画面に追加 |
-| アイコン | claude.ai 側のもの（自分では決められない） | 朱の「済」印（`icons/`） |
+| アイコン | claude.ai 側のもの（自分では決められない） | 藍色の地に路線バスの絵（`icons/`。会社のロゴは使っていない） |
 | 見られる人 | 自分だけ（非公開） | URL を知っている人なら誰でも |
 | チェックの保存先 | claude.ai のアカウント（スマホと PC で同じ） | その iPhone の中だけ |
 | 電波がないとき | 開けない | 一度開いていれば開ける |
@@ -39,7 +39,7 @@
 - 中身は `page.html` だけを直します。claude.ai のリンク版も、この `page.html` から公開しています。
 - 直したら `python3 build.py` を実行して、アプリ版の `index.html` と `sw.js` を作り直します。
   `python3 build.py --check` で、作り直し忘れがないか確かめられます。
-- アイコンを作り直すときは `python3 tools/make_icons.py` を実行します（Pillow と日本語フォントが必要です）。
+- アイコンを作り直すときは `python3 tools/make_icons.py` を実行し、そのあと `python3 build.py` も実行します（Pillow が必要です）。
 - Netlify と GitHub をつないだあとは、マージするたびに Netlify が自動で公開し直します。iPhone のアプリ版は、電波のあるところで開いたときに新しい中身に切り替わります。
 
 ## ファイル

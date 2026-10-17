@@ -1,5 +1,5 @@
 // ホーム画面版のオフライン対応。build.py が書き出すので、直接は直さない。
-const VERSION = "kobai-plan-125affa8d530";
+const VERSION = "kobai-plan-1bc1e5734085";
 const PRECACHE = ["./", "index.html", "manifest.webmanifest", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png"];
 const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 
@@ -10,7 +10,8 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
+      // 同じサイトのほかのアプリの保存分は消さない（自分の古い版だけ消す）
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("kobai-plan-") && k !== VERSION).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

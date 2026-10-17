@@ -15,6 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PAGE = os.path.join(HERE, "page.html")
 INDEX = os.path.join(HERE, "index.html")
 SW = os.path.join(HERE, "sw.js")
+ICONS = ("apple-touch-icon.png", "icon-192.png", "icon-512.png")
 
 HEAD = """<!doctype html>
 <html lang="ja">
@@ -53,7 +54,8 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
+      // 同じサイトのほかのアプリの保存分は消さない（自分の古い版だけ消す）
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("kobai-plan-") && k !== VERSION).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -100,7 +102,11 @@ def render():
     cut += len("</style>")
     head_part, body_part = page[:cut], page[cut:]
     index = HEAD + head_part + "\n</head>\n<body>" + body_part.rstrip("\n") + "\n" + REGISTER_SW + "</body>\n</html>\n"
-    version = hashlib.sha256(index.encode("utf-8")).hexdigest()[:12]
+    h = hashlib.sha256(index.encode("utf-8"))
+    for name in ICONS:  # アイコンを描き直したときも新しい版として配り直す
+        with open(os.path.join(HERE, "icons", name), "rb") as f:
+            h.update(f.read())
+    version = h.hexdigest()[:12]
     sw = SW_TEMPLATE.replace("__VERSION__", version)
     return index, sw
 
