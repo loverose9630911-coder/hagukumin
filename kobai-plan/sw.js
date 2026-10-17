@@ -1,5 +1,5 @@
 // ホーム画面版のオフライン対応。build.py が書き出すので、直接は直さない。
-const VERSION = "kobai-plan-1bc1e5734085";
+const VERSION = "kobai-plan-63035e0069ef";
 const PRECACHE = ["./", "index.html", "manifest.webmanifest", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png"];
 const FONT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 
