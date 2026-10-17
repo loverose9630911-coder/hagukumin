@@ -48,6 +48,16 @@ header.top h1 { font-size: 19px; margin: 0; flex: 1; letter-spacing: .02em; }
 .icon-btn { border: 1px solid var(--line); background: var(--card); border-radius: 12px; min-width: 44px; height: 44px;
   font-size: 15px; padding: 0 10px; }
 
+/* ホーム画面に追加の案内 */
+.install { position: relative; display: flex; gap: 12px; align-items: flex-start; text-align: left; max-width: 420px; margin: 0 auto 18px;
+  padding: 14px 44px 14px 14px; background: var(--card); border: 2px solid var(--accent-soft); border-radius: var(--r); box-shadow: var(--shadow); }
+.install > img { width: 56px; height: 56px; border-radius: 13px; flex: none; box-shadow: 0 2px 6px rgba(80, 50, 30, .2); }
+.install b { display: block; font-size: 15px; line-height: 1.5; margin-bottom: 4px; }
+.install ol { margin: 0; padding-left: 1.3em; font-size: 14px; line-height: 1.75; color: var(--ink); }
+.install .share-ico { width: 15px; height: 18px; vertical-align: -3px; color: #1A73E8; }
+.install .x { position: absolute; right: 6px; top: 6px; width: 36px; height: 36px; border: 0; background: transparent; font-size: 16px; color: var(--sub); }
+.install .go { margin-top: 8px; border: 0; border-radius: 12px; background: var(--accent); color: #fff; min-height: 44px; padding: 0 16px; font-weight: bold; }
+
 /* 写真がないときの案内 */
 .hero { padding: 28px 16px 8px; text-align: center; }
 .hero p { margin: 8px 0; color: var(--sub); line-height: 1.7; }
@@ -196,6 +206,20 @@ dialog::backdrop { background: rgba(40, 25, 15, .45); }
 <input type="file" id="fileInput" accept="image/*" multiple hidden>
 
 <section class="hero" id="hero">
+  <div class="install hidden" id="installCard">
+    <img src="img/apple-touch-icon.png" alt="">
+    <div>
+      <b>ホーム画面に追加すると、アプリのようにすぐ開けます</b>
+      <ol id="installIOS" class="hidden">
+        <li>Safari の共有ボタン <svg class="share-ico" viewBox="0 0 20 24" aria-hidden="true"><path d="M10 2v13M5.5 6.5 10 2l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10H3.5v11.5h13V10H14" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> をタップ（見当たらないときは「…」→「共有」）</li>
+        <li>下にスクロールして「ホーム画面に追加」</li>
+        <li>右上の「追加」</li>
+      </ol>
+      <p id="installOther" class="hidden" style="margin:0;font-size:14px;line-height:1.7">ブラウザのメニューから「ホーム画面に追加」をえらんでください。</p>
+      <button class="go hidden" id="btnInstall">ホーム画面に追加する</button>
+    </div>
+    <button class="x" id="btnInstallClose" aria-label="案内をとじる">✕</button>
+  </div>
   <button class="pick-big" id="btnPickHero">📷 写真をえらぶ</button>
   <p>何枚でもまとめて選べます。</p>
   <div class="steps">
@@ -324,7 +348,8 @@ dialog::backdrop { background: rgba(40, 25, 15, .45); }
       <li>日付が正しいか（撮影日がわからない写真には日付を入れません）</li>
     </ul>
     <h3>ホーム画面に追加</h3>
-    <p>Safariの共有ボタン →「ホーム画面に追加」で、アプリのように開けます。</p>
+    <p>Safariの共有ボタン（見当たらないときは「…」→「共有」）→「ホーム画面に追加」→「追加」で、アイコンからアプリのように開けます。</p>
+    <p>一度開くと画面のファイルをiPhoneに保存するので、次からはすぐ立ち上がり、電波がなくても開けます。新しい版は、次に開いたときに入れかわります。</p>
   </div>
 </dialog>
 

@@ -762,6 +762,46 @@
     });
   }
 
+  /* ---------- ホーム画面に追加の案内 ---------- */
+  var KEY_INSTALL = 'omoide.installHidden';
+  var installPrompt = null; // Android などの「インストール」用
+  function isStandalone() {
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  }
+  function isIOS() {
+    return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+  function renderInstall() {
+    var show = !isStandalone() && !load(KEY_INSTALL, false);
+    $('#installCard').classList.toggle('hidden', !show);
+    if (!show) return;
+    $('#btnInstall').classList.toggle('hidden', !installPrompt);
+    $('#installIOS').classList.toggle('hidden', !!installPrompt || !isIOS());
+    $('#installOther').classList.toggle('hidden', !!installPrompt || isIOS());
+  }
+  function bindInstall() {
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      installPrompt = e;
+      renderInstall();
+    });
+    window.addEventListener('appinstalled', function () { installPrompt = null; store(KEY_INSTALL, true); renderInstall(); });
+    $('#btnInstall').addEventListener('click', function () {
+      if (!installPrompt) return;
+      installPrompt.prompt();
+      installPrompt = null;
+      renderInstall();
+    });
+    $('#btnInstallClose').addEventListener('click', function () { store(KEY_INSTALL, true); renderInstall(); });
+  }
+
+  // 画面のファイルを端末に保存して、次からすぐ開けるようにする（https か、手元の確認用サーバーのときだけ）
+  function registerSW() {
+    if (!('serviceWorker' in navigator)) return;
+    if (location.protocol !== 'https:' && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
+    navigator.serviceWorker.register('sw.js').catch(function () { /* 保存できなくてもアプリは動く */ });
+  }
+
   /* ---------- つなぎこみ ---------- */
   function pick() { $('#fileInput').click(); }
 
@@ -828,10 +868,13 @@
 
     bindEditor();
     bindSettings();
+    bindInstall();
   }
 
   bind();
   renderAll();
+  renderInstall();
+  registerSW();
 
   // テスト用の入り口（画面の動作確認に使う）
   window.__op = {

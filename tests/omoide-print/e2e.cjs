@@ -107,6 +107,41 @@ async function shot(page, name) {
     await shot(page, '01-hero');
   });
 
+  await step('ホーム画面に追加の案内: iPhone の Safari では手順が出て、とじると次から出ない', async () => {
+    assert.equal(await page.isVisible('#installCard'), true);
+    assert.equal(await page.isVisible('#installIOS'), true);
+    assert.equal(await page.isVisible('#installOther'), false);
+    assert.match(await page.textContent('#installIOS'), /ホーム画面に追加/);
+    await page.click('#btnInstallClose');
+    assert.equal(await page.isVisible('#installCard'), false);
+    await page.reload();
+    assert.equal(await page.isVisible('#installCard'), false);
+    await page.evaluate(() => localStorage.removeItem('omoide.installHidden'));
+    await page.reload();
+    assert.equal(await page.isVisible('#installCard'), true);
+    await shot(page, '00-install-card');
+  });
+
+  await step('アイコンとアプリ設定: 180・192・512px の画像と manifest がそろっている', async () => {
+    const r = await page.evaluate(async () => {
+      const man = await (await fetch('manifest.webmanifest')).json();
+      const size = (src) => new Promise((ok, ng) => { const i = new Image(); i.onload = () => ok(i.naturalWidth + 'x' + i.naturalHeight); i.onerror = ng; i.src = src; });
+      const touch = document.querySelector('link[rel="apple-touch-icon"]').getAttribute('href');
+      return {
+        name: man.name, short: man.short_name, display: man.display, start: man.start_url,
+        icons: await Promise.all(man.icons.map(async (ic) => ic.sizes + ':' + ic.purpose + ':' + await size(ic.src))),
+        touch: await size(touch),
+        title: document.querySelector('meta[name="apple-mobile-web-app-title"]').content
+      };
+    });
+    assert.equal(r.name, 'おもいでプリント');
+    assert.equal(r.display, 'standalone');
+    assert.equal(r.start, './');
+    assert.deepEqual(r.icons, ['192x192:any:192x192', '512x512:any:512x512', '512x512:maskable:512x512']);
+    assert.equal(r.touch, '180x180');
+    assert.equal(r.title, '写真プリント');
+  });
+
   await step('写真7枚を読みこむ: 撮影日・向き・並び順', async () => {
     await addPhotos(page, ALL);
     const ph = await page.evaluate(() => window.__op.photos().map((p) => ({
@@ -341,6 +376,60 @@ async function shot(page, name) {
     await page.waitForFunction(() => /同じ写真/.test(document.querySelector('#toastMsg').textContent));
     assert.equal(await page.evaluate(() => window.__op.photos().length), 7);
     assert.match(await page.textContent('#toastMsg'), /同じ写真2枚は1回だけ/);
+  });
+
+  await step('すぐ開ける: 一度ひらいたあとは、電波がなくても開ける', async () => {
+    await page.evaluate(() => navigator.serviceWorker.ready);
+    if (!(await page.evaluate(() => !!navigator.serviceWorker.controller))) await page.reload();
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+    await ctx.setOffline(true);
+    try {
+      await page.reload();
+      assert.equal(await page.isVisible('#btnPickHero'), true);
+      assert.equal(await page.evaluate(() => typeof window.OP.placePhoto), 'function');
+      assert.equal(await page.evaluate(() => typeof window.__op.photos), 'function');
+      // 電波がなくても写真を読みこんで、印刷用の画像まで作れる
+      await addPhotos(page, ALL.slice(0, 1));
+      await page.click('#btnMain');
+      await page.waitForFunction(() => window.__op.prepared() !== null);
+    } finally {
+      await ctx.setOffline(false);
+    }
+  });
+
+  await step('すうじアプリを使っている端末でも: /print/ は自分の仕組みで動き、電波なしで開ける', async () => {
+    const ctx3 = await browser.newContext({ ...devices['iPhone 13'], locale: 'ja-JP' });
+    const p3 = await ctx3.newPage();
+    const e3 = [];
+    p3.on('pageerror', (e) => e3.push(e.message));
+    const root = new URL('../', BASE).href;
+    await p3.goto(root);                                    // すうじアプリ（サイトのいちばん上）
+    await p3.evaluate(() => navigator.serviceWorker.ready);
+    await p3.goto(BASE);
+    await p3.evaluate(() => navigator.serviceWorker.ready);
+    if (!(await p3.evaluate(() => navigator.serviceWorker.controller && /\/print\/sw\.js$/.test(navigator.serviceWorker.controller.scriptURL)))) await p3.reload();
+    await p3.waitForFunction(() => navigator.serviceWorker.controller && /\/print\/sw\.js$/.test(navigator.serviceWorker.controller.scriptURL));
+    const caches = await p3.evaluate(() => caches.keys());
+    assert.ok(caches.includes('omoide-v1') && caches.some((k) => /^suuji-/.test(k)), 'どちらの保存分も残っている ' + caches.join(','));
+    await ctx3.setOffline(true);
+    await p3.reload();
+    assert.equal(await p3.isVisible('#btnPickHero'), true);
+    await ctx3.setOffline(false);
+    assert.deepEqual(e3, []);
+    await ctx3.close();
+  });
+
+  await step('ホーム画面から開いたときは、追加の案内を出さない', async () => {
+    const ctx2 = await browser.newContext({ ...devices['iPhone 13'], locale: 'ja-JP' });
+    await ctx2.addInitScript(() => Object.defineProperty(navigator, 'standalone', { configurable: true, value: true }));
+    const p2 = await ctx2.newPage();
+    const e2 = [];
+    p2.on('pageerror', (e) => e2.push(e.message));
+    await p2.goto(BASE);
+    assert.equal(await p2.isVisible('#btnPickHero'), true);
+    assert.equal(await p2.isVisible('#installCard'), false);
+    assert.deepEqual(e2, []);
+    await ctx2.close();
   });
 
   await step('写真はどこにも送らない: 通信はこのサイトのファイルだけ', async () => {
