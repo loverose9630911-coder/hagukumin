@@ -84,7 +84,7 @@ function makeEnv(opt) {
   }
   const live = () => state.events.filter((e) => !e._deleted);
   const calendar = {
-    getName: () => 'com.bur.bura（テスト用）',
+    getName: () => 'テスト用カレンダー',
     getTimeZone: () => state.calTz,
     getEventsForDay: (d) => live().filter((e) => e._y === d.getFullYear() && e._m === d.getMonth() + 1 && e._d === d.getDate()),
     createAllDayEvent: (title, date, options) => { const e = makeEvent(title, date, options); state.events.push(e); return e; },
@@ -94,7 +94,7 @@ function makeEnv(opt) {
   const sandbox = {
     console, Date, JSON, Math, Object, String, Number, RegExp, Error, Array,
     Logger: { log: (s) => state.logs.push(String(s)) },
-    Session: { getEffectiveUser: () => ({ getEmail: () => 'com.bur.bura@example.com' }), getScriptTimeZone: () => state.scriptTz },
+    Session: { getEffectiveUser: () => ({ getEmail: () => 'owner@example.com' }), getScriptTimeZone: () => state.scriptTz },
     PropertiesService: { getScriptProperties: () => ({
       getProperty: (k) => (k in state.props ? state.props[k] : null),
       setProperty: (k, v) => { assert.strictEqual(typeof v, 'string'); state.props[k] = v; },
@@ -254,7 +254,7 @@ test('PDF 1件 → 6件登録・通知420分のみ・タグ・報告メール・
   assert.strictEqual(env.state.driveCalls[0].res.mimeType, 'application/vnd.google-apps.document');
   assert.strictEqual(env.state.trashed.length, 1, 'OCR 用の一時ドキュメントはゴミ箱へ');
   assert.strictEqual(env.state.mails.length, 1);
-  assert.strictEqual(env.state.mails[0].to, 'com.bur.bura@example.com');
+  assert.strictEqual(env.state.mails[0].to, 'owner@example.com');
   assert.match(env.state.mails[0].subject, /^【らくらく連絡帳→カレンダー】6件登録しました$/);
   assert.ok(env.state.mails[0].body.includes('＋ 10/31 ハロウィンパーティー'));
   assert.ok(env.state.mails[0].body.includes('▼読み取った文字'));
