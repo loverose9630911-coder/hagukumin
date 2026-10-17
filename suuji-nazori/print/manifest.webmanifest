@@ -1,0 +1,16 @@
+{
+  "name": "おもいでプリント",
+  "short_name": "写真プリント",
+  "description": "iPhoneの写真を、用紙に合わせて切り取り・日付と年齢を入れて、まとめてプリントするアプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF4E4",
+  "theme_color": "#FFF4E4",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

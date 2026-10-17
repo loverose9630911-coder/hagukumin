@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>おもいでプリント</title>
+<meta name="description" content="iPhoneの写真を、用紙に合わせて切り取り・日付と年齢を入れて、まとめてプリントするアプリ">
+<meta name="theme-color" content="#FFF4E4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="写真プリント">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<style>
+:root {
+  --bg: #FFF4E4;
+  --card: #FFFFFF;
+  --ink: #3A2E28;
+  --sub: #85746A;
+  --line: #EAD9C6;
+  --accent: #F2704E;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #FFE3D8;
+  --ok: #2E9B6B;
+  --ok-soft: #DDF3E8;
+  --warn: #B7791F;
+  --warn-soft: #FFF1D2;
+  --shadow: 0 2px 10px rgba(80, 50, 30, .10);
+  --r: 16px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif; }
+body { min-height: 100vh; padding-bottom: calc(120px + env(safe-area-inset-bottom)); overflow-x: hidden; }
+button, select, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.hidden { display: none !important; }
+
+/* ヘッダー */
+header.top { position: sticky; top: 0; z-index: 20; background: var(--bg);
+  padding: calc(8px + env(safe-area-inset-top)) 16px 8px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--line); }
+header.top img { width: 34px; height: 34px; border-radius: 9px; }
+header.top h1 { font-size: 19px; margin: 0; flex: 1; letter-spacing: .02em; }
+.icon-btn { border: 1px solid var(--line); background: var(--card); border-radius: 12px; min-width: 44px; height: 44px;
+  font-size: 15px; padding: 0 10px; }
+
+/* 写真がないときの案内 */
+.hero { padding: 28px 16px 8px; text-align: center; }
+.hero p { margin: 8px 0; color: var(--sub); line-height: 1.7; }
+.pick-big { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 420px;
+  min-height: 72px; border: 0; border-radius: 20px; background: var(--accent); color: var(--accent-ink);
+  font-size: 22px; font-weight: bold; box-shadow: 0 6px 16px rgba(242, 112, 78, .35); margin: 14px 0 6px; }
+.steps { text-align: left; max-width: 420px; margin: 16px auto 0; padding: 14px 16px; background: var(--card);
+  border-radius: var(--r); box-shadow: var(--shadow); line-height: 1.8; font-size: 15px; }
+.steps ol { margin: 0; padding-left: 1.4em; }
+.privacy { font-size: 13px; color: var(--sub); margin-top: 14px !important; }
+
+/* 設定バー */
+.tools { padding: 10px 16px 4px; display: grid; gap: 8px; }
+.seg-row { display: flex; align-items: center; gap: 8px; }
+.seg-row > span { width: 56px; flex: none; font-size: 13px; color: var(--sub); }
+.seg { display: flex; flex: 1; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 3px; gap: 3px;
+  overflow-x: auto; scrollbar-width: none; }
+.seg::-webkit-scrollbar { display: none; }
+.seg button { flex: 1 1 auto; min-width: 0; border: 0; background: transparent; border-radius: 9px; min-height: 40px; padding: 0 6px;
+  font-size: 15px; white-space: nowrap; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: bold; }
+
+/* お知らせ（似ている・印刷済み） */
+.hints { padding: 4px 16px 0; display: grid; gap: 8px; }
+.hint { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+.hint.sim { background: #EEF0FF; }
+.hint.done { background: var(--ok-soft); }
+.hint.nodate { background: var(--warn-soft); }
+.hint b { font-size: 15px; }
+.hint .grow { flex: 1; }
+.hint button { border: 0; border-radius: 10px; background: var(--card); min-height: 40px; padding: 0 12px; font-weight: bold;
+  box-shadow: var(--shadow); white-space: nowrap; }
+
+/* 写真の一覧 */
+.list-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 16px 4px; }
+.list-head .grow { flex: 1 0 100%; font-size: 14px; color: var(--sub); }
+.list-head button { flex: 1 1 auto; }
+.list-head button { border: 1px solid var(--line); background: var(--card); border-radius: 12px; min-height: 40px; padding: 0 12px; font-size: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 8px 16px 16px; }
+.card { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; position: relative;
+  transition: opacity .15s; }
+.card.off { opacity: .42; }
+.card .frame { position: relative; overflow: hidden; background: #fff; container-type: inline-size; margin: 8px 8px 0;
+  border-radius: 4px; outline: 1px solid #eee; }
+.card .frame .box { position: absolute; }
+.card .frame img { position: absolute; left: 50%; top: 50%; transform-origin: 50% 50%; user-select: none; -webkit-user-drag: none; }
+.card .sbox { position: absolute; pointer-events: none; }
+.card .stamp { position: absolute; right: 0; bottom: 0; text-align: right; font-weight: bold; line-height: 1.15; white-space: nowrap; pointer-events: none;
+  transform: scale(.1); transform-origin: 100% 100%; }
+.card .stamp.film { color: #FF9A2E; text-shadow: 0 0 .25em rgba(255, 90, 0, .55); }
+.card .stamp.plain { color: #fff; text-shadow: 0 .05em .25em rgba(0, 0, 0, .65); }
+.card .stamp .d.film { font-family: "Courier New", Menlo, monospace; }
+.badges { position: absolute; left: 12px; top: 12px; display: flex; flex-wrap: wrap; gap: 4px; pointer-events: none; }
+.badge { font-size: 11px; font-weight: bold; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .92); }
+.badge.printed { background: var(--ok); color: #fff; }
+.badge.sim { color: #fff; }
+.badge.best { background: #FFD54A; }
+.badge.nodate { background: var(--warn-soft); color: var(--warn); }
+.card .row { display: flex; align-items: center; gap: 6px; padding: 8px; }
+.check { width: 44px; height: 40px; border-radius: 10px; border: 2px solid var(--line); background: #fff; font-size: 18px; font-weight: bold; color: transparent; }
+.card:not(.off) .check { background: var(--accent); border-color: var(--accent); color: #fff; }
+.copies { display: flex; align-items: center; margin-left: auto; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.copies button { width: 36px; height: 38px; border: 0; background: #fff; font-size: 18px; }
+.copies span { min-width: 34px; text-align: center; font-size: 14px; }
+
+/* 下のボタン */
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: rgba(255, 244, 228, .97);
+  border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.bar .sum { font-size: 13px; color: var(--sub); margin-bottom: 8px; text-align: center; }
+.bar .sum b { color: var(--ink); font-size: 15px; }
+.bar .main { width: 100%; min-height: 60px; border: 0; border-radius: 18px; background: var(--accent); color: var(--accent-ink);
+  font-size: 20px; font-weight: bold; box-shadow: 0 6px 16px rgba(242, 112, 78, .3); }
+.bar .main.ready { background: var(--ok); box-shadow: 0 6px 16px rgba(46, 155, 107, .3); }
+.bar .main:disabled { background: #CDBFB4; box-shadow: none; }
+.bar .subs { display: flex; gap: 8px; margin-top: 8px; }
+.bar .subs button { flex: 1; min-height: 44px; border: 1px solid var(--line); background: var(--card); border-radius: 12px; font-size: 14px; }
+
+/* ダイアログ */
+dialog { border: 0; border-radius: 20px; padding: 0; width: min(560px, calc(100vw - 24px)); max-height: calc(100vh - 40px);
+  background: var(--bg); color: var(--ink); box-shadow: 0 20px 60px rgba(0, 0, 0, .25); }
+dialog::backdrop { background: rgba(40, 25, 15, .45); }
+.dlg-head { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 12px 14px; background: var(--bg);
+  border-bottom: 1px solid var(--line); }
+.dlg-head h2 { font-size: 17px; margin: 0; flex: 1; }
+.dlg-head button { border: 0; background: var(--accent); color: #fff; border-radius: 12px; min-height: 42px; padding: 0 16px; font-weight: bold; }
+.dlg-body { padding: 14px 16px 20px; display: grid; gap: 14px; line-height: 1.6; }
+.dlg-body h3 { font-size: 15px; margin: 6px 0 0; }
+.field { display: grid; gap: 6px; }
+.field > label, .field > span { font-size: 14px; color: var(--sub); }
+.field select, .field input[type=text], .field input[type=date] { min-height: 44px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px;
+  background: #fff; font-size: 16px; width: 100%; }
+.kid { display: grid; grid-template-columns: 1fr 1fr 44px; gap: 6px; }
+.kid button { border: 1px solid var(--line); background: #fff; border-radius: 12px; }
+.small-btn { border: 1px solid var(--line); background: #fff; border-radius: 12px; min-height: 44px; padding: 0 14px; }
+.chk-line { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.chk-line input { width: 24px; height: 24px; accent-color: var(--accent); }
+.note { font-size: 13px; color: var(--sub); }
+
+/* 調整画面 */
+.ed-stage { display: flex; justify-content: center; }
+.ed-stage canvas { touch-action: none; border-radius: 6px; box-shadow: var(--shadow); background: #fff; max-width: 100%; }
+.ed-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ed-row input[type=range] { flex: 1; accent-color: var(--accent); min-height: 36px; }
+
+/* できあがり */
+.pv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.pv-grid canvas { width: 100%; height: auto; background: #fff; box-shadow: var(--shadow); border-radius: 3px; }
+
+/* 進み具合 */
+.busy { position: fixed; inset: 0; z-index: 50; background: rgba(255, 244, 228, .92); display: flex; align-items: center; justify-content: center; }
+.busy .box { width: min(360px, calc(100vw - 48px)); text-align: center; }
+.busy .msg { font-size: 17px; font-weight: bold; margin-bottom: 12px; }
+.busy .track { height: 14px; background: #fff; border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+.busy .fill { height: 100%; width: 0; background: var(--accent); transition: width .15s; }
+.busy .count { margin-top: 8px; color: var(--sub); }
+
+/* お知らせ */
+.toast { position: fixed; left: 50%; bottom: calc(150px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 60;
+  background: #3A2E28; color: #fff; border-radius: 14px; padding: 12px 14px; display: flex; gap: 12px; align-items: center;
+  width: max-content; max-width: calc(100vw - 32px); font-size: 14px; line-height: 1.5; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); }
+.toast button { border: 0; border-radius: 10px; background: #fff; color: var(--ink); min-height: 38px; padding: 0 12px; font-weight: bold; white-space: nowrap; }
+
+#printArea { display: none; }
+@media print {
+  html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+  body > *:not(#printArea) { display: none !important; }
+  #printArea { display: block !important; }
+  #printArea .sheet { position: relative; overflow: hidden; width: var(--pw); height: var(--ph); margin: 0; }
+  #printArea .sheet + .sheet { break-before: page; page-break-before: always; }
+  #printArea .sheet img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+  #printArea .sheet.land img { left: 50%; top: 50%; width: var(--ph); height: var(--pw); transform: translate(-50%, -50%) rotate(-90deg); }
+}
+</style>
+<style id="pageStyle">@page { size: 89mm 127mm; margin: 0; }</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="img/icon-192.png" alt="">
+  <h1>おもいでプリント</h1>
+  <button class="icon-btn" id="btnHelp" aria-label="つかいかた">？</button>
+  <button class="icon-btn" id="btnSettings" aria-label="設定">⚙ 設定</button>
+</header>
+
+<input type="file" id="fileInput" accept="image/*" multiple hidden>
+
+<section class="hero" id="hero">
+  <button class="pick-big" id="btnPickHero">📷 写真をえらぶ</button>
+  <p>何枚でもまとめて選べます。</p>
+  <div class="steps">
+    <ol>
+      <li>写真をえらぶ（何枚でも・あとから追加もOK）</li>
+      <li>用紙・ならべ方・日付をえらぶ</li>
+      <li>「じゅんびする」→「プリントする」</li>
+      <li>出てきた画面で「プリント」→ プリンターと用紙をえらぶ</li>
+    </ol>
+  </div>
+  <p class="privacy">写真はこのiPhoneの中だけで処理します。インターネットには送りません。</p>
+</section>
+
+<section id="work" class="hidden">
+  <div class="tools">
+    <div class="seg-row"><span>用紙</span><div class="seg" id="segPaper"></div></div>
+    <div class="seg-row"><span>ならべ方</span><div class="seg" id="segPer">
+      <button data-v="1">1枚に1つ</button><button data-v="2">2面</button><button data-v="4">4面</button></div></div>
+    <div class="seg-row"><span>フチ</span><div class="seg" id="segMode">
+      <button data-v="fill">なし・切りとる</button><button data-v="fit">あり・全部入れる</button></div></div>
+    <div class="seg-row"><span>文字</span><div class="seg" id="segStamp">
+      <button data-v="none">なし</button><button data-v="date">日付</button><button data-v="age">日付＋年齢</button></div></div>
+  </div>
+  <div class="hints" id="hints"></div>
+  <div class="list-head">
+    <div class="grow" id="listInfo"></div>
+    <button id="btnAdd">＋ 追加</button>
+    <button id="btnPreview">できあがり</button>
+    <button id="btnClear">ぜんぶ消す</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<div class="bar hidden" id="bar">
+  <div class="sum" id="barSum"></div>
+  <button class="main" id="btnMain">じゅんびする</button>
+  <div class="subs hidden" id="barSubs">
+    <button id="btnBrowserPrint">ブラウザで印刷</button>
+    <button id="btnMarkDone">印刷済みにする</button>
+    <button id="btnRedo">やりなおす</button>
+  </div>
+</div>
+
+<!-- 写真の調整 -->
+<dialog id="dlgEdit">
+  <div class="dlg-head"><h2>写真の調整</h2><button data-close>OK</button></div>
+  <div class="dlg-body">
+    <div class="ed-stage"><canvas id="edCanvas" width="10" height="10"></canvas></div>
+    <p class="note" id="edHint">指でずらす・2本指で大きくできます</p>
+    <div class="ed-row"><span>大きさ</span><input type="range" id="edZoom" min="1" max="3" step="0.01" value="1"></div>
+    <div class="ed-row">
+      <button class="small-btn" id="edRot">↻ 90°まわす</button>
+      <button class="small-btn" id="edReset">位置をもどす</button>
+    </div>
+    <div class="field"><label for="edDate">撮影日</label><input type="date" id="edDate"><span class="note" id="edDateNote"></span></div>
+    <div class="field hidden" id="edKidsWrap"><span>写っている子（年齢を入れる子）</span><div id="edKids" class="ed-row"></div></div>
+    <label class="chk-line"><input type="checkbox" id="edStamp"> この写真に日付・年齢を入れる</label>
+    <label class="chk-line"><input type="checkbox" id="edOn"> この写真を印刷する</label>
+  </div>
+</dialog>
+
+<!-- できあがり -->
+<dialog id="dlgPreview">
+  <div class="dlg-head"><h2 id="pvTitle">できあがり</h2><button data-close>とじる</button></div>
+  <div class="dlg-body">
+    <p class="note" id="pvNote"></p>
+    <div class="pv-grid" id="pvGrid"></div>
+  </div>
+</dialog>
+
+<!-- 設定 -->
+<dialog id="dlgSettings">
+  <div class="dlg-head"><h2>設定</h2><button data-close>OK</button></div>
+  <div class="dlg-body">
+    <h3>子どもの名前と誕生日（年齢を入れるとき）</h3>
+    <div id="kidsList" class="field"></div>
+    <button class="small-btn" id="btnAddKid">＋ 子どもを追加</button>
+    <p class="note">名前と誕生日はこのiPhoneの中だけに保存します。</p>
+
+    <div class="field"><label for="setDateStyle">日付の見た目</label>
+      <select id="setDateStyle">
+        <option value="film">フィルムカメラ風（オレンジ・'26 5 5）</option>
+        <option value="plain">しろ文字（2026.5.5）</option>
+      </select></div>
+    <div class="field"><label for="setAgeStyle">年齢の書き方</label>
+      <select id="setAgeStyle">
+        <option value="kana">ひらがな（3さい5かげつ）</option>
+        <option value="kanji">漢字（3歳5か月）</option>
+      </select></div>
+
+    <h3>うまくいかないとき</h3>
+    <div class="field"><label for="setBatch">まとめて送る枚数（用紙の枚数）</label>
+      <select id="setBatch">
+        <option value="0">ぜんぶまとめて</option>
+        <option value="50">50枚ずつ</option>
+        <option value="20">20枚ずつ（EPSONのアプリに渡すとき）</option>
+        <option value="10">10枚ずつ</option>
+      </select></div>
+    <label class="chk-line"><input type="checkbox" id="setRotate"> よこ写真を たてに回してから送る</label>
+    <p class="note">横向きの写真が小さく印刷されるときだけオンにしてください。</p>
+
+    <h3>印刷済みの記録</h3>
+    <p class="note" id="printedCount"></p>
+    <button class="small-btn" id="btnClearPrinted">記録を消す</button>
+  </div>
+</dialog>
+
+<!-- つかいかた -->
+<dialog id="dlgHelp">
+  <div class="dlg-head"><h2>つかいかた</h2><button data-close>とじる</button></div>
+  <div class="dlg-body">
+    <ol>
+      <li>「写真をえらぶ」→「写真ライブラリ」から何枚でも選びます。</li>
+      <li>用紙・ならべ方・フチ・文字をえらびます。写真をタップすると、切り取る位置や日付を変えられます。</li>
+      <li>「じゅんびする」で印刷用の画像を作ります。</li>
+      <li>「プリントする」→ 出てきた画面で「プリント」→ プリンターと用紙サイズ（L判など）をえらんでプリント。</li>
+    </ol>
+    <h3>はじめて使うとき</h3>
+    <p>まず2〜3枚で試して、次を確かめてください。</p>
+    <ul>
+      <li>「プリント」が出てくるか（出ないときは「画像を保存」→ 写真アプリからプリント、または「ブラウザで印刷」）</li>
+      <li>用紙サイズにL判などが出るか</li>
+      <li>プリントを押したあと、このアプリを閉じても印刷が続くか</li>
+      <li>横向きの写真が正しい向き・大きさで出るか（小さいときは設定の「よこ写真を たてに回してから送る」）</li>
+      <li>日付が正しいか（撮影日がわからない写真には日付を入れません）</li>
+    </ul>
+    <h3>ホーム画面に追加</h3>
+    <p>Safariの共有ボタン →「ホーム画面に追加」で、アプリのように開けます。</p>
+  </div>
+</dialog>
+
+<div class="busy hidden" id="busy"><div class="box">
+  <div class="msg" id="busyMsg"></div>
+  <div class="track"><div class="fill" id="busyFill"></div></div>
+  <div class="count" id="busyCount"></div>
+</div></div>
+
+<div class="toast hidden" id="toast"><span id="toastMsg"></span><button id="toastBtn" class="hidden"></button></div>
+
+<div id="printArea"></div>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
