@@ -10,6 +10,7 @@ process.env.TZ = 'Asia/Tokyo'; // appsscript.json の timeZone と同じにす�
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const zlib = require('zlib');
 const assert = require('assert');
 
 const ROOT = path.join(__dirname, '..');
@@ -29,14 +30,15 @@ function makeEnv(opt) {
     ocr: opt.ocr || {}, threads: opt.threads || [],
   };
 
-  function makeFile(name, created) {
+  function makeFile(name, created, bytes) {
     const id = nextId('file');
     const f = {
       _name: name,
       getId: () => id,
       getName: () => f._name,
       setName: (n) => { f._name = n; return f; },
-      getBlob: () => ({ getName: () => f._name }),
+      // Apps Script の getBytes() と同じく -128〜127 の数の配列を返す
+      getBlob: () => ({ getName: () => f._name, getBytes: () => Array.from(bytes || [], (b) => (b > 127 ? b - 256 : b)) }),
       getDateCreated: () => created || new Date(2026, 8, 30, 16, 0),
     };
     return f;
@@ -46,7 +48,7 @@ function makeEnv(opt) {
     const folder = {
       _files: [], getName: () => name, getId: () => 'folder-' + name, getUrl: () => 'https://drive.example/' + name,
       getFiles: () => iter(folder._files.slice()),
-      createFile: (blob) => { const f = makeFile(blob.getName(), new Date()); folder._files.push(f); return f; },
+      createFile: (blob) => { const f = makeFile(blob.getName(), new Date(), blob._bytes); folder._files.push(f); return f; },
     };
     return folder;
   }
@@ -126,9 +128,9 @@ function makeEnv(opt) {
 
   return {
     ctx, state, calendar,
-    putFile: (name, created) => {
+    putFile: (name, created, bytes) => {
       const f = state.folders[0] || sandbox.DriveApp.createFolder(ctx.CONFIG.FOLDER_NAME);
-      const file = makeFile(name, created); f._files.push(file); return file;
+      const file = makeFile(name, created, bytes); f._files.push(file); return file;
     },
     live,
   };
@@ -155,6 +157,94 @@ const SAMPLE_OCT = [
 const EXPECTED_OCT = [
   [10, 1, '衣替え'], [10, 5, '避難訓練'], [10, 12, 'スポーツの日 休園'], [10, 14, '誕生会 10:00〜'],
   [10, 24, '運動会(雨天時 25日)'], [10, 31, 'ハロウィンパーティー'],
+];
+
+/* ---------- テスト用のマス目カレンダー PDF（家庭の情報は含まない架空の内容） ---------- */
+/*
+ * 実物（Excel で作られた PDF）と同じ作りにする:
+ *  日本語は 2バイトの文字番号＋対応表（ToUnicode）、数字の一部は別の1バイトのフォント、
+ *  文字の位置は Tm（一部は Td）、圧縮あり、フォント定義の一部はオブジェクトストリームの中。
+ * 2026年11月（1日が日曜）。列の中心 x = 75 + 76*列、日付の数字の y = 725 - 110*週。
+ */
+function buildTestCalendarPdf(titleText) {
+  const items = [];
+  const colLeft = (c) => 37 + 76 * c;
+  const add = (text, x, y, size, extra) => items.push(Object.assign({ text, x, y, size, font: 'F1' }, extra || {}));
+  add(titleText, 60, 770, 18);
+  '日月火水木金土'.split('').forEach((w, c) => add(w, 75 + 76 * c - 7, 748, 14));
+  for (let d = 1; d <= 30; d++) {
+    const c = (d - 1) % 7, row = Math.floor((d - 1) / 7);
+    const y = 725 - 110 * row;
+    if (d === 10 || d === 20) items.push({ text: String(d), x: colLeft(c) + 8, y, size: 14, font: 'F2' });
+    else add(d === 2 ? '２' : d === 3 ? '３' : String(d), colLeft(c) + 8, y, 14);
+  }
+  const cell = (d, lines) => {
+    const c = (d - 1) % 7, row = Math.floor((d - 1) / 7);
+    lines.forEach((t, i) => add(t, colLeft(c) + 2, 725 - 110 * row - 20 - 17 * i, 11));
+  };
+  add('文化の日', colLeft(2) + 30, 725 + 8, 7.5);           // 3日: 数字の右上の小さな祝日名
+  add('勤労感謝の日', colLeft(1) + 30, 395 + 8, 7.5);       // 23日: 4週目でも同じ形
+  cell(2, ['算数教室']);
+  cell(5, ['内科健診', 'ピカットらんど', '（ダンス）']);
+  cell(7, ['第1回', '子どもまつり']);
+  cell(12, ['避難訓練', '12時30分降園']);
+  cell(20, ['参観日①']);
+  cell(26, ['誕生会', '＆リトミック']);
+  cell(30, ['算数教室']);
+  add('要予約', colLeft(5) + 25, 615 - 40, 9);               // 13日: 中央寄せの文字
+  add('来年度の申込日', colLeft(0) + 2, 615 + 22, 8.8);       // 1日のマスの一番下（次の週の数字の22pt上）
+  add('＊注意書きです。', 40, 160, 10, { op: 'Td' });         // 表の下の注意書き
+  add('　', 520, 390, 7);                                      // 空白だけの文字
+  return assemblePdf(items);
+}
+
+function assemblePdf(items) {
+  const chars = [...new Set(items.filter((i) => i.font === 'F1').flatMap((i) => [...i.text]))].filter((c) => !/[0-9]/.test(c));
+  const codeOf = {};
+  for (let d = 0; d <= 9; d++) codeOf[String(d)] = 0x30 + d;
+  chars.forEach((c, i) => { codeOf[c] = 0x100 + i; });
+  const hex4 = (n) => n.toString(16).toUpperCase().padStart(4, '0');
+  const hex = (t) => [...t].map((c) => hex4(codeOf[c])).join('');
+  let content = '';
+  items.forEach((it, i) => {
+    if (it.font === 'F2') content += `/P <</MCID ${i}>> BDC BT /F2 ${it.size} Tf 1 0 0 1 ${it.x} ${it.y} Tm (${it.text}) Tj ET EMC\n`;
+    else if (it.op === 'Td') content += `BT /F1 ${it.size} Tf ${it.x} ${it.y} Td [<${hex(it.text)}>] TJ ET\n`;
+    else content += `q 37.8 100 531 700 re W* n /P <</MCID ${i}>> BDC BT /F1 ${it.size} Tf 1 0 0 1 ${it.x} ${it.y} Tm 0 g [<${hex(it.text)}>] TJ ET EMC Q\n`;
+  });
+  const cmap = '/CIDInit /ProcSet findresource begin 12 dict begin begincmap\n1 begincodespacerange <0000> <FFFF> endcodespacerange\n'
+    + '1 beginbfrange\n<0030> <0039> <0030>\nendbfrange\n'
+    + `${chars.length} beginbfchar\n` + chars.map((c) => `<${hex4(codeOf[c])}> <${hex4(c.charCodeAt(0))}>`).join('\n') + '\nendbfchar\n'
+    + 'endcmap CMapName currentdict /CMap defineresource pop end end';
+  const contentZ = zlib.deflateSync(Buffer.from(content, 'latin1'));
+  const cmapZ = zlib.deflateSync(Buffer.from(cmap, 'latin1'));
+  const widths = `[ 48 [${Array(10).fill(600).join(' ')}] 256 [${Array(chars.length).fill(1000).join(' ')}] ]`;
+  const inStm = [
+    [4, `<</Type/Font/Subtype/Type0/BaseFont/TEST+Gothic/Encoding/Identity-H/DescendantFonts[5 0 R]/ToUnicode 6 0 R>>`],
+    [5, `<</Type/Font/Subtype/CIDFontType2/BaseFont/TEST+Gothic/CIDToGIDMap/Identity/DW 1000/W ${widths}>>`],
+    [7, `<</Type/Font/Subtype/TrueType/BaseFont/TEST+Bold/Encoding/WinAnsiEncoding/FirstChar 48/LastChar 57/Widths[${Array(10).fill(650).join(' ')}]>>`],
+  ];
+  let head = '', body = '';
+  inStm.forEach(([n, t]) => { head += `${n} ${body.length} `; body += t + '\n'; });
+  const stm = zlib.deflateSync(Buffer.from(head + body, 'latin1'));
+  const parts = [];
+  const obj = (n, dict, stream) => parts.push(Buffer.concat([
+    Buffer.from(`${n} 0 obj\r\n${dict}${stream ? '\r\nstream\r\n' : ''}`, 'latin1'),
+    stream || Buffer.alloc(0),
+    Buffer.from(`${stream ? '\r\nendstream' : ''}\r\nendobj\r\n`, 'latin1'),
+  ]));
+  obj(1, '<</Type/Catalog/Pages 2 0 R>>');
+  obj(2, '<</Type/Pages/Count 1/Kids[ 3 0 R]>>');
+  obj(3, '<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R/F2 7 0 R>>>>/MediaBox[0 0 595.32 841.92]/Contents 8 0 R>>');
+  obj(6, `<</Filter/FlateDecode/Length ${cmapZ.length}>>`, cmapZ);
+  obj(8, '<</Filter/FlateDecode/Length 9 0 R>>', contentZ);
+  obj(9, String(contentZ.length));
+  obj(10, `<</Type/ObjStm/N 3/First ${head.length}/Filter/FlateDecode/Length ${stm.length}>>`, stm);
+  return Buffer.concat([Buffer.from('%PDF-1.7\r\n%\xE2\xE3\xCF\xD3\r\n', 'latin1'), ...parts, Buffer.from('trailer\r\n<</Root 1 0 R>>\r\n%%EOF', 'latin1')]);
+}
+
+const EXPECTED_NOV = [
+  [1, '来年度の申込日'], [2, '算数教室'], [3, '文化の日'], [5, '内科健診 / ピカットらんど（ダンス）'], [7, '第1回 / 子どもまつり'],
+  [12, '避難訓練 / 12時30分降園'], [13, '要予約'], [20, '参観日①'], [23, '勤労感謝の日'], [26, '誕生会＆リトミック'], [30, '算数教室'],
 ];
 
 /* ---------- テスト本体 ---------- */
@@ -394,6 +484,114 @@ test('GMAIL_SENDER が空なら Gmail を見ない', () => {
   env.ctx.setup();
   assert.strictEqual(env.state.lastGmailQuery, undefined);
 });
+
+test('圧縮の展開が Node.js 標準の圧縮と一致する（無圧縮・固定・動的の3方式）', () => {
+  const { ctx } = makeEnv();
+  const text = Buffer.from('らくらく連絡帳 カレンダー 0123456789 '.repeat(200), 'utf8');
+  const rand = Buffer.alloc(70000);
+  for (let i = 0; i < rand.length; i++) rand[i] = (i * 2654435761 >>> 13) & 255;
+  const cases = [
+    zlib.deflateSync(text, { level: 0 }),
+    zlib.deflateSync(text, { strategy: zlib.constants.Z_FIXED }),
+    zlib.deflateSync(text, { level: 9 }),
+    zlib.deflateSync(rand),
+    zlib.deflateSync(Buffer.from('abc')),
+  ];
+  const originals = [text, text, text, rand, Buffer.from('abc')];
+  cases.forEach((z, i) => {
+    const out = ctx.inflate_(new Uint8Array(z));
+    assert.ok(Buffer.from(out).equals(originals[i]), 'case ' + i);
+  });
+  assert.throws(() => ctx.inflate_(new Uint8Array(zlib.deflateSync(text).subarray(0, 40))));
+});
+
+test('テスト用 PDF: 文字と位置を取り出せる（対応表・1バイトのフォント・Td・オブジェクトストリーム）', () => {
+  const { ctx } = makeEnv();
+  const runs = ctx.extractPdfTextRuns_(new Uint8Array(buildTestCalendarPdf('令和8年度　11月テストカレンダー　年少組')));
+  const find = (t) => runs.find((r) => r.text === t);
+  assert.ok(find('令和8年度　11月テストカレンダー　年少組'));
+  assert.strictEqual(Math.round(find('文化の日').y), 733);
+  assert.strictEqual(Math.round(find('10').x0), 37 + 76 * 2 + 8, '1バイトのフォントの数字');
+  assert.ok(Math.abs(find('10').x1 - find('10').x0 - 2 * 0.65 * 14) < 0.01, '幅の計算');
+  assert.strictEqual(Math.round(find('＊注意書きです。').y), 160, 'Td の位置');
+});
+
+test('テスト用 PDF: マス目ごとの予定・注意書き・曜日を正しく組み立てる', () => {
+  const { ctx } = makeEnv();
+  const g = ctx.readCalendarGridFromPdf_(new Uint8Array(buildTestCalendarPdf('令和8年度　11月テストカレンダー　年少組')));
+  assert.ok(g);
+  assert.strictEqual(g.firstWeekday, 0);
+  assert.strictEqual(g.lastDay, 30);
+  assert.deepStrictEqual(plain(g.cells.filter((c) => c.lines.length).map((c) => [c.day, c.lines.join(' / ')])), EXPECTED_NOV);
+  assert.deepStrictEqual(plain(g.notes), ['＊注意書きです。']);
+  assert.deepStrictEqual(plain(g.title), ['令和8年度　11月テストカレンダー　年少組']);
+});
+
+test('PDF でないデータや文字のない PDF では null を返し、文字認識に切り替わる', () => {
+  const { ctx } = makeEnv();
+  assert.strictEqual(ctx.readCalendarGridFromPdf_([]), null);
+  assert.strictEqual(ctx.readCalendarGridFromPdf_(Array.from(Buffer.from('not a pdf'))), null);
+});
+
+test('「令和8年度」の1〜3月は翌年（2027年）として扱う', () => {
+  const { ctx } = makeEnv();
+  const r = (name, text) => { const x = ctx.resolveYearMonth_(name, text, new Date(2026, 9, 1)); return x.year + '/' + x.month; };
+  assert.strictEqual(r('10月カレンダー.pdf', '令和8年度　10月かたかごカレンダー'), '2026/10');
+  assert.strictEqual(r('1月カレンダー.pdf', '令和8年度　1月カレンダー'), '2027/1');
+  assert.strictEqual(r('4月カレンダー.pdf', '2027年度 4月'), '2027/4');
+});
+
+test('マス目の PDF → 日ごとに終日登録・説明欄に行ごとの内容・報告に読み取り方法と注意書き', () => {
+  const pdf = buildTestCalendarPdf('令和8年度　11月テストカレンダー　年少組');
+  const env = makeEnv();
+  env.ctx.setup();
+  env.putFile('11月カレンダー.pdf', new Date(2026, 9, 30), pdf);
+  const res = env.ctx.checkNew();
+  assert.strictEqual(res[0].error, '');
+  assert.strictEqual(env.state.driveCalls.length, 0, '文字認識は使わない');
+  const evs = env.live();
+  assert.deepStrictEqual(evs.map((e) => [e._d, e._title]), EXPECTED_NOV);
+  evs.forEach((e) => { assert.strictEqual(e._y, 2026); assert.strictEqual(e._m, 11); assert.deepStrictEqual(e.getPopupReminders(), [420]); });
+  assert.ok(evs.find((e) => e._d === 5).getDescription().startsWith('内科健診\nピカットらんど（ダンス）\n\n'));
+  const body = env.state.mails[0].body;
+  assert.ok(body.includes('読み取り方法: PDF のマス目から直接読み取り'));
+  assert.ok(body.includes('・＊注意書きです。'));
+  assert.ok(body.includes('5日: 内科健診 / ピカットらんど（ダンス）'));
+  assert.match(env.state.mails[0].subject, /11件登録しました$/);
+  env.ctx.checkNew();
+  assert.strictEqual(env.live().length, 11, '二重登録しない');
+});
+
+test('マス目の曜日が年月の暦と合わなければ登録しない（年の読み違いを防ぐ）', () => {
+  const pdf = buildTestCalendarPdf('令和9年度　11月テストカレンダー　年少組'); // 2027年11月1日は月曜
+  const env = makeEnv();
+  env.ctx.setup();
+  env.putFile('11月カレンダー.pdf', new Date(2026, 9, 30), pdf);
+  const res = env.ctx.checkNew();
+  assert.match(res[0].error, /曜日/);
+  assert.strictEqual(env.live().length, 0);
+  assert.match(env.state.mails[0].subject, /要確認/);
+});
+
+// 実物の PDF で確かめたいとき（PDF と正解はリポジトリに入れない）:
+//   RAKURAKU_REAL_PDF=実物.pdf RAKURAKU_REAL_NAME=10月カレンダー.pdf RAKURAKU_REAL_EXPECTED=正解.json node run-tests.js
+//   正解.json は [[日, "予定名"], ...]
+if (process.env.RAKURAKU_REAL_PDF) {
+  test('【手元のみ】実物の PDF を登録まで通す', () => {
+    const env = makeEnv();
+    env.ctx.setup();
+    env.putFile(process.env.RAKURAKU_REAL_NAME || '10月カレンダー.pdf', new Date(), fs.readFileSync(process.env.RAKURAKU_REAL_PDF));
+    const res = env.ctx.checkNew();
+    assert.strictEqual(res[0].error, '', res[0].error);
+    const got = env.live().map((e) => [e._d, e._title]);
+    console.log('      ' + res[0].year + '年' + res[0].month + '月 / ' + res[0].method + ' / ' + got.length + '件');
+    got.forEach(([d, t]) => console.log('      ' + String(d).padStart(2) + '日 ' + t));
+    res[0].notes.forEach((n) => console.log('      注意書き: ' + n));
+    if (process.env.RAKURAKU_REAL_EXPECTED) {
+      assert.deepStrictEqual(got, JSON.parse(fs.readFileSync(process.env.RAKURAKU_REAL_EXPECTED, 'utf8')));
+    }
+  });
+}
 
 /* ---------- 実行 ---------- */
 
