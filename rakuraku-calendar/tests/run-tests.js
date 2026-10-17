@@ -574,6 +574,39 @@ test('マス目の曜日が年月の暦と合わなければ登録しない（�
   assert.match(env.state.mails[0].subject, /要確認/);
 });
 
+test('ルーティーン用の pdf-to-events.js: PDF・base64 のどちらでも同じ予定を出し、--from より前は除く', () => {
+  const { execFileSync } = require('child_process');
+  const os = require('os');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rakuraku-'));
+  const pdfPath = path.join(dir, 'in.pdf');
+  const b64Path = path.join(dir, 'in.b64');
+  const pdf = buildTestCalendarPdf('令和8年度　11月テストカレンダー　年少組');
+  fs.writeFileSync(pdfPath, pdf);
+  fs.writeFileSync(b64Path, pdf.toString('base64').replace(/(.{76})/g, '$1\n'));
+  const tool = path.join(ROOT, 'tools', 'pdf-to-events.js');
+  const run = (args) => {
+    try { return { code: 0, out: JSON.parse(execFileSync('node', [tool, ...args], { encoding: 'utf8' })) }; }
+    catch (e) { return { code: e.status, out: JSON.parse(e.stdout) }; }
+  };
+  const a = run(['--pdf', pdfPath, '--name', '11月カレンダー.pdf', '--ref', '2026-10-30', '--file-id', 'FID']);
+  assert.strictEqual(a.code, 0);
+  assert.deepStrictEqual([a.out.year, a.out.month, a.out.events.length], [2026, 11, 11]);
+  assert.deepStrictEqual(a.out.events.map((e) => [Number(e.date.slice(8)), e.title]), EXPECTED_NOV);
+  assert.ok(a.out.events.every((e) => e.reminderMinutes === 420 && e.description.endsWith('から自動登録（FID）')));
+  assert.deepStrictEqual(a.out.notes, ['＊注意書きです。']);
+  const b = run(['--base64', b64Path, '--name', '11月カレンダー.pdf', '--ref', '2026-10-30']);
+  assert.deepStrictEqual(b.out.events.map((e) => e.title), a.out.events.map((e) => e.title));
+  const c = run(['--pdf', pdfPath, '--name', '11月カレンダー.pdf', '--ref', '2026-10-30', '--from', '2026-11-13']);
+  assert.deepStrictEqual(c.out.events.map((e) => e.date), ['2026-11-13', '2026-11-20', '2026-11-23', '2026-11-26', '2026-11-30']);
+  assert.strictEqual(c.out.skippedPast, 6);
+  const d = run(['--pdf', path.join(ROOT, 'README.md'), '--name', '11月カレンダー.pdf']);
+  assert.strictEqual(d.code, 1);
+  assert.match(d.out.error, /マス目のカレンダーとして読めませんでした/);
+  const e = run(['--pdf', pdfPath, '--name', '11月.pdf']);
+  assert.strictEqual(e.code, 1);
+  assert.match(e.out.error, /対象のファイル名ではありません/);
+});
+
 // 実物の PDF で確かめたいとき（PDF と正解はリポジトリに入れない）:
 //   RAKURAKU_REAL_PDF=実物.pdf RAKURAKU_REAL_NAME=10月カレンダー.pdf RAKURAKU_REAL_EXPECTED=正解.json node run-tests.js
 //   正解.json は [[日, "予定名"], ...]
