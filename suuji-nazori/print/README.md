@@ -15,7 +15,7 @@ EPSON のアプリを通さないので、「一度に 20 枚まで」「印刷�
    （例: `https://＜サイト名＞.netlify.app/print/`）
 2. 共有ボタン →「ホーム画面に追加」
 
-GitHub と Netlify が連携済みなので、このフォルダが main に入れば自動で公開されます（`netlify.toml` は変更していません）。
+GitHub と Netlify が連携済みなので、Netlify が公開に使っているブランチにこの変更が入れば自動で公開されます（どのブランチかは Netlify の設定画面で確認が必要です。`netlify.toml` は変更していません）。
 
 ## つかいかた
 
