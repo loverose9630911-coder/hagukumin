@@ -1,0 +1,774 @@
+[
+  {
+    "id": "15-1",
+    "prefCode": "15",
+    "pref": "新潟県",
+    "name": "彌彦神社",
+    "kana": null,
+    "officialUrl": "https://www.yahiko-jinjya.or.jp/",
+    "sourceType": "official",
+    "address": "新潟県西蒲原郡弥彦村弥彦2887-2",
+    "deities": [
+      "伊夜日子大神（天香山命）"
+    ],
+    "benefitsOfficial": [],
+    "history": "御祭神の天香山命は越の国開拓の勅を奉じて日本海を渡り米水浦に上陸し、漁業・製塩・酒造や稲作・畑作の基礎を伝えた越後開拓の祖神とされる。社伝では、神業を終えて神去った天香山命が神劒峰（弥彦山）に葬られ、御子の天五田根命が廟社を築いて奉祀したのが始まりで、崇神天皇の御代に建諸隅命が勅命により社殿を造営したと伝わる。『延喜式』では越後国で唯一の名神大社とされ、明治4年（1871）に国幣中社に列格した。",
+    "access": [
+      "上越新幹線「燕三条駅」で弥彦線に乗り換え、終点「弥彦駅」下車、徒歩15分程度",
+      "燕三条駅からタクシーで約30分",
+      "車：北陸自動車道 三条燕ICから約30分（関東方面から）／巻潟東ICから約30分（新潟方面から）",
+      "駐車場：神社脇の駐車場（大型バス20台・普通車50台）から拝殿まで徒歩約5分。参拝者用のため登山目的の駐車は遠慮するよう案内あり。村営第一駐車場もあり"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "例祭（2月1日〜4日に神幸神事を斎行）",
+        "date": "2月2日"
+      },
+      {
+        "name": "妻戸大神例祭（大々神楽 全十三曲を奉奏）",
+        "date": "4月18日"
+      },
+      {
+        "name": "燈籠神事（御神輿渡御・大燈籠巡行）",
+        "date": "7月25日（前後の神事は7月12日〜26日）"
+      }
+    ],
+    "officialNotes": [
+      "御祈祷（御祓）の受付時間は午前8時30分〜午後4時",
+      "御祈祷の種類として家内安全、身体健全、交通安全、厄難消除、社運隆昌、安全祈願、学業成就、良縁成就、病気平癒、五穀豊穣、大漁満足、心願成就などが案内されている",
+      "宝物殿の拝観時間は午前9時〜午後4時（月曜（休日の場合は翌日）及び1・2月中は休館）",
+      "弥彦山山頂の御神廟には伊夜日子大神と妃神の妻戸大神（熟穂屋姫命）が祀られている",
+      "大々神楽は妻戸大神例祭のほか、春秋の土曜日に一・二曲が奉奏される"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://www.yahiko-jinjya.or.jp/"
+      },
+      {
+        "label": "公式サイト 御祭神",
+        "url": "https://www.yahiko-jinjya.or.jp/history/gosaijin/index.html"
+      },
+      {
+        "label": "公式サイト 御由緒",
+        "url": "https://www.yahiko-jinjya.or.jp/history/yuisyo/index.html"
+      },
+      {
+        "label": "公式サイト 交通アクセス",
+        "url": "https://www.yahiko-jinjya.or.jp/access/index.html"
+      },
+      {
+        "label": "公式サイト 年間の主な祭典・行事",
+        "url": "https://www.yahiko-jinjya.or.jp/event/index.html"
+      },
+      {
+        "label": "公式サイト 燈籠神事",
+        "url": "https://www.yahiko-jinjya.or.jp/event/summer/toroumatsuri.html"
+      },
+      {
+        "label": "公式サイト 春の祭典・行事",
+        "url": "https://www.yahiko-jinjya.or.jp/event/spring/index.html"
+      },
+      {
+        "label": "公式サイト 御祈祷（御祓）",
+        "url": "https://www.yahiko-jinjya.or.jp/visit/gokitou/index.html"
+      },
+      {
+        "label": "公式サイト 宝物殿",
+        "url": "https://www.yahiko-jinjya.or.jp/meguru/homotsuden/index.html"
+      },
+      {
+        "label": "公式サイト 御神廟",
+        "url": "https://www.yahiko-jinjya.or.jp/meguru/goshinbyo/index.html"
+      },
+      {
+        "label": "公式サイト 舞殿",
+        "url": "https://www.yahiko-jinjya.or.jp/meguru/buden/index.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        3
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        1,
+        2
+      ],
+      "access": [
+        3
+      ],
+      "hours": [],
+      "festivals": [
+        4,
+        5,
+        6
+      ],
+      "officialNotes": [
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    "notes": "kana：公式サイト上で社名の読みを確認できなかったため null。benefitsOfficial：公式に「ご利益」「御神徳」として列挙された語句を確認できなかったため空（御祈祷の種類は officialNotes に記載）。hours：境内の開門・参拝時間の記載が確認できなかったため null。"
+  },
+  {
+    "id": "15-2",
+    "prefCode": "15",
+    "pref": "新潟県",
+    "name": "白山神社",
+    "kana": null,
+    "officialUrl": "https://www.niigatahakusanjinja.or.jp/",
+    "sourceType": "official",
+    "address": "新潟県新潟市中央区一番堀通町1-1",
+    "deities": [
+      "菊理媛大神（白山大神・白山比咩大神）",
+      "伊邪那岐命",
+      "伊邪那美命"
+    ],
+    "benefitsOfficial": [
+      "縁結び"
+    ],
+    "history": "新潟の総鎮守。御祭神の菊理媛大神は加賀の霊峰白山の頂上に祀られる女神で、この神を勧請して新潟の地に祀ったとされる。建立の年代は永禄（1558〜）・天正（1573〜）の二度の火災で旧記を失い明らかでないが、延喜（901〜）とも寛治（1087〜）ともいわれる。大正13年に県社、昭和56年に別表神社に列せられた。",
+    "access": [
+      "新潟駅バスターミナルから新潟市観光循環バス「白山公園前」下車、徒歩1分",
+      "新潟駅他から路線バス「市役所前」下車、徒歩約2〜3分",
+      "JR越後線「白山駅」から徒歩約15分",
+      "新潟駅からタクシーで約10分",
+      "車：新潟バイパス 桜木インターから約10分／高速道路 女池インターから約10分",
+      "無料駐車場50台（利用時間7:00〜19:00。参拝の間のみ利用可、防犯のため19時に閉門）。混雑時は近隣の白山公園駐車場（有料）などの利用を案内"
+    ],
+    "hours": "6:00〜19:00（春まつり・七夕風鈴まつりの期間は21:00まで。門の外からの参拝は24時間可能）",
+    "festivals": [
+      {
+        "name": "節分祭",
+        "date": "2月3日"
+      },
+      {
+        "name": "春まつり（春季大祭）",
+        "date": "4月12日〜18日（春季大祭は4月15日）"
+      },
+      {
+        "name": "百八灯献燈祭",
+        "date": "4月17日"
+      },
+      {
+        "name": "半年詣り・茅の輪神事",
+        "date": "6月30日"
+      },
+      {
+        "name": "夏まつり（例大祭）",
+        "date": "7月12日〜18日（例大祭は7月15日）"
+      },
+      {
+        "name": "住吉祭・新潟まつり",
+        "date": "8月7日〜9日"
+      },
+      {
+        "name": "秋季大祭",
+        "date": "10月12日〜18日"
+      },
+      {
+        "name": "新嘗祭",
+        "date": "11月23日"
+      }
+    ],
+    "officialNotes": [
+      "お札・お守り・おみくじ・御朱印の授与は午前7時〜午後7時（一部の祭典・行事の日は午後5時まで）",
+      "ご祈祷は毎日午前9時〜午後4時40分（年中無休）。個人・家族は予約不要で当日受付（受付は午前8時50分〜最終午後4時30分）",
+      "配祀神として天照皇大神・八幡大神、合祀神として住吉大神・稲荷大神・天満天神・出雲大神など多くの神々を祀る",
+      "神社の無料駐車場は参拝者専用で、参拝後に神社以外へ行く場合の駐車は不可。神社周辺の道路は駐車禁止"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://www.niigatahakusanjinja.or.jp/"
+      },
+      {
+        "label": "公式サイト 白山神社の由緒",
+        "url": "https://www.niigatahakusanjinja.or.jp/about/yuisho.html"
+      },
+      {
+        "label": "公式サイト 白山神社の神様",
+        "url": "https://www.niigatahakusanjinja.or.jp/about/god.html"
+      },
+      {
+        "label": "公式サイト 所在地",
+        "url": "https://www.niigatahakusanjinja.or.jp/access/location.html"
+      },
+      {
+        "label": "公式サイト 公共交通機関でのアクセス",
+        "url": "https://www.niigatahakusanjinja.or.jp/access/public.html"
+      },
+      {
+        "label": "公式サイト 駐車場のご案内",
+        "url": "https://www.niigatahakusanjinja.or.jp/access/parking.html"
+      },
+      {
+        "label": "公式サイト よくあるご質問",
+        "url": "https://www.niigatahakusanjinja.or.jp/question/"
+      },
+      {
+        "label": "公式サイト 白山神社の年間行事",
+        "url": "https://www.niigatahakusanjinja.or.jp/schedule/event.html"
+      },
+      {
+        "label": "公式サイト ご祈祷・おはらいを受けられる方へ",
+        "url": "https://www.niigatahakusanjinja.or.jp/prayer/prayer.html"
+      },
+      {
+        "label": "公式サイト 御朱印",
+        "url": "https://www.niigatahakusanjinja.or.jp/amulets/gosyuin.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        3
+      ],
+      "deities": [
+        2
+      ],
+      "benefitsOfficial": [
+        2
+      ],
+      "history": [
+        1,
+        2
+      ],
+      "access": [
+        4,
+        5
+      ],
+      "hours": [
+        6
+      ],
+      "festivals": [
+        7
+      ],
+      "officialNotes": [
+        2,
+        5,
+        6,
+        8,
+        9
+      ]
+    },
+    "notes": "kana：公式サイト上で社名の読みを明示した記載を確認できなかったため null。benefitsOfficial：公式の神様ページで菊理媛大神が「縁結びの神」とされている点のみ採用（家内安全・商売繁盛・安産・厄除け等はご祈祷の案内として掲載されているが、「ご利益」として列挙されているか確認できず不採用）。祭事の日付は公式の年間行事ページによる（年により変更の可能性あり）。"
+  },
+  {
+    "id": "15-3",
+    "prefCode": "15",
+    "pref": "新潟県",
+    "name": "居多神社",
+    "kana": "こたじんじゃ",
+    "officialUrl": null,
+    "sourceType": "municipal",
+    "address": "新潟県上越市五智6-1-11",
+    "deities": [
+      "大国主命",
+      "奴奈川姫",
+      "建御名方命"
+    ],
+    "benefitsOfficial": [],
+    "history": "大国主命・奴奈川姫・建御名方命を祀る延喜式内社で、越後一宮とも呼ばれる。上越に国衙が置かれたことから、派遣された国司に崇敬され手厚く保護されてきたとされる。親鸞聖人も上陸の際に一番に参ったといわれ、聖人にまつわる越後七不思議の一つ「片葉葦」が群生する。明治12年、海岸侵食で境内が崩壊したため現在地に移ったとされる。",
+    "access": [
+      "えちごトキめき鉄道・妙高はねうまライン「直江津駅」から徒歩25分",
+      "頸城バス「国分寺裏門」下車すぐ",
+      "車：北陸自動車道「上越IC」から約20分",
+      "駐車場：無料（約30台）"
+    ],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [
+      "市指定文化財の木造狛犬（鎌倉時代後期の作と推定）と、中世から近世にかけての居多神社文書（市指定文化財）を所蔵（上越市ホームページによる）"
+    ],
+    "sources": [
+      {
+        "label": "上越観光Navi（上越市観光情報サイト） 居多神社",
+        "url": "https://joetsukankonavi.jp/spot/detail.php?id=166"
+      },
+      {
+        "label": "にいがた観光ナビ（新潟県観光協会公式） 居多神社",
+        "url": "https://niigata-kankou.or.jp/spot/8439"
+      },
+      {
+        "label": "新潟県神社庁 県内神社検索（居多神社）",
+        "url": "https://niigata-jinjacho.jp/shrine_niigata/search.php?area=&keyword=%E5%B1%85%E5%A4%9A%E7%A5%9E%E7%A4%BE"
+      },
+      {
+        "label": "上越市ホームページ 狛犬と居多神社文書",
+        "url": "https://www.city.joetsu.niigata.jp/soshiki/bunkagyousei/chikinotakara-r2-no23.html"
+      },
+      {
+        "label": "上越市 歴史的建造物リスト（PDF）",
+        "url": "https://www.city.joetsu.niigata.jp/uploaded/attachment/23499.pdf"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        1,
+        2
+      ],
+      "deities": [
+        0,
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        0,
+        1,
+        4
+      ],
+      "access": [
+        0,
+        1
+      ],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": [
+        3
+      ]
+    },
+    "notes": "神社自身の公式サイトが検索で見つからなかったため、上越市の観光情報サイト（上越観光Navi）、新潟県観光協会の公式観光サイト（にいがた観光ナビ）、上越市ホームページ、新潟県神社庁サイト（読み・鎮座地）で確認できた内容のみ記載。例祭などの祭事日付、参拝時間、ご利益はこれらのサイトで確認できなかったため空。"
+  },
+  {
+    "id": "16-1",
+    "prefCode": "16",
+    "pref": "富山県",
+    "name": "雄山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "16-2",
+    "prefCode": "16",
+    "pref": "富山県",
+    "name": "射水神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "16-3",
+    "prefCode": "16",
+    "pref": "富山県",
+    "name": "高瀬神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "17-1",
+    "prefCode": "17",
+    "pref": "石川県",
+    "name": "白山比咩神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "17-2",
+    "prefCode": "17",
+    "pref": "石川県",
+    "name": "氣多大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "17-3",
+    "prefCode": "17",
+    "pref": "石川県",
+    "name": "尾山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "18-1",
+    "prefCode": "18",
+    "pref": "福井県",
+    "name": "氣比神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "18-2",
+    "prefCode": "18",
+    "pref": "福井県",
+    "name": "若狭彦神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "18-3",
+    "prefCode": "18",
+    "pref": "福井県",
+    "name": "足羽神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "19-1",
+    "prefCode": "19",
+    "pref": "山梨県",
+    "name": "浅間神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。（担当表の指定：笛吹市・甲斐国一宮の浅間神社）"
+  },
+  {
+    "id": "19-2",
+    "prefCode": "19",
+    "pref": "山梨県",
+    "name": "北口本宮冨士浅間神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "19-3",
+    "prefCode": "19",
+    "pref": "山梨県",
+    "name": "武田神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  },
+  {
+    "id": "20-1",
+    "prefCode": "20",
+    "pref": "長野県",
+    "name": "諏訪大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。（複数のお宮がある神社のため、再調査時は1件にまとめ、access／officialNotes にお宮ごとの情報を分けて記載すること）"
+  },
+  {
+    "id": "20-2",
+    "prefCode": "20",
+    "pref": "長野県",
+    "name": "戸隠神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。（複数のお宮がある神社のため、再調査時は1件にまとめ、access／officialNotes にお宮ごとの情報を分けて記載すること）"
+  },
+  {
+    "id": "20-3",
+    "prefCode": "20",
+    "pref": "長野県",
+    "name": "穂高神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：調査途中で WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式サイトの特定も内容の確認もできていない。記憶や推測で埋めないよう全項目を空にしている。要再調査。"
+  }
+]

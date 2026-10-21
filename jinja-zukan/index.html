@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>日本全国 神社図鑑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="47都道府県から3社ずつ。ご利益・行き方・歴史を各神社の公式サイトで確かめてまとめた神社図鑑です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* 図鑑の索引：左に絞り込み、右に「都道府県ごとに3社」の段が並ぶ。紙・墨・朱・苔の色 */
+:root {
+  --paper: #f1f2ec;
+  --surface: #fafaf6;
+  --ink: #1c221f;
+  --ink-2: #555e58;
+  --rule: #d5d8cf;
+  --shu: #a5402a;
+  --shu-ink: #ffffff;
+  --shu-soft: #f1ddd5;
+  --moss: #46633f;
+  --shadow: 0 1px 2px rgba(28, 34, 31, .06), 0 8px 24px rgba(28, 34, 31, .08);
+  --f-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  --step--1: .8125rem;
+  --step-0: .9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.9rem, 1.4rem + 2.2vw, 2.75rem);
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121513; --surface: #1a1e1b; --ink: #e5e8e2; --ink-2: #a1a9a2; --rule: #2d332f;
+    --shu: #e17b60; --shu-ink: #1a0f0b; --shu-soft: #3b2620; --moss: #97b48f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121513; --surface: #1a1e1b; --ink: #e5e8e2; --ink-2: #a1a9a2; --rule: #2d332f;
+  --shu: #e17b60; --shu-ink: #1a0f0b; --shu-soft: #3b2620; --moss: #97b48f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--step-0);
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--shu); text-underline-offset: 3px; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; line-height: 1.35; margin: 0; }
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- 見出し ---------- */
+.masthead { border-bottom: 1px solid var(--rule); background: var(--surface); }
+.masthead .wrap { padding-block: 28px 22px; display: grid; gap: 10px; }
+.masthead .eyebrow { font-size: var(--step--1); letter-spacing: .12em; color: var(--ink-2); }
+.masthead h1 { font-size: var(--step-3); letter-spacing: .04em; display: flex; align-items: center; gap: 14px; }
+.masthead h1 .torii { width: 1.05em; height: 1.05em; flex: none; color: var(--shu); }
+.masthead p { margin: 0; max-width: 62ch; color: var(--ink-2); }
+.masthead .stamp { font-size: var(--step--1); color: var(--ink-2); }
+.masthead .stamp b { color: var(--ink); font-weight: 500; }
+
+/* ---------- 本体 ---------- */
+.layout { display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 32px; padding-block: 24px 48px; align-items: start; }
+
+.filters { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 20px; }
+.filters details { display: contents; }
+.filters summary { display: none; }
+.filters .panel { display: grid; gap: 20px; }
+.fgroup { display: grid; gap: 8px; }
+.fgroup > .label { font-size: var(--step--1); letter-spacing: .08em; color: var(--ink-2); font-weight: 500; }
+.field {
+  width: 100%; padding: 9px 12px; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--surface);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--rule); background: var(--surface); border-radius: 999px;
+  padding: 4px 12px; font-size: var(--step--1); cursor: pointer; line-height: 1.6;
+}
+.chip:hover { border-color: var(--shu); }
+.chip[aria-pressed="true"] { background: var(--shu); border-color: var(--shu); color: var(--shu-ink); }
+.fnote { font-size: var(--step--1); color: var(--ink-2); margin: 0; line-height: 1.6; }
+.reset { justify-self: start; background: none; border: 0; padding: 0; color: var(--shu); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: var(--step--1); }
+
+.regions { display: flex; flex-wrap: wrap; gap: 4px 18px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+.region {
+  background: none; border: 0; padding: 8px 0 10px; cursor: pointer; color: var(--ink-2);
+  border-bottom: 2px solid transparent; margin-bottom: -1px; font-weight: 500;
+}
+.region[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--shu); }
+.count { font-size: var(--step--1); color: var(--ink-2); margin: 10px 0 0; font-variant-numeric: tabular-nums; }
+
+.pref { padding-block: 22px 6px; border-bottom: 1px solid var(--rule); }
+.pref h2 { font-size: var(--step-1); display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.pref h2 .code { font-family: var(--f-body); font-size: var(--step--1); color: var(--ink-2); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+.row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+.card {
+  display: grid; grid-template-rows: auto 1fr; text-align: left; padding: 0; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.ph { display: block; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; background: var(--paper); position: relative; overflow: hidden; }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.ph.empty { display: grid; place-content: center; justify-items: center; gap: 6px; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+.ph.empty svg { width: 34%; max-width: 64px; height: auto; fill: currentColor; opacity: .28; }
+.ph.empty span { font-size: .75rem; letter-spacing: .08em; opacity: .7; }
+.card .ph img { border-bottom: 1px solid var(--rule); }
+.meta { display: grid; gap: 2px; padding: 12px 14px 14px; align-content: start; min-width: 0; }
+.name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); line-height: 1.45; }
+.kana { font-size: var(--step--1); color: var(--ink-2); line-height: 1.5; }
+.tags { font-size: var(--step--1); color: var(--moss); font-weight: 500; margin-top: 6px; line-height: 1.6; }
+.tags.none { color: var(--ink-2); font-weight: 400; }
+.empty-state { padding: 40px 0; color: var(--ink-2); }
+
+/* ---------- 詳細シート ---------- */
+dialog.sheet {
+  width: min(780px, calc(100% - 32px)); max-height: calc(100% - 48px); padding: 0;
+  border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); color: var(--ink);
+  box-shadow: var(--shadow);
+}
+dialog.sheet::backdrop { background: rgba(10, 12, 11, .55); }
+.sheet article { display: grid; }
+.sheet figure { margin: 0; position: relative; }
+.sheet figure img { width: 100%; max-height: 420px; object-fit: cover; }
+.sheet figure .ph { aspect-ratio: 16 / 7; }
+.sheet figcaption { font-size: .75rem; color: var(--ink-2); padding: 6px 24px 0; line-height: 1.6; overflow-wrap: anywhere; }
+.close {
+  position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--surface); cursor: pointer; font-size: 1.25rem; line-height: 1;
+}
+.sheet .body { padding: 16px 24px 28px; display: grid; gap: 22px; }
+.sheet .head { display: grid; gap: 2px; }
+.sheet .head .pref-line { font-size: var(--step--1); color: var(--ink-2); letter-spacing: .06em; }
+.sheet .head h2 { font-size: var(--step-2); }
+.sheet .head .kana { font-size: var(--step-0); }
+.badge { justify-self: start; margin-top: 8px; font-size: .75rem; padding: 2px 10px; border-radius: 999px; background: var(--shu-soft); color: var(--ink); }
+.sec { display: grid; gap: 8px; min-width: 0; }
+.sec h3 { font-size: var(--step-1); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.sec h3 .src { font-family: var(--f-body); font-weight: 400; font-size: .75rem; color: var(--ink-2); }
+.sec p { margin: 0; max-width: 65ch; }
+.sec ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.sec .muted { color: var(--ink-2); }
+.words { display: flex; flex-wrap: wrap; gap: 6px; }
+.word { border: 1px solid var(--rule); border-radius: 4px; padding: 1px 8px; font-size: var(--step--1); }
+.cat-line { font-size: var(--step--1); color: var(--moss); font-weight: 500; }
+.when { list-style: none; padding: 0 !important; }
+.when li { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 10px; }
+.when li b { color: var(--moss); font-weight: 500; }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+.sources { font-size: var(--step--1); padding-left: 1.6em !important; overflow-wrap: anywhere; }
+.maplink { justify-self: start; display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--shu); border-radius: var(--radius); padding: 6px 14px; text-decoration: none; font-weight: 500; }
+.note { font-size: var(--step--1); color: var(--ink-2); border-left: 2px solid var(--rule); padding-left: 10px; margin: 0; }
+
+/* ---------- 下部の説明 ---------- */
+.about { border-top: 1px solid var(--rule); background: var(--surface); }
+.about .wrap { padding-block: 32px 40px; display: grid; gap: 28px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.about section { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.about h2 { font-size: var(--step-1); }
+.about p { margin: 0; color: var(--ink-2); max-width: 65ch; }
+.about .wide { grid-column: 1 / -1; }
+
+@media (max-width: 960px) {
+  .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-block: 12px 40px; }
+  .filters { position: static; }
+  .filters details { display: block; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+  .filters summary { display: flex; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-weight: 500; }
+  .filters .panel { padding: 4px 14px 16px; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .card { grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: none; }
+  .card .ph { aspect-ratio: auto; height: 100%; min-height: 96px; }
+  .card .ph img { border-bottom: 0; border-right: 1px solid var(--rule); }
+  .card .ph.empty { border-bottom: 0; border-right: 1px solid var(--rule); }
+  .card .ph.empty span { font-size: var(--step-0); }
+  .meta { padding: 10px 12px; }
+  .about .wrap { grid-template-columns: minmax(0, 1fr); }
+  dialog.sheet { width: 100%; max-width: 100%; max-height: 100%; height: 100%; border-radius: 0; margin: 0; border: 0; }
+  .sheet .body { padding: 14px max(16px, env(safe-area-inset-right, 0px)) 32px max(16px, env(safe-area-inset-left, 0px)); }
+  .close { top: calc(10px + env(safe-area-inset-top, 0px)); right: max(10px, env(safe-area-inset-right, 0px)); }
+  .when li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">都道府県別・神社の図鑑</div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="torii" viewBox="0 0 32 32"><path d="M2 6.5c4.5 1.2 9 1.8 14 1.8s9.5-.6 14-1.8V10c-1.4.4-2.8.7-4.2.9V13H29v3h-3.2v13h-3.3V16H9.5v13H6.2V16H3v-3h3.2v-2.1C4.8 10.7 3.4 10.4 2 10V6.5zm7.5 4.7V13h5v-1.6c-1.7 0-3.4-.1-5-.2zm8 .2V13h5v-1.8c-1.6.1-3.3.2-5 .2z"/></symbol></svg>
+    <h1><svg class="torii" viewBox="0 0 32 32" aria-hidden="true"><use href="#torii" fill="currentColor"/></svg>日本全国 神社図鑑</h1>
+    <p id="lead">各都道府県から3社ずつ、ご利益・行き方・歴史をまとめました。載せているのは、各神社の公式サイトなどで確かめられた内容だけです。</p>
+    <div class="stamp">情報の確認日 <b id="built">—</b>　お出かけ前に、各神社の公式サイトで最新の情報をご確認ください。</div>
+  </div>
+</header>
+
+<main class="wrap layout">
+  <aside class="filters" aria-label="絞り込み">
+    <details id="filter-box" open>
+      <summary><span>絞り込み</span><span id="filter-summary" class="fnote"></span></summary>
+      <div class="panel">
+        <div class="fgroup">
+          <label class="label" for="q">名前・地名・御祭神で探す</label>
+          <input id="q" class="field" type="search" placeholder="例：八幡、大国主、京都" autocomplete="off">
+        </div>
+        <div class="fgroup">
+          <label class="label" for="pref">都道府県</label>
+          <select id="pref" class="field"></select>
+        </div>
+        <div class="fgroup">
+          <span class="label" id="cat-label">ご利益</span>
+          <div class="chips" id="cats" role="group" aria-labelledby="cat-label"></div>
+          <p class="fnote">複数選ぶと、どれか1つに当てはまる神社を表示します。</p>
+        </div>
+        <div class="fgroup">
+          <span class="label" id="sit-label">こんな時に</span>
+          <div class="chips" id="sits" role="group" aria-labelledby="sit-label"></div>
+        </div>
+        <button class="reset" id="reset" type="button">条件をすべて外す</button>
+      </div>
+    </details>
+  </aside>
+
+  <section aria-label="神社の一覧">
+    <div class="regions" id="regions"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div id="list"></div>
+  </section>
+</main>
+
+<footer class="about">
+  <div class="wrap">
+    <section>
+      <h2>載せている神社</h2>
+      <p>各都道府県から3社を選びました。旧国の一宮、旧社格の高い神社、参拝者の多い有名な神社を候補にし、公式の情報を確かめられた神社を載せています。日本の神社の一部であり、順位やランキングではありません。</p>
+    </section>
+    <section>
+      <h2>情報の出どころ</h2>
+      <p>ご利益・御祭神・由緒・行き方・参拝時間・祭事は、神社の公式サイト（無い場合は神社庁や自治体の公式サイト）で確かめた内容だけを載せています。確かめられなかった項目は空欄にし、所要時間などの数字も公式に書かれている場合だけ載せています。各神社の詳細に出典のリンクがあります。</p>
+    </section>
+    <section class="wide">
+      <h2>ご利益の分類について</h2>
+      <p>「家庭運」「仕事運」「金運」などのタグは、公式に書かれたご利益の言葉に下の語が含まれるかで機械的に付けています。公式にご利益の記載がない神社にはタグが付きません。</p>
+      <div class="tbl-wrap"><table id="cat-table"><thead><tr><th>分類</th><th>含まれていれば付ける語</th><th>こんな時に（目安）</th></tr></thead><tbody></tbody></table></div>
+      <p>「こんな時に」は、分類から参拝のきっかけの例を挙げた目安です。神社がそう案内しているわけではありません。</p>
+    </section>
+    <section class="wide">
+      <h2>写真について</h2>
+      <p id="photo-about">写真は Wikimedia Commons で自由な利用が許されたもの（クリエイティブ・コモンズなど）を使い、各神社の詳細に撮影者とライセンスを載せています。写真が無い神社は名前の札を表示しています。</p>
+    </section>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"></dialog>
+
+<script>
+const D = {"built":"2026-10-21","prefs":{"01":"北海道","02":"青森県","03":"岩手県","04":"宮城県","05":"秋田県","06":"山形県","07":"福島県","08":"茨城県","09":"栃木県","10":"群馬県","11":"埼玉県","12":"千葉県","13":"東京都","14":"神奈川県","15":"新潟県","16":"富山県","17":"石川県","18":"福井県","19":"山梨県","20":"長野県","21":"岐阜県","22":"静岡県","23":"愛知県","24":"三重県","25":"滋賀県","26":"京都府","27":"大阪府","28":"兵庫県","29":"奈良県","30":"和歌山県","31":"鳥取県","32":"島根県","33":"岡山県","34":"広島県","35":"山口県","36":"徳島県","37":"香川県","38":"愛媛県","39":"高知県","40":"福岡県","41":"佐賀県","42":"長崎県","43":"熊本県","44":"大分県","45":"宮崎県","46":"鹿児島県","47":"沖縄県"},"categories":[{"key":"family","label":"家庭運","words":["家内安全","家庭円満","夫婦円満","子授","安産","子育","子孫繁栄","家運"]},{"key":"work","label":"仕事運","words":["商売繁盛","商売繁昌","事業繁栄","事業繁盛","事業発展","社運","出世","立身","殖産","産業","仕事","技芸","諸芸"]},{"key":"money","label":"金運","words":["金運","財運","宝くじ","財宝","蓄財","金銭"]},{"key":"love","label":"縁結び","words":["縁結","良縁","恋愛","結婚","縁談"]},{"key":"health","label":"健康・長寿","words":["病気平癒","健康","長寿","延命","無病息災","身体健全","医薬","病除","疫病"]},{"key":"study","label":"学業","words":["学業","合格","学問","受験","試験","智恵","知恵","書道"]},{"key":"yakuyoke","label":"厄除け・開運","words":["厄除","厄払","厄祓","開運","方位除","八方除","除災","災難除","災厄"]},{"key":"travel","label":"交通・旅の安全","words":["交通安全","航海安全","海上安全","旅行安全","旅の安全","道中安全","航空安全","交通"]},{"key":"victory","label":"勝運","words":["必勝","勝運","武運","勝負"]},{"key":"harvest","label":"豊作・大漁","words":["五穀豊穣","五穀豊饒","豊作","大漁","豊漁","農業","漁業"]}],"shrines":[{"id":"01-1","prefCode":"01","pref":"北海道","name":"北海道神宮","kana":"ほっかいどうじんぐう","officialUrl":"http://www.hokkaidojingu.or.jp/","sourceType":"official","address":"北海道札幌市中央区宮ヶ丘474","deities":["大国魂神","大那牟遅神","少彦名神","明治天皇"],"benefitsOfficial":[],"history":"明治2年9月1日、東京の神祇官で開拓三神（大国魂神・大那牟遅神・少彦名神）を祀る「北海道鎮座神祭」が行われたのが創祀とされる。御霊代は札幌へ運ばれ、明治4年5月に社名が「札幌神社」と定められ、同年9月に現在の円山の地に社殿が完成した。昭和39年に明治天皇を増祀し、社名を「北海道神宮」と改めた。","access":["地下鉄東西線「円山公園駅」下車、徒歩15分","JRバス「北海道神宮」停留所下車、徒歩1分","JR札幌駅からタクシーで約15分"],"hours":null,"festivals":[{"name":"宵宮祭","date":"6月14日"},{"name":"例祭（札幌まつり）","date":"6月15日"},{"name":"神輿渡御","date":"6月16日"}],"officialNotes":["参拝には地下鉄・バス・タクシーなど公共交通機関の利用を呼びかけている（混雑時は駐車場が狭く渋滞しやすいとの案内）","鳥居は神域の入り口を示すもので、くぐる場所によってご利益が変わることはないと説明している"],"sources":[{"label":"公式サイト トップ","url":"http://www.hokkaidojingu.or.jp/"},{"label":"公式サイト 御祭神・由緒","url":"http://www.hokkaidojingu.or.jp/history.html"},{"label":"公式サイト 交通境内案内","url":"http://www.hokkaidojingu.or.jp/access.html"},{"label":"公式サイト 札幌まつり","url":"http://www.hokkaidojingu.or.jp/festival/"},{"label":"公式サイト 例祭予定（PDF・住所記載）","url":"http://www.hokkaidojingu.or.jp/news/pdf/R080520-reisai-yotei.pdf"},{"label":"公式サイト 北海道神宮全般について（Q&A）","url":"http://www.hokkaidojingu.or.jp/question_1.html"}],"fieldSources":{"address":[0,4],"deities":[1],"benefitsOfficial":[],"history":[1],"access":[2],"hours":[],"festivals":[3],"officialNotes":[2,5]},"notes":"benefitsOfficial：御祭神の解説に「国土経営・開拓の神」等の説明はあるが「ご利益／御神徳」として列挙された記載は確認できなかったため空。hours：公式中国語版ページに季節別の神門開閉時間の記載があるが、開門時間変更のお知らせもあり最新か確認できないため null。history：創祀・遷座の年の表記は公式サイト内のページによって違いがあると検索要約が指摘している。festivals：例祭以外の年間祭事は掲載が古い可能性があるため未記載。","tags":[]},{"id":"01-2","prefCode":"01","pref":"北海道","name":"函館八幡宮","kana":null,"officialUrl":null,"sourceType":"jinjacho","address":"北海道函館市谷地頭町2番5号","deities":["品陀和気命","住吉大神","金刀比羅大神"],"benefitsOfficial":[],"history":"社伝によると、文安2年（1445）亀田郡の領守河野加賀守政通が函館に館を築いた際、その東南の隅に八幡神を祀ったと伝えられる。永正8年の河野一族の敗北で赤川村に移り、慶安年間に巫女の伊知女が元町へ奉遷、文化元年に会所町、明治13年に谷地頭へ移って現在に至る。明治10年に国幣小社に列格し、明治29年に国幣中社に昇格した。現在の社殿は大正4年に完成した。","access":["市電谷地頭終点下車、徒歩5分","JR函館駅よりタクシー約7分"],"hours":null,"festivals":[{"name":"例祭","date":"8月15日"}],"officialNotes":[],"sources":[{"label":"北海道神社庁 函館八幡宮","url":"https://hokkaidojinjacho.jp/%E5%87%BD%E9%A4%A8%E5%85%AB%E5%B9%A1%E5%AE%AE/"}],"fieldSources":{"address":[0],"deities":[0],"benefitsOfficial":[],"history":[0],"access":[0],"hours":[],"festivals":[0],"officialNotes":[]},"notes":"神社自身の公式サイトは検索で特定できなかった（結果は観光サイト・まとめ記事のみ）ため、北海道神社庁の掲載ページを使用。御神徳・参拝時間は記載を確認できず。kana は公式・神社庁で確認できなかったため null。","tags":[]},{"id":"01-3","prefCode":"01","pref":"北海道","name":"上川神社","kana":null,"officialUrl":"https://kamikawajinja.jp/","sourceType":"official","address":"北海道旭川市神楽岡公園2番地","deities":[],"benefitsOfficial":[],"history":"旭川市街を望む丘「神楽岡」に鎮座する。創祀当初は現在の旭川駅付近にあり、次いで現旭川市役所付近、宮下21丁目と市街の発展に伴い鎮座地が移り、大正13年に現鎮座地へ移転した。常磐公園内の上川神社頓宮は、本社の御旅所として大正13年に奉設され、例大祭で御神輿が市内を渡御する際に一晩休まれるお宮とされる。","access":[],"hours":null,"festivals":[],"officialNotes":[],"sources":[{"label":"公式サイト トップ","url":"https://kamikawajinja.jp/"},{"label":"公式サイト 上川神社頓宮","url":"https://kamikawajinja.jp/group/kamikawa-tongu/"}],"fieldSources":{"address":[0],"deities":[],"benefitsOfficial":[],"history":[0,1],"access":[],"hours":[],"festivals":[],"officialNotes":[]},"notes":"公式サイトは確認できたが、検索結果の要約からは御祭神・御神徳・交通案内・参拝時間・祭事日程を確認できなかった（お知らせ「令和8年 上川神社例大祭斎行について」は本文未取得）。公式サイトがある神社のため神社庁サイトの情報は採用していない。kana は未確認のため null。WebSearch の利用上限に達し追加調査できず。","tags":[]},{"id":"08-1","prefCode":"08","pref":"茨城県","name":"鹿島神宮","kana":null,"officialUrl":"https://kashimajingu.jp/","sourceType":"official","address":"茨城県鹿嶋市宮中2306-1","deities":["武甕槌大神"],"benefitsOfficial":[],"history":"神武天皇が東征の途上、武甕槌大神の佩刀である韴霊剣の力によって危機を救われたことに感謝し、即位の年に大神を勅祭したと伝わる（神武天皇元年創祀）。古くは東国遠征の拠点として祭祀が行われ、奈良・平安時代には国の守護神として信仰された。中世から近世にかけては源頼朝や徳川家康などの武将から武神として崇敬され、本殿は徳川秀忠の奉納による。","access":["JR鹿島線・鹿島臨海鉄道「鹿島神宮駅」から徒歩7分","東京駅八重洲南口から高速バス「かしま号」で約2時間","車：東関東自動車道 潮来IC下車（中央区日本橋から約1時間20分、成田国際空港から約40分、水戸市内から約1時間10分）"],"hours":"境内と外部を区切る門や柵がないため365日24時間参拝可能（神符守札授与所・御祈祷受付は8:30〜16:30）","festivals":[{"name":"白馬祭","date":"1月7日（夕方）"},{"name":"祭頭祭","date":"3月（年により異なる。令和8年は3月9日）"},{"name":"例祭","date":"9月1日"},{"name":"式年大祭 御船祭","date":"12年に一度（午年）。令和8年は9月1日〜2日"}],"officialNotes":[],"sources":[{"label":"公式サイト トップ","url":"https://kashimajingu.jp/"},{"label":"公式サイト 御由緒・御祭神","url":"https://kashimajingu.jp/about/%E5%BE%A1%E7%94%B1%E7%B7%92%E3%83%BB%E5%BE%A1%E7%A5%AD%E7%A5%9E/"},{"label":"公式サイト アクセス・駐車場","url":"https://kashimajingu.jp/info/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%BB%E9%A7%90%E8%BB%8A%E5%A0%B4/"},{"label":"公式サイト よくあるご質問","url":"https://kashimajingu.jp/info/%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F/"},{"label":"公式サイト 令和八年 式年大祭御船祭","url":"https://kashimajingu.jp/feature/%E5%BE%A1%E8%88%B9%E7%A5%AD/"},{"label":"公式サイト 令和3年白馬祭について（お願い）","url":"https://kashimajingu.jp/news/%E4%BB%A4%E5%92%8C3%E5%B9%B4%E7%99%BD%E9%A6%AC%E7%A5%AD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E3%81%8A%E9%A1%98%E3%81%84%EF%BC%89/"},{"label":"公式サイト 祭頭祭の御案内(令和8年)","url":"https://kashimajingu.jp/news/%E7%A5%AD%E9%A0%AD%E7%A5%AD%E3%81%AE%E5%BE%A1%E6%A1%88%E5%86%85%E4%BB%A4%E5%92%8C8%E5%B9%B4/"}],"fieldSources":{"address":[2],"deities":[1],"benefitsOfficial":[],"history":[1],"access":[2,3],"hours":[3],"festivals":[4,5,6],"officialNotes":[]},"notes":"benefitsOfficial：公式（崇敬会案内）は御祭神のご神威により「武の神、決断力の強い神」として崇敬を集めると記すが、「ご利益」「御神徳」としての列挙ではないため空にした。address は検索要約が公式サイト記載と明示したが掲載ページ名までは示さなかった（アクセス・駐車場ページを根拠として記載）。白馬祭の日付は要約が「毎年1月7日の夕方」と記したもの。kana は公式で未確認のため null。","tags":[]},{"id":"08-2","prefCode":"08","pref":"茨城県","name":"笠間稲荷神社","kana":null,"officialUrl":"https://www.kasama.or.jp/","sourceType":"official","address":"茨城県笠間市笠間1番地","deities":["宇迦之御魂神"],"benefitsOfficial":["五穀豊穣","商売繁栄","殖産興業","開運招福","火防"],"history":"社伝によれば第36代孝徳天皇の御代、白雉2年（651年）の創建で、古くは「胡桃下稲荷」とも呼ばれ、「紋三郎稲荷」の名でも親しまれている。寛保3年（1743年）に井上正賢により社殿が拡張され、延享4年（1747年）には牧野貞通が祈願所と定めて境内地などを寄進した。本殿は江戸末期の安政・万延年間（1854〜1860）の再建で、昭和63年に国の重要文化財に指定された。","access":[],"hours":null,"festivals":[{"name":"例大祭","date":"4月（令和8年は4月9日）"},{"name":"笠間の菊まつり","date":"令和8年は10月24日〜11月23日"}],"officialNotes":["節分・初午・例大祭など祭礼時は、御祈祷の受付時間が通常と異なる場合がある"],"sources":[{"label":"公式サイト トップ","url":"https://www.kasama.or.jp/"},{"label":"公式サイト 笠間稲荷神社について","url":"https://www.kasama.or.jp/about/index.html"},{"label":"公式サイト 歴史","url":"http://www.kasama.or.jp/history/index4.html"},{"label":"公式サイト 祭典・行事","url":"https://www.kasama.or.jp/event/"},{"label":"公式サイト 御祈祷（個人）","url":"https://www.kasama.or.jp/pray/index.html"}],"fieldSources":{"address":[0],"deities":[1],"benefitsOfficial":[1],"history":[1,2],"access":[],"hours":[],"festivals":[0,3],"officialNotes":[4]},"notes":"access：公式のアクセスページ（http://www.kasama.or.jp/access/）は見つかったが、検索要約が「公式サイトの古いページ由来」と注記したため採用せず空にした。hours：境内の開門・閉門時間は公式で見つからず null（御祈祷は1月4日〜12月31日 午前8時〜午後4時と記載あり）。festivals：例大祭・菊まつりは令和8年の案内による日付で、毎年固定かは未確認。初午祭・節分祭は日付が確認できず除外。address は検索要約が掲載ページを特定しなかったためトップを根拠とした。kana は公式で未確認のため null。","tags":["work","yakuyoke","harvest"]},{"id":"08-3","prefCode":"08","pref":"茨城県","name":"大洗磯前神社","kana":null,"officialUrl":"https://oarai-isosakijinja.or.jp/","sourceType":"official","address":null,"deities":[],"benefitsOfficial":[],"history":null,"access":[],"hours":null,"festivals":[],"officialNotes":[],"sources":[{"label":"公式サイト トップ","url":"https://oarai-isosakijinja.or.jp/"}],"fieldSources":{"address":[],"deities":[],"benefitsOfficial":[],"history":[],"access":[],"hours":[],"festivals":[],"officialNotes":[]},"notes":"公式サイト（oarai-isosakijinja.or.jp）は特定できたが、検索インデックスにはトップページしかなく、「御祭神・由緒」「境内案内」「祭事」「アクセス」各ページの本文は取得できなかった。トップページには所在地「〒311-1301 茨城県東茨城郡大洗町磯浜町6890」と「海の石を神社に持ち込まないでください」の注意書きがあると要約されたが、要約が同ページの情報を約2300日前のもので古い可能性があると注記したため採用せず null／空にした。代替候補（酒列磯前神社・筑波山神社）も公式ドメインを特定する前に検索上限に達したため差し替えは行っていない。kana は公式で未確認のため null。要再調査。","tags":[]},{"id":"15-1","prefCode":"15","pref":"新潟県","name":"彌彦神社","kana":null,"officialUrl":"https://www.yahiko-jinjya.or.jp/","sourceType":"official","address":"新潟県西蒲原郡弥彦村弥彦2887-2","deities":["伊夜日子大神（天香山命）"],"benefitsOfficial":[],"history":"御祭神の天香山命は越の国開拓の勅を奉じて日本海を渡り米水浦に上陸し、漁業・製塩・酒造や稲作・畑作の基礎を伝えた越後開拓の祖神とされる。社伝では、神業を終えて神去った天香山命が神劒峰（弥彦山）に葬られ、御子の天五田根命が廟社を築いて奉祀したのが始まりで、崇神天皇の御代に建諸隅命が勅命により社殿を造営したと伝わる。『延喜式』では越後国で唯一の名神大社とされ、明治4年（1871）に国幣中社に列格した。","access":["上越新幹線「燕三条駅」で弥彦線に乗り換え、終点「弥彦駅」下車、徒歩15分程度","燕三条駅からタクシーで約30分","車：北陸自動車道 三条燕ICから約30分（関東方面から）／巻潟東ICから約30分（新潟方面から）","駐車場：神社脇の駐車場（大型バス20台・普通車50台）から拝殿まで徒歩約5分。参拝者用のため登山目的の駐車は遠慮するよう案内あり。村営第一駐車場もあり"],"hours":null,"festivals":[{"name":"例祭（2月1日〜4日に神幸神事を斎行）","date":"2月2日"},{"name":"妻戸大神例祭（大々神楽 全十三曲を奉奏）","date":"4月18日"},{"name":"燈籠神事（御神輿渡御・大燈籠巡行）","date":"7月25日（前後の神事は7月12日〜26日）"}],"officialNotes":["御祈祷（御祓）の受付時間は午前8時30分〜午後4時","御祈祷の種類として家内安全、身体健全、交通安全、厄難消除、社運隆昌、安全祈願、学業成就、良縁成就、病気平癒、五穀豊穣、大漁満足、心願成就などが案内されている","宝物殿の拝観時間は午前9時〜午後4時（月曜（休日の場合は翌日）及び1・2月中は休館）","弥彦山山頂の御神廟には伊夜日子大神と妃神の妻戸大神（熟穂屋姫命）が祀られている","大々神楽は妻戸大神例祭のほか、春秋の土曜日に一・二曲が奉奏される"],"sources":[{"label":"公式サイト トップ","url":"https://www.yahiko-jinjya.or.jp/"},{"label":"公式サイト 御祭神","url":"https://www.yahiko-jinjya.or.jp/history/gosaijin/index.html"},{"label":"公式サイト 御由緒","url":"https://www.yahiko-jinjya.or.jp/history/yuisyo/index.html"},{"label":"公式サイト 交通アクセス","url":"https://www.yahiko-jinjya.or.jp/access/index.html"},{"label":"公式サイト 年間の主な祭典・行事","url":"https://www.yahiko-jinjya.or.jp/event/index.html"},{"label":"公式サイト 燈籠神事","url":"https://www.yahiko-jinjya.or.jp/event/summer/toroumatsuri.html"},{"label":"公式サイト 春の祭典・行事","url":"https://www.yahiko-jinjya.or.jp/event/spring/index.html"},{"label":"公式サイト 御祈祷（御祓）","url":"https://www.yahiko-jinjya.or.jp/visit/gokitou/index.html"},{"label":"公式サイト 宝物殿","url":"https://www.yahiko-jinjya.or.jp/meguru/homotsuden/index.html"},{"label":"公式サイト 御神廟","url":"https://www.yahiko-jinjya.or.jp/meguru/goshinbyo/index.html"},{"label":"公式サイト 舞殿","url":"https://www.yahiko-jinjya.or.jp/meguru/buden/index.html"}],"fieldSources":{"address":[3],"deities":[1],"benefitsOfficial":[],"history":[1,2],"access":[3],"hours":[],"festivals":[4,5,6],"officialNotes":[7,8,9,10]},"notes":"kana：公式サイト上で社名の読みを確認できなかったため null。benefitsOfficial：公式に「ご利益」「御神徳」として列挙された語句を確認できなかったため空（御祈祷の種類は officialNotes に記載）。hours：境内の開門・参拝時間の記載が確認できなかったため null。","tags":[]},{"id":"15-2","prefCode":"15","pref":"新潟県","name":"白山神社","kana":null,"officialUrl":"https://www.niigatahakusanjinja.or.jp/","sourceType":"official","address":"新潟県新潟市中央区一番堀通町1-1","deities":["菊理媛大神（白山大神・白山比咩大神）","伊邪那岐命","伊邪那美命"],"benefitsOfficial":["縁結び"],"history":"新潟の総鎮守。御祭神の菊理媛大神は加賀の霊峰白山の頂上に祀られる女神で、この神を勧請して新潟の地に祀ったとされる。建立の年代は永禄（1558〜）・天正（1573〜）の二度の火災で旧記を失い明らかでないが、延喜（901〜）とも寛治（1087〜）ともいわれる。大正13年に県社、昭和56年に別表神社に列せられた。","access":["新潟駅バスターミナルから新潟市観光循環バス「白山公園前」下車、徒歩1分","新潟駅他から路線バス「市役所前」下車、徒歩約2〜3分","JR越後線「白山駅」から徒歩約15分","新潟駅からタクシーで約10分","車：新潟バイパス 桜木インターから約10分／高速道路 女池インターから約10分","無料駐車場50台（利用時間7:00〜19:00。参拝の間のみ利用可、防犯のため19時に閉門）。混雑時は近隣の白山公園駐車場（有料）などの利用を案内"],"hours":"6:00〜19:00（春まつり・七夕風鈴まつりの期間は21:00まで。門の外からの参拝は24時間可能）","festivals":[{"name":"節分祭","date":"2月3日"},{"name":"春まつり（春季大祭）","date":"4月12日〜18日（春季大祭は4月15日）"},{"name":"百八灯献燈祭","date":"4月17日"},{"name":"半年詣り・茅の輪神事","date":"6月30日"},{"name":"夏まつり（例大祭）","date":"7月12日〜18日（例大祭は7月15日）"},{"name":"住吉祭・新潟まつり","date":"8月7日〜9日"},{"name":"秋季大祭","date":"10月12日〜18日"},{"name":"新嘗祭","date":"11月23日"}],"officialNotes":["お札・お守り・おみくじ・御朱印の授与は午前7時〜午後7時（一部の祭典・行事の日は午後5時まで）","ご祈祷は毎日午前9時〜午後4時40分（年中無休）。個人・家族は予約不要で当日受付（受付は午前8時50分〜最終午後4時30分）","配祀神として天照皇大神・八幡大神、合祀神として住吉大神・稲荷大神・天満天神・出雲大神など多くの神々を祀る","神社の無料駐車場は参拝者専用で、参拝後に神社以外へ行く場合の駐車は不可。神社周辺の道路は駐車禁止"],"sources":[{"label":"公式サイト トップ","url":"https://www.niigatahakusanjinja.or.jp/"},{"label":"公式サイト 白山神社の由緒","url":"https://www.niigatahakusanjinja.or.jp/about/yuisho.html"},{"label":"公式サイト 白山神社の神様","url":"https://www.niigatahakusanjinja.or.jp/about/god.html"},{"label":"公式サイト 所在地","url":"https://www.niigatahakusanjinja.or.jp/access/location.html"},{"label":"公式サイト 公共交通機関でのアクセス","url":"https://www.niigatahakusanjinja.or.jp/access/public.html"},{"label":"公式サイト 駐車場のご案内","url":"https://www.niigatahakusanjinja.or.jp/access/parking.html"},{"label":"公式サイト よくあるご質問","url":"https://www.niigatahakusanjinja.or.jp/question/"},{"label":"公式サイト 白山神社の年間行事","url":"https://www.niigatahakusanjinja.or.jp/schedule/event.html"},{"label":"公式サイト ご祈祷・おはらいを受けられる方へ","url":"https://www.niigatahakusanjinja.or.jp/prayer/prayer.html"},{"label":"公式サイト 御朱印","url":"https://www.niigatahakusanjinja.or.jp/amulets/gosyuin.html"}],"fieldSources":{"address":[3],"deities":[2],"benefitsOfficial":[2],"history":[1,2],"access":[4,5],"hours":[6],"festivals":[7],"officialNotes":[2,5,6,8,9]},"notes":"kana：公式サイト上で社名の読みを明示した記載を確認できなかったため null。benefitsOfficial：公式の神様ページで菊理媛大神が「縁結びの神」とされている点のみ採用（家内安全・商売繁盛・安産・厄除け等はご祈祷の案内として掲載されているが、「ご利益」として列挙されているか確認できず不採用）。祭事の日付は公式の年間行事ページによる（年により変更の可能性あり）。","tags":["love"]},{"id":"15-3","prefCode":"15","pref":"新潟県","name":"居多神社","kana":"こたじんじゃ","officialUrl":null,"sourceType":"municipal","address":"新潟県上越市五智6-1-11","deities":["大国主命","奴奈川姫","建御名方命"],"benefitsOfficial":[],"history":"大国主命・奴奈川姫・建御名方命を祀る延喜式内社で、越後一宮とも呼ばれる。上越に国衙が置かれたことから、派遣された国司に崇敬され手厚く保護されてきたとされる。親鸞聖人も上陸の際に一番に参ったといわれ、聖人にまつわる越後七不思議の一つ「片葉葦」が群生する。明治12年、海岸侵食で境内が崩壊したため現在地に移ったとされる。","access":["えちごトキめき鉄道・妙高はねうまライン「直江津駅」から徒歩25分","頸城バス「国分寺裏門」下車すぐ","車：北陸自動車道「上越IC」から約20分","駐車場：無料（約30台）"],"hours":null,"festivals":[],"officialNotes":["市指定文化財の木造狛犬（鎌倉時代後期の作と推定）と、中世から近世にかけての居多神社文書（市指定文化財）を所蔵（上越市ホームページによる）"],"sources":[{"label":"上越観光Navi（上越市観光情報サイト） 居多神社","url":"https://joetsukankonavi.jp/spot/detail.php?id=166"},{"label":"にいがた観光ナビ（新潟県観光協会公式） 居多神社","url":"https://niigata-kankou.or.jp/spot/8439"},{"label":"新潟県神社庁 県内神社検索（居多神社）","url":"https://niigata-jinjacho.jp/shrine_niigata/search.php?area=&keyword=%E5%B1%85%E5%A4%9A%E7%A5%9E%E7%A4%BE"},{"label":"上越市ホームページ 狛犬と居多神社文書","url":"https://www.city.joetsu.niigata.jp/soshiki/bunkagyousei/chikinotakara-r2-no23.html"},{"label":"上越市 歴史的建造物リスト（PDF）","url":"https://www.city.joetsu.niigata.jp/uploaded/attachment/23499.pdf"}],"fieldSources":{"address":[1,2],"deities":[0,1],"benefitsOfficial":[],"history":[0,1,4],"access":[0,1],"hours":[],"festivals":[],"officialNotes":[3]},"notes":"神社自身の公式サイトが検索で見つからなかったため、上越市の観光情報サイト（上越観光Navi）、新潟県観光協会の公式観光サイト（にいがた観光ナビ）、上越市ホームページ、新潟県神社庁サイト（読み・鎮座地）で確認できた内容のみ記載。例祭などの祭事日付、参拝時間、ご利益はこれらのサイトで確認できなかったため空。","tags":[]},{"id":"21-1","prefCode":"21","pref":"岐阜県","name":"南宮大社","kana":null,"officialUrl":"https://www.nangu-san.com/","sourceType":"official","address":"〒503-2124 岐阜県不破郡垂井町宮代1734-1","deities":["金山彦大神","彦火火出見尊","見野命"],"benefitsOfficial":[],"history":"鉄鉱・鉱山を司る金山彦大神を主祭神とし、相殿に彦火火出見尊・見野命を祀る美濃国一の宮で、古くから全国の鉱山・金属業の総本宮として信仰を集める。社伝では神武天皇東征の際に霊験を現したことから府中に祀られ、第十代崇神天皇の御代に美濃仲山麓の現在地へ鎮座したと伝える。古くは「仲山金山彦神社」と称し、国府の南に位置することから南宮大社と呼ばれるようになった。関ヶ原合戦の兵火で焼失した社殿は、寛永19年（1642年）に三代将軍徳川家光により再建された。","access":["JR東海道本線「垂井駅」から徒歩20分","JR東海道本線「大垣駅」前から名阪近鉄バス「大垣宮代線」で「南宮大社前」下車（正月三が日のみの運行）","車：名神高速道路 養老SA（スマートIC）利用。駐車場は境内手前の南宮大社敷地内"],"hours":"夏期（4月16日〜10月14日）5:00〜18:00／冬期（10月15日〜4月15日）6:00〜17:30（日没により閉門が早まる場合あり）","festivals":[{"name":"例大祭（御田植神事・神幸式・蛇山神事）","date":"5月4日・5日"},{"name":"金山大祭（ふいご祭）","date":"11月8日"}],"officialNotes":["ご祈祷は時間で区切らず受付順。受付時間は9:00〜16:00","例大祭（5月4日・5日）や奉賛会大祭などの行事日はご祈祷の受付時間が変更される","月次祭の日は夜間参拝が行われ、開門時間が延長される場合がある","年末年始は交通規制があり、毎年の規制・駐車場案内が公式サイトのPDFで告知される"],"sources":[{"label":"公式サイト トップ","url":"https://www.nangu-san.com/"},{"label":"公式サイト 歴史","url":"https://www.nangu-san.com/about/history.html"},{"label":"公式サイト 南宮大社を知る","url":"https://www.nangu-san.com/about/"},{"label":"公式サイト 交通案内","url":"https://www.nangu-san.com/access.html"},{"label":"公式サイト よくある質問","url":"https://www.nangu-san.com/faq.html"},{"label":"公式サイト 5月 例大祭","url":"https://www.nangu-san.com/feast/reitaisai.html"},{"label":"公式サイト 11月 金山大祭","url":"https://www.nangu-san.com/feast/fuigo.html"},{"label":"公式ブログ 例大祭が無事に斎行されました","url":"https://www.nangu-san.com/blog/post-1971"},{"label":"公式サイト ご祈祷","url":"https://www.nangu-san.com/prayer/"},{"label":"公式サイト 案内PDF（住所・アクセス）","url":"https://www.nangu-san.com/conts/wp-content/uploads/2022/01/7f471f8a924b8efec0c09c5f21b00f49-1.pdf"},{"label":"公式サイト 月次祭及び花手水、諸行事のご案内","url":"https://www.nangu-san.com/news/post-1717"},{"label":"公式サイト 例大祭 ご祈祷受付時間の変更のご案内","url":"https://www.nangu-san.com/news/post-2306"}],"fieldSources":{"address":[3,9],"deities":[1],"benefitsOfficial":[],"history":[1,2],"access":[3],"hours":[4],"festivals":[5,6,7],"officialNotes":[4,11,10,3]},"notes":"公式サイトに「ご利益」「御神徳」として列挙された記述は確認できなかったため benefitsOfficial は空（公式トップでは金運・勝負運のパワースポットとして人気と紹介され、授与品に金運守がある）。節分祭（2月）・高山社祭（4月）・大祓式（6月）は公式の祭事一覧にあるが具体的な日付を確認できず未掲載。kana は公式で確認できなかったため null。","tags":[]},{"id":"21-2","prefCode":"21","pref":"岐阜県","name":"飛騨一宮水無神社","kana":null,"officialUrl":"https://minashijinjya.or.jp/","sourceType":"official","address":"〒509-3505 岐阜県高山市一之宮町5323","deities":["御歳大神","大己貴命","神武天皇","応神天皇","天火明命","三穂津姫命"],"benefitsOfficial":["生生化育","無病息災","開運厄除","家内安全","商売繁昌","豊年満作","交通安全","旅行安全","子授け・安産・子育て","女性幸福"],"history":"創立は神代と伝わるが古い記録は散逸しており、歴史上の初見は貞観9年（867年）の神位授与である。位山を御神体山とし、主祭神の御歳大神と相殿神を「水無大神」と称する説がある。中世には神仏習合が進み、明治初年の神仏分離を経て明治4年に国幣小社に列格した。安永2年（1773年）の大原騒動の後、安永7年に梶原家が神職として招かれて唯一神道に改められ、安永8年に飛騨国中の神々を招いて行われた大祭が「飛驒の大祭」の起源とされる。","access":["JR高山本線「飛騨一ノ宮駅」下車（特急列車は停車しないため、JR高山駅から普通列車で飛騨一ノ宮駅へ戻る。普通列車は本数が少ないため運行時間を要確認）","濃飛バス：JR高山駅から「飛騨一之宮」バス停（事前予約が必要な便あり）"],"hours":null,"festivals":[{"name":"生きびな祭","date":"4月3日"},{"name":"例祭（宮まつり）：試楽祭（宵祭）・本楽祭（例祭・御神幸）","date":"5月1日・2日"}],"officialNotes":["通常の御祈祷受付は9:00〜16:00（新春・節分祭などは受付時間が変わる）","個人祈祷は願意1願につき5,000円から。団体祈祷・正式参拝は事前予約が必要"],"sources":[{"label":"公式サイト トップ","url":"https://minashijinjya.or.jp/"},{"label":"公式サイト 御祭神","url":"https://minashijinjya.or.jp/description_p.html"},{"label":"公式サイト 交通アクセス","url":"https://minashijinjya.or.jp/access.html"},{"label":"公式サイト English","url":"https://minashijinjya.or.jp/english.html"},{"label":"公式サイト 祭事","url":"https://minashijinjya.or.jp/festival.html"},{"label":"公式サイト お知らせ","url":"https://minashijinjya.or.jp/notice.html"},{"label":"公式サイト 4月3日 生きびな祭","url":"https://minashijinjya.or.jp/archives/3637"},{"label":"公式サイト 例祭（5/1・5/2）のご案内","url":"https://minashijinjya.or.jp/archives/1741"},{"label":"公式サイト 御祈祷・御参拝","url":"https://minashijinjya.or.jp/worshipers.html"}],"fieldSources":{"address":[2],"deities":[1],"benefitsOfficial":[1,8],"history":[1],"access":[2,3],"hours":[],"festivals":[4,5,6,7],"officialNotes":[8]},"notes":"相殿神は公式に「ほか多数」とあり、上記は検索結果で名前が確認できたもののみ。御神徳は公式ドメイン内の記載だが、掲載ページが御祭神ページか御祈祷ページかは特定できなかった。参拝時間（境内の開閉時刻）は公式で確認できず null。駅からの徒歩所要時間は過去のお知らせにのみ記載があったため未掲載。kana は公式で確認できなかったため null。","tags":["family","work","health","yakuyoke","travel"]},{"id":"21-3","prefCode":"21","pref":"岐阜県","name":"伊奈波神社","kana":null,"officialUrl":"https://www.inabasan.com/","sourceType":"official","address":null,"deities":["五十瓊敷入彦命","渟熨斗媛命","日葉酢媛命","彦多都彦命","物部十千根命"],"benefitsOfficial":[],"history":"主祭神の五十瓊敷入彦命は垂仁天皇の長男で景行天皇の兄にあたり、『古事記』『日本書紀』では各地の開拓や多くの池溝の整備に関わったと伝えられる。命が亡くなった翌年、竹内宿禰が稲葉山近くの丸山の地に祀ったのが始まりとされ、天文8年（1539年）に斎藤道三が稲葉山を居城とした際に現在の麓へ遷された。周囲を三川に囲まれた土地柄から、水防の神としても信仰されてきた。","access":[],"hours":null,"festivals":[],"officialNotes":[],"sources":[{"label":"公式サイト トップ","url":"https://www.inabasan.com/"},{"label":"公式サイト 伊奈波神社について","url":"https://www.inabasan.com/about/"}],"fieldSources":{"address":[],"deities":[1],"benefitsOfficial":[],"history":[1],"access":[],"hours":[],"festivals":[],"officialNotes":[]},"notes":"公式ドメイン（inabasan.com）は特定し御祭神・由緒は確認したが、その後 WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達したため、住所・交通・参拝時間・御神徳・祭事を公式で確認できず空欄。公式には行事ページ（https://www.inabasan.com/event/april/ 、https://www.inabasan.com/event/september/）と境内案内（https://www.inabasan.com/precincts/）があり、追加調査で埋められる見込み。kana は公式で確認できなかったため null。","tags":[]},{"id":"25-1","prefCode":"25","pref":"滋賀県","name":"多賀大社","kana":null,"officialUrl":"https://www.tagataisya.or.jp/","sourceType":"official","address":"滋賀県犬上郡多賀町多賀604番地","deities":["伊邪那岐大神","伊邪那美大神"],"benefitsOfficial":["延命長寿","縁結び","厄除け"],"history":"御祭神の伊邪那岐大神・伊邪那美大神は、国土や天照大神をはじめとする八百万の神々を生んだ神で、『古事記』では夫婦の道を初めて開いた神と記される。生命の親神であることから古く延命長寿・縁結び・厄除けの神として信仰を集め、鎌倉時代から江戸時代にかけて武家や民衆にも信仰が広まった。分祀社は全国に239社あるとされる。","access":["JR彦根駅で近江鉄道に乗り換え「多賀大社前」駅下車、徒歩10分","JR彦根駅から電車12分／バス20分","JR南彦根駅からバス20分","新幹線米原駅から電車25分","名神高速道路 彦根ICから自動車10分","名神 湖東三山スマートICから15分"],"hours":null,"festivals":[{"name":"古例大祭（多賀まつり）","date":"4月22日"}],"officialNotes":["一般祈祷は予約不要。受付時間内に授与所で申し込む"],"sources":[{"label":"公式サイト トップ","url":"https://www.tagataisya.or.jp/"},{"label":"公式サイト お多賀さんとは","url":"https://www.tagataisya.or.jp/sp/about/"},{"label":"公式サイト 交通案内","url":"https://www.tagataisya.or.jp/sp/info/map.html"},{"label":"公式サイト 参集殿アクセス","url":"https://www.tagataisya.or.jp/sansyuden/access/"},{"label":"公式サイト 古例大祭","url":"https://www.tagataisya.or.jp/info/koreitaisai/index.html"},{"label":"公式サイト 一般祈祷 参拝手順","url":"https://www.tagataisya.or.jp/kitoinfo/flow01.html"}],"fieldSources":{"address":[3],"deities":[1],"benefitsOfficial":[1],"history":[1],"access":[2,3],"hours":[],"festivals":[4],"officialNotes":[5]},"notes":"住所は公式サイト内の参集殿アクセスページの記載による。境内の参拝（開門）時間は公式で確認できず null。祈祷受付時間はページにより9:00〜16:00／16:30と表記が分かれるため記載しない。kana は公式で確認できていないため null。","tags":["love","health","yakuyoke"]},{"id":"25-2","prefCode":"25","pref":"滋賀県","name":"日吉大社","kana":null,"officialUrl":"https://hiyoshitaisha.jp/","sourceType":"official","address":"滋賀県大津市坂本5-1-1","deities":["大己貴神","大山咋神"],"benefitsOfficial":["方除","厄除"],"history":"崇神天皇7年に創祀されたと伝わり、全国3800余の日吉・日枝・山王神社の総本宮。平安京遷都の際には都の表鬼門（北東）にあたることから都の魔除・災難除を祈る社とされ、比叡山延暦寺の開創後は天台宗の護法神としても崇敬された。境内約40社の神々を総じて「日吉大神」と称し、西本宮（大己貴神）・東本宮（大山咋神）を中心とする山王七社がある。","access":["JR湖西線「比叡山坂本駅」から徒歩20分","京阪石山坂本線「坂本比叡山口駅」から徒歩10分"],"hours":"9:00〜16:00","festivals":[{"name":"山王祭","date":"4月12日〜14日"},{"name":"例祭（山王祭）","date":"4月14日"}],"officialNotes":["入苑協賛料 大人500円、小学生以下無料","境内駐車場は最大50台。紅葉の時期・正月・山王祭の時期は公共交通機関やパークアンドライドの利用を勧めている"],"sources":[{"label":"公式サイト トップ","url":"https://hiyoshitaisha.jp/"},{"label":"公式サイト 日吉大社について","url":"https://hiyoshitaisha.jp/about/"},{"label":"公式サイト よくあるご質問","url":"https://hiyoshitaisha.jp/faq/"},{"label":"公式サイト 交通アクセス","url":"http://hiyoshitaisha.jp/access/"},{"label":"公式サイト プライバシーポリシー（所在地記載）","url":"https://hiyoshitaisha.jp/privacy/"},{"label":"公式サイト 山王祭について","url":"https://hiyoshitaisha.jp/event/sannou/"},{"label":"公式サイト 年間行事","url":"https://hiyoshitaisha.jp/event/"}],"fieldSources":{"address":[4],"deities":[1,2],"benefitsOfficial":[0],"history":[1],"access":[3],"hours":[0],"festivals":[5,6],"officialNotes":[0,3]},"notes":"deities は公式FAQで主祭神とされる西本宮・東本宮の二柱のみ。benefitsOfficial は公式サイトのヘッダー「方除・厄除の大社」の語のみ採用（他の御神徳は原文の語句を確認できなかった）。hours は公式トップの記載。2021年の神事案内では9:00〜16:30、2023年の年末案内では12月31日は15:00までとあり、時期により異なる。kana は公式で確認できていないため null。","tags":["yakuyoke"]},{"id":"25-3","prefCode":"25","pref":"滋賀県","name":"建部大社","kana":null,"officialUrl":"https://takebetaisha.jp/","sourceType":"official","address":"滋賀県大津市神領1丁目16-1","deities":["日本武尊","大己貴命"],"benefitsOfficial":["開運","厄除","災難除","出世","必勝"],"history":"景行天皇46年、神勅により日本武尊の御霊を祀ったことに始まると伝わる。天武天皇の時代（白鳳4年・675年）に現在の瀬田の地へ遷され、天平勝宝7年（755年）に大己貴命を権殿に祀り、近江国一之宮と定められたとされる。『平治物語』には、平家に捕らわれた源頼朝が当社に参拝して前途を祈ったことが記されている。","access":["JR琵琶湖線「石山」駅から徒歩25分","京阪電車石山坂本線「唐橋前」駅から徒歩10分","石山駅2番のりば（近江鉄道バス）・3番のりば（帝産バス）から「建部大社前」下車","名神高速道路 瀬田西IC・瀬田東ICから約5分"],"hours":"5:00〜17:00","festivals":[{"name":"船幸祭（納涼船幸祭）","date":"8月17日"}],"officialNotes":["授与所は8時〜17時","第一駐車場は最大70台・無料。正月や夏祭りの時期は交通規制や駐車制限がある"],"sources":[{"label":"公式サイト トップ","url":"https://takebetaisha.jp/"},{"label":"公式サイト 建部大社について","url":"https://takebetaisha.jp/about/"},{"label":"公式サイト 建部大社の見どころ","url":"https://takebetaisha.jp/features/"},{"label":"公式サイト 交通アクセス","url":"https://takebetaisha.jp/access/"},{"label":"公式サイト 船幸祭・夏祭り関連の神事","url":"https://takebetaisha.jp/ceremony/"}],"fieldSources":{"address":[0,3],"deities":[1],"benefitsOfficial":[1],"history":[1,2],"access":[3],"hours":[0,3],"festivals":[4],"officialNotes":[3]},"notes":"deities は本殿の日本武尊と権殿の大己貴命。benefitsOfficial は公式が日本武尊・大己貴命の御神徳として挙げる語句のうち、原文どおり確認できたものだけ。年末年始は参拝時間が変わる（公式の年末年始案内）。kana は公式で確認できていないため null。","tags":["work","yakuyoke","victory"]},{"id":"26-1","prefCode":"26","pref":"京都府","name":"伏見稲荷大社","kana":null,"officialUrl":"https://inari.jp/","sourceType":"official","address":"京都市伏見区深草薮之内町68番地","deities":["宇迦之御魂大神","佐田彦大神","大宮能売大神","田中大神","四大神"],"benefitsOfficial":["商売繁昌","産業興隆","家内安全","交通安全","芸能上達"],"history":"和銅4年（711）2月初午の日に稲荷山へ鎮座されたと伝えられるが、信仰の起源はさらに古いと考えられている。最古の記録は『山城国風土記』逸文で、「イナリ」の社名を稲が生じた奇瑞に由来させている。天慶5年（942）に最高位の正一位を授かった。本殿には下社・中社・上社と田中社・四大神社の五柱が相殿で祀られ、これらの神名は稲荷大神の御神徳を神名化したものとされる。","access":["JR奈良線「稲荷駅」下車すぐ（京都駅より5分・2駅目）","京阪本線「伏見稲荷駅」下車、東へ徒歩5分","市バス南5系統「稲荷大社前」下車、東へ徒歩7分"],"hours":null,"festivals":[{"name":"初午大祭","date":"初午の日"},{"name":"稲荷祭（神幸祭）","date":"7月20日に最も近い日曜日"},{"name":"本宮祭","date":"7月の土用入り後最初の日曜または祝日"}],"officialNotes":["大社駐車場周辺（道路）は大変混雑するため、公共交通機関の利用を勧めている"],"sources":[{"label":"公式サイト トップ","url":"https://inari.jp/"},{"label":"公式サイト 伏見稲荷大社とは","url":"https://inari.jp/about/"},{"label":"公式サイト ご祭神","url":"https://inari.jp/about/saijin/"},{"label":"公式サイト 交通アクセス","url":"https://inari.jp/access/"},{"label":"公式サイト 祭礼と行事","url":"https://inari.jp/sp/rite/"},{"label":"公式サイト 初午","url":"https://inari.jp/about/history/num08/"}],"fieldSources":{"address":[3],"deities":[2],"benefitsOfficial":[2],"history":[1,2],"access":[3],"hours":[],"festivals":[4,5],"officialNotes":[3]},"notes":"deities は下社・中社・上社・田中社・四大神社の五柱（総称 稲荷大神）。参拝時間は公式で確認できず null。火焚祭は検索結果の日付に確信が持てなかったため入れていない。初午・稲荷祭・本宮祭は年により日付が変わる。kana は公式で確認できていないため null。","tags":["family","work","travel"]},{"id":"26-2","prefCode":"26","pref":"京都府","name":"八坂神社","kana":null,"officialUrl":"https://www.yasaka-jinja.or.jp/","sourceType":"official","address":"京都府京都市東山区祇園町北側625","deities":["素戔嗚尊","櫛稲田姫命","八柱御子神"],"benefitsOfficial":[],"history":"斉明天皇2年（656）、高麗より来朝した伊利之が新羅の牛頭山の素戔嗚尊を山城国愛宕郡八坂郷に祀ったことに始まるとされ、貞観18年（876）には僧円如が堂を建立したとされる。明治元年の神仏分離令により現在の社名に改められるまでは感神院・祇園社と称した。祇園祭は疫病が鎮まるようにとの祈りを込めて約1150年前（平安時代）に始まった当社の祭礼である。","access":["京阪電車「祇園四条駅」から徒歩約5分","阪急電鉄「京都河原町駅」から徒歩約8分","JR京都駅から市バス100番・206番「祇園」下車"],"hours":"24時間参拝可能（ご祈祷受付 9:00〜16:00）","festivals":[{"name":"例祭","date":"6月15日"},{"name":"祇園祭","date":"7月1日〜31日"},{"name":"神幸祭（祇園祭）","date":"7月17日"},{"name":"還幸祭（祇園祭）","date":"7月24日"},{"name":"疫神社夏越祭","date":"7月31日"},{"name":"祇園のえべっさん","date":"1月9日・10日"}],"officialNotes":["12月31日午後11時から1月1日午前0時までは境内全域が立入禁止","本殿の鈴は夜間は上げられており、鈴を鳴らしての参拝はできない","境内に駐車場はない","社務所の受付は9時〜17時"],"sources":[{"label":"公式サイト トップ","url":"https://www.yasaka-jinja.or.jp/"},{"label":"公式サイト 八坂神社の歴史","url":"https://www.yasaka-jinja.or.jp/about/history/"},{"label":"公式サイト お社・ご祭神","url":"https://www.yasaka-jinja.or.jp/shrine_deity/"},{"label":"公式サイト 境内マップ・アクセス","url":"https://www.yasaka-jinja.or.jp/access/"},{"label":"公式サイト ご参拝・ご祈祷","url":"https://www.yasaka-jinja.or.jp/sanpai/"},{"label":"公式サイト 主な神事・行事","url":"https://www.yasaka-jinja.or.jp/event/"},{"label":"公式サイト 祇園祭","url":"https://www.yasaka-jinja.or.jp/event/gion/"}],"fieldSources":{"address":[3],"deities":[2],"benefitsOfficial":[],"history":[1,6],"access":[3],"hours":[3,4],"festivals":[5,6],"officialNotes":[3,4]},"notes":"benefitsOfficial は本殿の御神徳を公式の原文どおり確認できなかったため空（検索上限に達し追加確認できず）。境内社では疫神社が疫病退散、北向蛭子社が商売繁昌とされる。kana は公式で確認できていないため null。","tags":[]},{"id":"26-3","prefCode":"26","pref":"京都府","name":"北野天満宮","kana":null,"officialUrl":"https://kitanotenmangu.or.jp/","sourceType":"official","address":"京都市上京区馬喰町","deities":["菅原道真公","中将殿","吉祥女"],"benefitsOfficial":[],"history":"天暦元年（947）、御神託により平安京の天門（北西）にあたる北野の地に菅原道真公をおまつりして創建された。永延元年（987）には一條天皇から「北野天満大自在天神」の御神号が贈られ、以後皇室の崇敬を受けた。現在の御本殿は慶長12年（1607）造営の国宝。全国約1万2千社の天満宮・天神社の総本社である。","access":["JR京都駅から京都市バス50系統で約35分","JR・地下鉄「二条駅」から市バス55系統で約15分","京福電車「北野白梅町駅」から徒歩","名神高速道路 南インター・東インターから約30分"],"hours":"7:00〜17:00（正月・行事期間は変動）","festivals":[{"name":"梅花祭","date":"2月25日"},{"name":"例祭（北野祭）","date":"9月4日"},{"name":"ずいき祭","date":"10月1日〜5日"}],"officialNotes":["御本殿前の三光門は閉門時刻の30分前に閉まり、以降は御本殿前での参拝ができない","御祈祷受付 9:00〜16:00、授与所 9:00〜16:30","駐車場は参拝者専用で、駐車は参拝時間内に限る"],"sources":[{"label":"公式サイト トップ","url":"https://kitanotenmangu.or.jp/"},{"label":"公式サイト 北野天満宮について","url":"https://kitanotenmangu.or.jp/about/"},{"label":"公式サイト 参拝時間・アクセス","url":"https://kitanotenmangu.or.jp/access/"},{"label":"公式サイト FAQ","url":"https://kitanotenmangu.or.jp/faq/"},{"label":"公式サイト 年中行事","url":"https://kitanotenmangu.or.jp/event/"},{"label":"公式サイト 北野祭再興","url":"https://kitanotenmangu.or.jp/event/kitanosai/"},{"label":"公式サイト 梅苑「花の庭」","url":"https://kitanotenmangu.or.jp/guidance/baien/"}],"fieldSources":{"address":[2],"deities":[1],"benefitsOfficial":[],"history":[1],"access":[2,3],"hours":[0],"festivals":[4,5,6],"officialNotes":[0,2]},"notes":"deities の中将殿（菅公御子息）・吉祥女（菅公北の方）は相殿。benefitsOfficial は公式の原文の語句を確認できなかったため空（検索上限に達し追加確認できず）。北野白梅町駅からの徒歩時間は公式内でアクセスページ5分／FAQ10分と記載が分かれるため数字を入れていない。hours は公式トップの記載で、過去の記事には別の時間表記もある。kana は公式で確認できていないため null。","tags":[]},{"id":"31-1","prefCode":"31","pref":"鳥取県","name":"宇倍神社","kana":null,"officialUrl":"https://www.ubejinja.or.jp/","sourceType":"official","address":"鳥取県鳥取市国府町宮下651","deities":["武内宿禰命"],"benefitsOfficial":["商売繁昌","長寿"],"history":"孝徳天皇大化4年（648）の創建と伝えられ、平安時代にまとめられた延喜式では鳥取県で唯一の名神大社、また一の宮として信仰を集めてきた。明治4年に国幣中社に列せられ、現在の社殿は明治31年に完成した。翌年には御祭神・武内宿禰命の御尊像とともに五円紙幣の図柄に採用され、お金に御縁のある商売繁昌の神様として全国から参詣者が訪れる。","access":["鳥取駅から路線バス（「宮ノ下」下車）又はタクシー","大阪・神戸⇔鳥取駅前は高速バスあり"],"hours":null,"festivals":[{"name":"歳旦祭","date":"1月1日"},{"name":"例大祭 宵宮祭","date":"4月20日"},{"name":"例大祭 例祭","date":"4月21日"},{"name":"大祓式","date":"6月30日・12月31日"},{"name":"秋祭","date":"9月21日"},{"name":"月次祭","date":"毎月1日（1月を除く）"}],"officialNotes":["初詣の時期は12月31日午後11時〜1月3日午後6時まで交通規制がかかる","結婚式やご祈祷の最中でも参拝は可能（少し待つ場合がある）","ご祈祷の受付は午前9時〜午後4時（個人は予約不要）"],"sources":[{"label":"公式サイト トップ","url":"https://www.ubejinja.or.jp/"},{"label":"公式サイト 宇倍神社について","url":"https://www.ubejinja.or.jp/new-about/"},{"label":"公式サイト よくある質問","url":"https://www.ubejinja.or.jp/new-faq/"},{"label":"公式サイト 交通アクセス","url":"https://www.ubejinja.or.jp/new-access/"},{"label":"公式サイト お祭り","url":"https://www.ubejinja.or.jp/new-sampai/omatsuri/"}],"fieldSources":{"address":[3],"deities":[1],"benefitsOfficial":[1,2],"history":[1],"access":[3],"hours":[],"festivals":[4],"officialNotes":[2]},"notes":"kana は公式の記載を確認できず null。参拝時間（境内の開閉時間）の記載は確認できず hours は null（ご祈祷受付時間のみ officialNotes に記載）。宮ノ下バス停からの徒歩時間は公式に記載なし。御幸祭は年により日付が異なるため festivals に含めていない。","tags":["work","health"]},{"id":"31-2","prefCode":"31","pref":"鳥取県","name":"倭文神社","kana":null,"officialUrl":"https://www.sitorijinja.com/","sourceType":"official","address":"鳥取県東伯郡湯梨浜町大字宮内754","deities":["建葉槌命","下照姫命","事代主命","建御名方命","少彦名命","天稚彦命","味耜高彦根命"],"benefitsOfficial":["安産"],"history":"創立年代は不明だが、社伝では大国主命の娘・下照姫命が出雲から海路で当地に来て住み、安産の指導や農業開発、医薬の普及に尽くしたとされる。当地の主要産業が倭文（しづおり）の織物であったことから、倭文部の祖神・建葉槌命を当地と縁の深い下照姫命とともに祀ったという。境内の経塚は古くから下照姫命の墓と伝えられ、大正4年に発掘された銅経筒・仏像・銅鏡などはいずれも国宝に指定されている。","access":["JR山陰本線・松崎駅から車で10分","松崎駅前から藤津入口停留所・徒歩20分"],"hours":null,"festivals":[{"name":"例祭","date":"5月1日"},{"name":"前夜祭（湯立神事）","date":"例祭前日"}],"officialNotes":["授与所の受付時間は9:30〜16:00","初穂料やお守り等の授与はすべて現金での取り扱い","安産祈願は一般に妊娠5か月目の戌の日がよいとされ、腹帯を持参して参拝するよう案内あり"],"sources":[{"label":"公式サイト トップ","url":"https://www.sitorijinja.com/"},{"label":"公式サイト 倭文神社について","url":"https://www.sitorijinja.com/about"},{"label":"公式サイト アクセス","url":"https://www.sitorijinja.com/access"},{"label":"公式サイト 御祈願","url":"https://www.sitorijinja.com/pray"},{"label":"公式サイト よくある質問","url":"https://www.sitorijinja.com/faq"}],"fieldSources":{"address":[2],"deities":[1],"benefitsOfficial":[0,1],"history":[1],"access":[2],"hours":[],"festivals":[0,1],"officialNotes":[3,4]},"notes":"伯耆国一宮（湯梨浜町）の倭文神社。kana は公式の記載を確認できず null。参拝時間の記載は確認できず hours は null（授与所の受付時間のみ officialNotes に記載）。例祭の記載がある公式ページを一つに特定できなかったため、festivals の根拠はトップと「倭文神社について」の両方を挙げた。駐車場の詳細は確認できず。","tags":["family"]},{"id":"31-3","prefCode":"31","pref":"鳥取県","name":"白兎神社","kana":null,"officialUrl":"https://hakutojinja.jp/","sourceType":"official","address":"鳥取県鳥取市白兎603","deities":["白兎神"],"benefitsOfficial":["縁結び","皮膚病","傷疾"],"history":"日本最古の書物「古事記」に記される日本神話「因幡の白うさぎ」の白兎神を主神とする神社。創建は明らかではないが、神社再興の経緯や歴史が当社の賽物や古い文献で詳らかにされている。神話の古事により日本の医療・動物医療の発祥の地と云われ、大国主命と八上姫との縁を取りもった縁結びの神様としても信仰されている。","access":[],"hours":null,"festivals":[],"officialNotes":["社務所の受付は9:00〜16:00","境内の見学、案内を希望する場合は事前に電話で連絡を"],"sources":[{"label":"公式サイト トップ","url":"https://hakutojinja.jp/"},{"label":"公式サイト よくあるご質問","url":"https://hakutojinja.jp/faq/"},{"label":"公式サイト ご参拝・授与品","url":"https://hakutojinja.jp/sanpai/"},{"label":"公式サイト 因幡の白兎について","url":"https://hakutojinja.jp/mythology/"}],"fieldSources":{"address":[0],"deities":[0],"benefitsOfficial":[0],"history":[0,3],"access":[],"hours":[],"festivals":[],"officialNotes":[0,1]},"notes":"kana は公式の記載を確認できず null。公式FAQに交通案内（路線バス・車・駐車場）はあるが、検索要約が「掲載から数年経っている」としたためルールに従い access は空にした（要再確認）。参拝時間・例祭等の祭事日程は公式で確認できず。配祀神は確認できず、主神の白兎神のみ記載。","tags":["love"]},{"id":"36-1","prefCode":"36","pref":"徳島県","name":"大麻比古神社","kana":null,"officialUrl":"https://www.ooasahikojinja.jp/","sourceType":"official","address":"徳島県鳴門市大麻町板東字広塚13","deities":["大麻比古大神","猿田彦大神"],"benefitsOfficial":["方除","厄除","交通安全","安産"],"history":"神武天皇の御代、天富命が阿波の地で麻・楮の栽培と麻布・木綿の生産を広め、その守護神として天太玉命を祀ったことに始まると伝わる。猿田彦大神はもと大麻山の峯に鎮座していたものが、後に本社に合わせて祀られた。延喜の制では名神大社に列し、明治六年に国幣中社に列した。","access":["藍住ICから車で15分","板野ICから車で10分","鳴門ICから車で20分","無料駐車場（1000台）あり"],"hours":"開門 6:00〜17:00（授与所 7:30〜16:30）","festivals":[{"name":"例祭（大麻さんの秋祭り）","date":"11月1日"},{"name":"奥宮例祭（大麻山山頂・奥宮峯神社）","date":"旧暦7月18日"},{"name":"大御神楽祭（春祭・湯立神楽）","date":"旧暦3月12日"},{"name":"神火大祭","date":"2月の節分当日"},{"name":"夏越の大祓・茅輪神事","date":"6月30日"}],"officialNotes":["11月1日は例祭のため午前9時〜午前11時30分、12月31日は初詣準備のため午後1時以降、ご祈祷の奉仕はできない","ご祈祷は30分間隔で行っている"],"sources":[{"label":"公式サイト トップ","url":"https://www.ooasahikojinja.jp/"},{"label":"公式サイト 由緒書","url":"https://www.ooasahikojinja.jp/yuisho/"},{"label":"公式サイト Q&A","url":"https://www.ooasahikojinja.jp/qa/"},{"label":"公式サイト ご祈祷について","url":"https://www.ooasahikojinja.jp/kitou/"},{"label":"公式サイト 所在地・ご連絡先","url":"https://ooasahikojinja.jp/access/"},{"label":"公式サイト お祭りと行事","url":"https://www.ooasahikojinja.jp/maturi/"},{"label":"公式サイト 夏越の大祓・茅輪神事","url":"https://www.ooasahikojinja.jp/natsugoe/"}],"fieldSources":{"address":[4],"deities":[1],"benefitsOfficial":[2,3],"history":[1],"access":[4],"hours":[3,4],"festivals":[5,6],"officialNotes":[3,4]},"notes":"読み（kana）は公式サイトで確認できなかったため null。ご祈祷受付の終了時刻が公式サイト内で食い違う（ご祈祷ページは午後4時30分、所在地ページは午後4時）ため、hours には開門時間と授与所の時間だけを載せた。公式の交通案内は車のみで、電車・バスの記載はない。旧暦の祭日は年によって新暦の日付が変わる。","tags":["family","yakuyoke","travel"]},{"id":"36-2","prefCode":"36","pref":"徳島県","name":"忌部神社","kana":null,"officialUrl":"https://imbe-jinja.jp/","sourceType":"official","address":"徳島県徳島市二軒屋町二丁目48","deities":["天日鷲命"],"benefitsOfficial":[],"history":"阿波国総鎮守。御祭神の天日鷲命は忌部氏の祖神で、麻や木綿を用いた祭祀・織物の神として信仰されている。忌部氏は中臣氏とともに国家の祭祀を司り、大嘗祭に際して朝廷へ麁服（あらたえ）を献上してきた。令和の大嘗祭でも古式に則って奉仕した。","access":["徳島自動車道「徳島IC」から車で約10分（ナビは「眉山病院」を目標に）","JR牟岐線「二軒屋駅」から徒歩約8分","「金比羅下」バス停留所から徒歩約2分","駐車場あり（無料）"],"hours":null,"festivals":[],"officialNotes":["問い合わせの受付時間は8時30分〜16時30分"],"sources":[{"label":"公式サイト トップ","url":"https://imbe-jinja.jp/"}],"fieldSources":{"address":[0],"deities":[0],"benefitsOfficial":[],"history":[0],"access":[0],"hours":[],"festivals":[],"officialNotes":[0]},"notes":"公式サイトで「ご利益・御神徳」としての記載、参拝時間、例祭などの祭事日程は確認できなかったため空にした。現在地への遷座や戦災からの復興などの沿革は公式ページで確認できなかったため、由緒に入れていない。読み（kana）は公式で確認できなかったため null。","tags":[]},{"id":"36-3","prefCode":"36","pref":"徳島県","name":"上一宮大粟神社","kana":null,"officialUrl":null,"sourceType":"municipal","address":"徳島県名西郡神山町神領西上角330","deities":["大宜都比売命"],"benefitsOfficial":[],"history":"創建年代は不詳だが、古くから複数の社号で呼ばれてきたとされ、現在14枚の棟札が残る。祭神の大宜都比売命は五穀を司る神で、伊勢国丹生の郷から阿波国に来て、この地一帯に粟をまいたという伝承がある。鎮座する大粟山は、『古事記』で大宜都比売命の体から蚕や稲・粟などが生まれたとする神話の舞台と結びつけられている。","access":["道の駅「温泉の里神山」から約250m"],"hours":null,"festivals":[],"officialNotes":["参拝は無料"],"sources":[{"label":"神山町公式サイト 上一之宮大粟神社","url":"https://www.town.kamiyama.lg.jp/enjoy/map/docs/2025061900456/"},{"label":"神山町公式サイト 上一之宮大粟神社（旧ページ）","url":"https://www.town.kamiyama.lg.jp/enjoy/map/2016/11/post-11.html"},{"label":"神山町公式サイト 神社の森、身近な神域：大粟山","url":"https://www.town.kamiyama.lg.jp/enjoy/guide/2025061900678/"}],"fieldSources":{"address":[0],"deities":[0,1],"benefitsOfficial":[],"history":[0,1,2],"access":[0],"hours":[],"festivals":[],"officialNotes":[0]},"notes":"神社自身の公式ウェブサイトは見つからなかった（検索で見つかったのは公式Xアカウント @ooawajinja のみ）。そのため神山町公式サイトの観光案内を出典にした（sourceType: municipal）。町のページでの表記は「上一之宮大粟神社」。ご利益、参拝時間、祭事の日付は町のページでも確認できなかったため空にした。読み（kana）は未確認のため null。検索上限に達したため、徳島県神社庁サイトは確認できていない。","tags":[]},{"id":"40-1","prefCode":"40","pref":"福岡県","name":"太宰府天満宮","kana":null,"officialUrl":"https://www.dazaifutenmangu.or.jp/","sourceType":"official","address":"〒818-0117 福岡県太宰府市宰府4丁目7番1号","deities":["菅原道真公"],"benefitsOfficial":["学問","至誠","厄除け"],"history":"菅原道真公は延喜3年（903）2月25日に大宰府で亡くなり、のちに無実が証明されて神様の御位に昇られた。道真公の御遺骸を牽いていた牛が伏して動かなくなった場所に門弟の味酒安行が御墓所を造営し、その上に御本殿が創建された。御本殿は「菅聖庿（かんせいびょう）」とも称えられ、天神信仰の聖地・全国天満宮の総本宮として守り伝えられている。","access":["西鉄太宰府駅から徒歩約5分","西鉄福岡（天神）駅から西鉄天神大牟田線で二日市駅へ、太宰府線に乗り換えて太宰府駅へ（全体で約30分）","博多バスターミナルからバスで約40分","福岡空港国際線ターミナルから西鉄バスで太宰府駅まで約25分"],"hours":"開門 6:00（春分の日から）／6:30（秋分の日から）、閉門 18:30（12〜3月）／19:00（4〜5月・9〜11月）／19:30（6〜8月）","festivals":[{"name":"鷽替え神事","date":"1月7日"},{"name":"鬼すべ神事","date":"1月7日"},{"name":"神幸式大祭","date":"9月21日〜25日"},{"name":"例祭","date":"9月25日"}],"officialNotes":["正月三が日は24時間開門（12月31日は6時30分に開門）","神社の駐車場はなく、近くの有料駐車場は台数に限りがあるため、公共交通機関での参拝がすすめられている"],"sources":[{"label":"公式サイト 出張祭典（社務所の住所記載）","url":"https://www.dazaifutenmangu.or.jp/pray/others/outside"},{"label":"公式サイト 御祭神 菅原道真公","url":"https://www.dazaifutenmangu.or.jp/about/sugawaranomichizanekou"},{"label":"公式サイト 今に伝わる天神信仰","url":"https://www.dazaifutenmangu.or.jp/about/belief"},{"label":"公式サイト 道真公のご生涯","url":"https://www.dazaifutenmangu.or.jp/about/michizane"},{"label":"公式サイト 境内案内","url":"https://www.dazaifutenmangu.or.jp/keidaiannai"},{"label":"公式サイト（繁体字中国語版）交通案内","url":"https://www.dazaifutenmangu.or.jp/tw/plan/getting-to-dazaifu-tenmangu/"},{"label":"公式サイト（繁体字中国語版）よくある質問","url":"https://www.dazaifutenmangu.or.jp/tw/plan/faq/"},{"label":"公式サイト（スマートフォン版）トップ 参拝時間","url":"https://sp.dazaifutenmangu.or.jp/"},{"label":"公式サイト 鷽替え・鬼すべ神事","url":"https://www.dazaifutenmangu.or.jp/sanpai/saiten/special/onisube"},{"label":"公式サイト お知らせ「神幸式大祭」斎行","url":"https://www.dazaifutenmangu.or.jp/info/detail/735"},{"label":"公式サイト お知らせ「神幸式大祭」斎行（例祭の記載）","url":"https://www.dazaifutenmangu.or.jp/info/detail/373"},{"label":"公式サイト 正月のご参拝","url":"https://www.dazaifutenmangu.or.jp/shogatsu"}],"fieldSources":{"address":[0],"deities":[1,3],"benefitsOfficial":[2],"history":[3,4],"access":[5,6],"hours":[7],"festivals":[8,9,10],"officialNotes":[11,6]},"notes":"読み仮名は公式の記載を確認できなかったため null。交通案内は公式サイト繁体字中国語版の記載を日本語に訳したもの（日本語版の交通ページは検索で本文を確認できず）。参拝時間は日本語ページの記載を採用。公式FAQ（中国語版）には「通常6:30開門、最も早い時期は6:00」とあり、日本語ページの季節区分とは書き方が異なる。JR博多駅〜西鉄太宰府駅の直通バスの告知は古い記事のため不採用。","tags":["study","yakuyoke"]},{"id":"40-2","prefCode":"40","pref":"福岡県","name":"宗像大社","kana":null,"officialUrl":"https://munakata-taisha.or.jp/","sourceType":"official","address":"〒811-3505 福岡県宗像市田島2331（辺津宮）","deities":["田心姫神","湍津姫神","市杵島姫神"],"benefitsOfficial":["あらゆる道を司る神「道主貴」"],"history":"宗像三女神は天照大神の神勅により宗像の地に降り、皇室と国家を守る神として、沖津宮（沖ノ島）・中津宮（大島）・辺津宮（本土）の三宮に祀られている。この三宮を総称して宗像大社という。『日本書紀』には天照大神から三女神への神勅が記されている。","access":["九州自動車道 若宮インターチェンジから車で約20分"],"hours":null,"festivals":[{"name":"秋季大祭（みあれ祭に始まり高宮神奈備祭で終わる）","date":"10月1日〜3日"}],"officialNotes":["ご祈願は祈願殿で受付（受付時間 午前9時〜午後5時）","秋季大祭3日目の一部祭典（高宮祭場など）は一般の参列はできない"],"sources":[{"label":"公式ホームページ トップ","url":"https://munakata-taisha.or.jp/"},{"label":"公式ホームページ 由緒","url":"https://munakata-taisha.or.jp/yuisyo.html"},{"label":"公式ホームページ 日本神話","url":"https://munakata-taisha.or.jp/shinwa.html"},{"label":"公式ホームページ 祈願殿","url":"https://munakata-taisha.or.jp/kiganden.html"},{"label":"公式ホームページ（英語）神宝館","url":"https://munakata-taisha.or.jp/shimpokan_en.html"},{"label":"公式ホームページ 辺津宮 祭典行事","url":"https://munakata-taisha.or.jp/hetsu_saiji.html"},{"label":"公式ホームページ 辺津宮","url":"https://munakata-taisha.or.jp/about_hetsu.html"}],"fieldSources":{"address":[0,6],"deities":[1,2],"benefitsOfficial":[0,1],"history":[1],"access":[4],"hours":[],"festivals":[5],"officialNotes":[3,5]},"notes":"読み仮名は公式の記載を確認できなかったため null。参拝時間は公式の記載を確認できず null（検索要約に出た「9:00〜16:30」は施設の開館時間とみられ、境内の参拝時間ではないため不採用）。交通は公式英語ページの車での案内だけ確認でき、電車・バスの案内は本文を確認できなかった。三女神の系譜は公式ページの中でも書き方が分かれているため、history には入れていない。WebSearch の利用上限に達したため、これ以上の検索はできなかった。","tags":[]},{"id":"40-3","prefCode":"40","pref":"福岡県","name":"宮地嶽神社","kana":null,"officialUrl":"https://www.miyajidake.or.jp/","sourceType":"official","address":null,"deities":["息長足比売命（神功皇后）","勝村大神","勝頼大神"],"benefitsOfficial":["商売繁昌","開運"],"history":"神功皇后が新羅へ渡る前に宮地嶽の山頂で天神地祇を祀って祈願したと伝えられ、その功績を讃えて主祭神として祀られた。皇后に随従した阿曇族の長もあわせて祀られ、「宮地嶽三柱大神」として祀られてきた。","access":[],"hours":null,"festivals":[],"officialNotes":[],"sources":[{"label":"公式サイト 御祭神・御由緒","url":"https://www.miyajidake.or.jp/history/gosaijin"},{"label":"公式サイト ご由緒","url":"https://www.miyajidake.or.jp/history"},{"label":"公式サイト 商売繁昌","url":"https://www.miyajidake.or.jp/gokitou/syoubai"}],"fieldSources":{"address":[],"deities":[0],"benefitsOfficial":[0,2],"history":[0,1],"access":[],"hours":[],"festivals":[],"officialNotes":[]},"notes":"読み仮名は公式の記載を確認できなかったため null。住所・交通・参拝時間・祭事は、WebSearch の利用上限（全エージェント共有）に達して公式ページを検索できず、未確認のため空。観光サイトに住所などの記載はあるが、公式ではないため不採用。ご利益は、検索要約で公式サイトに書かれているとされた「商売繁昌や開運の神様」によるもので、掲載ページは特定できていない。","tags":["work","yakuyoke"]},{"id":"44-1","prefCode":"44","pref":"大分県","name":"宇佐神宮","kana":"うさじんぐう","officialUrl":"http://www.usajinguu.com/","sourceType":"official","address":"大分県宇佐市南宇佐2859","deities":["八幡大神（応神天皇）","比売大神","神功皇后"],"benefitsOfficial":["厄除開運","家内安全"],"history":"全国に約4万社ある八幡社の総本宮。神亀2年（725）に現在の地に御殿を造立して八幡神をお祀りしたのが創建とされ、733年に比売大神を祀る二之御殿、823年に神功皇后を祀る三之御殿が建てられた。皇室からも伊勢神宮に次ぐ第二の宗廟として崇敬されてきた。","access":["車：東九州自動車道「宇佐IC」から国道10号線（別府方面）へ約6キロ（約15分）。御本殿周辺には駐車場はありません","電車・バス：JR日豊本線「宇佐駅」から四日市方面バスで「宇佐八幡バス停」下車、またはタクシー","大分空港からタクシーで約1時間、またはリムジンバスで「宇佐八幡バス停」下車"],"hours":"6:00〜18:00（公式「よくある質問」の記載。正月期間などは変更あり）","festivals":[{"name":"鎮疫祭","date":"2月13日"},{"name":"例祭（宇佐祭）","date":"3月18日"},{"name":"桜花祭","date":"4月10日"},{"name":"御神幸祭","date":"7月31日〜8月2日"},{"name":"風除報賽祭","date":"10月20日"},{"name":"新嘗祭","date":"11月23日"}],"officialNotes":["拝礼は「二拝・四拍手・一拝」（宇佐神宮の古儀）","上宮と下宮の両方を参拝するよう案内されている","カーナビで「宇佐神宮」と検索すると御本殿に案内される場合がある（御本殿周辺に駐車場なし）"],"sources":[{"label":"公式サイト トップ","url":"http://www.usajinguu.com/"},{"label":"公式サイト 由緒","url":"http://www.usajinguu.com/lineage/"},{"label":"公式サイト 歴史略年表","url":"http://www.usajinguu.com/history/"},{"label":"公式サイト ご祭神","url":"http://www.usajinguu.com/god/"},{"label":"公式サイト よくある質問","url":"http://www.usajinguu.com/faq/"},{"label":"公式サイト 交通アクセス","url":"http://www.usajinguu.com/access/"},{"label":"公式サイト 主な祭典","url":"http://www.usajinguu.com/festival-list/"},{"label":"公式サイト 参拝の作法","url":"http://www.usajinguu.com/worship/"}],"fieldSources":{"address":[5],"deities":[1,3],"benefitsOfficial":[4],"history":[1,2],"access":[5],"hours":[4],"festivals":[6],"officialNotes":[7,5]},"notes":"仲秋祭（放生会）は公式に「10月の土日月の3日間」とあり固定日付ではないため festivals から除外。御神幸祭の中日（8月1日）に流鏑馬神事あり。","tags":["family","yakuyoke"]},{"id":"44-2","prefCode":"44","pref":"大分県","name":"柞原八幡宮","kana":"ゆすはらはちまんぐう","officialUrl":"https://oita-yusuhara.com/","sourceType":"official","address":"大分県大分市大字八幡987","deities":["応神天皇","仲哀天皇","神功皇后"],"benefitsOfficial":["厄除・開運","諸産業の守護"],"history":"天長4年（827）、延暦寺の僧・金亀和尚が宇佐神宮に参籠して神告を受け、柞原山に八幡神を勧請したのが起源とされる。鳥羽法皇や源頼朝など朝廷・武家の厚い崇敬を受け、豊後一の宮と称される。大正5年（1916）に国幣小社に昇格した。","access":[],"hours":null,"festivals":[{"name":"歳旦祭","date":"1月1日"},{"name":"仲秋祭","date":"9月中旬"}],"officialNotes":[],"sources":[{"label":"公式サイト トップ","url":"https://oita-yusuhara.com/"},{"label":"公式サイト 柞原八幡宮の歴史","url":"https://oita-yusuhara.com/history/"},{"label":"公式サイト アクセス・お問い合わせ","url":"https://oita-yusuhara.com/access/"},{"label":"公式サイト 年間行事","url":"https://oita-yusuhara.com/event/"},{"label":"公式サイト 歳旦祭（一月一日）","url":"https://oita-yusuhara.com/event/%E6%AD%B3%E6%97%A6%E7%A5%AD%EF%BC%88%E4%B8%80%E6%9C%88%E4%B8%80%E6%97%A5%EF%BC%89/"},{"label":"公式サイト 仲秋祭（九月中旬）","url":"https://oita-yusuhara.com/event/%E4%BB%B2%E7%A7%8B%E7%A5%AD%EF%BC%88%E4%B9%9D%E6%9C%88%E5%8D%81%E5%9B%9B%E6%97%A5%EF%BD%9E%E4%B9%9D%E6%9C%88%E4%BA%8C%E5%8D%81%E6%97%A5%EF%BC%89/"}],"fieldSources":{"address":[2],"deities":[1],"benefitsOfficial":[1],"history":[0,1],"access":[],"hours":[],"festivals":[3,4,5],"officialNotes":[]},"notes":"ご利益は公式の歴史ページで御祭神・応神天皇について「厄除・開運や諸産業の守護神」と記された語句。公式アクセスページでは住所・電話のみ確認でき、交通手段・駐車場・参拝時間は確認できず空欄。祭事は公式サイトの年間行事の記事タイトルから採用（仲秋祭の URL には「九月十四日～九月二十日」とあるがタイトルは「九月中旬」のためタイトルに従った）。WebSearch の呼び出し上限に達したため、年間行事・交通案内の追加確認はできていない。","tags":["work","yakuyoke"]},{"id":"44-3","prefCode":"44","pref":"大分県","name":"西寒多神社","kana":"ささむたじんじゃ","officialUrl":"https://sasamuta.com/","sourceType":"official","address":"大分県大分市寒田1644番地","deities":["天照大御神","月読尊"],"benefitsOfficial":["金運開運","縁結び","安産","子宝","家内安全","厄除け","病気平癒","健康長寿"],"history":"神功皇后が三韓遠征の帰途に西寒多山（現在の本宮山）へ行幸し、白旗を立てたことが始まりと伝えられる。応神天皇9年に武内宿禰が勅命を受けて西寒多山上に宮殿を建立し、応永15年（1408）に大友親世が社殿を現在地に遷した。明治4年に国幣中社となった。","access":["バス：大分駅前3・4・5番のりばから寒田（そうだ）・ふじが丘行き、または光吉・ふじが丘行きで約30分、「ふじが丘南」下車、徒歩約15分","車：大分駅から約30分、光吉ICから約10分（駐車場80台）"],"hours":null,"festivals":[{"name":"元旦祭","date":"1月1日"},{"name":"厄除星祭","date":"2月1日〜3日"},{"name":"例祭","date":"4月15日"},{"name":"ふじまつり","date":"5月3日〜5日"},{"name":"夏越祭","date":"7月最終日曜"},{"name":"本宮秋祭","date":"10月20日"},{"name":"新嘗祭","date":"11月23日"}],"officialNotes":[],"sources":[{"label":"公式サイト トップ","url":"https://sasamuta.com/"},{"label":"公式サイト 由緒・歴史","url":"https://sasamuta.com/history"},{"label":"公式サイト アクセス","url":"https://sasamuta.com/access"},{"label":"公式サイト 概要","url":"https://sasamuta.com/about"},{"label":"公式サイト 四色鈴の神徳","url":"https://sasamuta.com/suzu"},{"label":"公式サイト 祭典・御祈願","url":"https://sasamuta.com/prayer"}],"fieldSources":{"address":[2,3],"deities":[1],"benefitsOfficial":[4],"history":[1],"access":[2],"hours":[],"festivals":[5],"officialNotes":[]},"notes":"ご利益は公式「四色鈴の神徳」の記載（青鈴＝金運開運、白鈴＝縁結び・安産・子宝、赤鈴＝家内安全・厄除け、黒鈴＝病気平癒・健康長寿）。創建年は公式サイト内で応神天皇9年を西暦278年とする記載と413年とする記載があり食い違うため、西暦は書いていない。参拝時間の記載は確認できず（電話受付9時〜16時30分の記載のみ）。","tags":["family","money","love","health","yakuyoke"]}]};
+
+const REGIONS = [
+  { key: "all", label: "全国", codes: null },
+  { key: "tohoku", label: "北海道・東北", codes: ["01", "02", "03", "04", "05", "06", "07"] },
+  { key: "kanto", label: "関東", codes: ["08", "09", "10", "11", "12", "13", "14"] },
+  { key: "chubu", label: "中部", codes: ["15", "16", "17", "18", "19", "20", "21", "22", "23"] },
+  { key: "kinki", label: "近畿", codes: ["24", "25", "26", "27", "28", "29", "30"] },
+  { key: "chugoku", label: "中国", codes: ["31", "32", "33", "34", "35"] },
+  { key: "shikoku", label: "四国", codes: ["36", "37", "38", "39"] },
+  { key: "kyushu", label: "九州・沖縄", codes: ["40", "41", "42", "43", "44", "45", "46", "47"] },
+];
+
+// 分類ごとの「こんな時に」の目安（編集による例。神社の案内ではない）
+const WHEN = {
+  family: "結婚・妊娠・出産や新居への引っ越しなど、家族の節目に",
+  work: "就職・転職・開業・異動など、仕事の節目に",
+  money: "家計や事業のお金まわりを見直したいときに",
+  love: "良い縁を願うとき、結婚を控えたときに",
+  health: "病気の回復や家族の健康を願うときに",
+  study: "受験や資格試験の前に",
+  yakuyoke: "厄年や、新しいことを始める転機に",
+  travel: "車を買ったときや、長い旅に出る前に",
+  victory: "試合や大事な勝負の前に",
+  harvest: "農業や漁業の仕事の祈願に",
+};
+
+const SITUATIONS = [
+  { key: "marriage", label: "結婚・出産", cats: ["family", "love"] },
+  { key: "job", label: "就職・転職・開業", cats: ["work"] },
+  { key: "money", label: "お金の節目", cats: ["money"] },
+  { key: "exam", label: "受験・試験", cats: ["study"] },
+  { key: "yaku", label: "厄年・転機", cats: ["yakuyoke"] },
+  { key: "health", label: "病気・健康", cats: ["health"] },
+  { key: "trip", label: "新車・旅行", cats: ["travel"] },
+  { key: "match", label: "勝負の前", cats: ["victory"] },
+];
+
+const SOURCE_LABEL = {
+  official: "神社の公式サイトで確認",
+  jinjacho: "神社庁の公式サイトで確認",
+  municipal: "自治体の公式サイトで確認",
+};
+
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const state = { region: "all", pref: "", cats: new Set(), sit: "", q: "" };
+const shrines = D ? D.shrines : [];
+const catLabel = Object.fromEntries((D ? D.categories : []).map((c) => [c.key, c.label]));
+const byId = new Map(shrines.map((s) => [s.id, s]));
+
+function photoBox(s, cls) {
+  if (s.photo) {
+    return `<span class="ph ${cls || ""}"><img src="${esc(s.photo.src)}" alt="${esc(s.name)}の写真" loading="lazy" decoding="async"></span>`;
+  }
+  return `<span class="ph empty ${cls || ""}" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#torii"/></svg><span>写真準備中</span></span>`;
+}
+
+function tagLine(s) {
+  if (!s.tags.length) return `<span class="tags none">${s.benefitsOfficial.length ? "分類に当てはまるご利益なし" : "公式のご利益の記載なし"}</span>`;
+  return `<span class="tags">${s.tags.map((t) => esc(catLabel[t])).join("・")}</span>`;
+}
+
+function matches(s) {
+  const r = REGIONS.find((x) => x.key === state.region);
+  if (r.codes && !r.codes.includes(s.prefCode)) return false;
+  if (state.pref && s.prefCode !== state.pref) return false;
+  if (state.cats.size && !s.tags.some((t) => state.cats.has(t))) return false;
+  if (state.sit) {
+    const sit = SITUATIONS.find((x) => x.key === state.sit);
+    if (!s.tags.some((t) => sit.cats.includes(t))) return false;
+  }
+  if (state.q) {
+    const hay = [s.name, s.kana, s.pref, s.address, ...s.deities, ...s.benefitsOfficial].join(" ");
+    if (!state.q.split(/\s+/).every((w) => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function renderList() {
+  const hits = shrines.filter(matches);
+  const groups = new Map();
+  for (const s of hits) {
+    if (!groups.has(s.prefCode)) groups.set(s.prefCode, []);
+    groups.get(s.prefCode).push(s);
+  }
+  $("#count").textContent = `${hits.length}社を表示中（全${shrines.length}社）`;
+  if (!hits.length) {
+    $("#list").innerHTML = `<p class="empty-state">条件に合う神社がありません。条件を減らしてみてください。</p>`;
+  } else {
+    $("#list").innerHTML = [...groups].map(([code, list]) => `
+      <section class="pref" aria-label="${esc(D.prefs[code])}">
+        <h2><span class="code">${code}</span>${esc(D.prefs[code])}</h2>
+        <div class="row">${list.map((s) => `
+          <button class="card" type="button" data-id="${s.id}">
+            ${photoBox(s)}
+            <span class="meta">
+              <span class="name">${esc(s.name)}</span>
+              ${s.kana ? `<span class="kana">${esc(s.kana)}</span>` : ""}
+              ${tagLine(s)}
+            </span>
+          </button>`).join("")}
+        </div>
+      </section>`).join("");
+  }
+  const n = state.cats.size + (state.sit ? 1 : 0) + (state.pref ? 1 : 0) + (state.q ? 1 : 0);
+  $("#filter-summary").textContent = n ? `${n}件の条件` : "";
+}
+
+function renderFilters() {
+  $("#regions").innerHTML = REGIONS.map((r) =>
+    `<button class="region" type="button" data-region="${r.key}" aria-pressed="${state.region === r.key}">${r.label}</button>`).join("");
+  const r = REGIONS.find((x) => x.key === state.region);
+  const codes = r.codes || Object.keys(D.prefs);
+  $("#pref").innerHTML = `<option value="">${r.codes ? r.label + "のすべて" : "すべての都道府県"}</option>` +
+    codes.map((c) => `<option value="${c}"${state.pref === c ? " selected" : ""}>${c} ${esc(D.prefs[c])}</option>`).join("");
+  $("#cats").innerHTML = D.categories.map((c) =>
+    `<button class="chip" type="button" data-cat="${c.key}" aria-pressed="${state.cats.has(c.key)}">${esc(c.label)}</button>`).join("");
+  $("#sits").innerHTML = SITUATIONS.map((x) =>
+    `<button class="chip" type="button" data-sit="${x.key}" aria-pressed="${state.sit === x.key}">${esc(x.label)}</button>`).join("");
+}
+
+function srcNote(s, field) {
+  const idx = (s.fieldSources && s.fieldSources[field]) || [];
+  return idx.length ? `<span class="src">出典 ${idx.map((i) => i + 1).join("・")}</span>` : "";
+}
+
+function openSheet(id, push) {
+  const s = byId.get(id);
+  if (!s) return;
+  const p = s.photo;
+  const mapQuery = encodeURIComponent(`${s.name} ${s.address || s.pref}`);
+  const html = `
+    <article>
+      <figure>
+        ${p ? `<img src="${esc(p.src)}" alt="${esc(s.name)}の写真">` : photoBox(s)}
+        <button class="close" type="button" data-close aria-label="閉じる">×</button>
+        ${p ? `<figcaption>写真：<a href="${esc(p.pageUrl)}" target="_blank" rel="noopener">${esc(p.title)}</a>　撮影 ${esc(p.artist)}　${p.licenseUrl ? `<a href="${esc(p.licenseUrl)}" target="_blank" rel="noopener">${esc(p.license)}</a>` : esc(p.license)}（Wikimedia Commons）</figcaption>` : ""}
+      </figure>
+      <div class="body">
+        <div class="head">
+          <span class="pref-line">${s.prefCode} ${esc(s.pref)}</span>
+          <h2 id="sheet-title">${esc(s.name)}</h2>
+          ${s.kana ? `<span class="kana">${esc(s.kana)}</span>` : ""}
+          <span class="badge">${esc(SOURCE_LABEL[s.sourceType] || "")}</span>
+        </div>
+
+        <section class="sec">
+          <h3>ご利益 ${srcNote(s, "benefitsOfficial")}</h3>
+          ${s.benefitsOfficial.length
+            ? `<div class="words">${s.benefitsOfficial.map((b) => `<span class="word">${esc(b)}</span>`).join("")}</div>
+               <span class="cat-line">${s.tags.length ? "分類：" + s.tags.map((t) => esc(catLabel[t])).join("・") : "分類表に当てはまる語はありません"}</span>`
+            : `<p class="muted">公式サイトでご利益の記載を確認できませんでした。</p>`}
+        </section>
+
+        ${s.tags.length ? `
+        <section class="sec">
+          <h3>こんな時に <span class="src">目安（ご利益の分類から）</span></h3>
+          <ul class="when">${s.tags.map((t) => `<li><b>${esc(catLabel[t])}</b><span>${esc(WHEN[t])}</span></li>`).join("")}</ul>
+        </section>` : ""}
+
+        <section class="sec">
+          <h3>歴史・由緒 ${srcNote(s, "history")}</h3>
+          ${s.history ? `<p>${esc(s.history)}</p>` : `<p class="muted">公式サイトで由緒を確認できませんでした。</p>`}
+        </section>
+
+        <section class="sec">
+          <h3>御祭神 ${srcNote(s, "deities")}</h3>
+          ${s.deities.length ? `<div class="words">${s.deities.map((d) => `<span class="word">${esc(d)}</span>`).join("")}</div>` : `<p class="muted">確認できませんでした。</p>`}
+        </section>
+
+        <section class="sec">
+          <h3>行き方 ${srcNote(s, "access")}</h3>
+          ${s.address ? `<p>所在地：${esc(s.address)} ${srcNote(s, "address")}</p>` : ""}
+          ${s.access.length ? `<ul>${s.access.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>` : `<p class="muted">公式サイトで交通案内を確認できませんでした。</p>`}
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener">Google マップで場所を見る</a>
+        </section>
+
+        <section class="sec">
+          <h3>参拝の時期と時間 ${srcNote(s, "festivals")}</h3>
+          ${s.hours ? `<p>参拝時間：${esc(s.hours)} ${srcNote(s, "hours")}</p>` : `<p class="muted">参拝時間：公式サイトに記載を確認できませんでした。</p>`}
+          ${s.festivals.length ? `<div class="tbl-wrap"><table><thead><tr><th>祭事</th><th>日にち</th></tr></thead><tbody>${s.festivals.map((f) => `<tr><td>${esc(f.name)}</td><td>${esc(f.date)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">祭事の日にちは確認できませんでした。</p>`}
+        </section>
+
+        ${s.officialNotes.length ? `
+        <section class="sec">
+          <h3>参拝の決まり・案内 ${srcNote(s, "officialNotes")}</h3>
+          <ul>${s.officialNotes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>
+        </section>` : ""}
+
+        <section class="sec">
+          <h3>出典</h3>
+          <ol class="sources">${s.sources.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a></li>`).join("")}</ol>
+          ${s.notes ? `<p class="note">確認メモ：${esc(s.notes)}</p>` : ""}
+        </section>
+      </div>
+    </article>`;
+  const dlg = $("#sheet");
+  dlg.innerHTML = html;
+  if (!dlg.open) dlg.showModal ? dlg.showModal() : dlg.setAttribute("open", "");
+  dlg.scrollTop = 0;
+  if (push !== false) {
+    try { history.replaceState(null, "", "#s" + id); } catch (e) { /* 埋め込み表示では URL を変えられない */ }
+  }
+}
+
+function closeSheet() {
+  const dlg = $("#sheet");
+  if (dlg.open) dlg.close ? dlg.close() : dlg.removeAttribute("open");
+}
+
+function init() {
+  if (!D) {
+    $("#list").innerHTML = `<p class="empty-state">データがまだ読み込まれていません。tools/build.py を実行してください。</p>`;
+    return;
+  }
+  $("#built").textContent = D.built;
+  const prefCount = new Set(shrines.map((s) => s.prefCode)).size;
+  const target = Object.keys(D.prefs).length * 3;
+  $("#lead").textContent = `${prefCount}都道府県・${shrines.length}社の、ご利益・行き方・歴史をまとめました。載せているのは、各神社の公式サイトなどで確かめられた内容だけです。` +
+    (shrines.length < target ? `現在は調査の途中で、全${target}社まで順に追加していきます。` : "");
+  const photoCount = shrines.filter((s) => s.photo).length;
+  if (photoCount < shrines.length) {
+    $("#photo-about").textContent += `（現在 ${photoCount}／${shrines.length}社に写真があります）`;
+  }
+  $("#cat-table tbody").innerHTML = D.categories.map((c) =>
+    `<tr><th>${esc(c.label)}</th><td>${c.words.map(esc).join("、")}</td><td>${esc(WHEN[c.key] || "")}</td></tr>`).join("");
+  if (window.matchMedia("(max-width: 760px)").matches) $("#filter-box").open = false;
+
+  renderFilters();
+  renderList();
+
+  $("#regions").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-region]");
+    if (!b) return;
+    state.region = b.dataset.region;
+    state.pref = "";
+    renderFilters();
+    renderList();
+  });
+  $("#pref").addEventListener("change", (e) => { state.pref = e.target.value; renderList(); });
+  $("#q").addEventListener("input", (e) => { state.q = e.target.value.trim(); renderList(); });
+  $("#cats").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-cat]");
+    if (!b) return;
+    const k = b.dataset.cat;
+    state.cats.has(k) ? state.cats.delete(k) : state.cats.add(k);
+    b.setAttribute("aria-pressed", state.cats.has(k));
+    renderList();
+  });
+  $("#sits").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-sit]");
+    if (!b) return;
+    state.sit = state.sit === b.dataset.sit ? "" : b.dataset.sit;
+    renderFilters();
+    renderList();
+  });
+  $("#reset").addEventListener("click", () => {
+    Object.assign(state, { region: "all", pref: "", sit: "", q: "" });
+    state.cats.clear();
+    $("#q").value = "";
+    renderFilters();
+    renderList();
+  });
+  $("#list").addEventListener("click", (e) => {
+    const c = e.target.closest(".card");
+    if (c) openSheet(c.dataset.id);
+  });
+  const dlg = $("#sheet");
+  dlg.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close]") || e.target === dlg) closeSheet();
+  });
+  dlg.addEventListener("close", () => {
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* 同上 */ }
+  });
+  const m = location.hash.match(/^#s(\d{2}-[123])$/);
+  if (m) openSheet(m[1], false);
+}
+
+init();
+</script>
+
+</html>

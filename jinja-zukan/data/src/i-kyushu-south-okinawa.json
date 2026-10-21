@@ -1,0 +1,123 @@
+[
+  {
+    "id": "44-1",
+    "prefCode": "44",
+    "pref": "大分県",
+    "name": "宇佐神宮",
+    "kana": "うさじんぐう",
+    "officialUrl": "http://www.usajinguu.com/",
+    "sourceType": "official",
+    "address": "大分県宇佐市南宇佐2859",
+    "deities": ["八幡大神（応神天皇）", "比売大神", "神功皇后"],
+    "benefitsOfficial": ["厄除開運", "家内安全"],
+    "history": "全国に約4万社ある八幡社の総本宮。神亀2年（725）に現在の地に御殿を造立して八幡神をお祀りしたのが創建とされ、733年に比売大神を祀る二之御殿、823年に神功皇后を祀る三之御殿が建てられた。皇室からも伊勢神宮に次ぐ第二の宗廟として崇敬されてきた。",
+    "access": [
+      "車：東九州自動車道「宇佐IC」から国道10号線（別府方面）へ約6キロ（約15分）。御本殿周辺には駐車場はありません",
+      "電車・バス：JR日豊本線「宇佐駅」から四日市方面バスで「宇佐八幡バス停」下車、またはタクシー",
+      "大分空港からタクシーで約1時間、またはリムジンバスで「宇佐八幡バス停」下車"
+    ],
+    "hours": "6:00〜18:00（公式「よくある質問」の記載。正月期間などは変更あり）",
+    "festivals": [
+      { "name": "鎮疫祭", "date": "2月13日" },
+      { "name": "例祭（宇佐祭）", "date": "3月18日" },
+      { "name": "桜花祭", "date": "4月10日" },
+      { "name": "御神幸祭", "date": "7月31日〜8月2日" },
+      { "name": "風除報賽祭", "date": "10月20日" },
+      { "name": "新嘗祭", "date": "11月23日" }
+    ],
+    "officialNotes": [
+      "拝礼は「二拝・四拍手・一拝」（宇佐神宮の古儀）",
+      "上宮と下宮の両方を参拝するよう案内されている",
+      "カーナビで「宇佐神宮」と検索すると御本殿に案内される場合がある（御本殿周辺に駐車場なし）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "http://www.usajinguu.com/" },
+      { "label": "公式サイト 由緒", "url": "http://www.usajinguu.com/lineage/" },
+      { "label": "公式サイト 歴史略年表", "url": "http://www.usajinguu.com/history/" },
+      { "label": "公式サイト ご祭神", "url": "http://www.usajinguu.com/god/" },
+      { "label": "公式サイト よくある質問", "url": "http://www.usajinguu.com/faq/" },
+      { "label": "公式サイト 交通アクセス", "url": "http://www.usajinguu.com/access/" },
+      { "label": "公式サイト 主な祭典", "url": "http://www.usajinguu.com/festival-list/" },
+      { "label": "公式サイト 参拝の作法", "url": "http://www.usajinguu.com/worship/" }
+    ],
+    "fieldSources": {
+      "address": [5], "deities": [1, 3], "benefitsOfficial": [4],
+      "history": [1, 2], "access": [5], "hours": [4], "festivals": [6], "officialNotes": [7, 5]
+    },
+    "notes": "仲秋祭（放生会）は公式に「10月の土日月の3日間」とあり固定日付ではないため festivals から除外。御神幸祭の中日（8月1日）に流鏑馬神事あり。"
+  },
+  {
+    "id": "44-2",
+    "prefCode": "44",
+    "pref": "大分県",
+    "name": "柞原八幡宮",
+    "kana": "ゆすはらはちまんぐう",
+    "officialUrl": "https://oita-yusuhara.com/",
+    "sourceType": "official",
+    "address": "大分県大分市大字八幡987",
+    "deities": ["応神天皇", "仲哀天皇", "神功皇后"],
+    "benefitsOfficial": ["厄除・開運", "諸産業の守護"],
+    "history": "天長4年（827）、延暦寺の僧・金亀和尚が宇佐神宮に参籠して神告を受け、柞原山に八幡神を勧請したのが起源とされる。鳥羽法皇や源頼朝など朝廷・武家の厚い崇敬を受け、豊後一の宮と称される。大正5年（1916）に国幣小社に昇格した。",
+    "access": [],
+    "hours": null,
+    "festivals": [
+      { "name": "歳旦祭", "date": "1月1日" },
+      { "name": "仲秋祭", "date": "9月中旬" }
+    ],
+    "officialNotes": [],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://oita-yusuhara.com/" },
+      { "label": "公式サイト 柞原八幡宮の歴史", "url": "https://oita-yusuhara.com/history/" },
+      { "label": "公式サイト アクセス・お問い合わせ", "url": "https://oita-yusuhara.com/access/" },
+      { "label": "公式サイト 年間行事", "url": "https://oita-yusuhara.com/event/" },
+      { "label": "公式サイト 歳旦祭（一月一日）", "url": "https://oita-yusuhara.com/event/%E6%AD%B3%E6%97%A6%E7%A5%AD%EF%BC%88%E4%B8%80%E6%9C%88%E4%B8%80%E6%97%A5%EF%BC%89/" },
+      { "label": "公式サイト 仲秋祭（九月中旬）", "url": "https://oita-yusuhara.com/event/%E4%BB%B2%E7%A7%8B%E7%A5%AD%EF%BC%88%E4%B9%9D%E6%9C%88%E5%8D%81%E5%9B%9B%E6%97%A5%EF%BD%9E%E4%B9%9D%E6%9C%88%E4%BA%8C%E5%8D%81%E6%97%A5%EF%BC%89/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [1],
+      "history": [0, 1], "access": [], "hours": [], "festivals": [3, 4, 5], "officialNotes": []
+    },
+    "notes": "ご利益は公式の歴史ページで御祭神・応神天皇について「厄除・開運や諸産業の守護神」と記された語句。公式アクセスページでは住所・電話のみ確認でき、交通手段・駐車場・参拝時間は確認できず空欄。祭事は公式サイトの年間行事の記事タイトルから採用（仲秋祭の URL には「九月十四日～九月二十日」とあるがタイトルは「九月中旬」のためタイトルに従った）。WebSearch の呼び出し上限に達したため、年間行事・交通案内の追加確認はできていない。"
+  },
+  {
+    "id": "44-3",
+    "prefCode": "44",
+    "pref": "大分県",
+    "name": "西寒多神社",
+    "kana": "ささむたじんじゃ",
+    "officialUrl": "https://sasamuta.com/",
+    "sourceType": "official",
+    "address": "大分県大分市寒田1644番地",
+    "deities": ["天照大御神", "月読尊"],
+    "benefitsOfficial": ["金運開運", "縁結び", "安産", "子宝", "家内安全", "厄除け", "病気平癒", "健康長寿"],
+    "history": "神功皇后が三韓遠征の帰途に西寒多山（現在の本宮山）へ行幸し、白旗を立てたことが始まりと伝えられる。応神天皇9年に武内宿禰が勅命を受けて西寒多山上に宮殿を建立し、応永15年（1408）に大友親世が社殿を現在地に遷した。明治4年に国幣中社となった。",
+    "access": [
+      "バス：大分駅前3・4・5番のりばから寒田（そうだ）・ふじが丘行き、または光吉・ふじが丘行きで約30分、「ふじが丘南」下車、徒歩約15分",
+      "車：大分駅から約30分、光吉ICから約10分（駐車場80台）"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "元旦祭", "date": "1月1日" },
+      { "name": "厄除星祭", "date": "2月1日〜3日" },
+      { "name": "例祭", "date": "4月15日" },
+      { "name": "ふじまつり", "date": "5月3日〜5日" },
+      { "name": "夏越祭", "date": "7月最終日曜" },
+      { "name": "本宮秋祭", "date": "10月20日" },
+      { "name": "新嘗祭", "date": "11月23日" }
+    ],
+    "officialNotes": [],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://sasamuta.com/" },
+      { "label": "公式サイト 由緒・歴史", "url": "https://sasamuta.com/history" },
+      { "label": "公式サイト アクセス", "url": "https://sasamuta.com/access" },
+      { "label": "公式サイト 概要", "url": "https://sasamuta.com/about" },
+      { "label": "公式サイト 四色鈴の神徳", "url": "https://sasamuta.com/suzu" },
+      { "label": "公式サイト 祭典・御祈願", "url": "https://sasamuta.com/prayer" }
+    ],
+    "fieldSources": {
+      "address": [2, 3], "deities": [1], "benefitsOfficial": [4],
+      "history": [1], "access": [2], "hours": [], "festivals": [5], "officialNotes": []
+    },
+    "notes": "ご利益は公式「四色鈴の神徳」の記載（青鈴＝金運開運、白鈴＝縁結び・安産・子宝、赤鈴＝家内安全・厄除け、黒鈴＝病気平癒・健康長寿）。創建年は公式サイト内で応神天皇9年を西暦278年とする記載と413年とする記載があり食い違うため、西暦は書いていない。参拝時間の記載は確認できず（電話受付9時〜16時30分の記載のみ）。"
+  }
+]

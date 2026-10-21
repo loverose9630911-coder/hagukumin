@@ -1,0 +1,391 @@
+[
+  {
+    "id": "31-1",
+    "prefCode": "31",
+    "pref": "鳥取県",
+    "name": "宇倍神社",
+    "kana": null,
+    "officialUrl": "https://www.ubejinja.or.jp/",
+    "sourceType": "official",
+    "address": "鳥取県鳥取市国府町宮下651",
+    "deities": ["武内宿禰命"],
+    "benefitsOfficial": ["商売繁昌", "長寿"],
+    "history": "孝徳天皇大化4年（648）の創建と伝えられ、平安時代にまとめられた延喜式では鳥取県で唯一の名神大社、また一の宮として信仰を集めてきた。明治4年に国幣中社に列せられ、現在の社殿は明治31年に完成した。翌年には御祭神・武内宿禰命の御尊像とともに五円紙幣の図柄に採用され、お金に御縁のある商売繁昌の神様として全国から参詣者が訪れる。",
+    "access": [
+      "鳥取駅から路線バス（「宮ノ下」下車）又はタクシー",
+      "大阪・神戸⇔鳥取駅前は高速バスあり"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "歳旦祭", "date": "1月1日" },
+      { "name": "例大祭 宵宮祭", "date": "4月20日" },
+      { "name": "例大祭 例祭", "date": "4月21日" },
+      { "name": "大祓式", "date": "6月30日・12月31日" },
+      { "name": "秋祭", "date": "9月21日" },
+      { "name": "月次祭", "date": "毎月1日（1月を除く）" }
+    ],
+    "officialNotes": [
+      "初詣の時期は12月31日午後11時〜1月3日午後6時まで交通規制がかかる",
+      "結婚式やご祈祷の最中でも参拝は可能（少し待つ場合がある）",
+      "ご祈祷の受付は午前9時〜午後4時（個人は予約不要）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.ubejinja.or.jp/" },
+      { "label": "公式サイト 宇倍神社について", "url": "https://www.ubejinja.or.jp/new-about/" },
+      { "label": "公式サイト よくある質問", "url": "https://www.ubejinja.or.jp/new-faq/" },
+      { "label": "公式サイト 交通アクセス", "url": "https://www.ubejinja.or.jp/new-access/" },
+      { "label": "公式サイト お祭り", "url": "https://www.ubejinja.or.jp/new-sampai/omatsuri/" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [1], "benefitsOfficial": [1, 2],
+      "history": [1], "access": [3], "hours": [], "festivals": [4], "officialNotes": [2]
+    },
+    "notes": "kana は公式の記載を確認できず null。参拝時間（境内の開閉時間）の記載は確認できず hours は null（ご祈祷受付時間のみ officialNotes に記載）。宮ノ下バス停からの徒歩時間は公式に記載なし。御幸祭は年により日付が異なるため festivals に含めていない。"
+  },
+  {
+    "id": "31-2",
+    "prefCode": "31",
+    "pref": "鳥取県",
+    "name": "倭文神社",
+    "kana": null,
+    "officialUrl": "https://www.sitorijinja.com/",
+    "sourceType": "official",
+    "address": "鳥取県東伯郡湯梨浜町大字宮内754",
+    "deities": ["建葉槌命", "下照姫命", "事代主命", "建御名方命", "少彦名命", "天稚彦命", "味耜高彦根命"],
+    "benefitsOfficial": ["安産"],
+    "history": "創立年代は不明だが、社伝では大国主命の娘・下照姫命が出雲から海路で当地に来て住み、安産の指導や農業開発、医薬の普及に尽くしたとされる。当地の主要産業が倭文（しづおり）の織物であったことから、倭文部の祖神・建葉槌命を当地と縁の深い下照姫命とともに祀ったという。境内の経塚は古くから下照姫命の墓と伝えられ、大正4年に発掘された銅経筒・仏像・銅鏡などはいずれも国宝に指定されている。",
+    "access": [
+      "JR山陰本線・松崎駅から車で10分",
+      "松崎駅前から藤津入口停留所・徒歩20分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "例祭", "date": "5月1日" },
+      { "name": "前夜祭（湯立神事）", "date": "例祭前日" }
+    ],
+    "officialNotes": [
+      "授与所の受付時間は9:30〜16:00",
+      "初穂料やお守り等の授与はすべて現金での取り扱い",
+      "安産祈願は一般に妊娠5か月目の戌の日がよいとされ、腹帯を持参して参拝するよう案内あり"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.sitorijinja.com/" },
+      { "label": "公式サイト 倭文神社について", "url": "https://www.sitorijinja.com/about" },
+      { "label": "公式サイト アクセス", "url": "https://www.sitorijinja.com/access" },
+      { "label": "公式サイト 御祈願", "url": "https://www.sitorijinja.com/pray" },
+      { "label": "公式サイト よくある質問", "url": "https://www.sitorijinja.com/faq" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [0, 1],
+      "history": [1], "access": [2], "hours": [], "festivals": [0, 1], "officialNotes": [3, 4]
+    },
+    "notes": "伯耆国一宮（湯梨浜町）の倭文神社。kana は公式の記載を確認できず null。参拝時間の記載は確認できず hours は null（授与所の受付時間のみ officialNotes に記載）。例祭の記載がある公式ページを一つに特定できなかったため、festivals の根拠はトップと「倭文神社について」の両方を挙げた。駐車場の詳細は確認できず。"
+  },
+  {
+    "id": "31-3",
+    "prefCode": "31",
+    "pref": "鳥取県",
+    "name": "白兎神社",
+    "kana": null,
+    "officialUrl": "https://hakutojinja.jp/",
+    "sourceType": "official",
+    "address": "鳥取県鳥取市白兎603",
+    "deities": ["白兎神"],
+    "benefitsOfficial": ["縁結び", "皮膚病", "傷疾"],
+    "history": "日本最古の書物「古事記」に記される日本神話「因幡の白うさぎ」の白兎神を主神とする神社。創建は明らかではないが、神社再興の経緯や歴史が当社の賽物や古い文献で詳らかにされている。神話の古事により日本の医療・動物医療の発祥の地と云われ、大国主命と八上姫との縁を取りもった縁結びの神様としても信仰されている。",
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [
+      "社務所の受付は9:00〜16:00",
+      "境内の見学、案内を希望する場合は事前に電話で連絡を"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://hakutojinja.jp/" },
+      { "label": "公式サイト よくあるご質問", "url": "https://hakutojinja.jp/faq/" },
+      { "label": "公式サイト ご参拝・授与品", "url": "https://hakutojinja.jp/sanpai/" },
+      { "label": "公式サイト 因幡の白兎について", "url": "https://hakutojinja.jp/mythology/" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [0], "benefitsOfficial": [0],
+      "history": [0, 3], "access": [], "hours": [], "festivals": [], "officialNotes": [0, 1]
+    },
+    "notes": "kana は公式の記載を確認できず null。公式FAQに交通案内（路線バス・車・駐車場）はあるが、検索要約が「掲載から数年経っている」としたためルールに従い access は空にした（要再確認）。参拝時間・例祭等の祭事日程は公式で確認できず。配祀神は確認できず、主神の白兎神のみ記載。"
+  },
+  {
+    "id": "32-1",
+    "prefCode": "32",
+    "pref": "島根県",
+    "name": "出雲大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。公式サイト特定の検索を1回行ったが結果に公式URLが含まれず、続く公式ドメインの確認検索の時点でWebSearchの回数上限（全エージェント共有で1ターン200回）に達したため、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "32-2",
+    "prefCode": "32",
+    "pref": "島根県",
+    "name": "八重垣神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。公式サイト特定の検索を1回行ったが結果に公式URLが含まれず（観光サイトのみ）、その後WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "32-3",
+    "prefCode": "32",
+    "pref": "島根県",
+    "name": "美保神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。公式サイト特定の検索を1回行ったが結果に公式URLが含まれず（観光サイト・辞典のみ）、その後WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "33-1",
+    "prefCode": "33",
+    "pref": "岡山県",
+    "name": "吉備津神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "岡山市の吉備津神社（担当表の指定）。未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "33-2",
+    "prefCode": "33",
+    "pref": "岡山県",
+    "name": "吉備津彦神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "33-3",
+    "prefCode": "33",
+    "pref": "岡山県",
+    "name": "中山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "34-1",
+    "prefCode": "34",
+    "pref": "広島県",
+    "name": "嚴島神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "34-2",
+    "prefCode": "34",
+    "pref": "広島県",
+    "name": "吉備津神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "福山市の吉備津神社（備後国一宮、担当表の指定）。未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "34-3",
+    "prefCode": "34",
+    "pref": "広島県",
+    "name": "廣島護國神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "35-1",
+    "prefCode": "35",
+    "pref": "山口県",
+    "name": "防府天満宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "35-2",
+    "prefCode": "35",
+    "pref": "山口県",
+    "name": "赤間神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  },
+  {
+    "id": "35-3",
+    "prefCode": "35",
+    "pref": "山口県",
+    "name": "住吉神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "下関市の住吉神社（担当表の指定）。未調査。WebSearchの回数上限（全エージェント共有で1ターン200回）に達したため検索できず、何も確認できていない。全項目が空。要再調査。"
+  }
+]

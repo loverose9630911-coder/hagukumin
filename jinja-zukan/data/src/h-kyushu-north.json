@@ -1,0 +1,321 @@
+[
+  {
+    "id": "40-1",
+    "prefCode": "40",
+    "pref": "福岡県",
+    "name": "太宰府天満宮",
+    "kana": null,
+    "officialUrl": "https://www.dazaifutenmangu.or.jp/",
+    "sourceType": "official",
+    "address": "〒818-0117 福岡県太宰府市宰府4丁目7番1号",
+    "deities": ["菅原道真公"],
+    "benefitsOfficial": ["学問", "至誠", "厄除け"],
+    "history": "菅原道真公は延喜3年（903）2月25日に大宰府で亡くなり、のちに無実が証明されて神様の御位に昇られた。道真公の御遺骸を牽いていた牛が伏して動かなくなった場所に門弟の味酒安行が御墓所を造営し、その上に御本殿が創建された。御本殿は「菅聖庿（かんせいびょう）」とも称えられ、天神信仰の聖地・全国天満宮の総本宮として守り伝えられている。",
+    "access": [
+      "西鉄太宰府駅から徒歩約5分",
+      "西鉄福岡（天神）駅から西鉄天神大牟田線で二日市駅へ、太宰府線に乗り換えて太宰府駅へ（全体で約30分）",
+      "博多バスターミナルからバスで約40分",
+      "福岡空港国際線ターミナルから西鉄バスで太宰府駅まで約25分"
+    ],
+    "hours": "開門 6:00（春分の日から）／6:30（秋分の日から）、閉門 18:30（12〜3月）／19:00（4〜5月・9〜11月）／19:30（6〜8月）",
+    "festivals": [
+      { "name": "鷽替え神事", "date": "1月7日" },
+      { "name": "鬼すべ神事", "date": "1月7日" },
+      { "name": "神幸式大祭", "date": "9月21日〜25日" },
+      { "name": "例祭", "date": "9月25日" }
+    ],
+    "officialNotes": [
+      "正月三が日は24時間開門（12月31日は6時30分に開門）",
+      "神社の駐車場はなく、近くの有料駐車場は台数に限りがあるため、公共交通機関での参拝がすすめられている"
+    ],
+    "sources": [
+      { "label": "公式サイト 出張祭典（社務所の住所記載）", "url": "https://www.dazaifutenmangu.or.jp/pray/others/outside" },
+      { "label": "公式サイト 御祭神 菅原道真公", "url": "https://www.dazaifutenmangu.or.jp/about/sugawaranomichizanekou" },
+      { "label": "公式サイト 今に伝わる天神信仰", "url": "https://www.dazaifutenmangu.or.jp/about/belief" },
+      { "label": "公式サイト 道真公のご生涯", "url": "https://www.dazaifutenmangu.or.jp/about/michizane" },
+      { "label": "公式サイト 境内案内", "url": "https://www.dazaifutenmangu.or.jp/keidaiannai" },
+      { "label": "公式サイト（繁体字中国語版）交通案内", "url": "https://www.dazaifutenmangu.or.jp/tw/plan/getting-to-dazaifu-tenmangu/" },
+      { "label": "公式サイト（繁体字中国語版）よくある質問", "url": "https://www.dazaifutenmangu.or.jp/tw/plan/faq/" },
+      { "label": "公式サイト（スマートフォン版）トップ 参拝時間", "url": "https://sp.dazaifutenmangu.or.jp/" },
+      { "label": "公式サイト 鷽替え・鬼すべ神事", "url": "https://www.dazaifutenmangu.or.jp/sanpai/saiten/special/onisube" },
+      { "label": "公式サイト お知らせ「神幸式大祭」斎行", "url": "https://www.dazaifutenmangu.or.jp/info/detail/735" },
+      { "label": "公式サイト お知らせ「神幸式大祭」斎行（例祭の記載）", "url": "https://www.dazaifutenmangu.or.jp/info/detail/373" },
+      { "label": "公式サイト 正月のご参拝", "url": "https://www.dazaifutenmangu.or.jp/shogatsu" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [1, 3], "benefitsOfficial": [2], "history": [3, 4],
+      "access": [5, 6], "hours": [7], "festivals": [8, 9, 10], "officialNotes": [11, 6]
+    },
+    "notes": "読み仮名は公式の記載を確認できなかったため null。交通案内は公式サイト繁体字中国語版の記載を日本語に訳したもの（日本語版の交通ページは検索で本文を確認できず）。参拝時間は日本語ページの記載を採用。公式FAQ（中国語版）には「通常6:30開門、最も早い時期は6:00」とあり、日本語ページの季節区分とは書き方が異なる。JR博多駅〜西鉄太宰府駅の直通バスの告知は古い記事のため不採用。"
+  },
+  {
+    "id": "40-2",
+    "prefCode": "40",
+    "pref": "福岡県",
+    "name": "宗像大社",
+    "kana": null,
+    "officialUrl": "https://munakata-taisha.or.jp/",
+    "sourceType": "official",
+    "address": "〒811-3505 福岡県宗像市田島2331（辺津宮）",
+    "deities": ["田心姫神", "湍津姫神", "市杵島姫神"],
+    "benefitsOfficial": ["あらゆる道を司る神「道主貴」"],
+    "history": "宗像三女神は天照大神の神勅により宗像の地に降り、皇室と国家を守る神として、沖津宮（沖ノ島）・中津宮（大島）・辺津宮（本土）の三宮に祀られている。この三宮を総称して宗像大社という。『日本書紀』には天照大神から三女神への神勅が記されている。",
+    "access": ["九州自動車道 若宮インターチェンジから車で約20分"],
+    "hours": null,
+    "festivals": [
+      { "name": "秋季大祭（みあれ祭に始まり高宮神奈備祭で終わる）", "date": "10月1日〜3日" }
+    ],
+    "officialNotes": [
+      "ご祈願は祈願殿で受付（受付時間 午前9時〜午後5時）",
+      "秋季大祭3日目の一部祭典（高宮祭場など）は一般の参列はできない"
+    ],
+    "sources": [
+      { "label": "公式ホームページ トップ", "url": "https://munakata-taisha.or.jp/" },
+      { "label": "公式ホームページ 由緒", "url": "https://munakata-taisha.or.jp/yuisyo.html" },
+      { "label": "公式ホームページ 日本神話", "url": "https://munakata-taisha.or.jp/shinwa.html" },
+      { "label": "公式ホームページ 祈願殿", "url": "https://munakata-taisha.or.jp/kiganden.html" },
+      { "label": "公式ホームページ（英語）神宝館", "url": "https://munakata-taisha.or.jp/shimpokan_en.html" },
+      { "label": "公式ホームページ 辺津宮 祭典行事", "url": "https://munakata-taisha.or.jp/hetsu_saiji.html" },
+      { "label": "公式ホームページ 辺津宮", "url": "https://munakata-taisha.or.jp/about_hetsu.html" }
+    ],
+    "fieldSources": {
+      "address": [0, 6], "deities": [1, 2], "benefitsOfficial": [0, 1], "history": [1],
+      "access": [4], "hours": [], "festivals": [5], "officialNotes": [3, 5]
+    },
+    "notes": "読み仮名は公式の記載を確認できなかったため null。参拝時間は公式の記載を確認できず null（検索要約に出た「9:00〜16:30」は施設の開館時間とみられ、境内の参拝時間ではないため不採用）。交通は公式英語ページの車での案内だけ確認でき、電車・バスの案内は本文を確認できなかった。三女神の系譜は公式ページの中でも書き方が分かれているため、history には入れていない。WebSearch の利用上限に達したため、これ以上の検索はできなかった。"
+  },
+  {
+    "id": "40-3",
+    "prefCode": "40",
+    "pref": "福岡県",
+    "name": "宮地嶽神社",
+    "kana": null,
+    "officialUrl": "https://www.miyajidake.or.jp/",
+    "sourceType": "official",
+    "address": null,
+    "deities": ["息長足比売命（神功皇后）", "勝村大神", "勝頼大神"],
+    "benefitsOfficial": ["商売繁昌", "開運"],
+    "history": "神功皇后が新羅へ渡る前に宮地嶽の山頂で天神地祇を祀って祈願したと伝えられ、その功績を讃えて主祭神として祀られた。皇后に随従した阿曇族の長もあわせて祀られ、「宮地嶽三柱大神」として祀られてきた。",
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [
+      { "label": "公式サイト 御祭神・御由緒", "url": "https://www.miyajidake.or.jp/history/gosaijin" },
+      { "label": "公式サイト ご由緒", "url": "https://www.miyajidake.or.jp/history" },
+      { "label": "公式サイト 商売繁昌", "url": "https://www.miyajidake.or.jp/gokitou/syoubai" }
+    ],
+    "fieldSources": {
+      "address": [], "deities": [0], "benefitsOfficial": [0, 2], "history": [0, 1],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "読み仮名は公式の記載を確認できなかったため null。住所・交通・参拝時間・祭事は、WebSearch の利用上限（全エージェント共有）に達して公式ページを検索できず、未確認のため空。観光サイトに住所などの記載はあるが、公式ではないため不採用。ご利益は、検索要約で公式サイトに書かれているとされた「商売繁昌や開運の神様」によるもので、掲載ページは特定できていない。"
+  },
+  {
+    "id": "41-1",
+    "prefCode": "41",
+    "pref": "佐賀県",
+    "name": "祐徳稲荷神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "41-2",
+    "prefCode": "41",
+    "pref": "佐賀県",
+    "name": "與止日女神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "41-3",
+    "prefCode": "41",
+    "pref": "佐賀県",
+    "name": "千栗八幡宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "42-1",
+    "prefCode": "42",
+    "pref": "長崎県",
+    "name": "鎮西大社 諏訪神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査（長崎市）。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "42-2",
+    "prefCode": "42",
+    "pref": "長崎県",
+    "name": "海神神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査（対馬）。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイト・神社庁・自治体の情報のどれも確認できていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "42-3",
+    "prefCode": "42",
+    "pref": "長崎県",
+    "name": "和多都美神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査（対馬）。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイト・神社庁・自治体の情報のどれも確認できていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "43-1",
+    "prefCode": "43",
+    "pref": "熊本県",
+    "name": "阿蘇神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "43-2",
+    "prefCode": "43",
+    "pref": "熊本県",
+    "name": "加藤神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  },
+  {
+    "id": "43-3",
+    "prefCode": "43",
+    "pref": "熊本県",
+    "name": "藤崎八旛宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [], "history": [],
+      "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査。WebSearch の利用上限（全エージェント共有、200回）に達したため、公式サイトの特定も内容の確認もできていない。全項目空。第一候補に公式情報が無いと確かめたわけではないので、代替候補への差し替えはしていない。"
+  }
+]

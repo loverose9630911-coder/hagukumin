@@ -1,0 +1,737 @@
+[
+  {
+    "id": "08-1",
+    "prefCode": "08",
+    "pref": "茨城県",
+    "name": "鹿島神宮",
+    "kana": null,
+    "officialUrl": "https://kashimajingu.jp/",
+    "sourceType": "official",
+    "address": "茨城県鹿嶋市宮中2306-1",
+    "deities": [
+      "武甕槌大神"
+    ],
+    "benefitsOfficial": [],
+    "history": "神武天皇が東征の途上、武甕槌大神の佩刀である韴霊剣の力によって危機を救われたことに感謝し、即位の年に大神を勅祭したと伝わる（神武天皇元年創祀）。古くは東国遠征の拠点として祭祀が行われ、奈良・平安時代には国の守護神として信仰された。中世から近世にかけては源頼朝や徳川家康などの武将から武神として崇敬され、本殿は徳川秀忠の奉納による。",
+    "access": [
+      "JR鹿島線・鹿島臨海鉄道「鹿島神宮駅」から徒歩7分",
+      "東京駅八重洲南口から高速バス「かしま号」で約2時間",
+      "車：東関東自動車道 潮来IC下車（中央区日本橋から約1時間20分、成田国際空港から約40分、水戸市内から約1時間10分）"
+    ],
+    "hours": "境内と外部を区切る門や柵がないため365日24時間参拝可能（神符守札授与所・御祈祷受付は8:30〜16:30）",
+    "festivals": [
+      {
+        "name": "白馬祭",
+        "date": "1月7日（夕方）"
+      },
+      {
+        "name": "祭頭祭",
+        "date": "3月（年により異なる。令和8年は3月9日）"
+      },
+      {
+        "name": "例祭",
+        "date": "9月1日"
+      },
+      {
+        "name": "式年大祭 御船祭",
+        "date": "12年に一度（午年）。令和8年は9月1日〜2日"
+      }
+    ],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://kashimajingu.jp/"
+      },
+      {
+        "label": "公式サイト 御由緒・御祭神",
+        "url": "https://kashimajingu.jp/about/%E5%BE%A1%E7%94%B1%E7%B7%92%E3%83%BB%E5%BE%A1%E7%A5%AD%E7%A5%9E/"
+      },
+      {
+        "label": "公式サイト アクセス・駐車場",
+        "url": "https://kashimajingu.jp/info/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%BB%E9%A7%90%E8%BB%8A%E5%A0%B4/"
+      },
+      {
+        "label": "公式サイト よくあるご質問",
+        "url": "https://kashimajingu.jp/info/%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F/"
+      },
+      {
+        "label": "公式サイト 令和八年 式年大祭御船祭",
+        "url": "https://kashimajingu.jp/feature/%E5%BE%A1%E8%88%B9%E7%A5%AD/"
+      },
+      {
+        "label": "公式サイト 令和3年白馬祭について（お願い）",
+        "url": "https://kashimajingu.jp/news/%E4%BB%A4%E5%92%8C3%E5%B9%B4%E7%99%BD%E9%A6%AC%E7%A5%AD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E3%81%8A%E9%A1%98%E3%81%84%EF%BC%89/"
+      },
+      {
+        "label": "公式サイト 祭頭祭の御案内(令和8年)",
+        "url": "https://kashimajingu.jp/news/%E7%A5%AD%E9%A0%AD%E7%A5%AD%E3%81%AE%E5%BE%A1%E6%A1%88%E5%86%85%E4%BB%A4%E5%92%8C8%E5%B9%B4/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        2
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        1
+      ],
+      "access": [
+        2,
+        3
+      ],
+      "hours": [
+        3
+      ],
+      "festivals": [
+        4,
+        5,
+        6
+      ],
+      "officialNotes": []
+    },
+    "notes": "benefitsOfficial：公式（崇敬会案内）は御祭神のご神威により「武の神、決断力の強い神」として崇敬を集めると記すが、「ご利益」「御神徳」としての列挙ではないため空にした。address は検索要約が公式サイト記載と明示したが掲載ページ名までは示さなかった（アクセス・駐車場ページを根拠として記載）。白馬祭の日付は要約が「毎年1月7日の夕方」と記したもの。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "08-2",
+    "prefCode": "08",
+    "pref": "茨城県",
+    "name": "笠間稲荷神社",
+    "kana": null,
+    "officialUrl": "https://www.kasama.or.jp/",
+    "sourceType": "official",
+    "address": "茨城県笠間市笠間1番地",
+    "deities": [
+      "宇迦之御魂神"
+    ],
+    "benefitsOfficial": [
+      "五穀豊穣",
+      "商売繁栄",
+      "殖産興業",
+      "開運招福",
+      "火防"
+    ],
+    "history": "社伝によれば第36代孝徳天皇の御代、白雉2年（651年）の創建で、古くは「胡桃下稲荷」とも呼ばれ、「紋三郎稲荷」の名でも親しまれている。寛保3年（1743年）に井上正賢により社殿が拡張され、延享4年（1747年）には牧野貞通が祈願所と定めて境内地などを寄進した。本殿は江戸末期の安政・万延年間（1854〜1860）の再建で、昭和63年に国の重要文化財に指定された。",
+    "access": [],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "例大祭",
+        "date": "4月（令和8年は4月9日）"
+      },
+      {
+        "name": "笠間の菊まつり",
+        "date": "令和8年は10月24日〜11月23日"
+      }
+    ],
+    "officialNotes": [
+      "節分・初午・例大祭など祭礼時は、御祈祷の受付時間が通常と異なる場合がある"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://www.kasama.or.jp/"
+      },
+      {
+        "label": "公式サイト 笠間稲荷神社について",
+        "url": "https://www.kasama.or.jp/about/index.html"
+      },
+      {
+        "label": "公式サイト 歴史",
+        "url": "http://www.kasama.or.jp/history/index4.html"
+      },
+      {
+        "label": "公式サイト 祭典・行事",
+        "url": "https://www.kasama.or.jp/event/"
+      },
+      {
+        "label": "公式サイト 御祈祷（個人）",
+        "url": "https://www.kasama.or.jp/pray/index.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [
+        1
+      ],
+      "history": [
+        1,
+        2
+      ],
+      "access": [],
+      "hours": [],
+      "festivals": [
+        0,
+        3
+      ],
+      "officialNotes": [
+        4
+      ]
+    },
+    "notes": "access：公式のアクセスページ（http://www.kasama.or.jp/access/）は見つかったが、検索要約が「公式サイトの古いページ由来」と注記したため採用せず空にした。hours：境内の開門・閉門時間は公式で見つからず null（御祈祷は1月4日〜12月31日 午前8時〜午後4時と記載あり）。festivals：例大祭・菊まつりは令和8年の案内による日付で、毎年固定かは未確認。初午祭・節分祭は日付が確認できず除外。address は検索要約が掲載ページを特定しなかったためトップを根拠とした。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "08-3",
+    "prefCode": "08",
+    "pref": "茨城県",
+    "name": "大洗磯前神社",
+    "kana": null,
+    "officialUrl": "https://oarai-isosakijinja.or.jp/",
+    "sourceType": "official",
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://oarai-isosakijinja.or.jp/"
+      }
+    ],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "公式サイト（oarai-isosakijinja.or.jp）は特定できたが、検索インデックスにはトップページしかなく、「御祭神・由緒」「境内案内」「祭事」「アクセス」各ページの本文は取得できなかった。トップページには所在地「〒311-1301 茨城県東茨城郡大洗町磯浜町6890」と「海の石を神社に持ち込まないでください」の注意書きがあると要約されたが、要約が同ページの情報を約2300日前のもので古い可能性があると注記したため採用せず null／空にした。代替候補（酒列磯前神社・筑波山神社）も公式ドメインを特定する前に検索上限に達したため差し替えは行っていない。kana は公式で未確認のため null。要再調査。"
+  },
+  {
+    "id": "09-1",
+    "prefCode": "09",
+    "pref": "栃木県",
+    "name": "日光東照宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "09-2",
+    "prefCode": "09",
+    "pref": "栃木県",
+    "name": "日光二荒山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "09-3",
+    "prefCode": "09",
+    "pref": "栃木県",
+    "name": "宇都宮二荒山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "10-1",
+    "prefCode": "10",
+    "pref": "群馬県",
+    "name": "一之宮貫前神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "10-2",
+    "prefCode": "10",
+    "pref": "群馬県",
+    "name": "榛名神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "10-3",
+    "prefCode": "10",
+    "pref": "群馬県",
+    "name": "妙義神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "11-1",
+    "prefCode": "11",
+    "pref": "埼玉県",
+    "name": "武蔵一宮氷川神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "11-2",
+    "prefCode": "11",
+    "pref": "埼玉県",
+    "name": "三峯神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "11-3",
+    "prefCode": "11",
+    "pref": "埼玉県",
+    "name": "秩父神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "12-1",
+    "prefCode": "12",
+    "pref": "千葉県",
+    "name": "香取神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "12-2",
+    "prefCode": "12",
+    "pref": "千葉県",
+    "name": "玉前神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "12-3",
+    "prefCode": "12",
+    "pref": "千葉県",
+    "name": "安房神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "13-1",
+    "prefCode": "13",
+    "pref": "東京都",
+    "name": "明治神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "13-2",
+    "prefCode": "13",
+    "pref": "東京都",
+    "name": "神田明神（神田神社）",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "13-3",
+    "prefCode": "13",
+    "pref": "東京都",
+    "name": "東京大神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "14-1",
+    "prefCode": "14",
+    "pref": "神奈川県",
+    "name": "鶴岡八幡宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "14-2",
+    "prefCode": "14",
+    "pref": "神奈川県",
+    "name": "寒川神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  },
+  {
+    "id": "14-3",
+    "prefCode": "14",
+    "pref": "神奈川県",
+    "name": "箱根神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（1ターン200回・全エージェント共有）に達したため、公式サイトの特定も各項目の確認もできなかった。全項目未確認のため null／空。kana も公式で未確認のため null。要再調査（第一候補のまま。代替への差し替え判断も未実施）。"
+  }
+]

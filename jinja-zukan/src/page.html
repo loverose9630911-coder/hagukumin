@@ -1,0 +1,561 @@
+<title>日本全国 神社図鑑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="47都道府県から3社ずつ。ご利益・行き方・歴史を各神社の公式サイトで確かめてまとめた神社図鑑です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* 図鑑の索引：左に絞り込み、右に「都道府県ごとに3社」の段が並ぶ。紙・墨・朱・苔の色 */
+:root {
+  --paper: #f1f2ec;
+  --surface: #fafaf6;
+  --ink: #1c221f;
+  --ink-2: #555e58;
+  --rule: #d5d8cf;
+  --shu: #a5402a;
+  --shu-ink: #ffffff;
+  --shu-soft: #f1ddd5;
+  --moss: #46633f;
+  --shadow: 0 1px 2px rgba(28, 34, 31, .06), 0 8px 24px rgba(28, 34, 31, .08);
+  --f-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  --step--1: .8125rem;
+  --step-0: .9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.9rem, 1.4rem + 2.2vw, 2.75rem);
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121513; --surface: #1a1e1b; --ink: #e5e8e2; --ink-2: #a1a9a2; --rule: #2d332f;
+    --shu: #e17b60; --shu-ink: #1a0f0b; --shu-soft: #3b2620; --moss: #97b48f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121513; --surface: #1a1e1b; --ink: #e5e8e2; --ink-2: #a1a9a2; --rule: #2d332f;
+  --shu: #e17b60; --shu-ink: #1a0f0b; --shu-soft: #3b2620; --moss: #97b48f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--step-0);
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--shu); text-underline-offset: 3px; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; line-height: 1.35; margin: 0; }
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- 見出し ---------- */
+.masthead { border-bottom: 1px solid var(--rule); background: var(--surface); }
+.masthead .wrap { padding-block: 28px 22px; display: grid; gap: 10px; }
+.masthead .eyebrow { font-size: var(--step--1); letter-spacing: .12em; color: var(--ink-2); }
+.masthead h1 { font-size: var(--step-3); letter-spacing: .04em; display: flex; align-items: center; gap: 14px; }
+.masthead h1 .torii { width: 1.05em; height: 1.05em; flex: none; color: var(--shu); }
+.masthead p { margin: 0; max-width: 62ch; color: var(--ink-2); }
+.masthead .stamp { font-size: var(--step--1); color: var(--ink-2); }
+.masthead .stamp b { color: var(--ink); font-weight: 500; }
+
+/* ---------- 本体 ---------- */
+.layout { display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 32px; padding-block: 24px 48px; align-items: start; }
+
+.filters { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 20px; }
+.filters details { display: contents; }
+.filters summary { display: none; }
+.filters .panel { display: grid; gap: 20px; }
+.fgroup { display: grid; gap: 8px; }
+.fgroup > .label { font-size: var(--step--1); letter-spacing: .08em; color: var(--ink-2); font-weight: 500; }
+.field {
+  width: 100%; padding: 9px 12px; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--surface);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--rule); background: var(--surface); border-radius: 999px;
+  padding: 4px 12px; font-size: var(--step--1); cursor: pointer; line-height: 1.6;
+}
+.chip:hover { border-color: var(--shu); }
+.chip[aria-pressed="true"] { background: var(--shu); border-color: var(--shu); color: var(--shu-ink); }
+.fnote { font-size: var(--step--1); color: var(--ink-2); margin: 0; line-height: 1.6; }
+.reset { justify-self: start; background: none; border: 0; padding: 0; color: var(--shu); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: var(--step--1); }
+
+.regions { display: flex; flex-wrap: wrap; gap: 4px 18px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+.region {
+  background: none; border: 0; padding: 8px 0 10px; cursor: pointer; color: var(--ink-2);
+  border-bottom: 2px solid transparent; margin-bottom: -1px; font-weight: 500;
+}
+.region[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--shu); }
+.count { font-size: var(--step--1); color: var(--ink-2); margin: 10px 0 0; font-variant-numeric: tabular-nums; }
+
+.pref { padding-block: 22px 6px; border-bottom: 1px solid var(--rule); }
+.pref h2 { font-size: var(--step-1); display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.pref h2 .code { font-family: var(--f-body); font-size: var(--step--1); color: var(--ink-2); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+.row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+.card {
+  display: grid; grid-template-rows: auto 1fr; text-align: left; padding: 0; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.ph { display: block; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; background: var(--paper); position: relative; overflow: hidden; }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.ph.empty { display: grid; place-content: center; justify-items: center; gap: 6px; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+.ph.empty svg { width: 34%; max-width: 64px; height: auto; fill: currentColor; opacity: .28; }
+.ph.empty span { font-size: .75rem; letter-spacing: .08em; opacity: .7; }
+.card .ph img { border-bottom: 1px solid var(--rule); }
+.meta { display: grid; gap: 2px; padding: 12px 14px 14px; align-content: start; min-width: 0; }
+.name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); line-height: 1.45; }
+.kana { font-size: var(--step--1); color: var(--ink-2); line-height: 1.5; }
+.tags { font-size: var(--step--1); color: var(--moss); font-weight: 500; margin-top: 6px; line-height: 1.6; }
+.tags.none { color: var(--ink-2); font-weight: 400; }
+.empty-state { padding: 40px 0; color: var(--ink-2); }
+
+/* ---------- 詳細シート ---------- */
+dialog.sheet {
+  width: min(780px, calc(100% - 32px)); max-height: calc(100% - 48px); padding: 0;
+  border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); color: var(--ink);
+  box-shadow: var(--shadow);
+}
+dialog.sheet::backdrop { background: rgba(10, 12, 11, .55); }
+.sheet article { display: grid; }
+.sheet figure { margin: 0; position: relative; }
+.sheet figure img { width: 100%; max-height: 420px; object-fit: cover; }
+.sheet figure .ph { aspect-ratio: 16 / 7; }
+.sheet figcaption { font-size: .75rem; color: var(--ink-2); padding: 6px 24px 0; line-height: 1.6; overflow-wrap: anywhere; }
+.close {
+  position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--surface); cursor: pointer; font-size: 1.25rem; line-height: 1;
+}
+.sheet .body { padding: 16px 24px 28px; display: grid; gap: 22px; }
+.sheet .head { display: grid; gap: 2px; }
+.sheet .head .pref-line { font-size: var(--step--1); color: var(--ink-2); letter-spacing: .06em; }
+.sheet .head h2 { font-size: var(--step-2); }
+.sheet .head .kana { font-size: var(--step-0); }
+.badge { justify-self: start; margin-top: 8px; font-size: .75rem; padding: 2px 10px; border-radius: 999px; background: var(--shu-soft); color: var(--ink); }
+.sec { display: grid; gap: 8px; min-width: 0; }
+.sec h3 { font-size: var(--step-1); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.sec h3 .src { font-family: var(--f-body); font-weight: 400; font-size: .75rem; color: var(--ink-2); }
+.sec p { margin: 0; max-width: 65ch; }
+.sec ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.sec .muted { color: var(--ink-2); }
+.words { display: flex; flex-wrap: wrap; gap: 6px; }
+.word { border: 1px solid var(--rule); border-radius: 4px; padding: 1px 8px; font-size: var(--step--1); }
+.cat-line { font-size: var(--step--1); color: var(--moss); font-weight: 500; }
+.when { list-style: none; padding: 0 !important; }
+.when li { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 10px; }
+.when li b { color: var(--moss); font-weight: 500; }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+.sources { font-size: var(--step--1); padding-left: 1.6em !important; overflow-wrap: anywhere; }
+.maplink { justify-self: start; display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--shu); border-radius: var(--radius); padding: 6px 14px; text-decoration: none; font-weight: 500; }
+.note { font-size: var(--step--1); color: var(--ink-2); border-left: 2px solid var(--rule); padding-left: 10px; margin: 0; }
+
+/* ---------- 下部の説明 ---------- */
+.about { border-top: 1px solid var(--rule); background: var(--surface); }
+.about .wrap { padding-block: 32px 40px; display: grid; gap: 28px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.about section { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.about h2 { font-size: var(--step-1); }
+.about p { margin: 0; color: var(--ink-2); max-width: 65ch; }
+.about .wide { grid-column: 1 / -1; }
+
+@media (max-width: 960px) {
+  .row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-block: 12px 40px; }
+  .filters { position: static; }
+  .filters details { display: block; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+  .filters summary { display: flex; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-weight: 500; }
+  .filters .panel { padding: 4px 14px 16px; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .card { grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: none; }
+  .card .ph { aspect-ratio: auto; height: 100%; min-height: 96px; }
+  .card .ph img { border-bottom: 0; border-right: 1px solid var(--rule); }
+  .card .ph.empty { border-bottom: 0; border-right: 1px solid var(--rule); }
+  .card .ph.empty span { font-size: var(--step-0); }
+  .meta { padding: 10px 12px; }
+  .about .wrap { grid-template-columns: minmax(0, 1fr); }
+  dialog.sheet { width: 100%; max-width: 100%; max-height: 100%; height: 100%; border-radius: 0; margin: 0; border: 0; }
+  .sheet .body { padding: 14px max(16px, env(safe-area-inset-right, 0px)) 32px max(16px, env(safe-area-inset-left, 0px)); }
+  .close { top: calc(10px + env(safe-area-inset-top, 0px)); right: max(10px, env(safe-area-inset-right, 0px)); }
+  .when li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">都道府県別・神社の図鑑</div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="torii" viewBox="0 0 32 32"><path d="M2 6.5c4.5 1.2 9 1.8 14 1.8s9.5-.6 14-1.8V10c-1.4.4-2.8.7-4.2.9V13H29v3h-3.2v13h-3.3V16H9.5v13H6.2V16H3v-3h3.2v-2.1C4.8 10.7 3.4 10.4 2 10V6.5zm7.5 4.7V13h5v-1.6c-1.7 0-3.4-.1-5-.2zm8 .2V13h5v-1.8c-1.6.1-3.3.2-5 .2z"/></symbol></svg>
+    <h1><svg class="torii" viewBox="0 0 32 32" aria-hidden="true"><use href="#torii" fill="currentColor"/></svg>日本全国 神社図鑑</h1>
+    <p id="lead">各都道府県から3社ずつ、ご利益・行き方・歴史をまとめました。載せているのは、各神社の公式サイトなどで確かめられた内容だけです。</p>
+    <div class="stamp">情報の確認日 <b id="built">—</b>　お出かけ前に、各神社の公式サイトで最新の情報をご確認ください。</div>
+  </div>
+</header>
+
+<main class="wrap layout">
+  <aside class="filters" aria-label="絞り込み">
+    <details id="filter-box" open>
+      <summary><span>絞り込み</span><span id="filter-summary" class="fnote"></span></summary>
+      <div class="panel">
+        <div class="fgroup">
+          <label class="label" for="q">名前・地名・御祭神で探す</label>
+          <input id="q" class="field" type="search" placeholder="例：八幡、大国主、京都" autocomplete="off">
+        </div>
+        <div class="fgroup">
+          <label class="label" for="pref">都道府県</label>
+          <select id="pref" class="field"></select>
+        </div>
+        <div class="fgroup">
+          <span class="label" id="cat-label">ご利益</span>
+          <div class="chips" id="cats" role="group" aria-labelledby="cat-label"></div>
+          <p class="fnote">複数選ぶと、どれか1つに当てはまる神社を表示します。</p>
+        </div>
+        <div class="fgroup">
+          <span class="label" id="sit-label">こんな時に</span>
+          <div class="chips" id="sits" role="group" aria-labelledby="sit-label"></div>
+        </div>
+        <button class="reset" id="reset" type="button">条件をすべて外す</button>
+      </div>
+    </details>
+  </aside>
+
+  <section aria-label="神社の一覧">
+    <div class="regions" id="regions"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div id="list"></div>
+  </section>
+</main>
+
+<footer class="about">
+  <div class="wrap">
+    <section>
+      <h2>載せている神社</h2>
+      <p>各都道府県から3社を選びました。旧国の一宮、旧社格の高い神社、参拝者の多い有名な神社を候補にし、公式の情報を確かめられた神社を載せています。日本の神社の一部であり、順位やランキングではありません。</p>
+    </section>
+    <section>
+      <h2>情報の出どころ</h2>
+      <p>ご利益・御祭神・由緒・行き方・参拝時間・祭事は、神社の公式サイト（無い場合は神社庁や自治体の公式サイト）で確かめた内容だけを載せています。確かめられなかった項目は空欄にし、所要時間などの数字も公式に書かれている場合だけ載せています。各神社の詳細に出典のリンクがあります。</p>
+    </section>
+    <section class="wide">
+      <h2>ご利益の分類について</h2>
+      <p>「家庭運」「仕事運」「金運」などのタグは、公式に書かれたご利益の言葉に下の語が含まれるかで機械的に付けています。公式にご利益の記載がない神社にはタグが付きません。</p>
+      <div class="tbl-wrap"><table id="cat-table"><thead><tr><th>分類</th><th>含まれていれば付ける語</th><th>こんな時に（目安）</th></tr></thead><tbody></tbody></table></div>
+      <p>「こんな時に」は、分類から参拝のきっかけの例を挙げた目安です。神社がそう案内しているわけではありません。</p>
+    </section>
+    <section class="wide">
+      <h2>写真について</h2>
+      <p id="photo-about">写真は Wikimedia Commons で自由な利用が許されたもの（クリエイティブ・コモンズなど）を使い、各神社の詳細に撮影者とライセンスを載せています。写真が無い神社は名前の札を表示しています。</p>
+    </section>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"></dialog>
+
+<script>
+const D = /*__SHRINE_DATA__*/null;
+
+const REGIONS = [
+  { key: "all", label: "全国", codes: null },
+  { key: "tohoku", label: "北海道・東北", codes: ["01", "02", "03", "04", "05", "06", "07"] },
+  { key: "kanto", label: "関東", codes: ["08", "09", "10", "11", "12", "13", "14"] },
+  { key: "chubu", label: "中部", codes: ["15", "16", "17", "18", "19", "20", "21", "22", "23"] },
+  { key: "kinki", label: "近畿", codes: ["24", "25", "26", "27", "28", "29", "30"] },
+  { key: "chugoku", label: "中国", codes: ["31", "32", "33", "34", "35"] },
+  { key: "shikoku", label: "四国", codes: ["36", "37", "38", "39"] },
+  { key: "kyushu", label: "九州・沖縄", codes: ["40", "41", "42", "43", "44", "45", "46", "47"] },
+];
+
+// 分類ごとの「こんな時に」の目安（編集による例。神社の案内ではない）
+const WHEN = {
+  family: "結婚・妊娠・出産や新居への引っ越しなど、家族の節目に",
+  work: "就職・転職・開業・異動など、仕事の節目に",
+  money: "家計や事業のお金まわりを見直したいときに",
+  love: "良い縁を願うとき、結婚を控えたときに",
+  health: "病気の回復や家族の健康を願うときに",
+  study: "受験や資格試験の前に",
+  yakuyoke: "厄年や、新しいことを始める転機に",
+  travel: "車を買ったときや、長い旅に出る前に",
+  victory: "試合や大事な勝負の前に",
+  harvest: "農業や漁業の仕事の祈願に",
+};
+
+const SITUATIONS = [
+  { key: "marriage", label: "結婚・出産", cats: ["family", "love"] },
+  { key: "job", label: "就職・転職・開業", cats: ["work"] },
+  { key: "money", label: "お金の節目", cats: ["money"] },
+  { key: "exam", label: "受験・試験", cats: ["study"] },
+  { key: "yaku", label: "厄年・転機", cats: ["yakuyoke"] },
+  { key: "health", label: "病気・健康", cats: ["health"] },
+  { key: "trip", label: "新車・旅行", cats: ["travel"] },
+  { key: "match", label: "勝負の前", cats: ["victory"] },
+];
+
+const SOURCE_LABEL = {
+  official: "神社の公式サイトで確認",
+  jinjacho: "神社庁の公式サイトで確認",
+  municipal: "自治体の公式サイトで確認",
+};
+
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const state = { region: "all", pref: "", cats: new Set(), sit: "", q: "" };
+const shrines = D ? D.shrines : [];
+const catLabel = Object.fromEntries((D ? D.categories : []).map((c) => [c.key, c.label]));
+const byId = new Map(shrines.map((s) => [s.id, s]));
+
+function photoBox(s, cls) {
+  if (s.photo) {
+    return `<span class="ph ${cls || ""}"><img src="${esc(s.photo.src)}" alt="${esc(s.name)}の写真" loading="lazy" decoding="async"></span>`;
+  }
+  return `<span class="ph empty ${cls || ""}" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#torii"/></svg><span>写真準備中</span></span>`;
+}
+
+function tagLine(s) {
+  if (!s.tags.length) return `<span class="tags none">${s.benefitsOfficial.length ? "分類に当てはまるご利益なし" : "公式のご利益の記載なし"}</span>`;
+  return `<span class="tags">${s.tags.map((t) => esc(catLabel[t])).join("・")}</span>`;
+}
+
+function matches(s) {
+  const r = REGIONS.find((x) => x.key === state.region);
+  if (r.codes && !r.codes.includes(s.prefCode)) return false;
+  if (state.pref && s.prefCode !== state.pref) return false;
+  if (state.cats.size && !s.tags.some((t) => state.cats.has(t))) return false;
+  if (state.sit) {
+    const sit = SITUATIONS.find((x) => x.key === state.sit);
+    if (!s.tags.some((t) => sit.cats.includes(t))) return false;
+  }
+  if (state.q) {
+    const hay = [s.name, s.kana, s.pref, s.address, ...s.deities, ...s.benefitsOfficial].join(" ");
+    if (!state.q.split(/\s+/).every((w) => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function renderList() {
+  const hits = shrines.filter(matches);
+  const groups = new Map();
+  for (const s of hits) {
+    if (!groups.has(s.prefCode)) groups.set(s.prefCode, []);
+    groups.get(s.prefCode).push(s);
+  }
+  $("#count").textContent = `${hits.length}社を表示中（全${shrines.length}社）`;
+  if (!hits.length) {
+    $("#list").innerHTML = `<p class="empty-state">条件に合う神社がありません。条件を減らしてみてください。</p>`;
+  } else {
+    $("#list").innerHTML = [...groups].map(([code, list]) => `
+      <section class="pref" aria-label="${esc(D.prefs[code])}">
+        <h2><span class="code">${code}</span>${esc(D.prefs[code])}</h2>
+        <div class="row">${list.map((s) => `
+          <button class="card" type="button" data-id="${s.id}">
+            ${photoBox(s)}
+            <span class="meta">
+              <span class="name">${esc(s.name)}</span>
+              ${s.kana ? `<span class="kana">${esc(s.kana)}</span>` : ""}
+              ${tagLine(s)}
+            </span>
+          </button>`).join("")}
+        </div>
+      </section>`).join("");
+  }
+  const n = state.cats.size + (state.sit ? 1 : 0) + (state.pref ? 1 : 0) + (state.q ? 1 : 0);
+  $("#filter-summary").textContent = n ? `${n}件の条件` : "";
+}
+
+function renderFilters() {
+  $("#regions").innerHTML = REGIONS.map((r) =>
+    `<button class="region" type="button" data-region="${r.key}" aria-pressed="${state.region === r.key}">${r.label}</button>`).join("");
+  const r = REGIONS.find((x) => x.key === state.region);
+  const codes = r.codes || Object.keys(D.prefs);
+  $("#pref").innerHTML = `<option value="">${r.codes ? r.label + "のすべて" : "すべての都道府県"}</option>` +
+    codes.map((c) => `<option value="${c}"${state.pref === c ? " selected" : ""}>${c} ${esc(D.prefs[c])}</option>`).join("");
+  $("#cats").innerHTML = D.categories.map((c) =>
+    `<button class="chip" type="button" data-cat="${c.key}" aria-pressed="${state.cats.has(c.key)}">${esc(c.label)}</button>`).join("");
+  $("#sits").innerHTML = SITUATIONS.map((x) =>
+    `<button class="chip" type="button" data-sit="${x.key}" aria-pressed="${state.sit === x.key}">${esc(x.label)}</button>`).join("");
+}
+
+function srcNote(s, field) {
+  const idx = (s.fieldSources && s.fieldSources[field]) || [];
+  return idx.length ? `<span class="src">出典 ${idx.map((i) => i + 1).join("・")}</span>` : "";
+}
+
+function openSheet(id, push) {
+  const s = byId.get(id);
+  if (!s) return;
+  const p = s.photo;
+  const mapQuery = encodeURIComponent(`${s.name} ${s.address || s.pref}`);
+  const html = `
+    <article>
+      <figure>
+        ${p ? `<img src="${esc(p.src)}" alt="${esc(s.name)}の写真">` : photoBox(s)}
+        <button class="close" type="button" data-close aria-label="閉じる">×</button>
+        ${p ? `<figcaption>写真：<a href="${esc(p.pageUrl)}" target="_blank" rel="noopener">${esc(p.title)}</a>　撮影 ${esc(p.artist)}　${p.licenseUrl ? `<a href="${esc(p.licenseUrl)}" target="_blank" rel="noopener">${esc(p.license)}</a>` : esc(p.license)}（Wikimedia Commons）</figcaption>` : ""}
+      </figure>
+      <div class="body">
+        <div class="head">
+          <span class="pref-line">${s.prefCode} ${esc(s.pref)}</span>
+          <h2 id="sheet-title">${esc(s.name)}</h2>
+          ${s.kana ? `<span class="kana">${esc(s.kana)}</span>` : ""}
+          <span class="badge">${esc(SOURCE_LABEL[s.sourceType] || "")}</span>
+        </div>
+
+        <section class="sec">
+          <h3>ご利益 ${srcNote(s, "benefitsOfficial")}</h3>
+          ${s.benefitsOfficial.length
+            ? `<div class="words">${s.benefitsOfficial.map((b) => `<span class="word">${esc(b)}</span>`).join("")}</div>
+               <span class="cat-line">${s.tags.length ? "分類：" + s.tags.map((t) => esc(catLabel[t])).join("・") : "分類表に当てはまる語はありません"}</span>`
+            : `<p class="muted">公式サイトでご利益の記載を確認できませんでした。</p>`}
+        </section>
+
+        ${s.tags.length ? `
+        <section class="sec">
+          <h3>こんな時に <span class="src">目安（ご利益の分類から）</span></h3>
+          <ul class="when">${s.tags.map((t) => `<li><b>${esc(catLabel[t])}</b><span>${esc(WHEN[t])}</span></li>`).join("")}</ul>
+        </section>` : ""}
+
+        <section class="sec">
+          <h3>歴史・由緒 ${srcNote(s, "history")}</h3>
+          ${s.history ? `<p>${esc(s.history)}</p>` : `<p class="muted">公式サイトで由緒を確認できませんでした。</p>`}
+        </section>
+
+        <section class="sec">
+          <h3>御祭神 ${srcNote(s, "deities")}</h3>
+          ${s.deities.length ? `<div class="words">${s.deities.map((d) => `<span class="word">${esc(d)}</span>`).join("")}</div>` : `<p class="muted">確認できませんでした。</p>`}
+        </section>
+
+        <section class="sec">
+          <h3>行き方 ${srcNote(s, "access")}</h3>
+          ${s.address ? `<p>所在地：${esc(s.address)} ${srcNote(s, "address")}</p>` : ""}
+          ${s.access.length ? `<ul>${s.access.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>` : `<p class="muted">公式サイトで交通案内を確認できませんでした。</p>`}
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener">Google マップで場所を見る</a>
+        </section>
+
+        <section class="sec">
+          <h3>参拝の時期と時間 ${srcNote(s, "festivals")}</h3>
+          ${s.hours ? `<p>参拝時間：${esc(s.hours)} ${srcNote(s, "hours")}</p>` : `<p class="muted">参拝時間：公式サイトに記載を確認できませんでした。</p>`}
+          ${s.festivals.length ? `<div class="tbl-wrap"><table><thead><tr><th>祭事</th><th>日にち</th></tr></thead><tbody>${s.festivals.map((f) => `<tr><td>${esc(f.name)}</td><td>${esc(f.date)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">祭事の日にちは確認できませんでした。</p>`}
+        </section>
+
+        ${s.officialNotes.length ? `
+        <section class="sec">
+          <h3>参拝の決まり・案内 ${srcNote(s, "officialNotes")}</h3>
+          <ul>${s.officialNotes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>
+        </section>` : ""}
+
+        <section class="sec">
+          <h3>出典</h3>
+          <ol class="sources">${s.sources.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a></li>`).join("")}</ol>
+          ${s.notes ? `<p class="note">確認メモ：${esc(s.notes)}</p>` : ""}
+        </section>
+      </div>
+    </article>`;
+  const dlg = $("#sheet");
+  dlg.innerHTML = html;
+  if (!dlg.open) dlg.showModal ? dlg.showModal() : dlg.setAttribute("open", "");
+  dlg.scrollTop = 0;
+  if (push !== false) {
+    try { history.replaceState(null, "", "#s" + id); } catch (e) { /* 埋め込み表示では URL を変えられない */ }
+  }
+}
+
+function closeSheet() {
+  const dlg = $("#sheet");
+  if (dlg.open) dlg.close ? dlg.close() : dlg.removeAttribute("open");
+}
+
+function init() {
+  if (!D) {
+    $("#list").innerHTML = `<p class="empty-state">データがまだ読み込まれていません。tools/build.py を実行してください。</p>`;
+    return;
+  }
+  $("#built").textContent = D.built;
+  const prefCount = new Set(shrines.map((s) => s.prefCode)).size;
+  const target = Object.keys(D.prefs).length * 3;
+  $("#lead").textContent = `${prefCount}都道府県・${shrines.length}社の、ご利益・行き方・歴史をまとめました。載せているのは、各神社の公式サイトなどで確かめられた内容だけです。` +
+    (shrines.length < target ? `現在は調査の途中で、全${target}社まで順に追加していきます。` : "");
+  const photoCount = shrines.filter((s) => s.photo).length;
+  if (photoCount < shrines.length) {
+    $("#photo-about").textContent += `（現在 ${photoCount}／${shrines.length}社に写真があります）`;
+  }
+  $("#cat-table tbody").innerHTML = D.categories.map((c) =>
+    `<tr><th>${esc(c.label)}</th><td>${c.words.map(esc).join("、")}</td><td>${esc(WHEN[c.key] || "")}</td></tr>`).join("");
+  if (window.matchMedia("(max-width: 760px)").matches) $("#filter-box").open = false;
+
+  renderFilters();
+  renderList();
+
+  $("#regions").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-region]");
+    if (!b) return;
+    state.region = b.dataset.region;
+    state.pref = "";
+    renderFilters();
+    renderList();
+  });
+  $("#pref").addEventListener("change", (e) => { state.pref = e.target.value; renderList(); });
+  $("#q").addEventListener("input", (e) => { state.q = e.target.value.trim(); renderList(); });
+  $("#cats").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-cat]");
+    if (!b) return;
+    const k = b.dataset.cat;
+    state.cats.has(k) ? state.cats.delete(k) : state.cats.add(k);
+    b.setAttribute("aria-pressed", state.cats.has(k));
+    renderList();
+  });
+  $("#sits").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-sit]");
+    if (!b) return;
+    state.sit = state.sit === b.dataset.sit ? "" : b.dataset.sit;
+    renderFilters();
+    renderList();
+  });
+  $("#reset").addEventListener("click", () => {
+    Object.assign(state, { region: "all", pref: "", sit: "", q: "" });
+    state.cats.clear();
+    $("#q").value = "";
+    renderFilters();
+    renderList();
+  });
+  $("#list").addEventListener("click", (e) => {
+    const c = e.target.closest(".card");
+    if (c) openSheet(c.dataset.id);
+  });
+  const dlg = $("#sheet");
+  dlg.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close]") || e.target === dlg) closeSheet();
+  });
+  dlg.addEventListener("close", () => {
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* 同上 */ }
+  });
+  const m = location.hash.match(/^#s(\d{2}-[123])$/);
+  if (m) openSheet(m[1], false);
+}
+
+init();
+</script>
