@@ -1,0 +1,375 @@
+[
+  {
+    "id": "27-1",
+    "prefCode": "27",
+    "pref": "大阪府",
+    "name": "住吉大社",
+    "kana": null,
+    "officialUrl": "https://sumiyoshitaisha.net/",
+    "sourceType": "official",
+    "address": "大阪府大阪市住吉区住吉2丁目9-89",
+    "deities": ["底筒男命", "中筒男命", "表筒男命", "神功皇后（息長足姫命）"],
+    "benefitsOfficial": ["祓いの神", "航海安全の神", "農耕・産業の神", "弓の神", "和歌・文学の神"],
+    "history": "全国約2300社の住吉神社の総本社で、摂津国一之宮。神功皇后の新羅遠征からの凱旋の途中、住吉大神の神託により現在の住吉の地に鎮斎されたと伝えられ、鎮座は神功皇后摂政11年（211年）とされる。御祭神の底筒男命・中筒男命・表筒男命は、伊弉諾尊が禊祓をされた際に海中から出現した住吉三神である。昭和21年までは官幣大社だった。",
+    "access": [
+      "南海本線「住吉大社駅」から東へ徒歩3分",
+      "南海高野線「住吉東駅」から西へ徒歩5分",
+      "阪堺電気軌道「住吉鳥居前駅」からすぐ"
+    ],
+    "hours": "開門 6:00（4月〜9月）／6:30（10月〜3月）、毎月1日と初辰日は6:00開門。閉門は御垣内17:00（外周門は16:00と案内）。正月・住吉祭（夏祭）期間は異なる",
+    "festivals": [
+      { "name": "御田植神事", "date": "6月14日" },
+      { "name": "住吉祭（夏祭）", "date": "「海の日」の神輿洗神事から8月1日まで（令和8年は7月20日〜8月1日、神輿渡御は7月26日）" },
+      { "name": "大海神社例祭", "date": "10月13日" },
+      { "name": "初辰まいり", "date": "毎月の初辰日" }
+    ],
+    "officialNotes": [
+      "御守授与所は9:00〜17:00、祈祷受付は9:00〜15:50",
+      "年末年始（12月31日〜1月3日）は駐車場を閉鎖。公共交通機関を利用する"
+    ],
+    "sources": [
+      { "label": "公式サイト 住吉大社の由緒", "url": "https://sumiyoshitaisha.net/about/origin.html" },
+      { "label": "公式サイト 住吉大社の神様", "url": "http://www.sumiyoshitaisha.net/about/god.html" },
+      { "label": "公式サイト アクセス", "url": "https://sumiyoshitaisha.net/access/" },
+      { "label": "公式サイト よくある質問", "url": "https://www.sumiyoshitaisha.net/faq/" },
+      { "label": "公式サイト 令和8年 住吉祭（夏祭）について", "url": "https://www.sumiyoshitaisha.net/news/detail.php?seq=149" },
+      { "label": "公式サイト 10月の行事", "url": "https://www.sumiyoshitaisha.net/events/annualevents/10.html" },
+      { "label": "公式サイト 初辰まいり", "url": "https://sumiyoshitaisha.net/worship/hattatu.html" },
+      { "label": "公式サイト 令和8年（2026）初詣のご案内", "url": "https://sumiyoshitaisha.net/newyear/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [0, 1], "benefitsOfficial": [1],
+      "history": [0, 1], "access": [2], "hours": [2, 3], "festivals": [1, 4, 5, 6], "officialNotes": [2, 3, 7]
+    },
+    "notes": "閉門時刻は検索要約で「外周門16:00・御垣内17:00」とされたため、その表記どおりに記載。ご利益は公式「住吉大社の神様」の御神徳の見出しの言葉どおり（摂末社ごとのご利益は含めない）。節分祭など日付を確認できなかった祭事は記載しない。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "27-2",
+    "prefCode": "27",
+    "pref": "大阪府",
+    "name": "大阪天満宮",
+    "kana": null,
+    "officialUrl": "https://osakatemmangu.or.jp/",
+    "sourceType": "official",
+    "address": "大阪府大阪市北区天神橋2丁目1番8号",
+    "deities": ["菅原道真公"],
+    "benefitsOfficial": [],
+    "history": "白雉元年（650年）、孝徳天皇が難波長柄豊崎宮を造営した頃、都の西北を守る神として大将軍社がこの地に祀られたのが始まりとされる。901年に菅原道真公が大宰府へ向かう途中に参拝して旅の無事を祈り、949年に大将軍社の前に一夜にして松が生えたことから、村上天皇の勅命で社が建てられ道真公の御霊が祀られたと伝わる。地元では「天満の天神さん」と呼ばれ親しまれている。",
+    "access": [
+      "大阪メトロ谷町線・堺筋線「南森町駅」、JR東西線「大阪天満宮駅」から天神橋筋商店街を南へ歩き、二つ目の辻を曲がって約50m"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "天満天神えびす祭", "date": "1月9日〜11日" },
+      { "name": "とんど神事", "date": "1月15日" },
+      { "name": "初天神梅花祭（鷽替神事）", "date": "1月24日〜25日" },
+      { "name": "天神祭", "date": "7月24日〜25日" },
+      { "name": "献湯神事・月次祭", "date": "毎月1日・25日" }
+    ],
+    "officialNotes": [
+      "通り抜け参拝には、試験合格祈願・就職成就祈願・学徳向上の御守りかご祈祷を受けた人に配られる参拝券が必要（参拝券1枚につき1人）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://osakatemmangu.or.jp/" },
+      { "label": "公式サイト 大阪天満宮について", "url": "https://osakatemmangu.or.jp/about" },
+      { "label": "公式サイト アクセスマップ", "url": "https://osakatemmangu.or.jp/access" },
+      { "label": "公式サイト 天満宮の一年", "url": "https://osakatemmangu.or.jp/saijireki" },
+      { "label": "公式サイト 天神祭", "url": "https://osakatemmangu.or.jp/saijireki/tjm" },
+      { "label": "公式サイト 令和8年の通り抜け参拝について", "url": "https://osakatemmangu.or.jp/3944" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [0, 1], "benefitsOfficial": [],
+      "history": [1], "access": [2], "hours": [], "festivals": [3, 4], "officialNotes": [5]
+    },
+    "notes": "開閉門時間は公式で2022年の告知（夏時間 5:30〜18:30）しか確認できず、現在も同じか分からないため null。ご利益・御神徳を挙げた公式の記載は確認できず空。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "27-3",
+    "prefCode": "27",
+    "pref": "大阪府",
+    "name": "今宮戎神社",
+    "kana": null,
+    "officialUrl": "https://www.imamiya-ebisu.jp/",
+    "sourceType": "official",
+    "address": "大阪府大阪市浪速区恵美須西1丁目6-10",
+    "deities": ["天照皇大神", "事代主命", "素盞鳴命", "月読命", "稚日女命"],
+    "benefitsOfficial": ["商売繁盛", "家内安全", "智恵と言語の守護", "幼い子供たちの守護"],
+    "history": "推古天皇の御代の600年、聖徳太子が四天王寺の建立に当たり、その西方の守護神として鎮斎したと伝えられる。のちに浜の市の守り神として信仰され、商業の発展とともに福徳・商売繁栄の神として崇敬が広まった。戦災で本殿を焼失し、昭和31年（1956年）11月に復興・竣工した。",
+    "access": [
+      "南海高野線「今宮戎駅」下車すぐ東",
+      "大阪メトロ御堂筋線「大国町駅」から徒歩約8分",
+      "大阪メトロ堺筋線「恵美須町駅」から徒歩約8分",
+      "JR「新今宮駅」から北へ徒歩約10分",
+      "阪神高速なんば出口から車で約5分"
+    ],
+    "hours": "6:00〜17:00（南側脇門のみ22:00まで）。授与所・御朱印 9:00〜17:00、ご祈祷 9:30〜16:30",
+    "festivals": [
+      { "name": "十日戎", "date": "1月9日〜11日" },
+      { "name": "こどもえびす（夏の例祭）", "date": "7月（令和7年は22日宵宮・23日本宮）" },
+      { "name": "朔日祭", "date": "毎月1日" },
+      { "name": "月次祭", "date": "毎月10日" }
+    ],
+    "officialNotes": [
+      "駐車場は令和8年中は利用できない。近隣のコインパーキングを利用する",
+      "十日戎の期間中は周辺で交通規制があり、時間帯によって御祈祷の受付が停止されることがある"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.imamiya-ebisu.jp/" },
+      { "label": "公式サイト 今宮戎神社とは", "url": "https://www.imamiya-ebisu.jp/about" },
+      { "label": "公式サイト 授与品・ご祈祷について", "url": "https://www.imamiya-ebisu.jp/jyuyohin" },
+      { "label": "公式サイト こどもえびす", "url": "https://www.imamiya-ebisu.jp/kodomoebisu" },
+      { "label": "公式サイト アクセス", "url": "https://www.imamiya-ebisu.jp/access" },
+      { "label": "公式サイト よくあるご質問", "url": "https://www.imamiya-ebisu.jp/qa" },
+      { "label": "公式サイト 神事・行事について", "url": "https://www.imamiya-ebisu.jp/schedule" },
+      { "label": "公式サイト 十日戎", "url": "https://www.imamiya-ebisu.jp/tokaebisu" },
+      { "label": "公式サイト お問い合わせ", "url": "https://www.imamiya-ebisu.jp/contact" }
+    ],
+    "fieldSources": {
+      "address": [4, 8], "deities": [1], "benefitsOfficial": [2, 3],
+      "history": [1], "access": [4], "hours": [5], "festivals": [3, 6, 7], "officialNotes": [4, 7]
+    },
+    "notes": "参拝時間は公式「よくあるご質問」の記載による（トップページの開門時間の表記と一部食い違いがあると検索要約が指摘）。ご利益は授与品の御神徳（商売繁盛・家内安全）と、事代主命の御神徳として公式が紹介する語句。こどもえびすの日付は令和7年の行事一覧による。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "28-1",
+    "prefCode": "28",
+    "pref": "兵庫県",
+    "name": "生田神社",
+    "kana": null,
+    "officialUrl": "https://ikutajinja.or.jp/",
+    "sourceType": "official",
+    "address": "兵庫県神戸市中央区下山手通1丁目2-1",
+    "deities": ["稚日女尊"],
+    "benefitsOfficial": ["安産祈願", "恋愛成就", "ご縁結び"],
+    "history": "神功皇后が三韓からの帰途、神戸港で神意を占ったところ稚日女尊が現れ、活田の地に鎮まりたいと告げたことから祀られたと伝わる（西暦201年とされる）。大同元年（806年）に朝廷から神社に奉仕する44戸（神戸＝かんべ）を与えられ、これが転じて「こうべ」の地名になったとされる。機織りの神として、人と人との縁を結ぶ御神徳が信仰されている。",
+    "access": [
+      "JR三ノ宮駅・私鉄各線三宮駅から北へ徒歩10分ほど",
+      "JR新神戸駅からタクシーで約5分",
+      "阪神高速3号神戸線 生田川IC・京橋ICから車で約5分"
+    ],
+    "hours": "7:00開門、17:00頃閉門（夏場は18:00頃）。お札授与所 9:00〜16:30、ご祈祷受付 9:30〜16:00",
+    "festivals": [
+      { "name": "例祭（生田祭）", "date": "4月15日" },
+      { "name": "秋季大祭", "date": "9月20日" }
+    ],
+    "officialNotes": [
+      "ご祈祷は予約を受け付けていない（受付順）。所要時間は約20分",
+      "8月上旬の夏祭期間中は、ご祈祷を生田神社会館「儀式殿」で行い、駐車場は終日利用できない"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://ikutajinja.or.jp/" },
+      { "label": "公式サイト 由緒のご紹介", "url": "https://ikutajinja.or.jp/history" },
+      { "label": "公式サイト 生田神社についてご紹介", "url": "https://ikutajinja.or.jp/introduction" },
+      { "label": "公式サイト 所在地までの道案内", "url": "https://ikutajinja.or.jp/access" },
+      { "label": "公式サイト よくあるご質問", "url": "https://ikutajinja.or.jp/faq" },
+      { "label": "公式サイト 祭事・年中行事のご紹介", "url": "https://ikutajinja.or.jp/rite" },
+      { "label": "公式サイト 秋季大祭行事のご案内", "url": "https://ikutajinja.or.jp/info/autumn-rite" },
+      { "label": "公式サイト ご祈祷・ご祈願", "url": "https://ikutajinja.or.jp/wish" },
+      { "label": "公式サイト 夏祭期間中のご祈祷並びに駐車場について", "url": "https://ikutajinja.or.jp/info/gokitou-information" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [1, 2], "benefitsOfficial": [0, 2],
+      "history": [1], "access": [3], "hours": [4], "festivals": [5, 6], "officialNotes": [7, 8]
+    },
+    "notes": "ご利益は公式サイトの見出し・紹介文の語句（安産祈願・恋愛成就・ご縁結び）。境内社ごとのご利益は含めない。夏越大祓式などページにより日付・時刻の更新時期が異なる祭事は記載しない。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "28-2",
+    "prefCode": "28",
+    "pref": "兵庫県",
+    "name": "西宮神社",
+    "kana": null,
+    "officialUrl": "https://nishinomiya-ebisu.com/",
+    "sourceType": "official",
+    "address": "兵庫県西宮市社家町1-17",
+    "deities": ["えびす大神", "天照大御神", "大国主大神", "須佐之男大神"],
+    "benefitsOfficial": ["商売繁盛", "大漁満足", "家内安全", "五穀豊穣", "医療", "良縁成就"],
+    "history": "大阪湾の和田岬沖に現れた御神像を西宮・鳴尾の漁師が引き揚げ、御神託により西の宮地にお遷しして祀ったのが起源と伝えられる。鎮座年代は明らかでないが平安中後期と推測される。室町時代には福の神の代表として七福神の一神となり、江戸時代には御神影札の配布を通じて信仰が全国に広まった。本殿は三連春日造りで「西宮造り」とも呼ばれる。",
+    "access": [
+      "阪神本線「西宮駅」えびす口から南西へ徒歩5分",
+      "JR「さくら夙川駅」から南東へ徒歩10分",
+      "阪急「夙川駅」から南東へ徒歩15分",
+      "阪急西宮北口駅・JR西宮駅から「阪神西宮」行きバスで終点下車、えべっさん筋を南西へすぐ",
+      "車は阪神高速3号神戸線「西宮出口」が近く、国道43号沿いの南門から入る"
+    ],
+    "hours": "4月〜8月 5:00〜19:00／9月・3月 5:00〜18:30／10月〜2月 5:00〜18:00（授与所 9:00〜17:00、祈祷受付 9:00〜16:30）",
+    "festivals": [
+      { "name": "十日えびす（開門神事福男選び）", "date": "1月10日" },
+      { "name": "宵宮祭（西宮まつり）", "date": "9月21日" },
+      { "name": "例祭（西宮まつり）", "date": "9月22日" },
+      { "name": "渡御祭（西宮まつり）", "date": "9月23日" },
+      { "name": "招福縁日 十日市", "date": "毎月10日" }
+    ],
+    "officialNotes": [
+      "駐車場（境内西南）は祭典などで利用できない場合がある"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://nishinomiya-ebisu.com/" },
+      { "label": "公式サイト 西宮神社について", "url": "https://nishinomiya-ebisu.com/about/" },
+      { "label": "公式サイト 本殿", "url": "https://nishinomiya-ebisu.com/guide/honden/" },
+      { "label": "公式サイト アクセス", "url": "https://nishinomiya-ebisu.com/access/" },
+      { "label": "公式サイト 年中行事", "url": "https://nishinomiya-ebisu.com/event/" },
+      { "label": "公式サイト 西宮まつり", "url": "https://nishinomiya-ebisu.com/matsuri/" },
+      { "label": "公式サイト 西宮まつり 9月22日例祭", "url": "https://nishinomiya-ebisu.com/matsuri/0922.html" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [1, 2], "benefitsOfficial": [1],
+      "history": [1, 2], "access": [3], "hours": [3], "festivals": [4, 5, 6], "officialNotes": [3]
+    },
+    "notes": "ご利益は、えびす大神（商売繁盛・大漁満足）と大国主大神（家内安全・五穀豊穣・医療・良縁成就）について公式が挙げる語句。境内末社のご利益は含めない。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "28-3",
+    "prefCode": "28",
+    "pref": "兵庫県",
+    "name": "伊弉諾神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": "jinjacho",
+    "address": "兵庫県淡路市多賀740",
+    "deities": ["伊弉諾大神", "伊弉冊大神"],
+    "benefitsOfficial": [],
+    "history": "『古事記』『日本書紀』には、国生み・神生みを終えた伊弉諾尊が淡路島の多賀に幽宮を構えて鎮まったと記され、これが神社の起源とされる。延喜式神名帳では淡路国の名神大社に列し、平安末期からは淡路国一宮とされた。明治時代に国幣中社から官幣大社へ昇格し、昭和7年（1932年）に伊弉冊尊を合祀、昭和29年（1954年）に現在の「伊弉諾神宮」へ改称した。",
+    "access": [],
+    "hours": null,
+    "festivals": [
+      { "name": "例祭", "date": "4月22日" }
+    ],
+    "officialNotes": [],
+    "sources": [
+      { "label": "兵庫県神社庁 神社検索 伊弉諾神宮", "url": "https://www.hyogo-jinjacho.com/data/6328110.html" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [0], "benefitsOfficial": [],
+      "history": [0], "access": [], "hours": [], "festivals": [0], "officialNotes": []
+    },
+    "notes": "神宮自身の公式サイトを特定できなかった（izanagi-jingu.jp は現在、他の神社の記事が並ぶブログで公式ではない。kuniuminoshima.jp は境内施設「せきれいの里」のサイトで、神宮自身の公式サイトとは確認できなかった）ため、兵庫県神社庁の神社検索ページを使用。交通・参拝時間・御神徳は神社庁ページで確認できず空。住所は神社庁ページの「淡路市多賀740」に県名を補った。kana は確認できていないため null。"
+  },
+  {
+    "id": "29-1",
+    "prefCode": "29",
+    "pref": "奈良県",
+    "name": "春日大社",
+    "kana": null,
+    "officialUrl": "https://www.kasugataisha.or.jp/",
+    "sourceType": "official",
+    "address": "奈良県奈良市春日野町160",
+    "deities": ["武甕槌命", "経津主命", "天児屋根命", "比売神"],
+    "benefitsOfficial": [],
+    "history": "奈良時代の初め、平城京を守護するため武甕槌命が鹿島神宮から御蓋山の山頂に迎えられたのが始まりとされる。768年、藤原永手らの働きかけにより称徳天皇の命で社殿が造営されたと伝わる。御本社（大宮）の4柱の神のほか、摂社・末社が合わせて62社祀られている。",
+    "access": [
+      "JR奈良駅・近鉄奈良駅から奈良交通バス「春日大社本殿」行きで「春日大社本殿」下車すぐ",
+      "市内循環・外回り循環バス「春日大社表参道」下車、徒歩約10分",
+      "近鉄奈良駅から徒歩約25分"
+    ],
+    "hours": "御本殿の一般参拝 3月〜10月 6:30〜17:30／11月〜2月 7:00〜17:00（特別参拝は9:00〜16:00。年末年始は変更あり）",
+    "festivals": [
+      { "name": "春日祭", "date": "令和8年は3月13日" },
+      { "name": "采女祭", "date": "9月25日" },
+      { "name": "旬祭", "date": "毎月1日・11日・21日" }
+    ],
+    "officialNotes": [
+      "毎朝の朝拝（朝のお参り）には一般参拝者も参加できる。8:50頃集合、所要約20分、参加費無料",
+      "駐車場は神社行事により予告なく閉鎖される場合がある",
+      "春日祭の当日は開門から午後1時頃まで回廊内に入れない（令和8年の案内）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.kasugataisha.or.jp/" },
+      { "label": "公式サイト 境内のご案内", "url": "https://www.kasugataisha.or.jp/guidance/" },
+      { "label": "公式サイト 御本社（大宮）〜紀伊神社", "url": "https://www.kasugataisha.or.jp/guidance/keidai-map2/" },
+      { "label": "公式サイト General Information", "url": "https://www.kasugataisha.or.jp/en/about_en/basic/" },
+      { "label": "公式サイト 春日祭斎行に伴う参拝時間について", "url": "https://www.kasugataisha.or.jp/news/2026/16056/" },
+      { "label": "公式サイト 朝のお参り（朝拝）", "url": "https://www.kasugataisha.or.jp/chohai/" }
+    ],
+    "fieldSources": {
+      "address": [1, 3], "deities": [2], "benefitsOfficial": [],
+      "history": [0, 1], "access": [3], "hours": [3], "festivals": [0, 4], "officialNotes": [3, 4, 5]
+    },
+    "notes": "公式のご利益の紹介は摂社・末社ごと（夫婦大国社の夫婦円満・縁結び、一言主神社など）で、御本社の御神徳としての記載は確認できなかったため空。春日祭の日付は令和8年の案内による。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "29-2",
+    "prefCode": "29",
+    "pref": "奈良県",
+    "name": "大神神社",
+    "kana": "おおみわじんじゃ",
+    "officialUrl": "https://oomiwa.or.jp/",
+    "sourceType": "official",
+    "address": "奈良県桜井市三輪1422",
+    "deities": ["大物主大神", "大己貴神", "少彦名神"],
+    "benefitsOfficial": ["農業、工業、商業すべての産業開発", "方除", "治病", "造酒", "製薬", "禁厭", "交通", "航海", "縁結び"],
+    "history": "三輪山を御神体とし、本殿を設けず三ツ鳥居を通して三輪山を拝するという原初の神祀りの様を伝える、我が国最古の神社のひとつ。主祭神は大物主大神で、大己貴神・少彦名神を配祀する。疫病を鎮めた逸話と酒造りの伝承から、医薬の神・酒造の神としても信仰を集めている。",
+    "access": [
+      "JR桜井線（万葉まほろば線）「三輪駅」から徒歩5分",
+      "JR桜井線・近鉄大阪線「桜井駅」北口2番乗り場からシャトルバスで約20分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "月次祭", "date": "毎月1日" },
+      { "name": "春の大神祭", "date": "4月9日" },
+      { "name": "夏越の大祓（茅の輪神事）", "date": "6月30日" },
+      { "name": "秋の大神祭", "date": "10月24日（本祭。令和8年は前日23日に宵宮祭、25日に後宴祭）" }
+    ],
+    "officialNotes": [
+      "ご祈祷は予約不要で毎日随時。受付は9:00〜16:00（12月〜2月は15:30まで）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://oomiwa.or.jp/" },
+      { "label": "公式サイト ご祭神", "url": "https://oomiwa.or.jp/jinja/gosaijin/" },
+      { "label": "公式サイト 電車をご利用の方", "url": "https://oomiwa.or.jp/access/train/" },
+      { "label": "公式サイト 三輪駅からのご案内", "url": "https://oomiwa.or.jp/access/station/" },
+      { "label": "公式サイト 年間の祭事表", "url": "https://oomiwa.or.jp/omatsuri/nenkan/" },
+      { "label": "公式サイト 10月のお祭りのご案内", "url": "https://oomiwa.or.jp/info/%EF%BC%91%EF%BC%90%E6%9C%88%E3%81%AE%E3%81%8A%E7%A5%AD%E3%82%8A%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85-6/" },
+      { "label": "公式サイト 参拝・ご祈祷", "url": "https://oomiwa.or.jp/sanpai/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [1],
+      "history": [0, 1], "access": [2, 3], "hours": [], "festivals": [4, 5], "officialNotes": [6]
+    },
+    "notes": "境内の参拝時間は公式で確認できず null（ご祈祷の受付時間のみ officialNotes に記載）。kana は公式サイトのトップページ表記「大神神社 (おおみわじんじゃ)」による。"
+  },
+  {
+    "id": "29-3",
+    "prefCode": "29",
+    "pref": "奈良県",
+    "name": "橿原神宮",
+    "kana": null,
+    "officialUrl": "https://kashiharajingu.or.jp/",
+    "sourceType": "official",
+    "address": "奈良県橿原市久米町934",
+    "deities": ["神武天皇", "媛蹈鞴五十鈴媛皇后"],
+    "benefitsOfficial": ["開運延寿"],
+    "history": "日本の初代天皇・神武天皇と媛蹈鞴五十鈴媛皇后を祀り、明治23年（1890年）に創建された。本殿は京都御所の内侍所で天照大神の御霊代を祀る賢所だった建物で、創建に際し明治天皇から下賜された。例祭の紀元祭は、神武天皇が橿原宮で即位したとされる2月11日に行われる。",
+    "access": [
+      "近鉄「橿原神宮前駅」中央口から徒歩約10分"
+    ],
+    "hours": "開門・閉門時間は月ごとに異なる（例：4・5月 6:00〜18:00、10・11月 6:30〜17:30）。祭典等により変更の場合あり",
+    "festivals": [
+      { "name": "紀元祭（例祭）", "date": "2月11日" },
+      { "name": "御鎮座記念祭", "date": "4月2日" },
+      { "name": "神武天皇祭", "date": "4月3日" },
+      { "name": "長山稲荷社例祭", "date": "5月2日" },
+      { "name": "新嘗祭", "date": "11月23日" }
+    ],
+    "officialNotes": [
+      "紀元祭への参列には事前の申し込みが必要",
+      "御祈祷はおおむね9:00〜16:00の間で随時受付（休日なし）",
+      "境内の駐車場は約800台（正月は臨時を含め約1,500台）、普通車1日500円"
+    ],
+    "sources": [
+      { "label": "公式サイト 橿原神宮について", "url": "https://kashiharajingu.or.jp/about" },
+      { "label": "公式サイト 本殿・幣殿", "url": "https://kashiharajingu.or.jp/point/8272.html" },
+      { "label": "公式サイト お札・お守り", "url": "https://kashiharajingu.or.jp/amulet" },
+      { "label": "公式サイト アクセス", "url": "https://kashiharajingu.or.jp/access" },
+      { "label": "公式サイト よくある質問 アクセス・施設利用について", "url": "https://kashiharajingu.or.jp/faq/9467.html" },
+      { "label": "公式サイト よくある質問 参拝・御祈祷について", "url": "https://kashiharajingu.or.jp/faq/9465.html" },
+      { "label": "公式サイト 祭典・行事", "url": "https://kashiharajingu.or.jp/event" },
+      { "label": "公式サイト 「紀元祭」斎行の御案内", "url": "https://kashiharajingu.or.jp/news/13505.html" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [0], "benefitsOfficial": [0, 2],
+      "history": [0, 1, 7], "access": [3, 4], "hours": [5], "festivals": [6, 7], "officialNotes": [4, 5, 7]
+    },
+    "notes": "参拝時間は月ごとの一覧のうち、検索要約で確認できた月だけを例として記載。kana は公式で確認できていないため null。"
+  }
+]
