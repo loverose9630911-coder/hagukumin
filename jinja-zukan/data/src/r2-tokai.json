@@ -1,0 +1,392 @@
+[
+  {
+    "id": "24-1",
+    "prefCode": "24",
+    "pref": "三重県",
+    "name": "伊勢神宮（神宮）",
+    "kana": null,
+    "officialUrl": "https://www.isejingu.or.jp/",
+    "sourceType": "official",
+    "address": "皇大神宮（内宮）：三重県伊勢市宇治館町1／豊受大神宮（外宮）：三重県伊勢市豊川町279",
+    "deities": ["天照大御神", "豊受大御神"],
+    "benefitsOfficial": [],
+    "history": "皇大神宮（内宮）は、皇室の御祖神であり日本人の大御祖神である天照大御神を祀る。垂仁天皇26年、倭姫命が各地を巡ったのち、神路山・島路山の麓、五十鈴川のほとりに鎮まったと伝える。豊受大神宮（外宮）は内宮の鎮座から約500年後の雄略天皇22年、天皇の夢に現れた天照大御神のお告げにより、御饌都神として丹波国から豊受大御神を迎え、度会の山田原に祀ったことに始まる。神宮は両正宮を中心に125の宮社から成る。",
+    "access": [
+      "外宮：伊勢市駅から徒歩約5分",
+      "外宮から内宮へはバスまたはタクシーで約10分",
+      "電車（近鉄・JR東海）、路線バス、高速道路、フェリーでの行き方を公式の交通アクセスページで案内"
+    ],
+    "hours": "1〜4月・9月 5:00〜18:00／5〜8月 5:00〜19:00／10〜12月 5:00〜17:00",
+    "festivals": [
+      { "name": "神嘗祭（2026年）", "date": "外宮 10月15日夜〜16日、内宮 10月16日夜〜17日（両正宮に続き25日まで別宮・摂社・末社・所管社で斎行）" },
+      { "name": "新嘗祭（2026年）", "date": "11月23日" }
+    ],
+    "officialNotes": [
+      "参拝の順序に特に決まりはないが、外宮から内宮の順にお参りするのが昔からのならわし",
+      "お神札の授与は6:00〜18:00（10〜12月は17:00まで）",
+      "参拝時間内の祭典は参道などから見学できるが、夜間の参拝停止時間中の祭儀は参拝できない"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.isejingu.or.jp/" },
+      { "label": "公式サイト 神宮について", "url": "https://www.isejingu.or.jp/about/" },
+      { "label": "公式サイト 皇大神宮（内宮）", "url": "https://www.isejingu.or.jp/about/naiku/" },
+      { "label": "公式サイト 豊受大神宮（外宮）", "url": "https://www.isejingu.or.jp/about/geku/" },
+      { "label": "公式サイト 交通アクセス", "url": "https://www.isejingu.or.jp/access/" },
+      { "label": "公式サイト ご参拝・ご祈祷", "url": "https://www.isejingu.or.jp/visit/" },
+      { "label": "公式サイト はじめての神宮 参拝編", "url": "https://www.isejingu.or.jp/first/beginner_visit.html" },
+      { "label": "公式サイト 最新情報 神嘗祭", "url": "https://www.isejingu.or.jp/topics/y6smud6w.html" },
+      { "label": "公式サイト 最新情報 新嘗祭", "url": "https://www.isejingu.or.jp/topics/03tl4gk2.html" }
+    ],
+    "fieldSources": {
+      "address": [4], "deities": [2, 3], "benefitsOfficial": [],
+      "history": [1, 2, 3], "access": [4], "hours": [5], "festivals": [7, 8], "officialNotes": [6, 5, 7]
+    },
+    "notes": "公式ドメイン isejingu.or.jp は allowed_domains 検索で公式ページ（タイトル「伊勢神宮」）が返ることで確認。内宮・外宮は1件にまとめ、住所・交通を併記。公式で「ご利益」「御神徳」として列挙された語句は確認できず benefitsOfficial は空。祭典の日付は2026年の公式告知による。kana は公式で確認できず null。"
+  },
+  {
+    "id": "24-2",
+    "prefCode": "24",
+    "pref": "三重県",
+    "name": "椿大神社",
+    "kana": null,
+    "officialUrl": "https://tsubaki.or.jp/",
+    "sourceType": "official",
+    "address": "〒519-0315 三重県鈴鹿市山本町1871番地",
+    "deities": ["猿田彦大神", "瓊々杵尊", "栲幡千々姫命", "天之鈿女命", "木花咲耶姫命"],
+    "benefitsOfficial": ["厄除開運", "家内安全", "無病息災", "交通安全", "商売繁昌", "良縁子孫繁栄", "進学修業", "事業成就", "延命長寿", "縁結び", "安産"],
+    "history": "主神の猿田彦大神は「みちびきの祖神」として崇敬され、相殿に瓊々杵尊・栲幡千々姫命、配祀に天之鈿女命・木花咲耶姫命を祀る。社伝では垂仁天皇27年（紀元前3年）に倭姫命の御神託によって社殿が奉斎されたとされ、日本最古の神社と称する。社名の「椿」の字は、仁徳天皇の御代に御霊夢によって用いられたと伝える。",
+    "access": [
+      "東名阪自動車道 鈴鹿ICより10分",
+      "新名神高速道路 鈴鹿PAのスマートIC（ETC車のみ出入り可能）からも利用可",
+      "近鉄四日市駅から三重交通バスで約55分",
+      "JR四日市駅からバスで約1時間",
+      "近鉄平田町駅から鈴鹿市C-BUS「椿・平田線」で約50分",
+      "JR加佐登駅から鈴鹿市C-BUS「椿・平田線」で約40分"
+    ],
+    "hours": "11月〜4月 5:00〜18:00／5月〜10月 5:00〜19:00",
+    "festivals": [
+      { "name": "秋季例大祭（本宮例大祭・神幸祭／別宮例大祭・還幸祭）", "date": "2026年は10月10日〜12日（11日 本宮例大祭・神幸祭、12日 別宮例大祭・還幸祭）" },
+      { "name": "月次祭", "date": "毎月1日 6:00〜" },
+      { "name": "椿延命地蔵尊大祭", "date": "8月24日" },
+      { "name": "交通安全講大祭", "date": "9月15日" }
+    ],
+    "officialNotes": [
+      "夜間の参拝は受け付けていない",
+      "御祈祷は予約不要。受付は8:00〜16:00、御祈祷は8:30から",
+      "無料駐車場あり（約500台）",
+      "バスの時刻は改正されることがあるため、公式の時刻表リンクで確認するよう案内"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://tsubaki.or.jp/" },
+      { "label": "公式サイト 由緒", "url": "https://tsubaki.or.jp/yuisyo/" },
+      { "label": "公式サイト 椿大神社について", "url": "https://tsubaki.or.jp/about/" },
+      { "label": "公式サイト 交通案内", "url": "https://tsubaki.or.jp/access/" },
+      { "label": "公式サイト 参拝・ご祈祷", "url": "https://tsubaki.or.jp/sanpai/" },
+      { "label": "公式サイト 秋季例大祭～本宮例大祭・別宮例大祭～", "url": "https://tsubaki.or.jp/2026/09/14/%E7%A7%8B%E5%AD%A3%E4%BE%8B%E5%A4%A7%E7%A5%AD%EF%BD%9E%E6%9C%AC%E5%AE%AE%E4%BE%8B%E5%A4%A7%E7%A5%AD%E3%83%BB%E5%88%A5%E5%AE%AE%E4%BE%8B%E5%A4%A7%E7%A5%AD%EF%BD%9E-3-2" },
+      { "label": "公式サイト 写真でみる御祭事", "url": "https://tsubaki.or.jp/saiji/" },
+      { "label": "公式サイト 御祭事 7月〜9月", "url": "https://tsubaki.or.jp/saiji/saiji_07-09.html" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [1], "benefitsOfficial": [1, 2],
+      "history": [1], "access": [3], "hours": [4], "festivals": [5, 6, 7], "officialNotes": [4, 3]
+    },
+    "notes": "公式ドメイン tsubaki.or.jp は allowed_domains 検索で公式ページ（「椿大神社:由緒」等）が返ることで確認。鈴鹿ICからは公式内で「10分」と「5km」の表記があり、交通案内の時間表記を採用。公式では航海・旅行の安全、大漁の守護、先達も御神徳として挙げられているが、語句そのものを確認できなかったため benefitsOfficial には入れていない。秋季例大祭は2026年の公式告知の日程。kana は公式で確認できず null。"
+  },
+  {
+    "id": "24-3",
+    "prefCode": "24",
+    "pref": "三重県",
+    "name": "猿田彦神社",
+    "kana": null,
+    "officialUrl": "https://www.sarutahikojinja.or.jp/",
+    "sourceType": "official",
+    "address": "三重県伊勢市宇治浦田2丁目1-10",
+    "deities": ["猿田彦大神"],
+    "benefitsOfficial": ["みちひらき"],
+    "history": "御祭神の猿田彦大神は、古事記・日本書紀などに天孫降臨の際に道案内をした神と伝えられ、ものごとの始まりに現れて万事を最善の方向へ導く「みちひらき」の大神とされる。大神の御子孫で宇治土公家の遠祖にあたる大田命は、倭姫命の御巡幸の際に、猿田彦大神が開拓した五十鈴川上の宇治の地を勧め、そこに皇大神宮（内宮）が造営されたと伝わる。猿田彦大神の直系の子孫である宇治土公家が代々宮司を務めている。",
+    "access": [
+      "JR東海 伊勢市駅／近鉄 宇治山田駅／近鉄 五十鈴川駅で下車し、各駅よりタクシーで5〜10分程度",
+      "三重交通バス「猿田彦神社前」下車"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "春季例祭", "date": "4月4日・5日" },
+      { "name": "御田祭", "date": "5月5日" },
+      { "name": "佐瑠女神社例祭", "date": "8月17日・18日" },
+      { "name": "神嘗奉祝祭", "date": "10月17日" },
+      { "name": "秋季例祭", "date": "11月4日・5日" }
+    ],
+    "officialNotes": [
+      "駐車場に限りがあるため公共交通機関の利用を推奨",
+      "当社駐車場の入場可能時間は7:00〜18:00（退場は24時間可能）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.sarutahikojinja.or.jp/" },
+      { "label": "公式サイト 猿田彦神社とは", "url": "https://www.sarutahikojinja.or.jp/about/" },
+      { "label": "公式サイト English", "url": "https://www.sarutahikojinja.or.jp/english/" },
+      { "label": "公式サイト 行事・祭典", "url": "https://www.sarutahikojinja.or.jp/gyouji_saiten/" },
+      { "label": "公式サイト お知らせ 当社駐車場 利用時間について", "url": "https://www.sarutahikojinja.or.jp/info/%E5%BD%93%E7%A4%BE%E9%A7%90%E8%BB%8A%E5%A0%B4%E3%80%80%E5%88%A9%E7%94%A8%E6%99%82%E9%96%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [1], "benefitsOfficial": [1, 2],
+      "history": [1], "access": [0], "hours": [], "festivals": [3], "officialNotes": [0, 4]
+    },
+    "notes": "公式ドメイン sarutahikojinja.or.jp は allowed_domains 検索で公式ページが返ることで確認。境内の参拝時間の記載は確認できず hours は null。御祈祷の受付時間はページにより8:30〜17:00／9:00〜17:00と表記が分かれるため記載しない。観光サイトでは大田命も御祭神とされるが、公式では宇治土公家の遠祖として由緒に登場することしか確認できなかったため deities は猿田彦大神のみ。kana は公式で確認できず null。"
+  },
+  {
+    "id": "23-1",
+    "prefCode": "23",
+    "pref": "愛知県",
+    "name": "熱田神宮",
+    "kana": null,
+    "officialUrl": "https://www.atsutajingu.or.jp/",
+    "sourceType": "official",
+    "address": "愛知県名古屋市熱田区神宮1-1-1",
+    "deities": ["熱田大神", "天照大神", "素盞嗚尊", "日本武尊", "宮簀媛命", "建稲種命"],
+    "benefitsOfficial": [],
+    "history": "主祭神の熱田大神は、三種の神器の一つである草薙神剣を御霊代としてよらせられる天照大神とされ、相殿に天照大神・素盞嗚尊・日本武尊・宮簀媛命・建稲種命を祀る（宮簀媛命・建稲種命は尾張氏の遠祖）。日本武尊が東征の帰途に能褒野で亡くなった後、妃の宮簀媛命が神剣を熱田の地に祀ったことが始まりとされ、創祀は約1,900年前とする。「草薙」の名は、日本武尊が草を薙いで危機を脱したことに由来すると説明されている。",
+    "access": [
+      "JR熱田駅より徒歩8分",
+      "地下鉄名城線 伝馬町駅・神宮西駅より徒歩7分",
+      "名鉄 神宮前駅より徒歩3分"
+    ],
+    "hours": "24時間参拝可能（夜間の参拝は西門の駐車場を利用）",
+    "festivals": [
+      { "name": "初えびす", "date": "1月5日" },
+      { "name": "花の撓", "date": "5月8日〜" },
+      { "name": "例祭（熱田まつり・尚武祭）", "date": "6月5日" },
+      { "name": "大祓", "date": "6月30日" }
+    ],
+    "officialNotes": [
+      "お守りの授与は毎日 7:00頃〜日没頃",
+      "ご祈祷・神楽の受付は毎日 8:30〜16:00",
+      "駐車場（東門 約300台・西門 約40台・南門 約60台）は無料"
+    ],
+    "sources": [
+      { "label": "公式サイト 熱田神宮について", "url": "https://www.atsutajingu.or.jp/jingu/about/" },
+      { "label": "公式サイト 御祭神", "url": "https://www.atsutajingu.or.jp/jingu/about/enshrined.html" },
+      { "label": "公式サイト 熱田神宮の歴史", "url": "https://www.atsutajingu.or.jp/jingu/about/history.html" },
+      { "label": "公式サイト よくあるご質問", "url": "https://www.atsutajingu.or.jp/jingu/qa/" },
+      { "label": "公式サイト 御参拝・御祈祷", "url": "https://www.atsutajingu.or.jp/jingu/visit/prayer.html" },
+      { "label": "公式サイト 例祭（熱田まつり）", "url": "https://www.atsutajingu.or.jp/jingu/about/event/event_detail12.html" },
+      { "label": "公式サイト 祭典・神事", "url": "https://www.atsutajingu.or.jp/jingu/about/event.html" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [1], "benefitsOfficial": [],
+      "history": [1, 2], "access": [3], "hours": [3], "festivals": [5, 6], "officialNotes": [3, 4]
+    },
+    "notes": "公式ドメイン atsutajingu.or.jp は、検索1回目で同ドメインの神宮庁発行文書が出たうえ、allowed_domains 検索で公式ページが返ることで確認。公式の御祭神ページは熱田大神を「人々に慈しみの徳を与える神」と説明するにとどまり、本宮の「ご利益」「御神徳」として列挙された語句は確認できなかったため benefitsOfficial は空（摂社には知恵授け・商売繁盛・子育てなどの記載あり）。kana は公式で確認できず null。"
+  },
+  {
+    "id": "23-2",
+    "prefCode": "23",
+    "pref": "愛知県",
+    "name": "真清田神社",
+    "kana": null,
+    "officialUrl": "http://www.masumida.or.jp/",
+    "sourceType": "official",
+    "address": "〒491-0043 愛知県一宮市真清田1丁目2番1号",
+    "deities": ["天火明命"],
+    "benefitsOfficial": [],
+    "history": "尾張開拓の祖である天火明命を祀る尾張国一之宮。社伝では神武天皇33年の鎮座とされ、平安時代には名神大社に列した。鎌倉時代には順徳天皇が多数の舞楽面を奉納し、その一部は重要文化財として伝わる。江戸時代には徳川幕府が朱印領を寄せ、寛永8年（1631年）に尾張藩主徳川義直が大修理を行った。明治・大正期には国幣小社、のち国幣中社に列した。",
+    "access": [
+      "JR尾張一宮駅・名鉄一宮駅下車 徒歩8分",
+      "バス：「本町1丁目」バス停すぐ北／「本町通り」バス停すぐ北",
+      "車：名神高速「尾張一宮」I.Cより約20分（駐車場へは神社西より入場）"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "三明神社 例祭（御本社荒魂奉斎）", "date": "3月24日" },
+      { "name": "例祭（桃花祭）", "date": "4月3日（前日に試楽祭）" }
+    ],
+    "officialNotes": [
+      "ご祈祷は予約不要"
+    ],
+    "sources": [
+      { "label": "公式サイト 由緒", "url": "http://www.masumida.or.jp/yuisyo/" },
+      { "label": "公式サイト 由緒歴史", "url": "http://www.masumida.or.jp/yuisyo/history/" },
+      { "label": "公式サイト アクセス", "url": "http://www.masumida.or.jp/access/" },
+      { "label": "公式サイト 神事行事", "url": "http://www.masumida.or.jp/shinji/" },
+      { "label": "公式サイト よくあるご質問", "url": "http://www.masumida.or.jp/faq/" },
+      { "label": "公式サイト 神社と神道に関する質問", "url": "http://www.masumida.or.jp/faq/shindou/" },
+      { "label": "公式サイト 七五三", "url": "http://www.masumida.or.jp/shichigosan/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [0], "benefitsOfficial": [],
+      "history": [0, 1], "access": [2], "hours": [], "festivals": [3], "officialNotes": [4]
+    },
+    "notes": "公式ドメイン masumida.or.jp は検索1回目の掲載情報と、allowed_domains 検索で公式ページが返ることで確認。公式のよくあるご質問に「毎日開いています。時間は午前9時から午後5時まで」とあるが、境内の参拝時間か社務所・ご祈祷受付の時間か判別できず（七五三のページでは祈祷受付を午前9時〜午後4時とする）hours は null。公式は「ご神徳」と「ご利益」を区別して説明しており、ご利益として列挙された語句は確認できなかったため benefitsOfficial は空（七五三のページでは御祭神を子孫繁栄の神とし、境内の服織神社には縁結びの御利益があるといわれると紹介）。kana は公式で確認できず null。"
+  },
+  {
+    "id": "23-3",
+    "prefCode": "23",
+    "pref": "愛知県",
+    "name": "砥鹿神社",
+    "kana": null,
+    "officialUrl": "https://www.togajinja.or.jp/",
+    "sourceType": "official",
+    "address": "里宮：愛知県豊川市一宮町西垣内2番地／奥宮：愛知県豊川市上長山町本宮下4番地",
+    "deities": ["大己貴命"],
+    "benefitsOfficial": ["福徳", "国土開拓", "縁結び", "交通安全", "家運隆昌", "厄難消除"],
+    "history": "三河国一之宮。本宮山に千三百年以上前から鎮まる大己貴命を祀る奥宮と、里で祀る里宮の二所一体で崇敬を集める。本宮山の神を迎えて創建された里の社殿を里宮、標高789メートルの本宮山山頂の社を奥宮とし、大宝年間（701〜704年）にこの呼び名が用いられるようになったとされる。",
+    "access": [
+      "里宮：JR飯田線「三河一宮駅」から徒歩約5分",
+      "里宮：東名高速 豊川インターから車で約5分",
+      "奥宮：車で豊川ICから約50分（本宮山山頂）"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "例大祭", "date": "5月3日〜5日" }
+    ],
+    "officialNotes": [
+      "里宮の受付は月〜日 8:30〜16:30",
+      "例大祭期間中はご祈祷可能な時刻が限られる",
+      "例大祭期間中は神事のため周辺道路に交通規制がかかる時間帯がある"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.togajinja.or.jp/" },
+      { "label": "公式サイト 砥鹿神社とは", "url": "https://www.togajinja.or.jp/about/" },
+      { "label": "公式サイト アクセス", "url": "https://www.togajinja.or.jp/access/" },
+      { "label": "公式サイト 祭典・行事", "url": "https://www.togajinja.or.jp/annual/" },
+      { "label": "公式サイト お知らせ 例大祭期間中のご祈祷時間について", "url": "https://www.togajinja.or.jp/news/%E4%BE%8B%E5%A4%A7%E7%A5%AD%E6%9C%9F%E9%96%93%E4%B8%AD%E3%81%AE%E3%81%94%E7%A5%88%E7%A5%B7%E6%99%82%E9%96%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" },
+      { "label": "公式サイト お知らせ 例大祭通行規制のおしらせ", "url": "https://www.togajinja.or.jp/news/%EF%BC%95%EF%BC%8F%EF%BC%93%EF%BD%9E%EF%BC%95%E3%80%80%E7%A0%A5%E9%B9%BF%E7%A5%9E%E7%A4%BE%E4%BE%8B%E5%A4%A7%E7%A5%AD%E9%80%9A%E8%A1%8C%E8%A6%8F%E5%88%B6%E3%81%AE%E3%81%8A%E3%81%97%E3%82%89%E3%81%9B/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [1],
+      "history": [0, 1], "access": [2], "hours": [], "festivals": [3], "officialNotes": [0, 4, 5]
+    },
+    "notes": "公式ドメイン togajinja.or.jp は3回目の検索で確認（2回目は toga.or.jp を試して結果なし）。里宮・奥宮は1件にまとめ住所・交通を併記。境内の参拝時間の記載は確認できず hours は null（里宮の受付時間のみ確認）。三河一宮駅からの徒歩時間は公式の約5分を採用（非公式サイトには約10分の記載あり）。kana は公式で確認できず null。"
+  },
+  {
+    "id": "22-1",
+    "prefCode": "22",
+    "pref": "静岡県",
+    "name": "富士山本宮浅間大社",
+    "kana": null,
+    "officialUrl": "http://www.fuji-hongu.or.jp/sengen/index.html",
+    "sourceType": "official",
+    "address": "〒418-0067 静岡県富士宮市宮町1-1",
+    "deities": ["木花之佐久夜毘売命", "瓊々杵尊", "大山祇神"],
+    "benefitsOfficial": ["家庭円満", "安産", "子安", "水徳", "火難消除", "航海", "漁業", "農業", "機織り"],
+    "history": "主祭神の木花之佐久夜毘売命（浅間大神）を祀り、相殿に瓊々杵尊・大山祇神を祀る。社伝では、孝霊天皇の御代の富士山の大噴火の後、垂仁天皇が浅間大神を山足の地に祀って山霊を鎮めたのが起源とされ、大同元年（806年）に坂上田村麻呂が現在の大宮の地に社殿を造営した。源頼朝や徳川家康など武家の崇敬も篤く、家康は関ヶ原の戦いの後に本殿などを造営した。",
+    "access": [
+      "身延線富士宮駅より徒歩約10分",
+      "新幹線新富士駅よりタクシーで約30分",
+      "新幹線新富士駅〜バス〜東海道線富士駅〜身延線富士宮駅より徒歩10分",
+      "東京駅〜富士宮間で高速バスが利用できる（要予約）",
+      "東名富士ICより西富士バイパス経由で約20分",
+      "新東名新富士ICより西富士バイパス経由で約15分"
+    ],
+    "hours": "11月〜2月 6:00〜19:00／3月・10月 5:30〜19:30／4月〜9月 5:00〜20:00",
+    "festivals": [
+      { "name": "例祭", "date": "11月4日（例祭期間は11月3日〜5日）" }
+    ],
+    "officialNotes": [
+      "御祈祷の受付は8:30〜15:50",
+      "境内駐車場の駐車時間は5:00〜19:00（出庫は24時間可能）",
+      "例祭期間中（11月3・4・5日）は、境内への車の乗り入れは交通安全祈願・出張祭等送迎の方のみ"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "http://www.fuji-hongu.or.jp/sengen/index.html" },
+      { "label": "公式サイト 御由緒", "url": "http://www.fuji-hongu.or.jp/sengen/history/index.html" },
+      { "label": "公式サイト 交通案内", "url": "http://fuji-hongu.or.jp/sengen/access/index.html" },
+      { "label": "公式サイト 年中行事", "url": "http://www.fuji-hongu.or.jp/sengen/festivals/index.html" },
+      { "label": "公式サイト 例祭・11・12月の行事", "url": "http://fuji-hongu.or.jp/sengen/festivals/11_09.html" },
+      { "label": "公式サイト 参拝・祈祷のご案内", "url": "http://www.fuji-hongu.or.jp/sengen/kito/index.html" }
+    ],
+    "fieldSources": {
+      "address": [0, 2], "deities": [1], "benefitsOfficial": [1],
+      "history": [1], "access": [2], "hours": [0], "festivals": [4], "officialNotes": [0, 2, 4]
+    },
+    "notes": "公式ドメイン fuji-hongu.or.jp は allowed_domains 検索で公式ページ（「富士山本宮浅間大社:御由緒」等）が返ることで確認。例祭の日付は令和7年の公式案内による（11月4日例祭、例祭期間11月3日〜5日）。歳旦祭（1月）・御田植祭（6月）・開山祭（7月）・御神火まつり（8月）は公式の年中行事にあるが具体的な日付を確認できず未掲載。駐車料金は公式内で表記が分かれるため記載しない。kana は公式で確認できず null。"
+  },
+  {
+    "id": "22-2",
+    "prefCode": "22",
+    "pref": "静岡県",
+    "name": "三嶋大社",
+    "kana": null,
+    "officialUrl": "https://www.mishimataisha.or.jp/",
+    "sourceType": "official",
+    "address": "〒411-0035 静岡県三島市大宮町2丁目1番5号",
+    "deities": ["大山祇命", "積羽八重事代主神"],
+    "benefitsOfficial": ["殖産振興", "福徳"],
+    "history": "大山祇命と積羽八重事代主神の二柱を総称して三嶋大明神と称える。創建の時期は不明だが、伊豆の火山島の成立や海上交通にまつわる信仰が基盤になったとされ、奈良・平安時代の古書にも記録が残る。伊豆に流された源頼朝が篤く信仰し、挙兵の成功により社領や神宝を寄進したと伝えられ、以後武門の崇敬を集めた。江戸時代には東海道の要地として「三嶋大明神」の名が広まった。",
+    "access": [
+      "JR東海道新幹線・東海道線「三島駅」から徒歩約15分",
+      "伊豆箱根鉄道「三島田町駅」から徒歩約7分",
+      "三島駅からバスで10分",
+      "東名高速道路「沼津IC」から約20分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "例祭", "date": "8月16日（例祭期間 8月15日〜17日）" }
+    ],
+    "officialNotes": [
+      "御祈祷の受付は客殿の祈祷受付所で 8:30頃〜16:00（休みなし）",
+      "駐車場（大型バス13台・乗用車約55台）は1時間ごとの課金制。御祈祷を受ける人には2時間無料券を渡す",
+      "例祭期間（8月15日〜17日）は駐車場を閉鎖し、車両のお祓いは交通安全の御祈願のみ（車両のお祓いは8月18日以降）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.mishimataisha.or.jp/" },
+      { "label": "公式サイト 三嶋大社について", "url": "https://www.mishimataisha.or.jp/shrine" },
+      { "label": "公式サイト アクセス", "url": "https://www.mishimataisha.or.jp/access" },
+      { "label": "公式サイト 祭事 例祭", "url": "https://www.mishimataisha.or.jp/ritual_/%E4%BE%8B%E7%A5%AD" },
+      { "label": "公式サイト 例祭期間", "url": "https://www.mishimataisha.or.jp/%e4%be%8b%e7%a5%ad%e6%9c%9f%e9%96%93-2" },
+      { "label": "公式サイト ご祈祷", "url": "https://www.mishimataisha.or.jp/pray" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [1],
+      "history": [1], "access": [2], "hours": [], "festivals": [3, 4], "officialNotes": [5, 2, 4]
+    },
+    "notes": "公式ドメイン mishimataisha.or.jp は allowed_domains 検索で公式ページが返ることで確認。境内の参拝時間は公式で確認できず hours は null。benefitsOfficial は公式の「大山祇命は殖産振興の御神徳も高い」「事代主神は福徳の神」の記載による（境内摂社の祓所神社の家門繁栄・商売繁昌・安産は本社の御神徳ではないため含めない）。三嶋大祭りは2025年は8月15日〜17日開催（2026年の日程は未確認）。kana は公式で確認できず null。"
+  },
+  {
+    "id": "22-3",
+    "prefCode": "22",
+    "pref": "静岡県",
+    "name": "久能山東照宮",
+    "kana": null,
+    "officialUrl": "https://www.toshogu.or.jp/",
+    "sourceType": "official",
+    "address": "〒422-8011 静岡県静岡市駿河区根古屋390",
+    "deities": ["徳川家康公（東照公）"],
+    "benefitsOfficial": [],
+    "history": "徳川家康公を祀る。家康公は遺言で自らの遺体を駿河国の久能山に葬るよう求め、その遺命により二代将軍秀忠公の命で当社が創建された（元和3年・1617年）。朝廷からは「東照大権現」の神号を賜り、正一位を追贈された。国宝の御社殿は「権現造」と呼ばれる様式で、神廟は家康公の御遺骸を埋葬した場所とされる。",
+    "access": [
+      "車で境内まで直接入ることはできない。参拝は「静岡鉄道 日本平ロープウェイ」を利用する方法と「久能山下からの徒歩ルート」がある",
+      "日本平ロープウェイ利用：路線バスで終点「日本平ロープウェイ」下車（約45分）",
+      "徒歩ルート：久能山下から1,159段の表参道を登る",
+      "日本平駅前に無料駐車場（約200台）"
+    ],
+    "hours": "9:00〜17:00（受付は終了の10分前まで）",
+    "festivals": [
+      { "name": "御例祭", "date": "4月17日" },
+      { "name": "秋季大祭", "date": "10月17日" },
+      { "name": "月次祭", "date": "毎月17日" }
+    ],
+    "officialNotes": [
+      "通常の参拝は拝殿前からで、昇殿はできない",
+      "国宝・重要文化財の保護のため拝観料が必要（社殿：大人700円・小人300円、令和7年4月1日改定）",
+      "御朱印・お守りなどの授与は9:00から参拝受付終了時間まで",
+      "石鳥居から社務所前まで約30分、社務所前から御社殿まで約10分、御社殿から神廟まで約5分"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.toshogu.or.jp/" },
+      { "label": "公式サイト 由緒・祭礼・年間行事", "url": "https://www.toshogu.or.jp/about/vanerable.php" },
+      { "label": "公式サイト 久能山の歴史", "url": "https://www.toshogu.or.jp/about/history.php" },
+      { "label": "公式サイト 国宝御社殿", "url": "https://www.toshogu.or.jp/about/shinto_shrine.php" },
+      { "label": "公式サイト 交通案内", "url": "https://www.toshogu.or.jp/access/" },
+      { "label": "公式サイト 拝観料のご案内", "url": "https://www.toshogu.or.jp/worship/fees.php" },
+      { "label": "公式サイト よくあるご質問", "url": "https://www.toshogu.or.jp/faq/" },
+      { "label": "公式サイト 博物館ご利用案内", "url": "https://www.toshogu.or.jp/kt_museum/guide/" },
+      { "label": "公式サイト お知らせ 御例祭", "url": "https://www.toshogu.or.jp/news/post_77.php" },
+      { "label": "公式サイト お知らせ 秋季大祭", "url": "https://www.toshogu.or.jp/news/post_51.php" }
+    ],
+    "fieldSources": {
+      "address": [7], "deities": [1], "benefitsOfficial": [],
+      "history": [1, 2, 3], "access": [4], "hours": [5], "festivals": [8, 9, 1], "officialNotes": [6, 5]
+    },
+    "notes": "公式ドメイン toshogu.or.jp は allowed_domains 検索で公式ページ（「久能山東照宮｜静岡」）が返ることで確認。公式で「ご利益」として列挙された語句は確認できず benefitsOfficial は空（家康公の「広大無辺なる御神徳」と案内）。住所は公式の博物館ご利用案内の記載。拝観時間は拝観料のご案内ページの記載で、よくあるご質問では受付終了時間は季節により異なるとしている。春季大祭は年により日程が異なるため未掲載。kana は公式で確認できず null。"
+  }
+]
