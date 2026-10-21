@@ -1,0 +1,780 @@
+[
+  {
+    "id": "12-1",
+    "prefCode": "12",
+    "pref": "千葉県",
+    "name": "香取神宮",
+    "kana": null,
+    "officialUrl": "https://katori-jingu.or.jp/",
+    "sourceType": "official",
+    "address": "千葉県香取市香取1697-1",
+    "deities": [
+      "経津主大神"
+    ],
+    "benefitsOfficial": [
+      "家内安全",
+      "産業（農業・商工業）の指導",
+      "海上守護",
+      "心願成就",
+      "縁結び",
+      "安産",
+      "勝運",
+      "交通安全",
+      "災難除け"
+    ],
+    "history": "御祭神の経津主大神は、天照大神の命により鹿島の武甕槌大神とともに出雲へ遣わされ、大国主神から広矛を受けて国土を平定し復命したと伝えられ、香取神宮ではこの神話をもとに創建を初代神武天皇の御代とする。皇室の崇敬が特に篤く、明治以前に「神宮」の称号で祀られたのは伊勢・香取・鹿島のみであった。中世以降は下総国の一宮とされ、昭和17年に勅祭社に定められた。",
+    "access": [
+      "JR佐原駅からタクシーで約10分",
+      "JR香取駅から徒歩30分（約2km）",
+      "高速バス（東京駅発）「香取神宮前」下車、徒歩5分",
+      "高速バス「佐原香取（佐原IC）」下車、徒歩15分",
+      "東関東自動車道 佐原香取ICから約1.5km"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "祈年祭",
+        "date": "2月17日"
+      },
+      {
+        "name": "例祭",
+        "date": "4月14日"
+      },
+      {
+        "name": "神幸祭",
+        "date": "4月15日（12年に一度・午年の式年神幸祭は4月15日・16日）"
+      },
+      {
+        "name": "新嘗祭",
+        "date": "11月23日"
+      }
+    ],
+    "officialNotes": [
+      "ご祈祷の受付は毎日8:30〜16:30"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト 御由緒",
+        "url": "https://katori-jingu.or.jp/about/history/"
+      },
+      {
+        "label": "公式サイト 香取神宮について",
+        "url": "https://katori-jingu.or.jp/about/"
+      },
+      {
+        "label": "公式サイト 授与品",
+        "url": "https://katori-jingu.or.jp/service/amulet/"
+      },
+      {
+        "label": "公式サイト アクセス",
+        "url": "https://katori-jingu.or.jp/access/"
+      },
+      {
+        "label": "公式サイト ご祈祷",
+        "url": "https://katori-jingu.or.jp/service/prayer/"
+      },
+      {
+        "label": "公式サイト 祭典と催し",
+        "url": "https://katori-jingu.or.jp/event/"
+      },
+      {
+        "label": "公式サイト 4月14日「例祭」・15日「神幸祭」斎行のご案内",
+        "url": "https://katori-jingu.or.jp/2025/04/09/4%E6%9C%8814%E6%97%A5%E3%80%8C%E4%BE%8B%E7%A5%AD%E3%80%8D%E3%83%BB15%E6%97%A5%E3%80%8C%E7%A5%9E%E5%B9%B8%E7%A5%AD%E3%80%8D%E6%96%8E%E8%A1%8C%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85/"
+      },
+      {
+        "label": "公式サイト 式年大祭・神幸祭",
+        "url": "https://katori-jingu.or.jp/shikinen/"
+      },
+      {
+        "label": "公式サイト 令和８年初詣情報",
+        "url": "https://katori-jingu.or.jp/2025/12/24/%E4%BB%A4%E5%92%8C%EF%BC%98%E5%B9%B4%E5%88%9D%E8%A9%A3%E6%83%85%E5%A0%B1/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        3
+      ],
+      "deities": [
+        0
+      ],
+      "benefitsOfficial": [
+        0,
+        1,
+        2
+      ],
+      "history": [
+        0,
+        1
+      ],
+      "access": [
+        3,
+        8
+      ],
+      "hours": [],
+      "festivals": [
+        5,
+        6,
+        7
+      ],
+      "officialNotes": [
+        4
+      ]
+    },
+    "notes": "境内の参拝（開門）時間は公式で確認できず null（確認できたのは授与所・御朱印受付 8:30〜17:00 とご祈祷受付の時間のみ）。式年神幸祭は12年に一度（午年）で、令和8年（2026年）4月15・16日に斎行済み。交通案内ページは更新から時間が経っている旨の記載があるため、バス時刻は公式の時刻表で要確認。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "12-2",
+    "prefCode": "12",
+    "pref": "千葉県",
+    "name": "玉前神社",
+    "kana": null,
+    "officialUrl": "https://tamasaki.org/",
+    "sourceType": "official",
+    "address": "千葉県長生郡一宮町一宮3048",
+    "deities": [
+      "玉依姫命"
+    ],
+    "benefitsOfficial": [
+      "縁結び",
+      "子授け",
+      "出産",
+      "養育"
+    ],
+    "history": "上総国一之宮。延喜式など平安時代の法制書では祭神は玉依姫命のみとされ、古社記には鵜茅葺不合命の神名も併記されている。神話では豊玉姫命が御子を妹の玉依姫命に託したとされ、玉依姫命は育ての親の神として信仰されている。上総十二社祭（上総の裸祭り）は大同2年（807）に始まったと伝えられ、千葉県の無形民俗文化財に指定されている。",
+    "access": [
+      "JR外房線 上総一ノ宮駅から徒歩約8分",
+      "国道128号沿い",
+      "九十九里波乗り道路 一宮インターからすぐ"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "例祭",
+        "date": "9月10日〜13日"
+      },
+      {
+        "name": "神幸祭（上総十二社祭・上総の裸まつり）",
+        "date": "9月13日"
+      }
+    ],
+    "officialNotes": [
+      "ご祈祷の受付は毎日9:00〜15:30"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://tamasaki.org/"
+      },
+      {
+        "label": "公式サイト 玉前神社の由緒・由来（御祭神）",
+        "url": "https://tamasaki.org/yuisho/saisin.htm"
+      },
+      {
+        "label": "公式サイト 玉前神社の由緒・由来",
+        "url": "https://tamasaki.org/yuisho/"
+      },
+      {
+        "label": "公式サイト 玉前神社の道案内",
+        "url": "https://tamasaki.org/michi/index.htm"
+      },
+      {
+        "label": "公式サイト ご祈祷の案内",
+        "url": "https://tamasaki.org/kitou/index.htm"
+      },
+      {
+        "label": "公式サイト 境内散歩",
+        "url": "https://tamasaki.org/keidai/keidai.htm"
+      },
+      {
+        "label": "公式サイト 上総十二社祭り",
+        "url": "https://1200.tamasaki.org/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        3
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [
+        1,
+        5
+      ],
+      "history": [
+        1,
+        6
+      ],
+      "access": [
+        3
+      ],
+      "hours": [],
+      "festivals": [
+        2,
+        6
+      ],
+      "officialNotes": [
+        4
+      ]
+    },
+    "notes": "ご利益は公式の「人の精神にかかわること、縁結び、また子授け・出産・養育など」「子授けは縁結びと共に御神徳として広く知られ」の記載による。境内の参拝（開門）時間は公式で確認できず null。上総神楽の春季祭は公式サイト内で4月8日と4月13日の記載が分かれるため載せていない。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "12-3",
+    "prefCode": "12",
+    "pref": "千葉県",
+    "name": "安房神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": "municipal",
+    "address": "千葉県館山市大神宮589",
+    "deities": [
+      "天太玉命"
+    ],
+    "benefitsOfficial": [],
+    "history": "地元では「大神宮」と呼ばれる。天富命が阿波から開拓に訪れた際、自らの祖先である天太玉命を祀るために建てたと伝わり、『古語拾遺』や『先代旧事本紀』によれば創建は2670年以上前とされる。境内には天富命を祀る下の宮もある。",
+    "access": [
+      "JR内房線 館山駅からJRバス（神戸経由・安房白浜行き）で約20分「安房神社前」下車、徒歩約5分",
+      "車：富浦ICを降りてすぐの信号を左折、国道127号を館山・白浜方面に南下"
+    ],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "千葉県公式観光サイト ちば観光ナビ 安房国一之宮 安房神社",
+        "url": "https://maruchiba.jp/spot/detail_10587.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0
+      ],
+      "deities": [
+        0
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        0
+      ],
+      "access": [
+        0
+      ],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "神社自身の公式サイトは検索で特定できなかった（「公式サイト」検索は観光サイト・まとめ記事のみ、想定ドメインに絞った検索も結果なし）ため、千葉県公式観光サイト「ちば観光ナビ」（maruchiba.jp）の掲載内容のみを記載（sourceType: municipal）。御祭神は同ページの「祖先である天太玉命を祀るために建てた」の記載によるもので、主祭神・相殿神の一覧は確認できていない。例祭の日付・ご利益・参拝時間は同ページで確認できず空。kana は未確認のため null。"
+  },
+  {
+    "id": "09-1",
+    "prefCode": "09",
+    "pref": "栃木県",
+    "name": "日光東照宮",
+    "kana": null,
+    "officialUrl": "https://toshogu.jp/",
+    "sourceType": "official",
+    "address": "栃木県日光市山内2301",
+    "deities": [
+      "徳川家康公"
+    ],
+    "benefitsOfficial": [],
+    "history": "元和2年に駿府城で亡くなった徳川家康公は久能山に葬られ、御遺言により翌元和3年（1617）に現在の地へ移されて御祭神としてまつられた。正遷宮には二代将軍秀忠公も参列し、正保2年（1645）に宮号を賜り「東照宮」と称された。現在の社殿群の多くは三代将軍家光公が寛永13年（1636）に造替したもので、1999年にユネスコの世界遺産に登録された。",
+    "access": [
+      "東武線 浅草駅から東武日光駅まで特急けごんで約1時間50分",
+      "JR日光線 宇都宮駅から日光駅まで約45分",
+      "東北自動車道 宇都宮ICから日光宇都宮道路を経て日光IC下車"
+    ],
+    "hours": "4月1日〜10月31日 9:00〜17:00、11月1日〜3月31日 9:00〜16:00（受付は閉門30分前まで）",
+    "festivals": [
+      {
+        "name": "例大祭（17日 例祭・神事流鏑馬、18日 神輿渡御祭「百物揃千人武者行列」）",
+        "date": "5月17日・18日"
+      },
+      {
+        "name": "秋季大祭（16日 神事流鏑馬、17日 秋季祭・渡御祭）",
+        "date": "10月16日・17日"
+      }
+    ],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://toshogu.jp/"
+      },
+      {
+        "label": "公式サイト 由緒",
+        "url": "https://toshogu.jp/pages/27/"
+      },
+      {
+        "label": "公式サイト 日光東照宮宝物館",
+        "url": "https://toshogu.jp/pages/37/"
+      },
+      {
+        "label": "公式サイト 拝観時間・料金",
+        "url": "https://toshogu.jp/pages/25/"
+      },
+      {
+        "label": "公式サイト アクセス・駐車場",
+        "url": "https://toshogu.jp/pages/26/"
+      },
+      {
+        "label": "公式サイト 祭典行事",
+        "url": "https://toshogu.jp/pages/28/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0,
+        4
+      ],
+      "deities": [
+        0,
+        1,
+        2
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        0,
+        1
+      ],
+      "access": [
+        4
+      ],
+      "hours": [
+        3
+      ],
+      "festivals": [
+        5
+      ],
+      "officialNotes": []
+    },
+    "notes": "ご利益・御神徳は公式サイトで記載を確認できず空。拝観時間は現行の「拝観時間・料金」ページの記載による（2019年の旧告知とは異なる）。拝観料は記載していない。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "09-2",
+    "prefCode": "09",
+    "pref": "栃木県",
+    "name": "日光二荒山神社",
+    "kana": null,
+    "officialUrl": "http://www.futarasan.jp/",
+    "sourceType": "official",
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [
+      "縁結び"
+    ],
+    "history": "男体山を御神体山と仰ぐ、日光の氏神。神橋は二荒山神社創建のために架けられた橋とされる。境内には良縁の「縁結びの笹」、御神木「三本杉」、霊泉「酒の泉」、子宝を授かるという霊石「子種石」などがある。",
+    "access": [
+      "本社：自動車で日光ICから約5分",
+      "中宮祠：東武日光駅・JR日光駅から東武バス湯元温泉行きで約50分「二荒山神社中宮祠」下車",
+      "中宮祠：自動車で清滝ICからいろは坂経由で約20分"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "弥生祭（本社例祭）",
+        "date": "4月13日〜17日"
+      },
+      {
+        "name": "男体山登拝大祭",
+        "date": "8月1日〜7日"
+      }
+    ],
+    "officialNotes": [
+      "本社と中宮祠は約15km離れている",
+      "登拝大祭期間（8月1日〜7日）は特別に男体山の夜間登拝が行われる"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "http://www.futarasan.jp/"
+      },
+      {
+        "label": "公式サイト 神橋渡り初め",
+        "url": "http://www.futarasan.jp/wedding/watari.html"
+      },
+      {
+        "label": "公式サイト 縁結びの神様（PDF）",
+        "url": "http://www.futarasan.jp/pdf/yoien2024.pdf"
+      },
+      {
+        "label": "公式サイト 本社駐車場",
+        "url": "http://www.futarasan.jp/parking/"
+      },
+      {
+        "label": "公式サイト 宝物館 特別展",
+        "url": "http://www.futarasan.jp/houmotsukan/"
+      },
+      {
+        "label": "公式サイト 二荒山神社登拝大祭（PDF）",
+        "url": "http://www.futarasan.jp/pdf/tohaisaibus.pdf"
+      },
+      {
+        "label": "公式サイト 弥生祭",
+        "url": "http://www.futarasan.jp/yayoi/"
+      },
+      {
+        "label": "公式サイト 弥生祭 日程",
+        "url": "http://www.futarasan.jp/yayoi/nittei.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [
+        2
+      ],
+      "history": [
+        0,
+        1,
+        2
+      ],
+      "access": [
+        3,
+        4,
+        5
+      ],
+      "hours": [],
+      "festivals": [
+        5,
+        6,
+        7
+      ],
+      "officialNotes": [
+        5,
+        6
+      ]
+    },
+    "notes": "公式サイト（futarasan.jp）の検索結果から御祭神・住所・本社の参拝時間は確認できなかったため空／null。ご利益は公式の「縁結びの神様」（男女の縁だけでなくお金・仕事・友人との縁も含む）の記載による。中宮祠の交通案内・登拝大祭の情報は公式サイトの宝物館・登拝大祭の案内による。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "09-3",
+    "prefCode": "09",
+    "pref": "栃木県",
+    "name": "宇都宮二荒山神社",
+    "kana": null,
+    "officialUrl": "http://futaarayamajinja.jp/",
+    "sourceType": "official",
+    "address": "栃木県宇都宮市馬場通り1丁目1-1",
+    "deities": [
+      "豊城入彦命",
+      "大物主命",
+      "事代主命"
+    ],
+    "benefitsOfficial": [
+      "福徳開運"
+    ],
+    "history": "社記によれば、仁徳天皇の御代に毛野国が上下二国に分けられ、下毛野国の国造に任じられた奈良別王が祖神の豊城入彦命を荒尾崎（下之宮）に祀ったのが始まりで、承和5年（838）に現在の臼ケ峰へ遷座したと伝えられる。延喜式神名帳に名神大社として記載され、下野国一之宮ともいわれた。主祭神の豊城入彦命は東国開拓の祖神とされ、藤原秀郷、源頼義・義家、源頼朝、徳川家康など多くの武将の信仰を集めた。",
+    "access": [
+      "JR宇都宮駅西口からバスで約5分、徒歩約20分",
+      "東武宇都宮駅から徒歩15分",
+      "東北自動車道 鹿沼ICから約25分",
+      "東北自動車道 宇都宮ICから約20分"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "春渡祭（神輿渡御）",
+        "date": "1月15日"
+      },
+      {
+        "name": "例祭（秋山祭）",
+        "date": "10月21日"
+      },
+      {
+        "name": "菊水祭（例祭の付祭。流鏑馬・鳳輦神輿渡御）",
+        "date": "10月最終土・日曜日"
+      },
+      {
+        "name": "冬渡祭",
+        "date": "12月15日"
+      }
+    ],
+    "officialNotes": [
+      "ご祈祷の受付は8:30〜15:50。祈祷は9:00から30分おきに行われ、最終は16:00"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト 二荒山神社について",
+        "url": "http://futaarayamajinja.jp/about/"
+      },
+      {
+        "label": "公式サイト 由緒・歴史",
+        "url": "http://futaarayamajinja.jp/yuisyo/"
+      },
+      {
+        "label": "公式サイト アクセスマップ",
+        "url": "http://futaarayamajinja.jp/access/"
+      },
+      {
+        "label": "公式サイト ご祈祷・ご参拝",
+        "url": "http://futaarayamajinja.jp/kitou/"
+      },
+      {
+        "label": "公式サイト 年間行事",
+        "url": "http://futaarayamajinja.jp/nenkan/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        2
+      ],
+      "deities": [
+        0
+      ],
+      "benefitsOfficial": [
+        1
+      ],
+      "history": [
+        0,
+        1
+      ],
+      "access": [
+        2
+      ],
+      "hours": [],
+      "festivals": [
+        4
+      ],
+      "officialNotes": [
+        3
+      ]
+    },
+    "notes": "ご利益は公式の「そのご神徳は福徳開運を招き、生活に限りない御加護、恩恵をもたらす」の記載による。公式サイトの開閉門時間のお知らせは新型コロナ対策に伴う一時的な変更のもので、現在の開門時間は確認できないため null。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "10-1",
+    "prefCode": "10",
+    "pref": "群馬県",
+    "name": "一之宮貫前神社",
+    "kana": null,
+    "officialUrl": "http://nukisaki.or.jp/",
+    "sourceType": "official",
+    "address": "群馬県富岡市一ノ宮1535",
+    "deities": [
+      "経津主神",
+      "姫大神"
+    ],
+    "benefitsOfficial": [],
+    "history": "上野国一之宮。社伝では安閑天皇元年（531）に現在の社地に社を定めたとされ、天武天皇の御代に初めて奉幣があったと伝えられる。『延喜式』神名帳に記載され、明治時代の社格は国幣中社で県内最高位であった。御祭神の経津主神は国譲りで活躍した神で、建国の祖神・物部氏の氏神・刀剣の神・武道の神とされ、あわせて養蚕・機織りなど生産の守護神とされる姫大神を祀る。",
+    "access": [
+      "JR高崎駅（高崎線・上越新幹線）から上信電鉄で上州一ノ宮駅下車、徒歩約15分",
+      "上信越自動車道 富岡ICから約20分",
+      "上信越自動車道 下仁田ICから約20分"
+    ],
+    "hours": "楼門 6:00〜17:00（総門は通年開門）",
+    "festivals": [
+      {
+        "name": "例大祭",
+        "date": "3月15日"
+      }
+    ],
+    "officialNotes": [
+      "一般のご祈願は予約不要。毎日8:30〜15:00に社務所で受付"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "http://nukisaki.or.jp/"
+      },
+      {
+        "label": "公式サイト 御由緒",
+        "url": "http://nukisaki.or.jp/go_yui_sho.html"
+      },
+      {
+        "label": "公式サイト 交通案内",
+        "url": "http://nukisaki.or.jp/access.html"
+      },
+      {
+        "label": "公式サイト 各種御案内",
+        "url": "http://nukisaki.or.jp/go_annai.html"
+      },
+      {
+        "label": "公式サイト 式年遷宮祭",
+        "url": "http://nukisaki.or.jp/sen_gu.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        2
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        1
+      ],
+      "access": [
+        2
+      ],
+      "hours": [
+        2,
+        3
+      ],
+      "festivals": [
+        4
+      ],
+      "officialNotes": [
+        3
+      ]
+    },
+    "notes": "公式サイトに「ご利益」「御神徳」として挙げた語句は確認できず空（御祈願の種類として初宮詣・交通安全・厄除などの記載はある）。例大祭は「毎年3月15日は貫前神社の創建の日として例大祭」の記載による。令和8年から駐車場の案内が変更されているため、車での参拝は公式サイトで要確認。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "10-2",
+    "prefCode": "10",
+    "pref": "群馬県",
+    "name": "榛名神社",
+    "kana": null,
+    "officialUrl": "https://www.haruna.or.jp/",
+    "sourceType": "official",
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": "用明天皇元年（586）に祭祀の場が設けられたと伝わり、令和8年（2026）は御鎮座1440年にあたる。史料上の初出は延喜式（延長5年・927年完成）の『神名帳』で、上野国の式内社として記載されている。榛名講の村々では榛名神社の御神水を神前に供えて請雨の祈祷を行い、その雨乞は非常に効力があったとされる。",
+    "access": [
+      "JR高崎駅西口から群馬バス（本郷経由榛名湖行き）で「榛名神社前」下車、徒歩15分"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "端午祭",
+        "date": "5月5日"
+      }
+    ],
+    "officialNotes": [
+      "国指定重要文化財建物の保存修理工事を行っている"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://www.haruna.or.jp/"
+      },
+      {
+        "label": "公式サイト 歴史",
+        "url": "https://www.haruna.or.jp/?page_id=14"
+      },
+      {
+        "label": "公式サイト 御鎮座１４４０年・丙午還暦開扉大祭 に関するお知らせ",
+        "url": "https://www.haruna.or.jp/?p=1714"
+      },
+      {
+        "label": "公式サイト 交通案内",
+        "url": "https://www.haruna.or.jp/?page_id=20"
+      },
+      {
+        "label": "公式サイト 閉門時間が午後５時となります。",
+        "url": "https://www.haruna.or.jp/?p=1566"
+      },
+      {
+        "label": "公式サイト ４月３０日、５月１６日の参拝時間、及び端午祭（５月５日）神楽奏上中止のお知らせ",
+        "url": "http://www.haruna.or.jp/?p=1360"
+      },
+      {
+        "label": "公式サイト 国指定重要文化財建物の保存修理工事を行っております",
+        "url": "https://www.haruna.or.jp/?page_id=25"
+      }
+    ],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [
+        1,
+        2
+      ],
+      "access": [
+        3
+      ],
+      "festivals": [
+        5
+      ],
+      "officialNotes": [
+        6
+      ]
+    },
+    "notes": "公式サイトの検索結果から御祭神（本社）・住所は確認できず空／null（境内摂社の国祖社の祭神は豊城入彦命など）。ご利益として挙げた語句も確認できず空。参拝時間は10月1日以降の時間として公式のお知らせにあるもので、ほかの時期の時間は確認できていない。交通案内ページは掲載から年数が経っているため、バスの時刻は要確認。60年ごと丙午年の開扉大祭（令和8年4月）は斎行済み。kana は公式で確認できていないため null。 参拝時間は公式のお知らせに「開門7:00、閉門17:00（公式のお知らせ「閉門時間が午後５時となります。」による10月1日以降の時間）」とあるが掲載年が確認できないため載せていない。"
+  },
+  {
+    "id": "10-3",
+    "prefCode": "10",
+    "pref": "群馬県",
+    "name": "妙義神社",
+    "kana": null,
+    "officialUrl": "https://myougi.or.jp/",
+    "sourceType": "official",
+    "address": "群馬県富岡市妙義町妙義6",
+    "deities": [
+      "日本武尊",
+      "豊受大神",
+      "菅原道真公",
+      "権大納言長親卿"
+    ],
+    "benefitsOfficial": [
+      "開運",
+      "商売繁昌の神",
+      "火防の神",
+      "学業児童の神",
+      "縁結の神",
+      "農耕桑蚕の神"
+    ],
+    "history": "社記によれば宣化天皇2年（537）に鎮祭され、もとは波己曽の大神と称し、後に妙義と改められたと伝えられる。江戸時代には歴代将軍や加賀の前田侯などから厚く崇敬された。本殿・幣殿・拝殿は代表的な権現造りで、境内の建物の多くが国の重要文化財に指定されている。",
+    "access": [
+      "関越・上信越自動車道 松井田妙義ICから車で5分",
+      "JR高崎駅から信越線で松井田駅下車、タクシーで10分"
+    ],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://myougi.or.jp/"
+      },
+      {
+        "label": "公式サイト 妙義神社歴史",
+        "url": "https://myougi.or.jp/history/sample-history1/"
+      },
+      {
+        "label": "公式サイト 妙義神社案内",
+        "url": "https://myougi.or.jp/%e5%a6%99%e7%be%a9%e7%a5%9e%e7%a4%be%e6%a1%88%e5%86%85/"
+      },
+      {
+        "label": "公式サイト アクセス",
+        "url": "http://myougi.or.jp/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/"
+      },
+      {
+        "label": "公式サイト 本社",
+        "url": "http://myougi.or.jp/history/100/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0,
+        3
+      ],
+      "deities": [
+        1,
+        2
+      ],
+      "benefitsOfficial": [
+        1,
+        2
+      ],
+      "history": [
+        1,
+        2,
+        4
+      ],
+      "access": [
+        3
+      ],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "公式サイトのドメインは myougi.or.jp（myogi.or.jp ではない）。例祭など祭事の日付、参拝時間は公式サイトの検索結果で確認できず空／null。創建年は第三者サイトで539年とするものがあるが、公式の社記の記載（宣化天皇2年・537年）を採用。kana は公式で確認できていないため null。"
+  }
+]
