@@ -1,0 +1,110 @@
+[
+  {
+    "id": "36-1",
+    "prefCode": "36",
+    "pref": "徳島県",
+    "name": "大麻比古神社",
+    "kana": null,
+    "officialUrl": "https://www.ooasahikojinja.jp/",
+    "sourceType": "official",
+    "address": "徳島県鳴門市大麻町板東字広塚13",
+    "deities": ["大麻比古大神", "猿田彦大神"],
+    "benefitsOfficial": ["方除", "厄除", "交通安全", "安産"],
+    "history": "神武天皇の御代、天富命が阿波の地で麻・楮の栽培と麻布・木綿の生産を広め、その守護神として天太玉命を祀ったことに始まると伝わる。猿田彦大神はもと大麻山の峯に鎮座していたものが、後に本社に合わせて祀られた。延喜の制では名神大社に列し、明治六年に国幣中社に列した。",
+    "access": [
+      "藍住ICから車で15分",
+      "板野ICから車で10分",
+      "鳴門ICから車で20分",
+      "無料駐車場（1000台）あり"
+    ],
+    "hours": "開門 6:00〜17:00（授与所 7:30〜16:30）",
+    "festivals": [
+      { "name": "例祭（大麻さんの秋祭り）", "date": "11月1日" },
+      { "name": "奥宮例祭（大麻山山頂・奥宮峯神社）", "date": "旧暦7月18日" },
+      { "name": "大御神楽祭（春祭・湯立神楽）", "date": "旧暦3月12日" },
+      { "name": "神火大祭", "date": "2月の節分当日" },
+      { "name": "夏越の大祓・茅輪神事", "date": "6月30日" }
+    ],
+    "officialNotes": [
+      "11月1日は例祭のため午前9時〜午前11時30分、12月31日は初詣準備のため午後1時以降、ご祈祷の奉仕はできない",
+      "ご祈祷は30分間隔で行っている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.ooasahikojinja.jp/" },
+      { "label": "公式サイト 由緒書", "url": "https://www.ooasahikojinja.jp/yuisho/" },
+      { "label": "公式サイト Q&A", "url": "https://www.ooasahikojinja.jp/qa/" },
+      { "label": "公式サイト ご祈祷について", "url": "https://www.ooasahikojinja.jp/kitou/" },
+      { "label": "公式サイト 所在地・ご連絡先", "url": "https://ooasahikojinja.jp/access/" },
+      { "label": "公式サイト お祭りと行事", "url": "https://www.ooasahikojinja.jp/maturi/" },
+      { "label": "公式サイト 夏越の大祓・茅輪神事", "url": "https://www.ooasahikojinja.jp/natsugoe/" }
+    ],
+    "fieldSources": {
+      "address": [4], "deities": [1], "benefitsOfficial": [2, 3],
+      "history": [1], "access": [4], "hours": [3, 4], "festivals": [5, 6], "officialNotes": [3, 4]
+    },
+    "notes": "読み（kana）は公式サイトで確認できなかったため null。ご祈祷受付の終了時刻が公式サイト内で食い違う（ご祈祷ページは午後4時30分、所在地ページは午後4時）ため、hours には開門時間と授与所の時間だけを載せた。公式の交通案内は車のみで、電車・バスの記載はない。旧暦の祭日は年によって新暦の日付が変わる。"
+  },
+  {
+    "id": "36-2",
+    "prefCode": "36",
+    "pref": "徳島県",
+    "name": "忌部神社",
+    "kana": null,
+    "officialUrl": "https://imbe-jinja.jp/",
+    "sourceType": "official",
+    "address": "徳島県徳島市二軒屋町二丁目48",
+    "deities": ["天日鷲命"],
+    "benefitsOfficial": [],
+    "history": "阿波国総鎮守。御祭神の天日鷲命は忌部氏の祖神で、麻や木綿を用いた祭祀・織物の神として信仰されている。忌部氏は中臣氏とともに国家の祭祀を司り、大嘗祭に際して朝廷へ麁服（あらたえ）を献上してきた。令和の大嘗祭でも古式に則って奉仕した。",
+    "access": [
+      "徳島自動車道「徳島IC」から車で約10分（ナビは「眉山病院」を目標に）",
+      "JR牟岐線「二軒屋駅」から徒歩約8分",
+      "「金比羅下」バス停留所から徒歩約2分",
+      "駐車場あり（無料）"
+    ],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [
+      "問い合わせの受付時間は8時30分〜16時30分"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://imbe-jinja.jp/" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [0], "benefitsOfficial": [],
+      "history": [0], "access": [0], "hours": [], "festivals": [], "officialNotes": [0]
+    },
+    "notes": "公式サイトで「ご利益・御神徳」としての記載、参拝時間、例祭などの祭事日程は確認できなかったため空にした。現在地への遷座や戦災からの復興などの沿革は公式ページで確認できなかったため、由緒に入れていない。読み（kana）は公式で確認できなかったため null。"
+  },
+  {
+    "id": "36-3",
+    "prefCode": "36",
+    "pref": "徳島県",
+    "name": "上一宮大粟神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": "municipal",
+    "address": "徳島県名西郡神山町神領西上角330",
+    "deities": ["大宜都比売命"],
+    "benefitsOfficial": [],
+    "history": "創建年代は不詳だが、古くから複数の社号で呼ばれてきたとされ、現在14枚の棟札が残る。祭神の大宜都比売命は五穀を司る神で、伊勢国丹生の郷から阿波国に来て、この地一帯に粟をまいたという伝承がある。鎮座する大粟山は、『古事記』で大宜都比売命の体から蚕や稲・粟などが生まれたとする神話の舞台と結びつけられている。",
+    "access": [
+      "道の駅「温泉の里神山」から約250m"
+    ],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [
+      "参拝は無料"
+    ],
+    "sources": [
+      { "label": "神山町公式サイト 上一之宮大粟神社", "url": "https://www.town.kamiyama.lg.jp/enjoy/map/docs/2025061900456/" },
+      { "label": "神山町公式サイト 上一之宮大粟神社（旧ページ）", "url": "https://www.town.kamiyama.lg.jp/enjoy/map/2016/11/post-11.html" },
+      { "label": "神山町公式サイト 神社の森、身近な神域：大粟山", "url": "https://www.town.kamiyama.lg.jp/enjoy/guide/2025061900678/" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [0, 1], "benefitsOfficial": [],
+      "history": [0, 1, 2], "access": [0], "hours": [], "festivals": [], "officialNotes": [0]
+    },
+    "notes": "神社自身の公式ウェブサイトは見つからなかった（検索で見つかったのは公式Xアカウント @ooawajinja のみ）。そのため神山町公式サイトの観光案内を出典にした（sourceType: municipal）。町のページでの表記は「上一之宮大粟神社」。ご利益、参拝時間、祭事の日付は町のページでも確認できなかったため空にした。読み（kana）は未確認のため null。検索上限に達したため、徳島県神社庁サイトは確認できていない。"
+  }
+]

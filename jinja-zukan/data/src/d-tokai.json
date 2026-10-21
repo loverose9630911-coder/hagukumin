@@ -1,0 +1,550 @@
+[
+  {
+    "id": "21-1",
+    "prefCode": "21",
+    "pref": "岐阜県",
+    "name": "南宮大社",
+    "kana": null,
+    "officialUrl": "https://www.nangu-san.com/",
+    "sourceType": "official",
+    "address": "〒503-2124 岐阜県不破郡垂井町宮代1734-1",
+    "deities": [
+      "金山彦大神",
+      "彦火火出見尊",
+      "見野命"
+    ],
+    "benefitsOfficial": [],
+    "history": "鉄鉱・鉱山を司る金山彦大神を主祭神とし、相殿に彦火火出見尊・見野命を祀る美濃国一の宮で、古くから全国の鉱山・金属業の総本宮として信仰を集める。社伝では神武天皇東征の際に霊験を現したことから府中に祀られ、第十代崇神天皇の御代に美濃仲山麓の現在地へ鎮座したと伝える。古くは「仲山金山彦神社」と称し、国府の南に位置することから南宮大社と呼ばれるようになった。関ヶ原合戦の兵火で焼失した社殿は、寛永19年（1642年）に三代将軍徳川家光により再建された。",
+    "access": [
+      "JR東海道本線「垂井駅」から徒歩20分",
+      "JR東海道本線「大垣駅」前から名阪近鉄バス「大垣宮代線」で「南宮大社前」下車（正月三が日のみの運行）",
+      "車：名神高速道路 養老SA（スマートIC）利用。駐車場は境内手前の南宮大社敷地内"
+    ],
+    "hours": "夏期（4月16日〜10月14日）5:00〜18:00／冬期（10月15日〜4月15日）6:00〜17:30（日没により閉門が早まる場合あり）",
+    "festivals": [
+      {
+        "name": "例大祭（御田植神事・神幸式・蛇山神事）",
+        "date": "5月4日・5日"
+      },
+      {
+        "name": "金山大祭（ふいご祭）",
+        "date": "11月8日"
+      }
+    ],
+    "officialNotes": [
+      "ご祈祷は時間で区切らず受付順。受付時間は9:00〜16:00",
+      "例大祭（5月4日・5日）や奉賛会大祭などの行事日はご祈祷の受付時間が変更される",
+      "月次祭の日は夜間参拝が行われ、開門時間が延長される場合がある",
+      "年末年始は交通規制があり、毎年の規制・駐車場案内が公式サイトのPDFで告知される"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://www.nangu-san.com/"
+      },
+      {
+        "label": "公式サイト 歴史",
+        "url": "https://www.nangu-san.com/about/history.html"
+      },
+      {
+        "label": "公式サイト 南宮大社を知る",
+        "url": "https://www.nangu-san.com/about/"
+      },
+      {
+        "label": "公式サイト 交通案内",
+        "url": "https://www.nangu-san.com/access.html"
+      },
+      {
+        "label": "公式サイト よくある質問",
+        "url": "https://www.nangu-san.com/faq.html"
+      },
+      {
+        "label": "公式サイト 5月 例大祭",
+        "url": "https://www.nangu-san.com/feast/reitaisai.html"
+      },
+      {
+        "label": "公式サイト 11月 金山大祭",
+        "url": "https://www.nangu-san.com/feast/fuigo.html"
+      },
+      {
+        "label": "公式ブログ 例大祭が無事に斎行されました",
+        "url": "https://www.nangu-san.com/blog/post-1971"
+      },
+      {
+        "label": "公式サイト ご祈祷",
+        "url": "https://www.nangu-san.com/prayer/"
+      },
+      {
+        "label": "公式サイト 案内PDF（住所・アクセス）",
+        "url": "https://www.nangu-san.com/conts/wp-content/uploads/2022/01/7f471f8a924b8efec0c09c5f21b00f49-1.pdf"
+      },
+      {
+        "label": "公式サイト 月次祭及び花手水、諸行事のご案内",
+        "url": "https://www.nangu-san.com/news/post-1717"
+      },
+      {
+        "label": "公式サイト 例大祭 ご祈祷受付時間の変更のご案内",
+        "url": "https://www.nangu-san.com/news/post-2306"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        3,
+        9
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        1,
+        2
+      ],
+      "access": [
+        3
+      ],
+      "hours": [
+        4
+      ],
+      "festivals": [
+        5,
+        6,
+        7
+      ],
+      "officialNotes": [
+        4,
+        11,
+        10,
+        3
+      ]
+    },
+    "notes": "公式サイトに「ご利益」「御神徳」として列挙された記述は確認できなかったため benefitsOfficial は空（公式トップでは金運・勝負運のパワースポットとして人気と紹介され、授与品に金運守がある）。節分祭（2月）・高山社祭（4月）・大祓式（6月）は公式の祭事一覧にあるが具体的な日付を確認できず未掲載。kana は公式で確認できなかったため null。"
+  },
+  {
+    "id": "21-2",
+    "prefCode": "21",
+    "pref": "岐阜県",
+    "name": "飛騨一宮水無神社",
+    "kana": null,
+    "officialUrl": "https://minashijinjya.or.jp/",
+    "sourceType": "official",
+    "address": "〒509-3505 岐阜県高山市一之宮町5323",
+    "deities": [
+      "御歳大神",
+      "大己貴命",
+      "神武天皇",
+      "応神天皇",
+      "天火明命",
+      "三穂津姫命"
+    ],
+    "benefitsOfficial": [
+      "生生化育",
+      "無病息災",
+      "開運厄除",
+      "家内安全",
+      "商売繁昌",
+      "豊年満作",
+      "交通安全",
+      "旅行安全",
+      "子授け・安産・子育て",
+      "女性幸福"
+    ],
+    "history": "創立は神代と伝わるが古い記録は散逸しており、歴史上の初見は貞観9年（867年）の神位授与である。位山を御神体山とし、主祭神の御歳大神と相殿神を「水無大神」と称する説がある。中世には神仏習合が進み、明治初年の神仏分離を経て明治4年に国幣小社に列格した。安永2年（1773年）の大原騒動の後、安永7年に梶原家が神職として招かれて唯一神道に改められ、安永8年に飛騨国中の神々を招いて行われた大祭が「飛驒の大祭」の起源とされる。",
+    "access": [
+      "JR高山本線「飛騨一ノ宮駅」下車（特急列車は停車しないため、JR高山駅から普通列車で飛騨一ノ宮駅へ戻る。普通列車は本数が少ないため運行時間を要確認）",
+      "濃飛バス：JR高山駅から「飛騨一之宮」バス停（事前予約が必要な便あり）"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "生きびな祭",
+        "date": "4月3日"
+      },
+      {
+        "name": "例祭（宮まつり）：試楽祭（宵祭）・本楽祭（例祭・御神幸）",
+        "date": "5月1日・2日"
+      }
+    ],
+    "officialNotes": [
+      "通常の御祈祷受付は9:00〜16:00（新春・節分祭などは受付時間が変わる）",
+      "個人祈祷は願意1願につき5,000円から。団体祈祷・正式参拝は事前予約が必要"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://minashijinjya.or.jp/"
+      },
+      {
+        "label": "公式サイト 御祭神",
+        "url": "https://minashijinjya.or.jp/description_p.html"
+      },
+      {
+        "label": "公式サイト 交通アクセス",
+        "url": "https://minashijinjya.or.jp/access.html"
+      },
+      {
+        "label": "公式サイト English",
+        "url": "https://minashijinjya.or.jp/english.html"
+      },
+      {
+        "label": "公式サイト 祭事",
+        "url": "https://minashijinjya.or.jp/festival.html"
+      },
+      {
+        "label": "公式サイト お知らせ",
+        "url": "https://minashijinjya.or.jp/notice.html"
+      },
+      {
+        "label": "公式サイト 4月3日 生きびな祭",
+        "url": "https://minashijinjya.or.jp/archives/3637"
+      },
+      {
+        "label": "公式サイト 例祭（5/1・5/2）のご案内",
+        "url": "https://minashijinjya.or.jp/archives/1741"
+      },
+      {
+        "label": "公式サイト 御祈祷・御参拝",
+        "url": "https://minashijinjya.or.jp/worshipers.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        2
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [
+        1,
+        8
+      ],
+      "history": [
+        1
+      ],
+      "access": [
+        2,
+        3
+      ],
+      "hours": [],
+      "festivals": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "officialNotes": [
+        8
+      ]
+    },
+    "notes": "相殿神は公式に「ほか多数」とあり、上記は検索結果で名前が確認できたもののみ。御神徳は公式ドメイン内の記載だが、掲載ページが御祭神ページか御祈祷ページかは特定できなかった。参拝時間（境内の開閉時刻）は公式で確認できず null。駅からの徒歩所要時間は過去のお知らせにのみ記載があったため未掲載。kana は公式で確認できなかったため null。"
+  },
+  {
+    "id": "21-3",
+    "prefCode": "21",
+    "pref": "岐阜県",
+    "name": "伊奈波神社",
+    "kana": null,
+    "officialUrl": "https://www.inabasan.com/",
+    "sourceType": "official",
+    "address": null,
+    "deities": [
+      "五十瓊敷入彦命",
+      "渟熨斗媛命",
+      "日葉酢媛命",
+      "彦多都彦命",
+      "物部十千根命"
+    ],
+    "benefitsOfficial": [],
+    "history": "主祭神の五十瓊敷入彦命は垂仁天皇の長男で景行天皇の兄にあたり、『古事記』『日本書紀』では各地の開拓や多くの池溝の整備に関わったと伝えられる。命が亡くなった翌年、竹内宿禰が稲葉山近くの丸山の地に祀ったのが始まりとされ、天文8年（1539年）に斎藤道三が稲葉山を居城とした際に現在の麓へ遷された。周囲を三川に囲まれた土地柄から、水防の神としても信仰されてきた。",
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://www.inabasan.com/"
+      },
+      {
+        "label": "公式サイト 伊奈波神社について",
+        "url": "https://www.inabasan.com/about/"
+      }
+    ],
+    "fieldSources": {
+      "address": [],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        1
+      ],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "公式ドメイン（inabasan.com）は特定し御祭神・由緒は確認したが、その後 WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達したため、住所・交通・参拝時間・御神徳・祭事を公式で確認できず空欄。公式には行事ページ（https://www.inabasan.com/event/april/ 、https://www.inabasan.com/event/september/）と境内案内（https://www.inabasan.com/precincts/）があり、追加調査で埋められる見込み。kana は公式で確認できなかったため null。"
+  },
+  {
+    "id": "22-1",
+    "prefCode": "22",
+    "pref": "静岡県",
+    "name": "富士山本宮浅間大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "22-2",
+    "prefCode": "22",
+    "pref": "静岡県",
+    "name": "三嶋大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "22-3",
+    "prefCode": "22",
+    "pref": "静岡県",
+    "name": "久能山東照宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "23-1",
+    "prefCode": "23",
+    "pref": "愛知県",
+    "name": "熱田神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "23-2",
+    "prefCode": "23",
+    "pref": "愛知県",
+    "name": "真清田神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "23-3",
+    "prefCode": "23",
+    "pref": "愛知県",
+    "name": "砥鹿神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "24-1",
+    "prefCode": "24",
+    "pref": "三重県",
+    "name": "伊勢神宮（神宮）",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し一度も検索できなかったため全項目空欄。公式ドメインは依頼文で isejingu.or.jp と示されているが、検索結果で公式ページの URL を確認できていないため officialUrl・sources は未記入。内宮・外宮の情報は access / officialNotes に分けて追記する予定。"
+  },
+  {
+    "id": "24-2",
+    "prefCode": "24",
+    "pref": "三重県",
+    "name": "椿大神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  },
+  {
+    "id": "24-3",
+    "prefCode": "24",
+    "pref": "三重県",
+    "name": "猿田彦神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（他の調査担当と共有の1ターン200回）に達し、公式ドメインの特定も含め一度も検索できなかったため全項目空欄。sourceType も未確定のため null。代替候補への差し替えは行っていない（公式情報の有無を判断できていないため）。"
+  }
+]

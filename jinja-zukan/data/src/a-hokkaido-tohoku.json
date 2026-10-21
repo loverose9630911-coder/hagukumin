@@ -1,0 +1,716 @@
+[
+  {
+    "id": "01-1",
+    "prefCode": "01",
+    "pref": "北海道",
+    "name": "北海道神宮",
+    "kana": "ほっかいどうじんぐう",
+    "officialUrl": "http://www.hokkaidojingu.or.jp/",
+    "sourceType": "official",
+    "address": "北海道札幌市中央区宮ヶ丘474",
+    "deities": [
+      "大国魂神",
+      "大那牟遅神",
+      "少彦名神",
+      "明治天皇"
+    ],
+    "benefitsOfficial": [],
+    "history": "明治2年9月1日、東京の神祇官で開拓三神（大国魂神・大那牟遅神・少彦名神）を祀る「北海道鎮座神祭」が行われたのが創祀とされる。御霊代は札幌へ運ばれ、明治4年5月に社名が「札幌神社」と定められ、同年9月に現在の円山の地に社殿が完成した。昭和39年に明治天皇を増祀し、社名を「北海道神宮」と改めた。",
+    "access": [
+      "地下鉄東西線「円山公園駅」下車、徒歩15分",
+      "JRバス「北海道神宮」停留所下車、徒歩1分",
+      "JR札幌駅からタクシーで約15分"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "宵宮祭",
+        "date": "6月14日"
+      },
+      {
+        "name": "例祭（札幌まつり）",
+        "date": "6月15日"
+      },
+      {
+        "name": "神輿渡御",
+        "date": "6月16日"
+      }
+    ],
+    "officialNotes": [
+      "参拝には地下鉄・バス・タクシーなど公共交通機関の利用を呼びかけている（混雑時は駐車場が狭く渋滞しやすいとの案内）",
+      "鳥居は神域の入り口を示すもので、くぐる場所によってご利益が変わることはないと説明している"
+    ],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "http://www.hokkaidojingu.or.jp/"
+      },
+      {
+        "label": "公式サイト 御祭神・由緒",
+        "url": "http://www.hokkaidojingu.or.jp/history.html"
+      },
+      {
+        "label": "公式サイト 交通境内案内",
+        "url": "http://www.hokkaidojingu.or.jp/access.html"
+      },
+      {
+        "label": "公式サイト 札幌まつり",
+        "url": "http://www.hokkaidojingu.or.jp/festival/"
+      },
+      {
+        "label": "公式サイト 例祭予定（PDF・住所記載）",
+        "url": "http://www.hokkaidojingu.or.jp/news/pdf/R080520-reisai-yotei.pdf"
+      },
+      {
+        "label": "公式サイト 北海道神宮全般について（Q&A）",
+        "url": "http://www.hokkaidojingu.or.jp/question_1.html"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0,
+        4
+      ],
+      "deities": [
+        1
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        1
+      ],
+      "access": [
+        2
+      ],
+      "hours": [],
+      "festivals": [
+        3
+      ],
+      "officialNotes": [
+        2,
+        5
+      ]
+    },
+    "notes": "benefitsOfficial：御祭神の解説に「国土経営・開拓の神」等の説明はあるが「ご利益／御神徳」として列挙された記載は確認できなかったため空。hours：公式中国語版ページに季節別の神門開閉時間の記載があるが、開門時間変更のお知らせもあり最新か確認できないため null。history：創祀・遷座の年の表記は公式サイト内のページによって違いがあると検索要約が指摘している。festivals：例祭以外の年間祭事は掲載が古い可能性があるため未記載。"
+  },
+  {
+    "id": "01-2",
+    "prefCode": "01",
+    "pref": "北海道",
+    "name": "函館八幡宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": "jinjacho",
+    "address": "北海道函館市谷地頭町2番5号",
+    "deities": [
+      "品陀和気命",
+      "住吉大神",
+      "金刀比羅大神"
+    ],
+    "benefitsOfficial": [],
+    "history": "社伝によると、文安2年（1445）亀田郡の領守河野加賀守政通が函館に館を築いた際、その東南の隅に八幡神を祀ったと伝えられる。永正8年の河野一族の敗北で赤川村に移り、慶安年間に巫女の伊知女が元町へ奉遷、文化元年に会所町、明治13年に谷地頭へ移って現在に至る。明治10年に国幣小社に列格し、明治29年に国幣中社に昇格した。現在の社殿は大正4年に完成した。",
+    "access": [
+      "市電谷地頭終点下車、徒歩5分",
+      "JR函館駅よりタクシー約7分"
+    ],
+    "hours": null,
+    "festivals": [
+      {
+        "name": "例祭",
+        "date": "8月15日"
+      }
+    ],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "北海道神社庁 函館八幡宮",
+        "url": "https://hokkaidojinjacho.jp/%E5%87%BD%E9%A4%A8%E5%85%AB%E5%B9%A1%E5%AE%AE/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0
+      ],
+      "deities": [
+        0
+      ],
+      "benefitsOfficial": [],
+      "history": [
+        0
+      ],
+      "access": [
+        0
+      ],
+      "hours": [],
+      "festivals": [
+        0
+      ],
+      "officialNotes": []
+    },
+    "notes": "神社自身の公式サイトは検索で特定できなかった（結果は観光サイト・まとめ記事のみ）ため、北海道神社庁の掲載ページを使用。御神徳・参拝時間は記載を確認できず。kana は公式・神社庁で確認できなかったため null。"
+  },
+  {
+    "id": "01-3",
+    "prefCode": "01",
+    "pref": "北海道",
+    "name": "上川神社",
+    "kana": null,
+    "officialUrl": "https://kamikawajinja.jp/",
+    "sourceType": "official",
+    "address": "北海道旭川市神楽岡公園2番地",
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": "旭川市街を望む丘「神楽岡」に鎮座する。創祀当初は現在の旭川駅付近にあり、次いで現旭川市役所付近、宮下21丁目と市街の発展に伴い鎮座地が移り、大正13年に現鎮座地へ移転した。常磐公園内の上川神社頓宮は、本社の御旅所として大正13年に奉設され、例大祭で御神輿が市内を渡御する際に一晩休まれるお宮とされる。",
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [
+      {
+        "label": "公式サイト トップ",
+        "url": "https://kamikawajinja.jp/"
+      },
+      {
+        "label": "公式サイト 上川神社頓宮",
+        "url": "https://kamikawajinja.jp/group/kamikawa-tongu/"
+      }
+    ],
+    "fieldSources": {
+      "address": [
+        0
+      ],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [
+        0,
+        1
+      ],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "公式サイトは確認できたが、検索結果の要約からは御祭神・御神徳・交通案内・参拝時間・祭事日程を確認できなかった（お知らせ「令和8年 上川神社例大祭斎行について」は本文未取得）。公式サイトがある神社のため神社庁サイトの情報は採用していない。kana は未確認のため null。WebSearch の利用上限に達し追加調査できず。"
+  },
+  {
+    "id": "02-1",
+    "prefCode": "02",
+    "pref": "青森県",
+    "name": "岩木山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "02-2",
+    "prefCode": "02",
+    "pref": "青森県",
+    "name": "櫛引八幡宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "02-3",
+    "prefCode": "02",
+    "pref": "青森県",
+    "name": "善知鳥神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "03-1",
+    "prefCode": "03",
+    "pref": "岩手県",
+    "name": "駒形神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "03-2",
+    "prefCode": "03",
+    "pref": "岩手県",
+    "name": "盛岡八幡宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "03-3",
+    "prefCode": "03",
+    "pref": "岩手県",
+    "name": "櫻山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "04-1",
+    "prefCode": "04",
+    "pref": "宮城県",
+    "name": "鹽竈神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "04-2",
+    "prefCode": "04",
+    "pref": "宮城県",
+    "name": "大崎八幡宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "04-3",
+    "prefCode": "04",
+    "pref": "宮城県",
+    "name": "竹駒神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "05-1",
+    "prefCode": "05",
+    "pref": "秋田県",
+    "name": "太平山三吉神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "05-2",
+    "prefCode": "05",
+    "pref": "秋田県",
+    "name": "唐松神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "05-3",
+    "prefCode": "05",
+    "pref": "秋田県",
+    "name": "真山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "06-1",
+    "prefCode": "06",
+    "pref": "山形県",
+    "name": "出羽三山神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "06-2",
+    "prefCode": "06",
+    "pref": "山形県",
+    "name": "鳥海山大物忌神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "06-3",
+    "prefCode": "06",
+    "pref": "山形県",
+    "name": "上杉神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "07-1",
+    "prefCode": "07",
+    "pref": "福島県",
+    "name": "伊佐須美神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "07-2",
+    "prefCode": "07",
+    "pref": "福島県",
+    "name": "都々古別神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "対象は棚倉町馬場の都々古別神社。未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  },
+  {
+    "id": "07-3",
+    "prefCode": "07",
+    "pref": "福島県",
+    "name": "開成山大神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [],
+      "deities": [],
+      "benefitsOfficial": [],
+      "history": [],
+      "access": [],
+      "hours": [],
+      "festivals": [],
+      "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（このターン内で全エージェント共有の200回）に達したため、公式サイトの特定・情報確認ができなかった。全項目未記入（記憶・推測では埋めていない）。要再調査。"
+  }
+]

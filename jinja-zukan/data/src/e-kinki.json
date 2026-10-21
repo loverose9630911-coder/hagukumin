@@ -1,0 +1,529 @@
+[
+  {
+    "id": "25-1",
+    "prefCode": "25",
+    "pref": "滋賀県",
+    "name": "多賀大社",
+    "kana": null,
+    "officialUrl": "https://www.tagataisya.or.jp/",
+    "sourceType": "official",
+    "address": "滋賀県犬上郡多賀町多賀604番地",
+    "deities": ["伊邪那岐大神", "伊邪那美大神"],
+    "benefitsOfficial": ["延命長寿", "縁結び", "厄除け"],
+    "history": "御祭神の伊邪那岐大神・伊邪那美大神は、国土や天照大神をはじめとする八百万の神々を生んだ神で、『古事記』では夫婦の道を初めて開いた神と記される。生命の親神であることから古く延命長寿・縁結び・厄除けの神として信仰を集め、鎌倉時代から江戸時代にかけて武家や民衆にも信仰が広まった。分祀社は全国に239社あるとされる。",
+    "access": [
+      "JR彦根駅で近江鉄道に乗り換え「多賀大社前」駅下車、徒歩10分",
+      "JR彦根駅から電車12分／バス20分",
+      "JR南彦根駅からバス20分",
+      "新幹線米原駅から電車25分",
+      "名神高速道路 彦根ICから自動車10分",
+      "名神 湖東三山スマートICから15分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "古例大祭（多賀まつり）", "date": "4月22日" }
+    ],
+    "officialNotes": [
+      "一般祈祷は予約不要。受付時間内に授与所で申し込む"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.tagataisya.or.jp/" },
+      { "label": "公式サイト お多賀さんとは", "url": "https://www.tagataisya.or.jp/sp/about/" },
+      { "label": "公式サイト 交通案内", "url": "https://www.tagataisya.or.jp/sp/info/map.html" },
+      { "label": "公式サイト 参集殿アクセス", "url": "https://www.tagataisya.or.jp/sansyuden/access/" },
+      { "label": "公式サイト 古例大祭", "url": "https://www.tagataisya.or.jp/info/koreitaisai/index.html" },
+      { "label": "公式サイト 一般祈祷 参拝手順", "url": "https://www.tagataisya.or.jp/kitoinfo/flow01.html" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [1], "benefitsOfficial": [1],
+      "history": [1], "access": [2, 3], "hours": [], "festivals": [4], "officialNotes": [5]
+    },
+    "notes": "住所は公式サイト内の参集殿アクセスページの記載による。境内の参拝（開門）時間は公式で確認できず null。祈祷受付時間はページにより9:00〜16:00／16:30と表記が分かれるため記載しない。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "25-2",
+    "prefCode": "25",
+    "pref": "滋賀県",
+    "name": "日吉大社",
+    "kana": null,
+    "officialUrl": "https://hiyoshitaisha.jp/",
+    "sourceType": "official",
+    "address": "滋賀県大津市坂本5-1-1",
+    "deities": ["大己貴神", "大山咋神"],
+    "benefitsOfficial": ["方除", "厄除"],
+    "history": "崇神天皇7年に創祀されたと伝わり、全国3800余の日吉・日枝・山王神社の総本宮。平安京遷都の際には都の表鬼門（北東）にあたることから都の魔除・災難除を祈る社とされ、比叡山延暦寺の開創後は天台宗の護法神としても崇敬された。境内約40社の神々を総じて「日吉大神」と称し、西本宮（大己貴神）・東本宮（大山咋神）を中心とする山王七社がある。",
+    "access": [
+      "JR湖西線「比叡山坂本駅」から徒歩20分",
+      "京阪石山坂本線「坂本比叡山口駅」から徒歩10分"
+    ],
+    "hours": "9:00〜16:00",
+    "festivals": [
+      { "name": "山王祭", "date": "4月12日〜14日" },
+      { "name": "例祭（山王祭）", "date": "4月14日" }
+    ],
+    "officialNotes": [
+      "入苑協賛料 大人500円、小学生以下無料",
+      "境内駐車場は最大50台。紅葉の時期・正月・山王祭の時期は公共交通機関やパークアンドライドの利用を勧めている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://hiyoshitaisha.jp/" },
+      { "label": "公式サイト 日吉大社について", "url": "https://hiyoshitaisha.jp/about/" },
+      { "label": "公式サイト よくあるご質問", "url": "https://hiyoshitaisha.jp/faq/" },
+      { "label": "公式サイト 交通アクセス", "url": "http://hiyoshitaisha.jp/access/" },
+      { "label": "公式サイト プライバシーポリシー（所在地記載）", "url": "https://hiyoshitaisha.jp/privacy/" },
+      { "label": "公式サイト 山王祭について", "url": "https://hiyoshitaisha.jp/event/sannou/" },
+      { "label": "公式サイト 年間行事", "url": "https://hiyoshitaisha.jp/event/" }
+    ],
+    "fieldSources": {
+      "address": [4], "deities": [1, 2], "benefitsOfficial": [0],
+      "history": [1], "access": [3], "hours": [0], "festivals": [5, 6], "officialNotes": [0, 3]
+    },
+    "notes": "deities は公式FAQで主祭神とされる西本宮・東本宮の二柱のみ。benefitsOfficial は公式サイトのヘッダー「方除・厄除の大社」の語のみ採用（他の御神徳は原文の語句を確認できなかった）。hours は公式トップの記載。2021年の神事案内では9:00〜16:30、2023年の年末案内では12月31日は15:00までとあり、時期により異なる。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "25-3",
+    "prefCode": "25",
+    "pref": "滋賀県",
+    "name": "建部大社",
+    "kana": null,
+    "officialUrl": "https://takebetaisha.jp/",
+    "sourceType": "official",
+    "address": "滋賀県大津市神領1丁目16-1",
+    "deities": ["日本武尊", "大己貴命"],
+    "benefitsOfficial": ["開運", "厄除", "災難除", "出世", "必勝"],
+    "history": "景行天皇46年、神勅により日本武尊の御霊を祀ったことに始まると伝わる。天武天皇の時代（白鳳4年・675年）に現在の瀬田の地へ遷され、天平勝宝7年（755年）に大己貴命を権殿に祀り、近江国一之宮と定められたとされる。『平治物語』には、平家に捕らわれた源頼朝が当社に参拝して前途を祈ったことが記されている。",
+    "access": [
+      "JR琵琶湖線「石山」駅から徒歩25分",
+      "京阪電車石山坂本線「唐橋前」駅から徒歩10分",
+      "石山駅2番のりば（近江鉄道バス）・3番のりば（帝産バス）から「建部大社前」下車",
+      "名神高速道路 瀬田西IC・瀬田東ICから約5分"
+    ],
+    "hours": "5:00〜17:00",
+    "festivals": [
+      { "name": "船幸祭（納涼船幸祭）", "date": "8月17日" }
+    ],
+    "officialNotes": [
+      "授与所は8時〜17時",
+      "第一駐車場は最大70台・無料。正月や夏祭りの時期は交通規制や駐車制限がある"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://takebetaisha.jp/" },
+      { "label": "公式サイト 建部大社について", "url": "https://takebetaisha.jp/about/" },
+      { "label": "公式サイト 建部大社の見どころ", "url": "https://takebetaisha.jp/features/" },
+      { "label": "公式サイト 交通アクセス", "url": "https://takebetaisha.jp/access/" },
+      { "label": "公式サイト 船幸祭・夏祭り関連の神事", "url": "https://takebetaisha.jp/ceremony/" }
+    ],
+    "fieldSources": {
+      "address": [0, 3], "deities": [1], "benefitsOfficial": [1],
+      "history": [1, 2], "access": [3], "hours": [0, 3], "festivals": [4], "officialNotes": [3]
+    },
+    "notes": "deities は本殿の日本武尊と権殿の大己貴命。benefitsOfficial は公式が日本武尊・大己貴命の御神徳として挙げる語句のうち、原文どおり確認できたものだけ。年末年始は参拝時間が変わる（公式の年末年始案内）。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "26-1",
+    "prefCode": "26",
+    "pref": "京都府",
+    "name": "伏見稲荷大社",
+    "kana": null,
+    "officialUrl": "https://inari.jp/",
+    "sourceType": "official",
+    "address": "京都市伏見区深草薮之内町68番地",
+    "deities": ["宇迦之御魂大神", "佐田彦大神", "大宮能売大神", "田中大神", "四大神"],
+    "benefitsOfficial": ["商売繁昌", "産業興隆", "家内安全", "交通安全", "芸能上達"],
+    "history": "和銅4年（711）2月初午の日に稲荷山へ鎮座されたと伝えられるが、信仰の起源はさらに古いと考えられている。最古の記録は『山城国風土記』逸文で、「イナリ」の社名を稲が生じた奇瑞に由来させている。天慶5年（942）に最高位の正一位を授かった。本殿には下社・中社・上社と田中社・四大神社の五柱が相殿で祀られ、これらの神名は稲荷大神の御神徳を神名化したものとされる。",
+    "access": [
+      "JR奈良線「稲荷駅」下車すぐ（京都駅より5分・2駅目）",
+      "京阪本線「伏見稲荷駅」下車、東へ徒歩5分",
+      "市バス南5系統「稲荷大社前」下車、東へ徒歩7分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "初午大祭", "date": "初午の日" },
+      { "name": "稲荷祭（神幸祭）", "date": "7月20日に最も近い日曜日" },
+      { "name": "本宮祭", "date": "7月の土用入り後最初の日曜または祝日" }
+    ],
+    "officialNotes": [
+      "大社駐車場周辺（道路）は大変混雑するため、公共交通機関の利用を勧めている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://inari.jp/" },
+      { "label": "公式サイト 伏見稲荷大社とは", "url": "https://inari.jp/about/" },
+      { "label": "公式サイト ご祭神", "url": "https://inari.jp/about/saijin/" },
+      { "label": "公式サイト 交通アクセス", "url": "https://inari.jp/access/" },
+      { "label": "公式サイト 祭礼と行事", "url": "https://inari.jp/sp/rite/" },
+      { "label": "公式サイト 初午", "url": "https://inari.jp/about/history/num08/" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [2], "benefitsOfficial": [2],
+      "history": [1, 2], "access": [3], "hours": [], "festivals": [4, 5], "officialNotes": [3]
+    },
+    "notes": "deities は下社・中社・上社・田中社・四大神社の五柱（総称 稲荷大神）。参拝時間は公式で確認できず null。火焚祭は検索結果の日付に確信が持てなかったため入れていない。初午・稲荷祭・本宮祭は年により日付が変わる。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "26-2",
+    "prefCode": "26",
+    "pref": "京都府",
+    "name": "八坂神社",
+    "kana": null,
+    "officialUrl": "https://www.yasaka-jinja.or.jp/",
+    "sourceType": "official",
+    "address": "京都府京都市東山区祇園町北側625",
+    "deities": ["素戔嗚尊", "櫛稲田姫命", "八柱御子神"],
+    "benefitsOfficial": [],
+    "history": "斉明天皇2年（656）、高麗より来朝した伊利之が新羅の牛頭山の素戔嗚尊を山城国愛宕郡八坂郷に祀ったことに始まるとされ、貞観18年（876）には僧円如が堂を建立したとされる。明治元年の神仏分離令により現在の社名に改められるまでは感神院・祇園社と称した。祇園祭は疫病が鎮まるようにとの祈りを込めて約1150年前（平安時代）に始まった当社の祭礼である。",
+    "access": [
+      "京阪電車「祇園四条駅」から徒歩約5分",
+      "阪急電鉄「京都河原町駅」から徒歩約8分",
+      "JR京都駅から市バス100番・206番「祇園」下車"
+    ],
+    "hours": "24時間参拝可能（ご祈祷受付 9:00〜16:00）",
+    "festivals": [
+      { "name": "例祭", "date": "6月15日" },
+      { "name": "祇園祭", "date": "7月1日〜31日" },
+      { "name": "神幸祭（祇園祭）", "date": "7月17日" },
+      { "name": "還幸祭（祇園祭）", "date": "7月24日" },
+      { "name": "疫神社夏越祭", "date": "7月31日" },
+      { "name": "祇園のえべっさん", "date": "1月9日・10日" }
+    ],
+    "officialNotes": [
+      "12月31日午後11時から1月1日午前0時までは境内全域が立入禁止",
+      "本殿の鈴は夜間は上げられており、鈴を鳴らしての参拝はできない",
+      "境内に駐車場はない",
+      "社務所の受付は9時〜17時"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.yasaka-jinja.or.jp/" },
+      { "label": "公式サイト 八坂神社の歴史", "url": "https://www.yasaka-jinja.or.jp/about/history/" },
+      { "label": "公式サイト お社・ご祭神", "url": "https://www.yasaka-jinja.or.jp/shrine_deity/" },
+      { "label": "公式サイト 境内マップ・アクセス", "url": "https://www.yasaka-jinja.or.jp/access/" },
+      { "label": "公式サイト ご参拝・ご祈祷", "url": "https://www.yasaka-jinja.or.jp/sanpai/" },
+      { "label": "公式サイト 主な神事・行事", "url": "https://www.yasaka-jinja.or.jp/event/" },
+      { "label": "公式サイト 祇園祭", "url": "https://www.yasaka-jinja.or.jp/event/gion/" }
+    ],
+    "fieldSources": {
+      "address": [3], "deities": [2], "benefitsOfficial": [],
+      "history": [1, 6], "access": [3], "hours": [3, 4], "festivals": [5, 6], "officialNotes": [3, 4]
+    },
+    "notes": "benefitsOfficial は本殿の御神徳を公式の原文どおり確認できなかったため空（検索上限に達し追加確認できず）。境内社では疫神社が疫病退散、北向蛭子社が商売繁昌とされる。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "26-3",
+    "prefCode": "26",
+    "pref": "京都府",
+    "name": "北野天満宮",
+    "kana": null,
+    "officialUrl": "https://kitanotenmangu.or.jp/",
+    "sourceType": "official",
+    "address": "京都市上京区馬喰町",
+    "deities": ["菅原道真公", "中将殿", "吉祥女"],
+    "benefitsOfficial": [],
+    "history": "天暦元年（947）、御神託により平安京の天門（北西）にあたる北野の地に菅原道真公をおまつりして創建された。永延元年（987）には一條天皇から「北野天満大自在天神」の御神号が贈られ、以後皇室の崇敬を受けた。現在の御本殿は慶長12年（1607）造営の国宝。全国約1万2千社の天満宮・天神社の総本社である。",
+    "access": [
+      "JR京都駅から京都市バス50系統で約35分",
+      "JR・地下鉄「二条駅」から市バス55系統で約15分",
+      "京福電車「北野白梅町駅」から徒歩",
+      "名神高速道路 南インター・東インターから約30分"
+    ],
+    "hours": "7:00〜17:00（正月・行事期間は変動）",
+    "festivals": [
+      { "name": "梅花祭", "date": "2月25日" },
+      { "name": "例祭（北野祭）", "date": "9月4日" },
+      { "name": "ずいき祭", "date": "10月1日〜5日" }
+    ],
+    "officialNotes": [
+      "御本殿前の三光門は閉門時刻の30分前に閉まり、以降は御本殿前での参拝ができない",
+      "御祈祷受付 9:00〜16:00、授与所 9:00〜16:30",
+      "駐車場は参拝者専用で、駐車は参拝時間内に限る"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://kitanotenmangu.or.jp/" },
+      { "label": "公式サイト 北野天満宮について", "url": "https://kitanotenmangu.or.jp/about/" },
+      { "label": "公式サイト 参拝時間・アクセス", "url": "https://kitanotenmangu.or.jp/access/" },
+      { "label": "公式サイト FAQ", "url": "https://kitanotenmangu.or.jp/faq/" },
+      { "label": "公式サイト 年中行事", "url": "https://kitanotenmangu.or.jp/event/" },
+      { "label": "公式サイト 北野祭再興", "url": "https://kitanotenmangu.or.jp/event/kitanosai/" },
+      { "label": "公式サイト 梅苑「花の庭」", "url": "https://kitanotenmangu.or.jp/guidance/baien/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [],
+      "history": [1], "access": [2, 3], "hours": [0], "festivals": [4, 5, 6], "officialNotes": [0, 2]
+    },
+    "notes": "deities の中将殿（菅公御子息）・吉祥女（菅公北の方）は相殿。benefitsOfficial は公式の原文の語句を確認できなかったため空（検索上限に達し追加確認できず）。北野白梅町駅からの徒歩時間は公式内でアクセスページ5分／FAQ10分と記載が分かれるため数字を入れていない。hours は公式トップの記載で、過去の記事には別の時間表記もある。kana は公式で確認できていないため null。"
+  },
+  {
+    "id": "27-1",
+    "prefCode": "27",
+    "pref": "大阪府",
+    "name": "住吉大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "27-2",
+    "prefCode": "27",
+    "pref": "大阪府",
+    "name": "大阪天満宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "27-3",
+    "prefCode": "27",
+    "pref": "大阪府",
+    "name": "今宮戎神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "28-1",
+    "prefCode": "28",
+    "pref": "兵庫県",
+    "name": "生田神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "28-2",
+    "prefCode": "28",
+    "pref": "兵庫県",
+    "name": "西宮神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "28-3",
+    "prefCode": "28",
+    "pref": "兵庫県",
+    "name": "伊弉諾神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "29-1",
+    "prefCode": "29",
+    "pref": "奈良県",
+    "name": "春日大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "29-2",
+    "prefCode": "29",
+    "pref": "奈良県",
+    "name": "大神神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "29-3",
+    "prefCode": "29",
+    "pref": "奈良県",
+    "name": "橿原神宮",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "30-1",
+    "prefCode": "30",
+    "pref": "和歌山県",
+    "name": "熊野本宮大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "30-2",
+    "prefCode": "30",
+    "pref": "和歌山県",
+    "name": "熊野速玉大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  },
+  {
+    "id": "30-3",
+    "prefCode": "30",
+    "pref": "和歌山県",
+    "name": "熊野那智大社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": null,
+    "address": null,
+    "deities": [],
+    "benefitsOfficial": [],
+    "history": null,
+    "access": [],
+    "hours": null,
+    "festivals": [],
+    "officialNotes": [],
+    "sources": [],
+    "fieldSources": {
+      "address": [], "deities": [], "benefitsOfficial": [],
+      "history": [], "access": [], "hours": [], "festivals": [], "officialNotes": []
+    },
+    "notes": "未調査：WebSearch の利用上限（全エージェント共有で1ターン200回）に達したため、公式ドメインの特定も内容の確認もできなかった。全項目を空にしている。公式情報が無いと確認されたわけではないので代替候補には差し替えていない。要再調査。"
+  }
+]
