@@ -1,0 +1,367 @@
+[
+  {
+    "id": "30-1",
+    "prefCode": "30",
+    "pref": "和歌山県",
+    "name": "熊野本宮大社",
+    "kana": null,
+    "officialUrl": "https://www.hongutaisha.jp/",
+    "sourceType": "official",
+    "address": "和歌山県田辺市本宮町本宮",
+    "deities": ["家津美御子大神（スサノオノミコト）"],
+    "benefitsOfficial": [],
+    "history": "社殿は崇神天皇65年の創建と『皇年代略記』『神社縁起』に記されるが、熊野坐大神の御鎮座の年代は文献上明らかではなく、神武東征以前にはすでに鎮座していたといわれる。江戸期以前は仏教と結びつき「熊野権現」と呼ばれた。明治22年の大水害で中・下社の社殿が倒壊し、現在は上四社が祀られている。",
+    "access": [],
+    "hours": "8:00〜17:00",
+    "festivals": [
+      { "name": "例大祭（本宮祭）", "date": "4月13日〜15日" }
+    ],
+    "officialNotes": [
+      "上四社を祀る本宮から参拝し、旧社地の大斎原（本殿から徒歩約10分）へ。途中の産田社にも立ち寄るよう案内されている",
+      "お参りの作法は二礼二拍手一礼",
+      "ご祈祷の受付は8:00〜17:00。郵送での申し込みも可能"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.hongutaisha.jp/" },
+      { "label": "公式サイト 熊野本宮大社について", "url": "http://www.hongutaisha.jp/about/" },
+      { "label": "公式サイト 年間祭事・行事", "url": "https://www.hongutaisha.jp/event/" },
+      { "label": "公式サイト 参拝について", "url": "http://www.hongutaisha.jp/worship/" },
+      { "label": "公式サイト ご祈祷について", "url": "http://www.hongutaisha.jp/prayer/" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [1], "benefitsOfficial": [],
+      "history": [1], "access": [], "hours": [0], "festivals": [2], "officialNotes": [3, 4]
+    },
+    "notes": "公式は hongutaisha.jp。最初の検索で出た hongu.jp は熊野古道などの観光案内サイトで神社自身の公式ではないため採用していない。access：公式の交通案内の記載を検索結果で確認できず空（公式に駐車場案内ページがあることのみ確認）。benefitsOfficial：公式に「ご利益」「御神徳」として列挙された語句を確認できず空。deities：主祭神のみ記載（相殿の神々は公式で確認できていない）。hours は公式トップの記載で、初詣期間は別時間。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "30-2",
+    "prefCode": "30",
+    "pref": "和歌山県",
+    "name": "熊野速玉大社",
+    "kana": null,
+    "officialUrl": "https://kumanohayatama.jp/",
+    "sourceType": "official",
+    "address": "和歌山県新宮市新宮1番地",
+    "deities": ["熊野速玉大神（いざなぎのみこと）", "熊野夫須美大神（いざなみのみこと）"],
+    "benefitsOfficial": ["富貴隆昌", "現世安穏", "災厄消除", "良縁結び", "海上安全", "病気平癒"],
+    "history": "約二千年前の景行天皇五十八年に、熊野三所権現が最初に降臨した元宮である神倉山から現在地に遷り、神倉神社の「旧宮」に対して「新宮」と呼ばれるようになったとされる。主祭神のほか十二柱の神々を祀り、新宮十二社大権現として崇敬を集める全国の熊野神社の総本宮。2004年に「紀伊山地の霊場と参詣道」の一部として世界文化遺産に登録された。",
+    "access": [
+      "JR新宮駅から徒歩約15分、タクシーで約5分",
+      "紀勢自動車道 新宮ICから約10分",
+      "熊野尾鷲道路 熊野大泊ICから約30分",
+      "南紀白浜空港から新宮駅まで直通リムジンバスが運行"
+    ],
+    "hours": "開門 6:00〜17:00（授与所 8:00〜17:00）",
+    "festivals": [
+      { "name": "例大祭（新宮の速玉祭）", "date": "10月15日・16日" },
+      { "name": "御燈祭（摂社 神倉神社）", "date": "2月6日" }
+    ],
+    "officialNotes": [
+      "祭礼や催事により時間が変わる場合がある",
+      "駐車場は無料。混雑時や祭礼時は権現川原が臨時駐車場として開放される",
+      "御燈祭の当日夕方は、駐車場の少ない神倉神社周辺への車の進入を控えるよう案内されている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://kumanohayatama.jp/" },
+      { "label": "公式サイト 御由緒", "url": "https://kumanohayatama.jp/?page_id=6" },
+      { "label": "公式サイト アクセス・駐車場", "url": "https://kumanohayatama.jp/access/" },
+      { "label": "公式サイト 祭礼・催事", "url": "https://kumanohayatama.jp/matsuri/" },
+      { "label": "公式サイト 参拝・祈祷", "url": "https://kumanohayatama.jp/worship/" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1], "benefitsOfficial": [1],
+      "history": [1], "access": [2], "hours": [0], "festivals": [3], "officialNotes": [2, 3]
+    },
+    "notes": "hours：開門・授与所の時間は公式サイト内の記載だが、検索要約が掲載ページを特定しなかったため公式トップを根拠とした。熊野神宝館は9:00〜16:00（hours には含めていない）。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "30-3",
+    "prefCode": "30",
+    "pref": "和歌山県",
+    "name": "熊野那智大社",
+    "kana": null,
+    "officialUrl": "https://kumanonachitaisha.or.jp/",
+    "sourceType": "official",
+    "address": "和歌山県東牟婁郡那智勝浦町那智山1",
+    "deities": ["熊野夫須美大神", "大己貴神（別宮 飛瀧神社。那智御瀧が御神体）"],
+    "benefitsOfficial": ["人と人の縁を結ぶ", "諸々の願いを結ぶ"],
+    "history": "神日本磐余彦命の御東征を起源とする。熊野の神々が光ヶ峯に降臨し御瀧本に祀られていたが、仁徳天皇5年（317年）に山の中腹に社殿を設けたのが現在の大社の始まりと伝わる。御祭神熊野夫須美大神の御神徳により古くから「結宮（むすびのみや）」と称される。2004年に世界遺産「紀伊山地の霊場と参詣道」の一部として登録された。",
+    "access": [
+      "JR紀勢本線 紀伊勝浦駅から熊野御坊南海バスで「那智山」バス停まで約30分",
+      "紀伊勝浦駅からタクシーで約20分",
+      "車で大阪から約4〜5時間、名古屋から約4時間"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "例大祭「那智の扇祭り」（那智の火祭り）", "date": "7月14日" },
+      { "name": "宵宮祭", "date": "7月13日" },
+      { "name": "権現講祭", "date": "毎月18日" }
+    ],
+    "officialNotes": [
+      "社務所の受付時間は概ね8:00〜16:30。日没後の夜間参拝は控えるよう案内されている",
+      "神社の駐車場は30台で、利用には防災道路の通行料800円が必要",
+      "御祈祷・正式参拝の受付は9:00〜11:00と12:30〜15:00の間でおおむね30分ごと",
+      "別宮 飛瀧神社（那智御瀧）は車いすでは参拝できない"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://kumanonachitaisha.or.jp/" },
+      { "label": "公式サイト ご由緒", "url": "https://kumanonachitaisha.or.jp/prestige/" },
+      { "label": "公式サイト アクセス", "url": "https://kumanonachitaisha.or.jp/access/" },
+      { "label": "公式サイト 例大祭「那智の扇祭り」", "url": "https://kumanonachitaisha.or.jp/event/fan/" },
+      { "label": "公式サイト よくあるご質問", "url": "https://kumanonachitaisha.or.jp/faq/" },
+      { "label": "公式サイト 御祈祷・正式参拝", "url": "https://kumanonachitaisha.or.jp/prayers/" },
+      { "label": "公式サイト 飛瀧神社（那智御瀧）", "url": "https://kumanonachitaisha.or.jp/pavilion/waterfall/" },
+      { "label": "公式サイト 権現講祭", "url": "https://kumanonachitaisha.or.jp/event/detail-gongen/" },
+      { "label": "公式 境内パンフレット（PDF）", "url": "https://kumanonachitaisha.or.jp/wp-content/themes/kumanonachitaisha/assets//files/pavilion.pdf" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [1, 6], "benefitsOfficial": [1],
+      "history": [1, 8], "access": [2], "hours": [], "festivals": [3, 7], "officialNotes": [2, 4, 5]
+    },
+    "notes": "benefitsOfficial：公式は「人と人の縁を結び、また諸々の願いをも結んで頂けるという信仰があり『結宮』といわれる」と説明しており、その語句をそのまま採った（掲載ページは検索要約で特定されず、ご由緒ページを根拠とした）。hours：境内の参拝（開門）時間の記載は確認できず null（社務所受付時間と夜間参拝の注意のみ officialNotes に記載）。宵宮祭は例大祭の前日の行事として記載。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "32-1",
+    "prefCode": "32",
+    "pref": "島根県",
+    "name": "出雲大社",
+    "kana": null,
+    "officialUrl": "https://izumooyashiro.or.jp/",
+    "sourceType": "official",
+    "address": "島根県出雲市大社町杵築東195",
+    "deities": ["大国主大神"],
+    "benefitsOfficial": ["縁結びの神", "福の神"],
+    "history": "国づくりを終えた大国主大神が国土を天照大御神に譲り、その功績をたたえて御神殿が建てられたと『古事記』『日本書紀』の神話伝承に記される。現在の御本殿は延享元年（1744）に御造営され、その後も修造が重ねられている。",
+    "access": [
+      "JR出雲市駅から一畑バス（出雲大社・日御碕・宇竜行き）で約25分",
+      "出雲縁結び空港から空港連絡バスでJR出雲市駅を経由",
+      "車は出雲ICから国道431号経由",
+      "高速バス（東京・大阪・広島・福岡など）はJR出雲市駅で一畑バスに乗り換え"
+    ],
+    "hours": "6:00〜19:00（御本殿の裏側の区域は16:30まで。19時以降は銅鳥居前からの参拝）",
+    "festivals": [
+      { "name": "例祭", "date": "5月14日" },
+      { "name": "神在祭（神在月）", "date": "旧暦10月（令和8年は11月18日夕刻〜25日夕刻。神迎神事 11月18日、神在祭 11月19日）" }
+    ],
+    "officialNotes": [
+      "縁結びは男女のご縁だけでなく、人々を取り巻くあらゆる繋がりのご縁を指すと説明されている",
+      "ご祈祷は9:15から45分間隔で斎行（受付 8:40〜16:00）",
+      "お札・お守り・御朱印の授与は通常8:30〜16:30（早朝と夕刻は臨時窓口）",
+      "駐車場は大駐車場（385台）など"
+    ],
+    "sources": [
+      { "label": "公式サイト 出雲大社と大国主大神", "url": "https://izumooyashiro.or.jp/about/ookami" },
+      { "label": "公式サイト 御遷宮の歴史", "url": "https://izumooyashiro.or.jp/daisengu/history" },
+      { "label": "公式サイト 交通アクセス", "url": "https://izumooyashiro.or.jp/access" },
+      { "label": "公式サイト 参拝時間等について", "url": "https://izumooyashiro.or.jp/archives/news/12552" },
+      { "label": "公式サイト 令和８年出雲大社祭日表", "url": "https://izumooyashiro.or.jp/saiten-gyouzi/plans" },
+      { "label": "公式サイト 令和８年神在祭（ご案内）", "url": "https://izumooyashiro.or.jp/r8_kamiari" }
+    ],
+    "fieldSources": {
+      "address": [2], "deities": [0], "benefitsOfficial": [0],
+      "history": [0, 1], "access": [2], "hours": [3], "festivals": [4, 5], "officialNotes": [0, 2, 3]
+    },
+    "notes": "address：公式サイト内の記載だが検索要約が掲載ページを特定しなかったため交通アクセスページを根拠として示した。hours は令和8年5月3日付の公式お知らせによる（素鵞社は以前の案内で16:30までとされていた）。神在祭は旧暦で行うため毎年日付が変わる（記載は令和8年）。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "32-2",
+    "prefCode": "32",
+    "pref": "島根県",
+    "name": "八重垣神社",
+    "kana": null,
+    "officialUrl": "https://yaegakijinja.or.jp/",
+    "sourceType": "official",
+    "address": null,
+    "deities": ["素盞嗚尊", "稲田姫命"],
+    "benefitsOfficial": ["縁結び"],
+    "history": "高天原から出雲の斐の川上に降り立った素盞嗚尊が、八岐大蛇を退治して稲田姫命を救い、脚摩乳・手摩乳の許しを得て夫婦となり、この佐草の地に宮造りをして縁結びの道を開いたと伝わる。社名は二柱の婚姻を喜んで詠まれた歌に由来する。天つ神の素盞嗚尊と地つ神の稲田姫命を主祭神とし、出雲の縁結びの大親神とされる。",
+    "access": [
+      "JR松江駅から車で約15分",
+      "山陰道（松江道）松江中央ICから車で約6分",
+      "JR松江駅5番乗り場からバスで約20分（時刻は松江市営バスの公式サイトで確認）"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "例祭", "date": "10月20日" },
+      { "name": "祈年祭・身隠神事", "date": "5月3日" },
+      { "name": "新嘗祭・還幸祭", "date": "12月15日" },
+      { "name": "大祓", "date": "6月30日・12月31日" }
+    ],
+    "officialNotes": [
+      "社務所は9:00〜17:00、御祈祷受付は9:30〜15:30（2024年の掲載。祭典や結婚式等で受付できない日や時間帯がある）",
+      "御祈祷の内容として良縁成就、安産祈願、夫婦円満、商売繁昌、交通安全などが挙げられている",
+      "奥の院 鏡の池では縁結びの占いが行われている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://yaegakijinja.or.jp/" },
+      { "label": "公式サイト 由緒", "url": "https://yaegakijinja.or.jp/origin/" },
+      { "label": "公式サイト アクセス", "url": "https://yaegakijinja.or.jp/access/" },
+      { "label": "公式サイト 祭典", "url": "https://yaegakijinja.or.jp/ritual/" },
+      { "label": "公式サイト 授与所開所閉所時間について", "url": "https://yaegakijinja.or.jp/2024/04/%E6%9C%AA%E5%88%86%E9%A1%9E/176/" },
+      { "label": "公式サイト 御祈祷・御守", "url": "https://yaegakijinja.or.jp/pray/" },
+      { "label": "公式サイト 奥の院 鏡の池について", "url": "https://yaegakijinja.or.jp/pond/" }
+    ],
+    "fieldSources": {
+      "address": [], "deities": [1], "benefitsOfficial": [1],
+      "history": [1], "access": [2], "hours": [], "festivals": [3], "officialNotes": [4, 5, 6]
+    },
+    "notes": "address：公式サイトで番地を含む住所を確認できず null（由緒に「佐草の地」とあるのみ）。benefitsOfficial：由緒で「出雲の縁結びの大親神」とされている点のみ採用（良縁成就・安産・夫婦円満などは御祈祷の案内のため officialNotes に記載）。hours：境内の参拝時間の記載は確認できず null。社務所の時間は2020年の掲載では平日16:30閉所とされており、時期により異なる可能性がある。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "32-3",
+    "prefCode": "32",
+    "pref": "島根県",
+    "name": "美保神社",
+    "kana": null,
+    "officialUrl": "http://mihojinja.or.jp/",
+    "sourceType": "official",
+    "address": "島根県松江市美保関町美保関608",
+    "deities": ["三穂津姫命", "事代主神"],
+    "benefitsOfficial": ["五穀豊穣", "夫婦和合", "安産", "子孫繁栄", "歌舞音曲", "海上安全", "大漁", "商売繁盛", "学業"],
+    "history": "社名は奈良時代の『出雲国風土記』と平安時代の『延喜式』に記され、少なくともその頃には社が存在していたとされる。国譲り神話では、事代主神が美保の岬で釣りをしていた際に国譲りを承諾し、青柴垣の中に身を隠したと伝えられ、この故事に由来する青柴垣神事などの祭礼が今も行われている。",
+    "access": [
+      "JR松江駅・境港駅からはバスのみ（一畑バス、美保関コミュニティバス）",
+      "米子鬼太郎空港からは空港連絡バスの利用が案内されている"
+    ],
+    "hours": "参拝自由（授与所・ご祈祷は8:30〜）",
+    "festivals": [
+      { "name": "例大祭・青柴垣神事", "date": "4月7日" },
+      { "name": "新嘗祭・諸手船神事", "date": "12月3日" },
+      { "name": "月次祭（七日えびす祭）", "date": "毎月7日" }
+    ],
+    "officialNotes": [
+      "毎朝8:30に朝御饌祭、毎夕15:30に夕御饌祭が行われ、拝殿の外から自由に拝観できる",
+      "毎月7日の10:00〜16:00は奉納鳴物などの宝物を収蔵庫で公開（観覧無料）",
+      "祭礼がある場合や混雑時は授与・ご祈祷で待つことがある"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "http://mihojinja.or.jp/" },
+      { "label": "公式サイト ご祭神・ご由緒", "url": "http://mihojinja.or.jp/yuisho/" },
+      { "label": "公式サイト 交通案内", "url": "http://mihojinja.or.jp/kotsu/" },
+      { "label": "公式サイト 年間祭事", "url": "http://mihojinja.or.jp/saiji/" },
+      { "label": "公式サイト 青柴垣神事", "url": "http://mihojinja.or.jp/sinji/02.php" },
+      { "label": "公式サイト 諸手船神事", "url": "http://mihojinja.or.jp/sinji/01.php" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [1], "benefitsOfficial": [1],
+      "history": [1, 4], "access": [2], "hours": [0], "festivals": [3, 4, 5], "officialNotes": [0, 3]
+    },
+    "notes": "benefitsOfficial：ご由緒ページで三穂津姫命（五穀豊穣・夫婦和合・安産・子孫繁栄・歌舞音曲）と事代主神（海上安全・大漁・商売繁盛・学業・歌舞音曲）の神徳として挙げられた語句をまとめた。hours：「ご参拝 自由／授与所 8:30〜／ご祈祷 8:30〜」の記載は公式サイト内だが、検索要約が掲載ページを特定しなかったためトップを根拠とした。access：公式交通案内の車ルートは地図・PDFでの案内のため文章化していない。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "34-1",
+    "prefCode": "34",
+    "pref": "広島県",
+    "name": "嚴島神社",
+    "kana": null,
+    "officialUrl": "https://www.itsukushimajinja.jp/",
+    "sourceType": "official",
+    "address": "広島県廿日市市宮島町1-1",
+    "deities": ["市杵島姫命", "田心姫命", "湍津姫命"],
+    "benefitsOfficial": [],
+    "history": "社殿の創建は推古天皇即位の年（593年）と伝えられる。天照大御神と素盞鳴尊の誓約によって生まれた三女神を祀り、御皇室の安泰や国家鎮護、海上の守護神として古くから崇信を受けた。現在の社殿は平清盛により修造されたもので、平成8年（1996年）に世界文化遺産に登録された。",
+    "access": [
+      "JR広島駅から山陽本線でJR宮島口駅まで約30分。駅から船着場まで徒歩",
+      "紙屋町（広島市中心部）から広電で広電宮島口まで約1時間",
+      "宮島口から宮島へフェリーで約10分（JR・松大汽船の2社が運航）"
+    ],
+    "hours": "6:30〜18:00（3月1日〜10月14日）、6:30〜17:30（10月15日〜11月30日）、6:30〜17:00（12月）。1月1日は0時から、1月2・3日は6:30開門。年中無休",
+    "festivals": [
+      { "name": "例祭", "date": "6月17日" },
+      { "name": "管絃祭", "date": "旧暦6月17日（令和8年は7月30日）" },
+      { "name": "桃花祭・桃花祭神能", "date": "4月16日〜18日" },
+      { "name": "鎮火祭", "date": "12月31日" }
+    ],
+    "officialNotes": [
+      "神社には駐車場がない",
+      "宝物館は通年8:00〜17:00",
+      "ご祈祷の例として家内安全、身体健康、心願成就、商業繁栄、病気平癒、海上安全、交通安全、厄除、合格祈願などが挙げられている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.itsukushimajinja.jp/" },
+      { "label": "公式サイト 御由緒", "url": "https://www.itsukushimajinja.jp/jp-sp/history.html" },
+      { "label": "公式サイト アクセス", "url": "https://www.itsukushimajinja.jp/en-sp/access.html" },
+      { "label": "公式サイト 拝観", "url": "https://www.itsukushimajinja.jp/jp-sp/admission.html" },
+      { "label": "公式サイト 年中行事", "url": "https://www.itsukushimajinja.jp/jp/event.html" },
+      { "label": "公式サイト ご祈祷・結婚式", "url": "https://www.itsukushimajinja.jp/jp-sp/prayer.html" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [1], "benefitsOfficial": [],
+      "history": [0, 1], "access": [2], "hours": [3], "festivals": [4], "officialNotes": [2, 3, 5]
+    },
+    "notes": "benefitsOfficial：公式に「ご利益」「御神徳」として列挙された語句を確認できず空（皇室の安泰・国家鎮護・海上の守護神としての崇信は history に記載。ご祈祷の項目は officialNotes に記載）。address：検索要約が掲載ページを特定しなかったためトップを根拠とした。access は公式サイトの英語版スマホページ（en-sp）の交通案内による。管絃祭は旧暦で行うため毎年日付が変わる。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "34-2",
+    "prefCode": "34",
+    "pref": "広島県",
+    "name": "吉備津神社",
+    "kana": null,
+    "officialUrl": null,
+    "sourceType": "municipal",
+    "address": "広島県福山市新市町宮内400",
+    "deities": ["大吉備津彦命"],
+    "benefitsOfficial": [],
+    "history": "備中国の吉備津神社から分かれた（勧請された）と伝えられ、中世以降は備後国の一宮とされる。現在の本殿は江戸時代初期に水野勝成によって再建されたもので国の重要文化財に指定され、狛犬3躯も国の重要文化財となっている。",
+    "access": [],
+    "hours": null,
+    "festivals": [
+      { "name": "市立大祭", "date": "11月21日〜24日（例年）" },
+      { "name": "節分祭（ほら吹き神事）", "date": "2月3日" }
+    ],
+    "officialNotes": [],
+    "sources": [
+      { "label": "福山市ホームページ 備後一宮 吉備津神社 市立大祭", "url": "https://www.city.fukuyama.hiroshima.jp/koho-detail16/koho-202511/381711.html" },
+      { "label": "福山市ホームページ 神を守護する 吉備津神社狛犬", "url": "https://www.city.fukuyama.hiroshima.jp/koho-detail50/koho-202407/332981.html" },
+      { "label": "福山市ホームページ 奇祭「ほら吹き神事」", "url": "https://www.city.fukuyama.hiroshima.jp/koho-detail50/koho-202601/384023.html" }
+    ],
+    "fieldSources": {
+      "address": [0, 1], "deities": [1], "benefitsOfficial": [],
+      "history": [0, 1], "access": [], "hours": [], "festivals": [0, 2], "officialNotes": []
+    },
+    "notes": "福山市新市町の吉備津神社（備後国一宮）。岡山市の吉備津神社とは別社。神社自身の公式サイトは検索2回で見つからなかったため、福山市の公式サイト（広報ふくやまの記事）を出典とした（sourceType municipal）。各項目の掲載記事は検索要約が個別に特定しなかったため、該当する記事を併記した。由緒は市の記事の間で表現が異なる（創建を大同元年とする記述もある）ため、伝承として要約した。access：市のページの交通案内が神社のものか近隣施設（しんいち歴史民俗博物館）のものか判別できなかったため空。benefitsOfficial・hours は確認できず。kana は未確認のため null。"
+  },
+  {
+    "id": "34-3",
+    "prefCode": "34",
+    "pref": "広島県",
+    "name": "廣島護國神社",
+    "kana": null,
+    "officialUrl": "https://www.h-gokoku.or.jp/",
+    "sourceType": "official",
+    "address": "広島県広島市中区基町21番2号",
+    "deities": ["大東亜戦争に至るまでの事変戦争で戦没した英霊 およそ九万二千余柱（原爆の犠牲となった動員学徒・女子挺身隊等約一万柱を含む）"],
+    "benefitsOfficial": [],
+    "history": "明治元年12月、戊辰の役で陣没した高間省三命以下七十八柱を、二葉の里に新しく造営された「水草霊社」に奉祀したのが創建。以後、大東亜戦争に至るまでの幾多の事変戦争で戦没した英霊およそ九万二千余柱の神霊を祀っている。",
+    "access": [
+      "バスセンターから北へ徒歩約10分",
+      "アストラムライン県庁前駅から北へ徒歩約10分",
+      "JR広島駅からタクシーで約10分",
+      "JR横川駅からタクシーで約5分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "秋季例大祭", "date": "10月18日" },
+      { "name": "原爆慰霊祭", "date": "8月6日" }
+    ],
+    "officialNotes": [
+      "七五三などの祈願は予約不要で9:00〜16:30受付",
+      "初詣では公共交通機関を利用しての参拝を勧めている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.h-gokoku.or.jp/" },
+      { "label": "公式サイト 由緒", "url": "https://www.h-gokoku.or.jp/yuisho/" },
+      { "label": "公式サイト 交通案内", "url": "https://www.h-gokoku.or.jp/koutsuu/" },
+      { "label": "公式サイト お知らせ（秋季例大祭）", "url": "https://www.h-gokoku.or.jp/info/2025/10/2582/" },
+      { "label": "公式サイト 8月6日 原爆慰霊祭", "url": "https://www.h-gokoku.or.jp/info/2025/08/2498/" },
+      { "label": "公式サイト 七五三祈願受付中", "url": "https://www.h-gokoku.or.jp/info/2024/10/2261/" },
+      { "label": "公式サイト 初詣情報", "url": "https://www.h-gokoku.or.jp/info/2025/12/2647/" }
+    ],
+    "fieldSources": {
+      "address": [0], "deities": [1], "benefitsOfficial": [],
+      "history": [1], "access": [2], "hours": [], "festivals": [3, 4], "officialNotes": [5, 6]
+    },
+    "notes": "公式サイトの表記は「広島護國神社」。deities：公式は個別の御祭神名ではなく奉祀する英霊として記載しているため、その記述を要約した。address：検索要約が掲載ページを特定しなかったためトップを根拠とした。benefitsOfficial：公式で確認できず空。hours：境内の参拝時間は確認できず null（正月期間の授与時間のみ掲載あり）。秋季例大祭・原爆慰霊祭の日付は2025年のお知らせによる。月例祭は日付の記載が一致しなかったため除外。路線バスの系統は公式の記載なし。kana は公式で未確認のため null。"
+  }
+]

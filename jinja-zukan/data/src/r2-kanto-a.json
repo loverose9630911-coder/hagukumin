@@ -1,0 +1,446 @@
+[
+  {
+    "id": "13-1",
+    "prefCode": "13",
+    "pref": "東京都",
+    "name": "明治神宮",
+    "kana": null,
+    "officialUrl": "https://www.meijijingu.or.jp/",
+    "sourceType": "official",
+    "address": "東京都渋谷区代々木神園町1-1",
+    "deities": ["明治天皇", "昭憲皇太后"],
+    "benefitsOfficial": [],
+    "history": "明治45年（1912年）に明治天皇、大正3年（1914年）に昭憲皇太后が崩御されると、国民の間から御神霊をおまつりして御遺徳を慕いたいという声が高まった。これを受けて、御祭神と縁の深い代々木の地に大正9年（1920年）に創建された。",
+    "access": [
+      "原宿口（南口）：JR原宿駅・地下鉄千代田線／副都心線「明治神宮前〈原宿〉駅」から徒歩1分",
+      "代々木口（北口）：JR代々木駅などから徒歩5分",
+      "参宮橋口（西口）：小田急線「参宮橋駅」から徒歩5分",
+      "御社殿は境内のほぼ中央にあり、各入口から約10分",
+      "車は代々木口から入苑（原宿口・参宮橋口からは入れない）"
+    ],
+    "hours": "日の出とともに開門し、日没に合わせて閉門（月により異なる。例：10月は5:40〜16:40、11月は6:10〜16:10）",
+    "festivals": [
+      { "name": "歳旦祭", "date": "1月1日" },
+      { "name": "崇敬者大祭（春の大祭）", "date": "5月3日" },
+      { "name": "明治天皇祭", "date": "7月30日" },
+      { "name": "鎮座記念祭（秋の大祭）", "date": "11月1日" },
+      { "name": "例祭", "date": "11月3日" }
+    ],
+    "officialNotes": [
+      "車で来る場合、駐車場が混雑して入苑できない場合があるため、なるべく公共交通機関を利用するよう案内している",
+      "主な願意（祈願の内容）として、国家安泰、皇室弥栄、除災招福、家内安全、病気平癒、身体安全、商売繁昌、厄除、交通安全などを挙げている",
+      "御苑の開苑時間は3月〜10月が9:00〜16:30、11月〜2月が9:00〜16:00"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.meijijingu.or.jp/" },
+      { "label": "公式サイト 明治神宮とは", "url": "https://www.meijijingu.or.jp/about/" },
+      { "label": "公式サイト Q&A 御祭神関係", "url": "https://www.meijijingu.or.jp/faq/?ca=2" },
+      { "label": "公式サイト 主な願意", "url": "https://www.meijijingu.or.jp/sanpai/5.php" },
+      { "label": "公式サイト アクセス", "url": "https://www.meijijingu.or.jp/access/" },
+      { "label": "公式サイト ご参拝の方へ", "url": "https://www.meijijingu.or.jp/sanpai/2.php" },
+      { "label": "公式サイト 年間行事予定", "url": "https://www.meijijingu.or.jp/event/" },
+      { "label": "公式サイト 明治神宮御苑", "url": "https://www.meijijingu.or.jp/midokoro/gyoen/" }
+    ],
+    "fieldSources": {
+      "address": [4],
+      "deities": [1, 2],
+      "benefitsOfficial": [],
+      "history": [1, 2],
+      "access": [4],
+      "hours": [4, 5],
+      "festivals": [6],
+      "officialNotes": [4, 3, 7]
+    },
+    "notes": "benefitsOfficial：公式の「主な願意」ページは祈願の内容の一覧で、「ご利益」「御神徳」としての列挙ではないため空にし、officialNotes に記載した。hours：検索要約が公式の開閉門時刻として月別の例（10月・11月）を示したもの。掲載ページはアクセス／ご参拝の方へのいずれかで、要約からは特定できなかった。初詣期間は別の時間になる。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "13-2",
+    "prefCode": "13",
+    "pref": "東京都",
+    "name": "神田明神（神田神社）",
+    "kana": null,
+    "officialUrl": "https://www.kandamyoujin.or.jp/",
+    "sourceType": "official",
+    "address": "東京都千代田区外神田2-16-2",
+    "deities": ["大己貴命", "少彦名命", "平将門命"],
+    "benefitsOfficial": [],
+    "history": "社伝によれば天平2年（730）、出雲氏族の真神田臣により武蔵国豊島郡芝崎村に創建された。延慶2年（1309）に平将門命を奉祀。慶長5年（1600）の関ヶ原の戦いの際には徳川家康公が戦勝祈願を行い、以後幕府の尊崇を受けた。元和2年（1616）に現在地へ遷座し、「江戸総鎮守」として幕府から江戸庶民にいたるまで篤い崇敬を集めた。",
+    "access": [
+      "JR中央線・総武線「御茶ノ水駅」（聖橋口）から徒歩5分",
+      "JR京浜東北線・山手線「秋葉原駅」（電気街口）から徒歩7分",
+      "地下鉄丸ノ内線・千代田線「御茶ノ水駅」「新御茶ノ水駅」から徒歩5分",
+      "地下鉄銀座線「末広町駅」から徒歩5分",
+      "地下鉄日比谷線「秋葉原駅」から徒歩7分",
+      "都バス「茶51」系統「神田明神」バス停から徒歩1分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "例大祭", "date": "5月15日" },
+      { "name": "神田祭（2年に一度。神幸祭・神輿宮入）", "date": "令和5年は5月13日（神幸祭）・5月14日（神輿宮入）" }
+    ],
+    "officialNotes": [
+      "毎月1日と15日の月次祭は参列自由"
+    ],
+    "sources": [
+      { "label": "公式サイト Home", "url": "https://www.kandamyoujin.or.jp/" },
+      { "label": "公式サイト 神田明神とは", "url": "https://www.kandamyoujin.or.jp/profile/" },
+      { "label": "公式サイト アクセス", "url": "https://www.kandamyoujin.or.jp/access/" },
+      { "label": "公式サイト 年中行事", "url": "https://www.kandamyoujin.or.jp/event/" },
+      { "label": "公式サイト 神田祭特設サイト 例大祭", "url": "https://www.kandamyoujin.or.jp/kandasai/r5/schedule/reitaisai/" },
+      { "label": "公式サイト 令和5年 神田祭 インターネットライブ", "url": "https://www.kandamyoujin.or.jp/bunka/detail/?id=121" }
+    ],
+    "fieldSources": {
+      "address": [0],
+      "deities": [1],
+      "benefitsOfficial": [],
+      "history": [1],
+      "access": [2],
+      "hours": [],
+      "festivals": [4, 5],
+      "officialNotes": [3]
+    },
+    "notes": "benefitsOfficial：公式の神田明神とはページは御祭神をそれぞれ「〜の神様」として紹介しているが、「ご利益」「御神徳」としての列挙ではないため空にした（昇殿参拝の案内に挙がる商売繁昌・厄よけ等は祈願の種類）。address は検索要約が公式サイト記載として示したが掲載ページ名は特定できず、トップを根拠にした。hours：通常日の境内参拝時間は公式で確認できず null。神田祭は2年に一度の本祭で、日付は令和5年の公式記事による。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "13-3",
+    "prefCode": "13",
+    "pref": "東京都",
+    "name": "東京大神宮",
+    "kana": null,
+    "officialUrl": "https://www.tokyodaijingu.or.jp/",
+    "sourceType": "official",
+    "address": "東京都千代田区富士見2-4-1",
+    "deities": ["天照皇大神", "豊受大神", "天之御中主神", "高御産巣日神", "神産巣日神", "倭比賣命"],
+    "benefitsOfficial": ["縁結び"],
+    "history": "明治13年、明治天皇の御裁可を仰ぎ、東京における伊勢神宮の遥拝殿として日比谷に創建され、「日比谷大神宮」と呼ばれた。明治33年の皇太子の御成婚の礼を受けて、一般の人々に向けた神前結婚式を創始した。",
+    "access": [
+      "JR中央・総武線、東京メトロ有楽町線・南北線・東西線、都営地下鉄大江戸線「飯田橋駅」から各線とも徒歩約5分"
+    ],
+    "hours": "参拝 6:00〜21:00（授与所 8:00〜19:00、朱印所 9:00〜17:00、祈祷受付 9:00〜16:30）",
+    "festivals": [
+      { "name": "例祭（日比谷大神宮創建の日を記念）", "date": "4月17日" }
+    ],
+    "officialNotes": [
+      "専用駐車場はないため、電車での来社を案内している",
+      "1月・4月を除く毎月17日の日没頃から午後8時頃まで、境内にキャンドルを灯す（Tomoshibi。雨や強風の日は中止）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.tokyodaijingu.or.jp/" },
+      { "label": "公式サイト 東京大神宮の紹介", "url": "https://www.tokyodaijingu.or.jp/syoukai/" },
+      { "label": "公式サイト 東京大神宮の紹介（旧ページ）", "url": "http://tokyodaijingu.or.jp/syoukai/index.html" },
+      { "label": "公式サイト 交通案内", "url": "https://www.tokyodaijingu.or.jp/koutsuu/" },
+      { "label": "公式サイト 毎月の祭典行事", "url": "https://www.tokyodaijingu.or.jp/saiten/" },
+      { "label": "公式サイト Tomoshibi〜キャンドルナイト〜", "url": "https://tokyodaijingu.or.jp/tomoshibi/" }
+    ],
+    "fieldSources": {
+      "address": [3],
+      "deities": [1, 2],
+      "benefitsOfficial": [1],
+      "history": [1, 2],
+      "access": [3],
+      "hours": [0],
+      "festivals": [4],
+      "officialNotes": [3, 5]
+    },
+    "notes": "deities：現行の紹介ページは天照皇大神・豊受大神と「造化の三神」・倭比賣命を挙げ、旧ページは天之御中主神・高御産巣日神・神産巣日神・倭比賣命を挙げるため、両者を合わせて記載した。benefitsOfficial：公式の「縁結びに御利益のある神社としても知られ」という記述の語のみ採用（家内安全・商売繁昌・厄除開運・交通安全・学業成就などは祈祷の案内と区別できなかったため不採用）。hours：検索要約が公式サイトの案内として示したが掲載ページは特定できず、トップを根拠にした。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "14-1",
+    "prefCode": "14",
+    "pref": "神奈川県",
+    "name": "鶴岡八幡宮",
+    "kana": null,
+    "officialUrl": "https://www.hachimangu.or.jp/",
+    "sourceType": "official",
+    "address": "神奈川県鎌倉市雪ノ下2-1-31",
+    "deities": ["応神天皇", "神功皇后", "比売神"],
+    "benefitsOfficial": [],
+    "history": "源頼義が京都の石清水八幡宮を勧請し、源氏の氏神として八幡神を鎌倉の由比ヶ浜辺に祀ったのが始まり。その後、源頼朝が現在の地に遷し、鶴岡八幡宮の基礎を造った。八幡神は古くから源氏の氏神とされ、「武運の神」として信仰されてきた。",
+    "access": [
+      "JR横須賀線・湘南新宿ライン「鎌倉駅」東口から徒歩10分",
+      "江ノ電「鎌倉駅」から徒歩10分",
+      "車：横浜横須賀道路 朝比奈ICから県道204号線を鎌倉方面へ約5km"
+    ],
+    "hours": "6:00〜20:00（通年）。宝物殿は9:00〜16:00",
+    "festivals": [
+      { "name": "鶴岡厄除大祭", "date": "令和8年は1月30日〜2月1日" },
+      { "name": "例大祭（9月14日 宵宮祭、15日 例大祭・神幸祭、16日 流鏑馬神事・鈴虫放生祭）", "date": "9月14日〜16日" }
+    ],
+    "officialNotes": [
+      "参拝者専用の駐車場あり（普通車 9:00〜19:30、有料）",
+      "例大祭の神幸祭当日は若宮大路が混雑する"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.hachimangu.or.jp/" },
+      { "label": "公式サイト 知る", "url": "https://www.hachimangu.or.jp/knowledge/" },
+      { "label": "公式サイト 参拝案内", "url": "https://www.hachimangu.or.jp/access/" },
+      { "label": "公式サイト 開門、閉門時間変更について", "url": "https://www.hachimangu.or.jp/activity/news/952" },
+      { "label": "公式サイト 祭り", "url": "https://www.hachimangu.or.jp/matsuri/" },
+      { "label": "公式サイト 令和７年度例大祭と道路混雑のお知らせ", "url": "https://www.hachimangu.or.jp/activity/news/1178" },
+      { "label": "公式サイト 令和８年 鶴岡厄除大祭", "url": "https://www.hachimangu.or.jp/activity/news/1250" },
+      { "label": "公式サイト 宝物殿", "url": "https://www.hachimangu.or.jp/activity/facility/homotsuden.html" }
+    ],
+    "fieldSources": {
+      "address": [2],
+      "deities": [1],
+      "benefitsOfficial": [],
+      "history": [1],
+      "access": [2],
+      "hours": [2, 3, 7],
+      "festivals": [4, 5, 6],
+      "officialNotes": [2, 5]
+    },
+    "notes": "benefitsOfficial：本宮の御神徳を一覧にした公式の記述は検索で確認できなかったため空（境内社の白旗神社＝必勝・学業成就などの記載はある）。access：IC名は検索要約では「朝日奈IC」と表記されていたが、横浜横須賀道路の朝比奈ICを指すものとして記載した。初詣期間は開門時間が変わる。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "14-2",
+    "prefCode": "14",
+    "pref": "神奈川県",
+    "name": "寒川神社",
+    "kana": null,
+    "officialUrl": "https://samukawajinjya.jp/",
+    "sourceType": "official",
+    "address": "神奈川県高座郡寒川町宮山3916",
+    "deities": ["寒川比古命", "寒川比女命"],
+    "benefitsOfficial": ["八方除"],
+    "history": "相模国一之宮。延喜式神名帳（927年編纂）では相模国13社のうち唯一の名神大社とされた。源頼朝、武田信玄、徳川家代々の篤い信仰を受け、古来唯一の八方除の守護神として信仰されている。",
+    "access": [
+      "JR相模線「宮山駅」から徒歩5分（「寒川駅」ではない）",
+      "JR茅ヶ崎駅から相模線に乗り換えて約15分",
+      "海老名駅（小田急線・相鉄線）から相模線に乗り換えて約20分",
+      "バス：海老名駅東口2番乗り場から寒川駅行きで約20分「寒川神社参道」下車、徒歩5分",
+      "車：圏央道 寒川北ICから約5分（全駐車場左折入庫）"
+    ],
+    "hours": "原則として6:00頃〜日没（神門前の賽銭箱のある場所では時間外も参拝可）",
+    "festivals": [
+      { "name": "流鏑馬神事（例祭宵宮祭の日）", "date": "9月19日" },
+      { "name": "例祭", "date": "9月20日" }
+    ],
+    "officialNotes": [
+      "土・日・祝日は大変混雑するため公共交通機関の利用を案内。近隣への路上駐車や入庫待ちの路上停車は禁止",
+      "御祈祷の受付は通常8:00〜17:00（正月期間は異なる）",
+      "令和8年の初詣では交通規制があり、元日から1月3日まで神社の駐車場は使えなかった（年末年始は毎年案内が出る）"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://samukawajinjya.jp/index-sp" },
+      { "label": "公式サイト 御由緒", "url": "https://samukawajinjya.jp/en/about/history.html" },
+      { "label": "公式サイト 御神徳", "url": "https://samukawajinjya.jp/en/about/special-blessing.html" },
+      { "label": "公式サイト 境内のご案内", "url": "https://samukawajinjya.jp/about/keidai.html?cbtn=" },
+      { "label": "公式サイト 神社への道案内", "url": "https://samukawajinjya.jp/en/access/" },
+      { "label": "公式サイト 【お知らせ】お車、電車、バスでお越しの方へ", "url": "https://samukawajinjya.jp/info/468.html" },
+      { "label": "公式サイト お問い合わせ", "url": "https://samukawajinjya.jp/en/contact/" },
+      { "label": "公式サイト よくあるご質問", "url": "https://samukawajinjya.jp/en/faq/" },
+      { "label": "公式サイト 【祭典】9月19日、20日 例祭、神賑行事について", "url": "https://samukawajinjya.jp/info/307.html" },
+      { "label": "公式サイト 【初詣】令和8年 御祈祷の受付時間について", "url": "https://samukawajinjya.jp/info/222.html" },
+      { "label": "公式サイト 【初詣】令和8年 初詣交通規制について", "url": "https://samukawajinjya.jp/info/225.html" }
+    ],
+    "fieldSources": {
+      "address": [6],
+      "deities": [3],
+      "benefitsOfficial": [2],
+      "history": [1, 2],
+      "access": [4, 5],
+      "hours": [7],
+      "festivals": [8],
+      "officialNotes": [5, 9, 10]
+    },
+    "notes": "公式ドメイン（samukawajinjya.jp）は最初の検索では観光サイトしか出なかったため、ドメインを指定した検索結果（御由緒・御神徳などのページ）で公式と確認した。address：公式お問い合わせページ（英語表記「3916 Miyayama, Samukawa-machi, Koza-gun, Kanagawa 253-0195」）による。hours：公式FAQ（英語ページ）の「generally open from around 6:00 am until sunset」による。例祭の日付は公式のお知らせ「9月19日、20日 例祭、神賑行事について」による。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "14-3",
+    "prefCode": "14",
+    "pref": "神奈川県",
+    "name": "箱根神社",
+    "kana": null,
+    "officialUrl": "https://hakonejinja.or.jp/",
+    "sourceType": "official",
+    "address": "神奈川県足柄下郡箱根町元箱根80-1",
+    "deities": ["瓊瓊杵尊", "木花咲耶姫命", "彦火火出見尊"],
+    "benefitsOfficial": ["開運厄除", "心願成就", "交通安全", "縁結び"],
+    "history": "奈良時代の天平宝字元年（757）、箱根山に入峰した万巻上人が箱根大神の御神託を授かり、勅願をもって現在の地に社殿を建立したのが始まり。その後は修験道と結びついて信仰を集め、鎌倉時代には北条泰時の『御成敗式目』で祈誓の社の筆頭に挙げられ、江戸時代には徳川家康が厚く崇敬した。",
+    "access": [
+      "小田急線で新宿から湯本まで行き、湯本から「箱根・元箱根行」バスで60分",
+      "小田原駅から「箱根・元箱根行」バスで75分",
+      "小田急高速バスで新宿から元箱根へ",
+      "車：東名高速 沼津ICから伊豆縦貫道路（無料）を通り箱根まで28分"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "九頭龍神社本宮例祭", "date": "6月13日" },
+      { "name": "湖水祭（例大祭の宵宮）", "date": "7月31日" },
+      { "name": "例大祭", "date": "8月1日" },
+      { "name": "神幸祭（神輿渡御）", "date": "8月2日" }
+    ],
+    "officialNotes": [
+      "瓊瓊杵尊・木花咲耶姫命・彦火火出見尊の御三神を併祀して「箱根大神」と奉称している",
+      "芦ノ湖の守護神を祀る九頭龍神社（本宮・新宮）と、駒ヶ岳山頂の奥宮・箱根元宮がある",
+      "箱根登山バスは2022年4月から「箱根神社入口」バス停に10時〜16時の間は停車しない",
+      "九頭龍神社本宮へは元箱根港発の参拝船で行ける"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://hakonejinja.or.jp/" },
+      { "label": "公式サイト 由緒並に宝物と文化財", "url": "https://hakonejinja.or.jp/hakone/" },
+      { "label": "公式サイト アクセス", "url": "https://hakonejinja.or.jp/access/" },
+      { "label": "公式サイト 毎月の祭りと四季の祭り", "url": "https://hakonejinja.or.jp/hakone/celebration.html" },
+      { "label": "公式サイト 祭典の詳細", "url": "https://hakonejinja.or.jp/hakone/fes_detail.html" },
+      { "label": "公式サイト 6月13日 九頭龍神社本宮例祭", "url": "https://hakonejinja.or.jp/info/20250608_1562/" },
+      { "label": "公式サイト お問い合わせ", "url": "https://hakonejinja.or.jp/contact/" },
+      { "label": "公式サイト 箱根山に鎮座する神社のご紹介", "url": "https://hakonejinja.or.jp/hakone/zenzan.html" }
+    ],
+    "fieldSources": {
+      "address": [6],
+      "deities": [1],
+      "benefitsOfficial": [1],
+      "history": [1],
+      "access": [2],
+      "hours": [],
+      "festivals": [3, 4, 5],
+      "officialNotes": [1, 7, 2]
+    },
+    "notes": "benefitsOfficial は公式の由緒ページの「開運厄除・心願成就・交通安全・縁結びに御神徳の高い、運開きの神様」の語句。境内の参拝時間は公式で確認できず null（お札所・御祈祷の受付時間の案内はある）。祭典の時刻や日程は年により変わることがある。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "11-1",
+    "prefCode": "11",
+    "pref": "埼玉県",
+    "name": "武蔵一宮氷川神社",
+    "kana": null,
+    "officialUrl": "https://musashiichinomiya-hikawa.or.jp/",
+    "sourceType": "official",
+    "address": "埼玉県さいたま市大宮区高鼻町1-407",
+    "deities": ["須佐之男命", "稲田姫命", "大己貴命"],
+    "benefitsOfficial": [],
+    "history": "社伝では第五代孝昭天皇の時代に創立されたとされる。記録上の初見は平安時代の法制書『新抄格勅符抄』で、天平神護2年（766）に朝廷から封戸が寄進されたと記されている。明治元年、明治天皇は当社を武蔵国の鎮守勅祭の社と定め、氷川神社親祭の勅書を賜った。",
+    "access": [
+      "JR大宮駅東口から徒歩約15分",
+      "東武野田線「北大宮駅」から西駐車場まで徒歩約10分",
+      "車：さいたま新都心西ICから約15分、岩槻ICから約20分"
+    ],
+    "hours": "楼門の開閉時間は時期により異なる（3・4・9・10月 5:30〜17:30、5〜8月 5:00〜18:00、1・2・11・12月 6:00〜17:00）",
+    "festivals": [
+      { "name": "例祭", "date": "8月1日" },
+      { "name": "大湯祭（十日市）", "date": "12月10日" }
+    ],
+    "officialNotes": [
+      "例祭の祭典中は楼門内に入れない時間がある",
+      "大湯祭（十日市）の12月10日は周辺で交通規制があり、駐車場は全面閉鎖となる"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://musashiichinomiya-hikawa.or.jp/" },
+      { "label": "公式サイト 由緒・歴史", "url": "https://musashiichinomiya-hikawa.or.jp/about/" },
+      { "label": "公式サイト アクセス", "url": "https://musashiichinomiya-hikawa.or.jp/access/" },
+      { "label": "公式サイト 祭典", "url": "https://musashiichinomiya-hikawa.or.jp/saiten/" },
+      { "label": "公式サイト 紅葉のお知らせ", "url": "https://musashiichinomiya-hikawa.or.jp/sp/news/topics.php?id=149" },
+      { "label": "公式サイト 令和7年1月9日以降の正月初詣について", "url": "https://www.musashiichinomiya-hikawa.or.jp/sp/news/topics.php?id=339" },
+      { "label": "公式サイト 大湯祭（十日市）のご案内", "url": "https://www.musashiichinomiya-hikawa.or.jp/sp/news/20181129/" }
+    ],
+    "fieldSources": {
+      "address": [2],
+      "deities": [1],
+      "benefitsOfficial": [],
+      "history": [1],
+      "access": [2],
+      "hours": [4, 5],
+      "festivals": [3, 6],
+      "officialNotes": [3, 6]
+    },
+    "notes": "benefitsOfficial：主祭神の御神徳を一覧にした公式の記述は確認できなかったため空（境内社の住吉神社＝航海の神、天津神社＝医学薬学の神などの記載、結婚式案内での「縁結びの神」との紹介はある）。hours：季節別の楼門開閉時間は公式のお知らせ「紅葉のお知らせ」（掲載時期不明）によるもので、令和7年1月の初詣のお知らせでも楼門は6:00〜17:00とされている。最新かは確認できていない。御祭神は明治15年に須佐之男命一柱となり、明治29年に稲田姫命・大己貴命が加わったと公式に記載がある。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "11-2",
+    "prefCode": "11",
+    "pref": "埼玉県",
+    "name": "三峯神社",
+    "kana": null,
+    "officialUrl": "https://www.mitsuminejinja.or.jp/",
+    "sourceType": "official",
+    "address": "埼玉県秩父市三峰298-1",
+    "deities": ["伊弉諾尊", "伊弉册尊"],
+    "benefitsOfficial": [],
+    "history": "日本武尊が東国平定の途中で三峯山を訪れ、伊弉諾尊・伊弉册尊を祀ったことが始まりと伝えられる。その後は修験道や仏教の影響を受け、明治維新まで僧侶が神前奉仕を続けた。社紋「菖蒲菱」は花山院家の紋に由来する。神の使いはオオカミで、「お犬様」として親しまれている。",
+    "access": [
+      "西武秩父駅から西武観光バス急行便（西武秩父駅〜三峯神社）で約80分",
+      "池袋駅から西武線の特急で西武秩父駅へ行き、急行バスに乗り継ぐ",
+      "車（東京方面）：関越道 花園ICから国道140号経由で約2時間",
+      "車（山梨方面）：中央道 甲府昭和ICから雁坂トンネル経由で約2時間半",
+      "駐車は秩父市営の三峰駐車場を利用"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "節分祭「ごもっとも神事」", "date": "令和8年は2月3日" },
+      { "name": "例大祭", "date": "4月8日" }
+    ],
+    "officialNotes": [
+      "御眷属（お犬様）のお札を一年間借り受けて家や地域を守る「御眷属拝借」が古くから行われ、火難・盗難除けなどの霊験があるとされる",
+      "御祈祷の受付は午前9時〜午後4時（無休・予約不要）",
+      "例大祭の参列は招待者のみ。大祭斎行中は御祈願を受けられない"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.mitsuminejinja.or.jp/" },
+      { "label": "公式サイト 御祭神・由緒", "url": "https://www.mitsuminejinja.or.jp/saijin/" },
+      { "label": "公式サイト ご祈祷案内", "url": "https://www.mitsuminejinja.or.jp/kitou/" },
+      { "label": "公式サイト 交通案内", "url": "https://www.mitsuminejinja.or.jp/koutsu/" },
+      { "label": "公式サイト 例大祭のため御祈願奉仕時間が変更となります", "url": "https://www.mitsuminejinja.or.jp/info/2025/04/797/" },
+      { "label": "公式サイト 令和8年2月3日 節分祭ごもっとも神事について", "url": "https://www.mitsuminejinja.or.jp/info/2026/01/881/" }
+    ],
+    "fieldSources": {
+      "address": [0, 3],
+      "deities": [1],
+      "benefitsOfficial": [],
+      "history": [1, 2],
+      "access": [3],
+      "hours": [],
+      "festivals": [4, 5],
+      "officialNotes": [2, 4]
+    },
+    "notes": "benefitsOfficial：公式に「ご利益」「御神徳」として列挙された語句は確認できなかったため空（御眷属拝借の霊験は officialNotes に記載。節分祭のごもっとも神事は五穀豊穣・夫婦和合・子宝・家内安全・悪霊退散などに霊験があるとされる）。address は検索要約が公式サイト記載として示したが、掲載ページは特定できなかった。境内の参拝時間は公式で確認できず null。kana は公式で未確認のため null。"
+  },
+  {
+    "id": "11-3",
+    "prefCode": "11",
+    "pref": "埼玉県",
+    "name": "秩父神社",
+    "kana": null,
+    "officialUrl": "https://www.chichibu-jinja.or.jp/",
+    "sourceType": "official",
+    "address": "埼玉県秩父市番場町1-3",
+    "deities": ["八意思兼命", "知知夫彦命", "天之御中主神", "秩父宮雍仁親王"],
+    "benefitsOfficial": [],
+    "history": "平安初期の文献『先代旧事紀』によれば、崇神天皇の時代に知知夫国の初代国造となった八意思兼命の子孫・知知夫彦命が祖神を祀ったのが始まりとされる。元慶2年（878）に神階正四位下に進み、延喜式にも記載される古社。鎌倉時代に天之御中主神（北辰妙見）、昭和28年に秩父宮雍仁親王が合祀された。現存の社殿は徳川家康公の寄進で、埼玉県の有形文化財に指定されている。",
+    "access": [
+      "秩父鉄道「秩父駅」から徒歩3分",
+      "西武秩父線「西武秩父駅」から徒歩15分",
+      "池袋駅から西武池袋線の特急レッドアローで約80分（乗り換えなし）で西武秩父駅へ",
+      "車：関越自動車道 花園ICから約30km（皆野寄居バイパス利用で約50分）"
+    ],
+    "hours": null,
+    "festivals": [
+      { "name": "元始祭", "date": "1月3日" },
+      { "name": "御田植祭", "date": "4月4日" },
+      { "name": "例大祭（秩父夜祭）", "date": "12月3日" }
+    ],
+    "officialNotes": [
+      "参拝・祈願の申し込みは毎日9:00〜16:30、ご本殿前の授与所で受け付ける",
+      "妙見様（天之御中主神）は方位・方角の守護神として信仰され、方位除けの祈願を受け付けている"
+    ],
+    "sources": [
+      { "label": "公式サイト トップ", "url": "https://www.chichibu-jinja.or.jp/" },
+      { "label": "公式サイト ご祭神・由緒", "url": "https://www.chichibu-jinja.or.jp/saijin/" },
+      { "label": "公式サイト 交通案内", "url": "https://www.chichibu-jinja.or.jp/access/" },
+      { "label": "公式サイト 参拝・祈願", "url": "https://www.chichibu-jinja.or.jp/sanpai/" },
+      { "label": "公式サイト 秩父夜祭", "url": "https://www.chichibu-jinja.or.jp/yomatsuri/" },
+      { "label": "公式サイト 祭典・神事", "url": "https://www.chichibu-jinja.or.jp/saiten/" }
+    ],
+    "fieldSources": {
+      "address": [0, 2],
+      "deities": [1],
+      "benefitsOfficial": [],
+      "history": [1],
+      "access": [2],
+      "hours": [],
+      "festivals": [4, 5],
+      "officialNotes": [3, 1]
+    },
+    "notes": "benefitsOfficial：公式のご祭神解説には八意思兼命を「政治・学問・工業・開運の祖神」とする記述があるが、「ご利益」「御神徳」としての列挙ではないため空にした（境内社の天満天神社＝学業成就、東照宮＝子孫繁栄などの紹介はある）。address は検索要約が公式サイト記載として示したが、掲載ページは特定できなかった。交通案内ページは更新から時間が経っている可能性があると検索要約が指摘している。境内の開門・閉門時間は公式で確認できず null。kana は公式で未確認のため null。"
+  }
+]
