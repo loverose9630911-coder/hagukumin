@@ -44,6 +44,7 @@
   function setPage(title, back) {
     titleEl.textContent = title;
     backBtn.hidden = !back;
+    var bm = document.getElementById('brandMark'); if (bm) bm.hidden = !!back;
     backBtn.onclick = back ? function () { location.hash = back; } : null;
     document.title = title === APP ? APP : title + '｜' + APP;
   }
@@ -98,7 +99,7 @@
       '<div class="meter"><div class="meter-row"><span>マニュアルの進み具合</span><b>' + done + ' / ' + total + ' 章</b></div>' +
       '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + total + '" aria-valuenow="' + done + '" aria-label="読んだ章の数"><i style="width:' + Math.round(done / total * 100) + '%"></i></div></div>';
     if (cont) {
-      html += '<a class="panel next" href="#/c/' + cont.id + '"><div><div class="k">' + (state.last === cont.id ? '続きから読む' : '次に読む') + '</div>' +
+      html += '<a class="panel next" href="#ch-' + cont.id + '"><div><div class="k">' + (state.last === cont.id ? '続きから読む' : '次に読む') + '</div>' +
         '<div class="t">第' + chapterNo(cont.id) + '章 ' + esc(cont.title) + '</div></div><span class="go">' + chev() + '</span></a>';
     } else {
       html += '<div class="note tip" style="margin-top:12px"><div class="nt">全章読了</div>おつかれさまでした。クイズとケース判定で仕上げましょう。</div>';
@@ -106,10 +107,10 @@
     html += '</div></section>';
 
     html += '<section class="sec"><h2 class="sec-h">すぐ使う</h2><div class="quick">' +
-      '<a class="panel" href="#/tools/scope"><b>対象判定</b><span>この取引は取適法の対象？規模を入れて目安を確認</span></a>' +
-      '<a class="panel" href="#/tools/check"><b>発注チェック</b><span>発注前から支払まで、守ることを確認</span></a>' +
-      '<a class="panel" href="#/quiz"><b>クイズ</b><span>' + (bestAll != null ? '前回のベスト ' + bestAll + '点' : '4択とOK・NG判定で腕だめし') + '</span></a>' +
-      '<a class="panel" href="#/c/law-ban"><b>11の禁止行為</b><span>NG例とOK例で、やってはいけないことを確認</span></a>' +
+      '<a class="panel" href="#scope"><b>対象判定</b><span>この取引は取適法の対象？規模を入れて目安を確認</span></a>' +
+      '<a class="panel" href="#check"><b>発注チェック</b><span>発注前から支払まで、守ることを確認</span></a>' +
+      '<a class="panel" href="#quiz"><b>クイズ</b><span>' + (bestAll != null ? '前回のベスト ' + bestAll + '点' : '4択とOK・NG判定で腕だめし') + '</span></a>' +
+      '<a class="panel" href="#ch-law-ban"><b>11の禁止行為</b><span>NG例とOK例で、やってはいけないことを確認</span></a>' +
       '</div></section>';
 
     html += '<section class="sec"><h2 class="sec-h">入社後に確認すること</h2><div class="panel pad">' +
@@ -128,8 +129,14 @@
       '</div></section>';
     main.innerHTML = html;
     bindChecks();
-    document.getElementById('resetBtn').onclick = function () {
-      if (!confirm('読んだ章・チェック・クイズの点数をすべて消します。よろしいですか？')) return;
+    /* 確認ダイアログが出せない環境があるため、2回タップで消す */
+    var rb = document.getElementById('resetBtn');
+    rb.onclick = function () {
+      if (!rb.dataset.armed) {
+        rb.dataset.armed = '1'; rb.textContent = 'もう一度タップすると、読んだ章・チェック・点数がすべて消えます';
+        clearTimeout(rb.t); rb.t = setTimeout(function () { delete rb.dataset.armed; rb.textContent = '記録をすべて消す'; }, 5000);
+        return;
+      }
       state = { read: {}, checks: {}, best: {}, last: '' }; save(); viewHome(); toast('記録を消しました');
     };
   }
@@ -153,7 +160,7 @@
       return '<section class="sec"><h2 class="sec-h">' + esc(g.name) + '</h2><p class="group-sub">' + esc(g.sub) + '</p>' +
         '<ul class="panel rows">' + chs.map(function (c) {
           var n = chapterNo(c.id), d = !!state.read[c.id];
-          return '<li><a class="row" href="#/c/' + c.id + '"><span class="no' + (d ? ' done' : '') + '" aria-hidden="true">' + (d ? '✓' : n) + '</span>' +
+          return '<li><a class="row" href="#ch-' + c.id + '"><span class="no' + (d ? ' done' : '') + '" aria-hidden="true">' + (d ? '✓' : n) + '</span>' +
             '<span class="tx"><span class="tt">' + esc(c.title) + '</span><span class="ts">約' + c.min + '分' + (d ? '・読了' : '') + (c.level === 'general' ? '・社内規程で確認' : '') + '</span></span>' + chev() + '</a></li>';
         }).join('') + '</ul></section>';
     }).join('');
@@ -188,7 +195,7 @@
       var from = Math.max(0, h.at - 24), snip = h.txt.slice(from, h.at + q.length + 40);
       var i = snip.toLowerCase().indexOf(ql);
       var sn = (from > 0 ? '…' : '') + esc(snip.slice(0, i)) + '<mark>' + esc(snip.slice(i, i + q.length)) + '</mark>' + esc(snip.slice(i + q.length)) + '…';
-      var href = h.gl ? '#/words' : '#/c/' + h.c.id + '/' + h.si;
+      var href = h.gl ? '#words' : '#ch-' + h.c.id + '-s' + h.si;
       var tt = h.gl ? '用語：' + h.h : '第' + chapterNo(h.c.id) + '章 ' + h.c.title + '／' + h.h;
       return '<li><a class="hit" href="' + href + '"><div class="tt">' + esc(tt) + '</div><div class="sn">' + sn + '</div></a></li>';
     }).join('') + '</ul>';
@@ -197,15 +204,15 @@
   /* ───── 画面：章を読む ───── */
   function viewChapter(id, secIdx) {
     var c = chapterById(id);
-    if (!c) { location.hash = '#/manual'; return; }
+    if (!c) { location.hash = '#manual'; return; }
     var n = chapterNo(id);
-    setPage('第' + n + '章 ' + c.title, '#/manual'); setTab('manual');
+    setPage('第' + n + '章 ' + c.title, '#manual'); setTab('manual');
     state.last = id; save();
     var html = '<article><div class="ch-head"><h2>' + esc(c.title) + '</h2><p class="lead">' + rich(c.lead) + '</p>' +
       '<div class="badges">' + levelBadge(c.level) + '<span class="badge time">約' + c.min + '分</span></div></div>';
     if (c.sections.length > 2) {
       html += '<details class="panel toc"><summary>この章の目次（' + c.sections.length + '項目）</summary><ol>' +
-        c.sections.map(function (s, i) { return '<li><a href="#/c/' + id + '/' + i + '">' + esc(s.h) + '</a></li>'; }).join('') + '</ol></details>';
+        c.sections.map(function (s, i) { return '<li><a href="#ch-' + id + '-s' + i + '">' + esc(s.h) + '</a></li>'; }).join('') + '</ol></details>';
     }
     html += '<div class="body">' + c.sections.map(function (s, i) {
       return '<h3 class="block-h" id="s' + i + '">' + esc(s.h) + '</h3>' + s.blocks.map(renderBlock).join('');
@@ -221,13 +228,13 @@
     var next = KB.CHAPTERS[n] || null;
     var done = !!state.read[id];
     html += '<div class="ch-foot"><button class="btn ' + (done ? 'done' : 'primary') + '" id="readBtn" type="button">' + (done ? '読了済み（取り消す）' : '読んだ！') + '</button>' +
-      (next ? '<a class="btn" href="#/c/' + next.id + '">次の章：' + esc(next.title) + '</a>' : '<a class="btn" href="#/quiz">クイズで確認する</a>') + '</div></article>';
+      (next ? '<a class="btn" href="#ch-' + next.id + '">次の章：' + esc(next.title) + '</a>' : '<a class="btn" href="#quiz">クイズで確認する</a>') + '</div></article>';
     main.innerHTML = html;
     document.getElementById('readBtn').onclick = function () {
       if (state.read[id]) { delete state.read[id]; save(); viewChapter(id); toast('読了を取り消しました'); return; }
       state.read[id] = Date.now(); save();
       toast('読了にしました（' + readCount() + ' / ' + KB.CHAPTERS.length + '章）');
-      if (next) location.hash = '#/c/' + next.id; else viewChapter(id);
+      if (next) location.hash = '#ch-' + next.id; else viewChapter(id);
     };
     if (secIdx != null) {
       var el = document.getElementById('s' + secIdx);
@@ -245,9 +252,9 @@
     ];
     var html = '<section class="sec"><h2 class="sec-h">4択クイズ（10問）</h2><ul class="panel rows">' + cats.map(function (c) {
       var count = KB.QUIZ.filter(function (q) { return c[2] === 'all' || q.c === c[2]; }).length;
-      return '<li><a class="row" href="#/quiz/q/' + c[0] + '"><span class="tx"><span class="tt">' + esc(c[1]) + '</span><span class="ts">' + Math.min(10, count) + '問／全' + count + '問から出題・' + best(c[0]) + '</span></span>' + chev() + '</a></li>';
+      return '<li><a class="row" href="#quiz-' + c[0] + '"><span class="tx"><span class="tt">' + esc(c[1]) + '</span><span class="ts">' + Math.min(10, count) + '問／全' + count + '問から出題・' + best(c[0]) + '</span></span>' + chev() + '</a></li>';
     }).join('') + '</ul></section>';
-    html += '<section class="sec"><h2 class="sec-h">ケース判定（OK・NG）</h2><ul class="panel rows"><li><a class="row" href="#/quiz/case">' +
+    html += '<section class="sec"><h2 class="sec-h">ケース判定（OK・NG）</h2><ul class="panel rows"><li><a class="row" href="#quiz-case">' +
       '<span class="tx"><span class="tt">この対応、OK？NG？</span><span class="ts">実際の場面に近い' + KB.CASES.length + '問・' + best('case') + '</span></span>' + chev() + '</a></li></ul>' +
       '<p class="small muted" style="margin:8px 2px">ケースは学習用に作った例です。実際の判断は法務部門に確認してください。</p></section>';
     main.innerHTML = html;
@@ -266,7 +273,7 @@
   }
   function drawQuiz() {
     var title = quiz.cat === 'case' ? 'ケース判定' : 'クイズ';
-    setPage(title, '#/quiz'); setTab('quiz');
+    setPage(title, '#quiz'); setTab('quiz');
     if (quiz.i >= quiz.items.length) return drawQuizResult();
     var it = quiz.items[quiz.i], L = 'ABCD';
     var html = '<div class="qhead"><span>' + (quiz.i + 1) + ' / ' + quiz.items.length + '問</span><span>正解 ' + quiz.score + '</span></div>' +
@@ -314,7 +321,7 @@
     html += '<section class="sec"><h2 class="sec-h">ふりかえり</h2><ul class="panel pad review">' + quiz.log.map(function (l) {
       return '<li><span class="mk ' + (l.right ? 'r">○' : 'w">×') + '</span>' + esc(l.text) + '<div class="muted small">' + esc(l.e) + '</div></li>';
     }).join('') + '</ul></section>';
-    html += '<div class="ch-foot"><button class="btn primary" type="button" id="again">もう一度</button><a class="btn" href="#/quiz">クイズのメニューへ</a></div>';
+    html += '<div class="ch-foot"><button class="btn primary" type="button" id="again">もう一度</button><a class="btn" href="#quiz">クイズのメニューへ</a></div>';
     main.innerHTML = html;
     var cat = quiz.cat;
     document.getElementById('again').onclick = function () { startQuiz(cat); window.scrollTo(0, 0); };
@@ -324,18 +331,18 @@
   function viewTools() {
     setPage('ツール', null); setTab('tools');
     main.innerHTML = '<section class="sec"><h2 class="sec-h">取適法</h2><ul class="panel rows">' +
-      '<li><a class="row" href="#/tools/scope"><span class="tx"><span class="tt">対象判定（目安）</span><span class="ts">取引の種類と、両社の資本金・従業員数から判定</span></span>' + chev() + '</a></li>' +
-      '<li><a class="row" href="#/tools/check"><span class="tx"><span class="tt">発注チェックリスト</span><span class="ts">発注前・発注時・受領時・支払時・記録の5場面</span></span>' + chev() + '</a></li>' +
+      '<li><a class="row" href="#scope"><span class="tx"><span class="tt">対象判定（目安）</span><span class="ts">取引の種類と、両社の資本金・従業員数から判定</span></span>' + chev() + '</a></li>' +
+      '<li><a class="row" href="#check"><span class="tx"><span class="tt">発注チェックリスト</span><span class="ts">発注前・発注時・受領時・支払時・記録の5場面</span></span>' + chev() + '</a></li>' +
       '</ul></section>' +
       '<section class="sec"><h2 class="sec-h">すぐ読み返す</h2><ul class="panel rows">' +
       ['law-duty', 'law-ban', 'law-price', 'buy-flow'].map(function (id) {
         var c = chapterById(id);
-        return '<li><a class="row" href="#/c/' + id + '"><span class="tx"><span class="tt">' + esc(c.title) + '</span><span class="ts">第' + chapterNo(id) + '章</span></span>' + chev() + '</a></li>';
+        return '<li><a class="row" href="#ch-' + id + '"><span class="tx"><span class="tt">' + esc(c.title) + '</span><span class="ts">第' + chapterNo(id) + '章</span></span>' + chev() + '</a></li>';
       }).join('') + '</ul></section>';
   }
 
   function viewScope() {
-    setPage('対象判定（目安）', '#/tools'); setTab('tools');
+    setPage('対象判定（目安）', '#tools'); setTab('tools');
     var html = '<p class="muted small" style="margin:0 2px 12px">取適法の対象になるかの<strong>目安</strong>を出します。最終判断は法務部門と公正取引委員会の資料で確認してください。</p>' +
       '<form id="scopeForm" novalidate><fieldset class="sec" style="border:0"><legend class="sec-h">1. 取引の種類</legend><div class="seg">' +
       KB.SCOPE_TYPES.map(function (t, i) {
@@ -393,14 +400,14 @@
       '<p class="small" style="margin-top:8px">4つの義務と11の禁止行為を守って取引してください。</p>';
     if (unknown.length && !reasons.length) html += '<p class="small" style="margin-top:6px">' + esc(unknown.join('・')) + 'が分からないため、その基準では判定していません。もう一方の基準で対象になることがあります。</p>';
     html += '<p class="small muted" style="margin-top:8px">目安です。取引の種類の当てはめ（自社で使う物か、請け負った物か等）や、基準の細かな適用関係で結論が変わることがあります。法務部門に確認してください。</p></div>' +
-      '<div class="ch-foot"><a class="btn" href="#/c/law-scope">「対象になる取引と会社」を読む</a></div>';
+      '<div class="ch-foot"><a class="btn" href="#ch-law-scope">「対象になる取引と会社」を読む</a></div>';
     return html;
   }
   function yen(v) { return v >= 1e8 ? (v / 1e8) + '億円' : (v / 1e7) + '千万円'; }
   function errBox(m) { return '<div class="result no" role="alert"><h3>入力を確認してください</h3><p class="small">' + esc(m) + '</p></div>'; }
 
   function viewCheck() {
-    setPage('発注チェックリスト', '#/tools'); setTab('tools');
+    setPage('発注チェックリスト', '#tools'); setTab('tools');
     var html = '<p class="muted small" style="margin:0 2px 4px">取適法と購買の基本にもとづくチェック項目です。チェックはこの端末に保存されます。案件ごとに「この場面をリセット」で消せます。</p>';
     html += KB.CHECKS.map(function (g) {
       var done = g.items.filter(function (_, i) { return state.checks[g.id + ':' + i]; }).length;
@@ -453,26 +460,28 @@
   }
 
   /* ───── ルーター ───── */
+  /* URL の # 以降は「英数字とハイフンだけ」の形にしている（claude.ai の Artifact でも動くように）
+   *   #home #manual #ch-<章ID> #ch-<章ID>-s<項目番号> #quiz #quiz-all|law|fuso|buy|case #tools #scope #check #words */
   function route() {
-    var h = (location.hash || '#/').slice(1), p = h.split('/').filter(Boolean);
+    var h = decodeURIComponent((location.hash || '').replace(/^#\/?/, ''));
+    var m;
     window.scrollTo(0, 0);
-    if (!p.length) viewHome();
-    else if (p[0] === 'manual') viewManual();
-    else if (p[0] === 'c') viewChapter(p[1], p[2] != null ? +p[2] : null);
-    else if (p[0] === 'quiz' && p[1] === 'q') startQuiz(p[2] || 'all');
-    else if (p[0] === 'quiz' && p[1] === 'case') startQuiz('case');
-    else if (p[0] === 'quiz') viewQuizMenu();
-    else if (p[0] === 'tools' && p[1] === 'scope') viewScope();
-    else if (p[0] === 'tools' && p[1] === 'check') viewCheck();
-    else if (p[0] === 'tools') viewTools();
-    else if (p[0] === 'words') viewWords();
+    if (!h || h === 'home') viewHome();
+    else if (h === 'manual') viewManual();
+    else if ((m = h.match(/^ch-(.+?)(?:-s(\d+))?$/))) viewChapter(m[1], m[2] != null ? +m[2] : null);
+    else if (h === 'quiz') viewQuizMenu();
+    else if ((m = h.match(/^quiz-(all|law|fuso|buy|case)$/))) startQuiz(m[1]);
+    else if (h === 'tools') viewTools();
+    else if (h === 'scope') viewScope();
+    else if (h === 'check') viewCheck();
+    else if (h === 'words') viewWords();
     else viewHome();
   }
   window.addEventListener('hashchange', route);
   route();
 
   /* ───── オフライン対応（http/https で開いたときだけ） ───── */
-  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && !window.KOBAI_NO_SW) {
     window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
   }
 })();
