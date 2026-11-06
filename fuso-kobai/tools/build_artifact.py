@@ -9,7 +9,10 @@ Artifact の決まりに合わせて、次のように変えている。
   - Service Worker は使えないので登録しない（KOBAI_NO_SW）
   - 画面の端（ノッチ・ホームバー）の余白を Artifact の方式に合わせる
 """
-import os, re, sys
+import base64, os, re, sys
+
+# 公開ページのリンク（ホーム画面アイコンの案内で使う）
+PUBLIC_URL = 'https://claude.ai/artifact/6ZZ5jj7iVfk9Ruy477GkuT'
 
 here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(here, 'dist', 'kobai-startbook.html')
@@ -24,6 +27,9 @@ css = read('app.css')
 for name in ('content.js', 'app.js'):
     if '</script' in read(name).lower():
         sys.exit(name + ' に </script が含まれているため1ファイル化できません')
+
+with open(os.path.join(here, 'img', 'icon-512.png'), 'rb') as f:
+    icon_b64 = base64.b64encode(f.read()).decode('ascii')
 
 override = """
 /* ── Artifact 用の上書き（画面端の余白） ── */
@@ -41,7 +47,8 @@ html = (
     '<meta name="description" content="取適法・三菱ふそうの歴史・購買の心得をスマホで学ぶ非公式の学習アプリ">\n'
     '<style>\n' + css + override + '</style>\n'
     + body + '\n'
-    '<script>window.KOBAI_NO_SW = true;</script>\n'
+    '<script>window.KOBAI_NO_SW = true; window.KOBAI_PUBLIC_URL = ' + repr(PUBLIC_URL) + ';\n'
+    'window.KOBAI_ICON = "data:image/png;base64,' + icon_b64 + '";</script>\n'
     '<script>\n' + read('content.js') + '\n</script>\n'
     '<script>\n' + read('app.js') + '\n</script>\n'
 )

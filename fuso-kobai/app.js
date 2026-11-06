@@ -106,6 +106,7 @@
     }
     html += '</div></section>';
 
+    if (window.KOBAI_PUBLIC_URL) html += homeIconHtml();
     html += '<section class="sec"><h2 class="sec-h">すぐ使う</h2><div class="quick">' +
       '<a class="panel" href="#scope"><b>対象判定</b><span>この取引は取適法の対象？規模を入れて目安を確認</span></a>' +
       '<a class="panel" href="#check"><b>発注チェック</b><span>発注前から支払まで、守ることを確認</span></a>' +
@@ -129,6 +130,7 @@
       '</div></section>';
     main.innerHTML = html;
     bindChecks();
+    bindHomeIcon();
     /* 確認ダイアログが出せない環境があるため、2回タップで消す */
     var rb = document.getElementById('resetBtn');
     rb.onclick = function () {
@@ -138,6 +140,40 @@
         return;
       }
       state = { read: {}, checks: {}, best: {}, last: '' }; save(); viewHome(); toast('記録を消しました');
+    };
+  }
+
+
+  /* ───── iPhone のホーム画面に自作アイコンで置く（公開ページ版だけ表示） ─────
+   * claude.ai の公開ページは、ホーム画面のアイコンをページ側から指定できない。
+   * そこで iPhone の「ショートカット」アプリで、このリンクを開くショートカットを作り、アイコン画像を指定してもらう。 */
+  function homeIconHtml() {
+    var url = window.KOBAI_PUBLIC_URL, icon = window.KOBAI_ICON || 'img/icon-512.png';
+    var open = state.checks['ui:homeicon'] ? '' : ' open';
+    return '<section class="sec"><details class="panel homeicon" id="homeIcon"' + open + '><summary>iPhoneのホーム画面にアイコンで置く</summary>' +
+      '<div class="hi-body"><div class="hi-top"><img class="hi-img" src="' + esc(icon) + '" alt="購買スタートブックのアイコン（クリップボードとトラック）" width="96" height="96">' +
+      '<p class="small">ブラウザの「ホーム画面に追加」では、このページのアイコンは指定できません。iPhoneの<strong>「ショートカット」アプリ</strong>を使うと、このアイコンで置けます（約2分）。</p></div>' +
+      '<ol class="hi-steps">' +
+      '<li>左のアイコン画像を<strong>長押し</strong>して「“写真”に保存」。できないときは、Claudeのチャットに送ったアイコン画像を保存してください。</li>' +
+      '<li>下の<strong>「リンクをコピー」</strong>をタップ。<div class="hi-url"><input class="input" id="hiUrl" readonly value="' + esc(url) + '" aria-label="このアプリのリンク"><button class="btn primary" type="button" id="hiCopy">リンクをコピー</button></div></li>' +
+      '<li>「ショートカット」アプリを開き、右上の<strong>「＋」</strong> → アクションの検索で<strong>「URLを開く」</strong>を選び、URLの欄にコピーしたリンクを貼り付け。</li>' +
+      '<li>画面上部の名前の横の<strong>「▽」</strong>（iOS 26では画面下の<strong>共有ボタン</strong>）→<strong>「ホーム画面に追加」</strong>。</li>' +
+      '<li>アイコン部分をタップ（iOS 26では<strong>「画像」</strong>タブ）→<strong>「写真を選択」</strong>→ 保存したアイコンを選ぶ。</li>' +
+      '<li>名前を「購買スタート」などにして、右上の<strong>「追加」</strong>。</li></ol>' +
+      '<p class="small muted">iOSのバージョンによって、ボタンの名前や場所が少し違います。ホーム画面から開くと、ショートカットアプリを一瞬経由することがあります。</p>' +
+      '<button class="link-btn" type="button" id="hiDone">設定が終わったので、この案内をたたむ</button></div></details></section>';
+  }
+  function bindHomeIcon() {
+    var cp = document.getElementById('hiCopy'); if (!cp) return;
+    var inp = document.getElementById('hiUrl');
+    cp.onclick = function () {
+      function fallback() { inp.focus(); inp.select(); inp.setSelectionRange(0, inp.value.length); toast('リンクを選択しました。「コピー」を選んでください'); }
+      try {
+        navigator.clipboard.writeText(inp.value).then(function () { toast('リンクをコピーしました'); cp.textContent = 'コピーしました'; }, fallback);
+      } catch (e) { fallback(); }
+    };
+    document.getElementById('hiDone').onclick = function () {
+      state.checks['ui:homeicon'] = 1; save(); document.getElementById('homeIcon').open = false; toast('案内をたたみました（タップでまた開けます）');
     };
   }
 

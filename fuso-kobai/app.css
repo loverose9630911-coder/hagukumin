@@ -111,6 +111,18 @@ main:focus{outline:none}
 .disclaimer{font-size:13px;color:var(--ink-2);line-height:1.7}
 .disclaimer b{color:var(--ink)}
 
+/* ── ホーム画面アイコンの案内 ── */
+.homeicon{padding:4px 16px}
+.homeicon summary{cursor:pointer;font-weight:700;min-height:48px;display:flex;align-items:center}
+.hi-body{padding-bottom:12px}
+.hi-top{display:flex;gap:14px;align-items:flex-start}
+.hi-img{width:96px;height:96px;border-radius:22px;flex:none;box-shadow:0 1px 3px rgba(16,24,40,.25);-webkit-touch-callout:default}
+.hi-top p{min-width:0}
+.hi-steps{margin:12px 0 8px 20px;font-size:15px;line-height:1.7}
+.hi-steps li{margin:6px 0}
+.hi-url{display:grid;gap:8px;margin:8px 0 2px}
+.hi-url .input{font-size:14px;min-height:44px}
+
 /* ── リスト行 ── */
 .rows{list-style:none}
 .rows li+li{border-top:1px solid var(--line)}
