@@ -1,7 +1,7 @@
 /* 購買スタートブック Service Worker
  * 一度ひらけば電波がなくても読めるように、全ファイルを端末に保存する。
  * 本文を直したら CACHE の番号を上げる（例 v1 → v2）と、利用者の端末も新しい内容に入れ替わる。 */
-var CACHE = 'kobai-startbook-v1';
+var CACHE = 'kobai-startbook-v2';
 var ASSETS = [
   './', 'index.html', 'app.css', 'app.js', 'content.js', 'manifest.webmanifest',
   'img/icon-192.png', 'img/icon-512.png', 'img/apple-touch-icon.png', 'img/favicon-32.png'
