@@ -1,0 +1,14 @@
+{
+  "name": "closing-sale-banner",
+  "private": true,
+  "type": "module",
+  "description": "閉店セールのバナーをPNGに書き出す",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "5.2.11",
+    "@fontsource/shippori-mincho": "5.2.8",
+    "@fontsource/noto-sans-jp": "5.2.9"
+  }
+}

@@ -4,3 +4,6 @@
 # Python/生成物のキャッシュ
 __pycache__/
 *.pyc
+
+# 閉店セールのバナー作成用フォント（npm install で再取得できる）
+closing-sale/banner/node_modules/
