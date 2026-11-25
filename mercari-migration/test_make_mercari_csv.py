@@ -168,9 +168,88 @@ class MakeTest(unittest.TestCase):
         self.assertEqual(r['dropped'], ['bura00002「長袖 セーター（グレー）」'])
         self.assertEqual(mk.build(**self.args)['listings'], 4)  # 指定しなければ残す
 
+    def _same_content(self, *names):
+        for n in names:
+            code = n.split('_')[0]
+            (self.args['data_dir'] / 'images' / code / n).write_bytes(b'\xff\xd8\xffSAME')
+
+    def _used(self):
+        return [r[f'商品画像名_{i}'] for r in self.rows()[1] for i in range(1, 21) if r[f'商品画像名_{i}']]
+
+    def test_images_like_the_given_ones_are_dropped_everywhere(self):
+        self._same_content('bura00001_02.jpg', 'bura00002_05.jpg')
+        mk.build(**dict(self.args, exclude_like=['bura00001_02.jpg']))
+        used = self._used()
+        self.assertNotIn('bura00001_02.jpg', used)
+        self.assertNotIn('bura00002_05.jpg', used)
+        self.assertEqual(self.rows()[1][0]['商品画像名_1'], 'bura00001_01.jpg')
+
+    def test_images_shared_across_products_use_one_name(self):
+        self._same_content('bura00001_01.jpg', 'bura00002_04.jpg')
+        mk.build(**dict(self.args, dedupe_shared=True))
+        used = self._used()
+        self.assertNotIn('bura00002_04.jpg', used)
+        self.assertIn('bura00001_01.jpg', self.rows()[1][1].values())   # bura00002 の出品も同じ名前を使う
+        with zipfile.ZipFile(self.d / 'out' / 'メルカリShops_画像.zip') as z:
+            self.assertNotIn('bura00002_04.jpg', z.namelist())
+
+    def test_duplicates_inside_one_product_are_left_alone(self):
+        self._same_content('bura00002_04.jpg', 'bura00002_05.jpg')
+        mk.build(**dict(self.args, dedupe_shared=True))
+        used = self._used()
+        self.assertIn('bura00002_04.jpg', used)
+        self.assertIn('bura00002_05.jpg', used)
+
+    def test_extra_zip_has_only_images_not_uploaded_yet(self):
+        r = mk.build(**dict(self.args, already_uploaded={'bura00001_01.jpg', 'bura00002_01.jpg'}))
+        with zipfile.ZipFile(self.d / 'out' / 'メルカリShops_画像_追加分.zip') as z:
+            names = set(z.namelist())
+        self.assertEqual(names, set(self._used()) - {'bura00001_01.jpg', 'bura00002_01.jpg'})
+        self.assertEqual(r['to_upload'], len(names))
+
     def test_skipped_products_are_left_out(self):
         r = mk.build(**dict(self.args, skip={'bura00002'}))
         self.assertEqual(r['listings'], 1)
+
+
+class UploadedFromResultTest(unittest.TestCase):
+    def test_names_in_columns_without_errors_count_as_uploaded(self):
+        d = Path(tempfile.mkdtemp())
+        head = ['処理結果', 'エラー理由', '商品画像名_1', '商品画像名_2', '商品画像名_3', '商品名']
+        rows = [head,
+                ['失敗', '商品画像名_2が存在しません', 'a_01.jpg', 'ban.jpg', 'a_03.jpg', 'A'],
+                ['失敗', '商品画像名_1が存在しません\r\n商品画像名_3が存在しません', 'ban.jpg', 'b_02.jpg', 'x.png', 'B'],
+                ['失敗', 'SKU1_種類は16文字以内で入力してください', 'c_01.jpg', '', '', 'C']]
+        buf = io.StringIO(newline='')
+        csv.writer(buf, lineterminator='\r\n').writerows(rows)
+        (d / 'r.csv').write_bytes(buf.getvalue().encode('cp932'))
+        self.assertEqual(mk.uploaded_from_result(d / 'r.csv'), {'a_01.jpg', 'a_03.jpg', 'b_02.jpg', 'c_01.jpg'})
+
+
+class SkuLabelTest(unittest.TestCase):
+    def test_short_labels_are_unchanged(self):
+        self.assertEqual(mk.fit_labels(['ブラック / M', '杏地色ネイビーボーダー / XL']),
+                         ['ブラック / M', '杏地色ネイビーボーダー / XL'])
+
+    def test_spaces_are_removed_for_the_whole_listing(self):
+        self.assertEqual(mk.fit_labels(['杏地色ネイビーボーダー / XXL', '杏地色ネイビーボーダー / XL']),
+                         ['杏地色ネイビーボーダー/XXL', '杏地色ネイビーボーダー/XL'])
+
+    def test_note_with_unchecked_characters_is_dropped_when_still_too_long(self):
+        self.assertEqual(mk.fit_labels(['ブラック / フリーサイズ（S.M相当）', 'ブラック / XL']),
+                         ['ブラック/フリーサイズ', 'ブラック/XL'])
+
+    def test_still_too_long_is_refused(self):
+        with self.assertRaises(mk.BuildError):
+            mk.fit_labels(['とてもながいいろのなまえのからーです / M'])
+
+    def test_bracket_note_is_dropped_only_as_last_step(self):
+        self.assertEqual(mk.fit_labels(['ドットパターン（キューブ寄り） / M', 'ホワイト（ベージュ寄り） / M']),
+                         ['ドットパターン/M', 'ホワイト/M'])
+
+    def test_labels_that_would_become_the_same_are_refused(self):
+        with self.assertRaises(mk.BuildError):
+            mk.fit_labels(['ドットパターン（キューブ寄り） / M', 'ドットパターン（ストライプ寄り） / M'])
 
 
 class SafeTextTest(unittest.TestCase):
