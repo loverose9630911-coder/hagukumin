@@ -9,3 +9,6 @@ __pycache__/
 closing-sale/banner/node_modules/
 # 閉店セール: お客様の商品データ（リポジトリに入れない）
 closing-sale/csv/data/
+# メルカリShops 移行: お客様の商品データ・画像（リポジトリに入れない）
+mercari-migration/data/
+mercari-migration/data_fetch.log
