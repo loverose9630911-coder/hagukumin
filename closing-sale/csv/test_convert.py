@@ -61,6 +61,25 @@ class ConvertTest(unittest.TestCase):
         for r in rows[1:]:
             self.assertEqual(r[h.index('original-price')], '')
 
+    def test_postage_set_is_unchanged_by_default(self):
+        _, rows = self.run_convert()
+        h = rows[0]
+        self.assertEqual([r[h.index('postage-set')] for r in rows[1:]], [r[HEADER.index('postage-set')] for r in ROWS])
+
+    def test_postage_set_is_replaced_when_given(self):
+        convert.convert(self.src, self.dst, '2026112500', '2026113017', postage_set='21')
+        _, rows = read_csv(self.dst)
+        h = rows[0]
+        self.assertEqual([r[h.index('postage-set')] for r in rows[1:]], ['21', '21'])
+        for before, after in zip(ROWS, rows[1:]):
+            self.assertEqual(after[h.index('sub-code')], before[HEADER.index('sub-code')])
+
+    def test_bad_postage_set_is_refused(self):
+        for bad in ('', 'a1', '-3', '1.5', '０'):
+            with self.subTest(bad=bad):
+                with self.assertRaises(convert.ConvertError):
+                    convert.convert(self.src, self.dst, '2026112500', '2026113017', postage_set=bad)
+
     def test_sale_period_is_set(self):
         _, rows = self.run_convert()
         h = rows[0]

@@ -4,14 +4,15 @@
   sale-price          → 空欄（セール価格を消す）
   member-price        → 空欄（会員価格を消す）
   original-price      → そのまま（--clear-original-price を付けたときだけ空欄）
+  postage-set         → そのまま（--postage-set 番号 を付けたときだけ、全商品をその配送グループに）
   sale-period-start   → 販売期間の開始（YYYYMMDDHH）
   sale-period-end     → 販売期間の終了（YYYYMMDDHH）
-  それ以外の列（code, sub-code, postage-set など）は1文字も変えない。
+  それ以外の列（code, sub-code など）は1文字も変えない。
 
 文字コード（Shift_JIS / cp932）と改行（CRLF）は元のCSVと同じにする。
 
 使い方:
-  python3 convert.py 入力.csv 出力.csv [--start 2026112500] [--end 2026113017] [--clear-original-price]
+  python3 convert.py 入力.csv 出力.csv [--start 2026112500] [--end 2026113017] [--clear-original-price] [--postage-set 番号]
 """
 import argparse
 import csv
@@ -64,8 +65,13 @@ def write(path, rows):
     Path(path).write_bytes(buf.getvalue().encode('cp932'))
 
 
-def convert(src, dst, start=START, end=END, clear_original_price=False):
+def convert(src, dst, start=START, end=END, clear_original_price=False, postage_set=None):
     new_values = dict(NEW_VALUES, **(CLEAR_ORIGINAL if clear_original_price else {}))
+    if postage_set is not None:
+        # 半角数字だけを受け付ける（全角数字は isdigit() が真になるため isascii() も見る）
+        if not (postage_set.isascii() and postage_set.isdigit()):
+            raise ConvertError(f'配送グループの番号は半角数字にしてください: {postage_set!r}')
+        new_values['postage-set'] = lambda s, e, v=postage_set: v
     s, e = parse_period(start, '開始'), parse_period(end, '終了')
     if s >= e:
         raise ConvertError(f'開始 {start} が終了 {end} より後になっています')
@@ -116,16 +122,19 @@ def main(argv=None):
     ap.add_argument('--start', default=START, help=f'販売期間の開始 YYYYMMDDHH（既定 {START}）')
     ap.add_argument('--end', default=END, help=f'販売期間の終了 YYYYMMDDHH（既定 {END}）')
     ap.add_argument('--clear-original-price', action='store_true', help='元値（original-price）も空欄にする')
+    ap.add_argument('--postage-set', help='全商品の配送グループ（postage-set）をこの番号にする')
     a = ap.parse_args(argv)
     if Path(a.src).resolve() == Path(a.dst).resolve():
         print('NG  入力と出力に同じファイルは指定できません'); return 1
     try:
-        header, data, out, new_values = convert(a.src, a.dst, a.start, a.end, a.clear_original_price)
+        header, data, out, new_values = convert(a.src, a.dst, a.start, a.end, a.clear_original_price, a.postage_set)
     except ConvertError as e:
         print(f'NG  {e}（出力ファイルは作っていません）'); return 1
     print(f'OK  {len(data)}商品を書き換えて {a.dst} に保存しました')
     cleared = '・元値' if a.clear_original_price else ''
     print(f'    価格 1円 / セール価格・会員価格{cleared} 空欄 / 販売期間 {a.start} 〜 {a.end}')
+    if a.postage_set is not None:
+        print(f'    配送グループ（postage-set）: 全商品 {a.postage_set}')
     print(f'    そのままの列: {[c for c in header if c not in new_values]}')
     return 0
 
