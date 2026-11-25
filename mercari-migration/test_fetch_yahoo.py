@@ -13,9 +13,9 @@ ITEM = {
     'catchCopy': 'しっとり プチハイネック',
     'information': '素材：綿95％<br>カラー：ミルクティー<br><br>※色落ち&amp;注意<br><a href="x">リンク</a>',
     'images': {'itemImageList': [
-        {'id': 'comburabura_bura00014'},
-        {'id': 'comburabura_bura00014_1_d_20240925134033'},
-        {'id': 'comburabura_bura00014_2_d_20240925134034'},
+        {'id': 'comburabura_bura00014', 'type': 'Item', 'firstOptionChoiceName': None},
+        {'id': 'comburabura_bura00014_1_d_20240925134033', 'type': 'Item', 'firstOptionChoiceName': None},
+        {'id': 'magnet_171861152900.jpg', 'type': 'Lib', 'firstOptionChoiceName': 'グレー'},
     ]},
     'skuIdList': [
         {'bura00014-mi-s': [{'choiceName': 'ミルクティー'}, {'choiceName': 'S'}]},
@@ -41,9 +41,11 @@ class ParseTest(unittest.TestCase):
         self.assertEqual(r['code'], 'bura00014')
         self.assertEqual(r['name'], '長袖 ニット セーター')
         self.assertEqual(r['catch_copy'], 'しっとり プチハイネック')
-        self.assertEqual(r['image_ids'], ['comburabura_bura00014',
-                                          'comburabura_bura00014_1_d_20240925134033',
-                                          'comburabura_bura00014_2_d_20240925134034'])
+        self.assertEqual(r['images'], [
+            {'id': 'comburabura_bura00014', 'type': 'Item', 'color': None},
+            {'id': 'comburabura_bura00014_1_d_20240925134033', 'type': 'Item', 'color': None},
+            {'id': 'magnet_171861152900.jpg', 'type': 'Lib', 'color': 'グレー'},
+        ])
         self.assertEqual(r['skus'], [
             {'sku_code': 'bura00014-mi-s', 'options': {'カラー': 'ミルクティー', 'サイズ': 'S'}},
             {'sku_code': 'bura00014-mi-m', 'options': {'カラー': 'ミルクティー', 'サイズ': 'M'}},
@@ -61,12 +63,29 @@ class ParseTest(unittest.TestCase):
             fy.parse_item('<html><body>メンテナンス中</body></html>', 'bura00014')
 
     def test_image_file_names_keep_order(self):
-        self.assertEqual(fy.image_file_name('bura00014', 0), 'bura00014_01.jpg')
-        self.assertEqual(fy.image_file_name('bura00014', 14), 'bura00014_15.jpg')
+        self.assertEqual(fy.image_file_name('bura00014', 0, 'jpg'), 'bura00014_01.jpg')
+        self.assertEqual(fy.image_file_name('bura00014', 14, 'png'), 'bura00014_15.png')
 
     def test_image_url_uses_largest_variant(self):
-        self.assertEqual(fy.image_url('comburabura_bura00014_1_d_20240925134033'),
+        self.assertEqual(fy.image_url({'id': 'comburabura_bura00014_1_d_20240925134033', 'type': 'Item'}),
                          'https://item-shopping.c.yimg.jp/i/n/comburabura_bura00014_1_d_20240925134033')
+
+    def test_lib_image_url_uses_store_library(self):
+        self.assertEqual(fy.image_url({'id': 'magnet_171861152900.jpg', 'type': 'Lib'}, 'comburabura'),
+                         'https://shopping.c.yimg.jp/lib/comburabura/magnet_171861152900.jpg')
+
+    def test_strange_image_ids_are_refused(self):
+        for bad in ({'id': '../x.jpg', 'type': 'Lib'}, {'id': 'a/b.jpg', 'type': 'Lib'},
+                    {'id': 'x.jpg', 'type': 'Item'}, {'id': 'ok', 'type': 'Other'}):
+            with self.subTest(bad=bad):
+                with self.assertRaises(fy.FetchError):
+                    fy.image_url(bad)
+
+    def test_image_kind_by_content(self):
+        self.assertEqual(fy.image_ext(b'\xff\xd8\xff\xe0rest'), 'jpg')
+        self.assertEqual(fy.image_ext(b'\x89PNG\r\n\x1a\nrest'), 'png')
+        self.assertEqual(fy.image_ext(b'GIF89a...'), 'gif')
+        self.assertIsNone(fy.image_ext(b'<html>not image'))
 
     def test_read_codes_from_yahoo_csv(self):
         d = Path(tempfile.mkdtemp())
