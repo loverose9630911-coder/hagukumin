@@ -3,7 +3,7 @@
   price               → 1（1円）
   sale-price          → 空欄（セール価格を消す）
   member-price        → 空欄（会員価格を消す）
-  original-price      → 空欄（元値を出さないため）
+  original-price      → そのまま（--clear-original-price を付けたときだけ空欄）
   sale-period-start   → 販売期間の開始（YYYYMMDDHH）
   sale-period-end     → 販売期間の終了（YYYYMMDDHH）
   それ以外の列（code, sub-code, postage-set など）は1文字も変えない。
@@ -11,7 +11,7 @@
 文字コード（Shift_JIS / cp932）と改行（CRLF）は元のCSVと同じにする。
 
 使い方:
-  python3 convert.py 入力.csv 出力.csv [--start 2026112500] [--end 2026113017]
+  python3 convert.py 入力.csv 出力.csv [--start 2026112500] [--end 2026113017] [--clear-original-price]
 """
 import argparse
 import csv
@@ -27,10 +27,10 @@ NEW_VALUES = {
     'price': lambda s, e: '1',
     'sale-price': lambda s, e: '',
     'member-price': lambda s, e: '',
-    'original-price': lambda s, e: '',
     'sale-period-start': lambda s, e: s,
     'sale-period-end': lambda s, e: e,
 }
+CLEAR_ORIGINAL = {'original-price': lambda s, e: ''}
 
 
 class ConvertError(Exception):
@@ -64,14 +64,15 @@ def write(path, rows):
     Path(path).write_bytes(buf.getvalue().encode('cp932'))
 
 
-def convert(src, dst, start=START, end=END):
+def convert(src, dst, start=START, end=END, clear_original_price=False):
+    new_values = dict(NEW_VALUES, **(CLEAR_ORIGINAL if clear_original_price else {}))
     s, e = parse_period(start, '開始'), parse_period(end, '終了')
     if s >= e:
         raise ConvertError(f'開始 {start} が終了 {end} より後になっています')
 
     _, rows = read(src)
     header, data = rows[0], rows[1:]
-    missing = [c for c in NEW_VALUES if c not in header]
+    missing = [c for c in new_values if c not in header]
     if missing:
         raise ConvertError(f'CSV に必要な列がありません: {missing}')
     if 'code' not in header:
@@ -84,11 +85,11 @@ def convert(src, dst, start=START, end=END):
     if dup:
         raise ConvertError(f'code が空か重複しています: {dup}')
 
-    idx = {c: header.index(c) for c in NEW_VALUES}
+    idx = {c: header.index(c) for c in new_values}
     out = [list(header)]
     for r in data:
         r = list(r)
-        for col, f in NEW_VALUES.items():
+        for col, f in new_values.items():
             r[idx[col]] = f(start, end)
         out.append(r)
 
@@ -96,7 +97,7 @@ def convert(src, dst, start=START, end=END):
     for before, after in zip(data, out[1:]):
         for i, (b, a) in enumerate(zip(before, after)):
             col = header[i]
-            want = NEW_VALUES[col](start, end) if col in NEW_VALUES else b
+            want = new_values[col](start, end) if col in new_values else b
             if a != want:
                 raise ConvertError(f'{before[header.index("code")]} の {col} が想定と違います')
     write(dst, out)
@@ -105,7 +106,7 @@ def convert(src, dst, start=START, end=END):
     _, again = read(dst)
     if again != out:
         raise ConvertError('書き出したCSVを読み直すと内容が一致しません')
-    return header, data, out
+    return header, data, out, new_values
 
 
 def main(argv=None):
@@ -114,16 +115,18 @@ def main(argv=None):
     ap.add_argument('dst')
     ap.add_argument('--start', default=START, help=f'販売期間の開始 YYYYMMDDHH（既定 {START}）')
     ap.add_argument('--end', default=END, help=f'販売期間の終了 YYYYMMDDHH（既定 {END}）')
+    ap.add_argument('--clear-original-price', action='store_true', help='元値（original-price）も空欄にする')
     a = ap.parse_args(argv)
     if Path(a.src).resolve() == Path(a.dst).resolve():
         print('NG  入力と出力に同じファイルは指定できません'); return 1
     try:
-        header, data, out = convert(a.src, a.dst, a.start, a.end)
+        header, data, out, new_values = convert(a.src, a.dst, a.start, a.end, a.clear_original_price)
     except ConvertError as e:
         print(f'NG  {e}（出力ファイルは作っていません）'); return 1
     print(f'OK  {len(data)}商品を書き換えて {a.dst} に保存しました')
-    print(f'    価格 1円 / セール価格・会員価格・元値 空欄 / 販売期間 {a.start} 〜 {a.end}')
-    print(f'    そのままの列: {[c for c in header if c not in NEW_VALUES]}')
+    cleared = '・元値' if a.clear_original_price else ''
+    print(f'    価格 1円 / セール価格・会員価格{cleared} 空欄 / 販売期間 {a.start} 〜 {a.end}')
+    print(f'    そのままの列: {[c for c in header if c not in new_values]}')
     return 0
 
 

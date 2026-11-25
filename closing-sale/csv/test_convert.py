@@ -47,6 +47,18 @@ class ConvertTest(unittest.TestCase):
             self.assertEqual(r[h.index('price')], '1')
             self.assertEqual(r[h.index('sale-price')], '')
             self.assertEqual(r[h.index('member-price')], '')
+
+    def test_original_price_is_kept_by_default(self):
+        _, rows = self.run_convert()
+        h = rows[0]
+        for before, after in zip(ROWS, rows[1:]):
+            self.assertEqual(after[h.index('original-price')], before[HEADER.index('original-price')])
+
+    def test_original_price_is_cleared_only_when_asked(self):
+        convert.convert(self.src, self.dst, '2026112500', '2026113017', clear_original_price=True)
+        _, rows = read_csv(self.dst)
+        h = rows[0]
+        for r in rows[1:]:
             self.assertEqual(r[h.index('original-price')], '')
 
     def test_sale_period_is_set(self):
@@ -61,7 +73,7 @@ class ConvertTest(unittest.TestCase):
         self.assertEqual(rows[0], HEADER)
         h = rows[0]
         for before, after in zip(ROWS, rows[1:]):
-            for col in ('code', 'sub-code', 'postage-set'):
+            for col in ('code', 'sub-code', 'original-price', 'postage-set'):
                 self.assertEqual(after[h.index(col)], before[HEADER.index(col)])
         self.assertEqual(len(rows) - 1, len(ROWS))
 
