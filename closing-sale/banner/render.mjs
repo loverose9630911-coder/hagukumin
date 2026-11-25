@@ -40,10 +40,10 @@ const VARIANTS = [
 
 const REQUIRED_TEXT = [
   'CLOSING SALE', '閉店セール', '全商品', '1円', '＋送料1,000円', '（1点ごと）',
-  '11.24 TUE', '11.30 MON', '17:00', 'まで', '長い間ありがとうございました',
+  '11.25 WED', '11.30 MON', '17:00', 'まで', '長い間ありがとうございました',
   'Office Casual Bura.bura',
 ];
-const FORBIDDEN_TEXT = ['15:00', '1,500', '1,501'];
+const FORBIDDEN_TEXT = ['15:00', '1,500', '1,501', '11.24', 'TUE'];
 const ALLOWED_FONT = /^(Cormorant Garamond|Shippori Mincho|Noto Sans JP)/;
 
 if (!fs.existsSync(path.join(here, 'node_modules', '@fontsource'))) {

@@ -11,7 +11,7 @@
 **Spec:** `docs/superpowers/specs/2026-11-24-closing-sale-design.md`
 
 ## Global Constraints
-- 文言（変更不可）: `CLOSING SALE` / `閉店セール` / `全商品` / `1円` / `＋送料1,000円（1点ごと）` / `11.24 TUE → 11.30 MON 17:00まで` / `長い間ありがとうございました` / `Office Casual Bura.bura`
+- 文言（変更不可）: `CLOSING SALE` / `閉店セール` / `全商品` / `1円` / `＋送料1,000円（1点ごと）` / `11.25 WED → 11.30 MON 17:00まで` / `長い間ありがとうございました` / `Office Casual Bura.bura`
 - 配色: 黒×アイボリー。赤は「1円」だけ。
 - 送料の文字は「1円」のすぐ近くに置き、高さは「1円」の数字の高さの 1/4 以上。
 - 元値（定価→1円）は出さない。

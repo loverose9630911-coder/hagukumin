@@ -7,3 +7,5 @@ __pycache__/
 
 # 閉店セールのバナー作成用フォント（npm install で再取得できる）
 closing-sale/banner/node_modules/
+# 閉店セール: お客様の商品データ（リポジトリに入れない）
+closing-sale/csv/data/
