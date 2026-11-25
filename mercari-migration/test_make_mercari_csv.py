@@ -157,6 +157,17 @@ class MakeTest(unittest.TestCase):
         with self.assertRaises(mk.BuildError):
             mk.build(**self.args)
 
+    def test_sold_out_listings_are_dropped_when_asked(self):
+        stock = 'code,sub-code,quantity\r\n' + ''.join(
+            f'x,{s["sku_code"]},{0 if s["options"]["カラー"] == "グレー" else 1}\r\n' for s in SMALL['skus'] + BIG_SKUS)
+        (self.d / 'stock.csv').write_bytes(stock.encode('cp932'))
+        r = mk.build(**dict(self.args, drop_sold_out=True))
+        names = [x['商品名'] for x in self.rows()[1]]
+        self.assertNotIn('長袖 セーター（グレー）', names)
+        self.assertEqual(r['listings'], 3)
+        self.assertEqual(r['dropped'], ['bura00002「長袖 セーター（グレー）」'])
+        self.assertEqual(mk.build(**self.args)['listings'], 4)  # 指定しなければ残す
+
     def test_skipped_products_are_left_out(self):
         r = mk.build(**dict(self.args, skip={'bura00002'}))
         self.assertEqual(r['listings'], 1)

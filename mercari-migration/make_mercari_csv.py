@@ -9,6 +9,7 @@
           data/export/メルカリShops_画像.zip（CSVに書いた画像だけ。フォルダなし）
           data/export/出品一覧（確認用）.csv
        --preview を付けると、送料ID・在庫が無くても「確認用_」のCSVを作る（アップロード用ではない）。
+       --drop-sold-out を付けると、全SKUが在庫0の出品を入れない。
 
 決まっている値（依頼者の回答・Yahoo と同じ）:
   商品の状態 1:新品、未使用 / 配送方法 1:未定(出品者が手配) / 発送元の地域 jp16:富山県 /
@@ -183,7 +184,8 @@ def write_csv_bytes(header, rows, encoding, bom=False):
     return (b'\xef\xbb\xbf' if bom else b'') + buf.getvalue().encode(encoding)
 
 
-def build(data_dir, yahoo_csv, template, category_map, shipping, stock_csv, out_dir, preview=False, skip=()):
+def build(data_dir, yahoo_csv, template, category_map, shipping, stock_csv, out_dir, preview=False, skip=(),
+          drop_sold_out=False):
     data_dir, out_dir = Path(data_dir), Path(out_dir)
     items = [it for it in json.loads((data_dir / 'items.json').read_text(encoding='utf-8')) if it['code'] not in set(skip)]
     header, choices, master = read_template(template)
@@ -194,7 +196,7 @@ def build(data_dir, yahoo_csv, template, category_map, shipping, stock_csv, out_
         raise BuildError('在庫CSVがありません（11/30 17:00 以降の Yahoo の在庫CSV）。確認用なら --preview')
     stock = read_stock(stock_csv) if stock_csv else {}
 
-    rows, summary, used_images = [], [], []
+    rows, summary, used_images, dropped = [], [], [], []
     for it in items:
         group = str(it.get('postage_set') or '')
         fee_id = shipping.get(group, '')
@@ -204,6 +206,9 @@ def build(data_dir, yahoo_csv, template, category_map, shipping, stock_csv, out_
             raise BuildError(f'{it["code"]}: カテゴリ確認表にありません')
         for name, skus, color in split_listings(it):
             label = f'{it["code"]}「{name}」'
+            if drop_sold_out and stock and all(str(stock.get(s['sku_code'], '')) == '0' for s in skus):
+                dropped.append(label)   # 全SKUが在庫0の出品は入れない（依頼者の指示）
+                continue
             row = {k: '' for k in header}
             images = listing_images(it, color)
             for i, f in enumerate(images, 1):
@@ -246,7 +251,7 @@ def build(data_dir, yahoo_csv, template, category_map, shipping, stock_csv, out_
     (out_dir / '出品一覧（確認用）.csv').write_bytes(
         write_csv_bytes(list(summary[0].keys()) if summary else [], summary, 'utf-8', bom=True))
     return {'csv': csv_path, 'listings': len(rows), 'skus': sum(int(s['SKU数']) for s in summary),
-            'images': len(set(used_images))}
+            'images': len(set(used_images)), 'dropped': dropped}
 
 
 def write_category_map(data_dir, template, out_path):
@@ -290,6 +295,7 @@ def main(argv=None):
     ap.add_argument('--stock', default=None, help='Yahoo の在庫CSV')
     ap.add_argument('--out', default=str(HERE / 'data' / 'export'))
     ap.add_argument('--preview', action='store_true')
+    ap.add_argument('--drop-sold-out', action='store_true', help='全SKUが在庫0の出品を入れない')
     a = ap.parse_args(argv)
     try:
         if a.command == 'categories':
@@ -297,8 +303,10 @@ def main(argv=None):
             print(f'OK  カテゴリ確認表 {n}件（要確認 {n_check}件）→ {a.category_map}')
         else:
             r = build(a.data, a.yahoo_csv, a.template, a.category_map, parse_shipping(a.shipping),
-                      a.stock, a.out, preview=a.preview)
+                      a.stock, a.out, preview=a.preview, drop_sold_out=a.drop_sold_out)
             print(f'OK  出品 {r["listings"]}件 / SKU {r["skus"]} / 画像 {r["images"]}枚 → {r["csv"]}')
+            for d in r['dropped']:
+                print(f'    全SKU在庫0のため入れなかった: {d}')
     except BuildError as e:
         print(f'NG  {e}（ファイルは作っていません）')
         return 1
