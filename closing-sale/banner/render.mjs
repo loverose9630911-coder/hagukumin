@@ -3,7 +3,7 @@
 //   使い方:  cd closing-sale/banner && npm install && node render.mjs
 //
 // 検査（1つでも外れたら PNG は out/ に出さず、終了コード 1）
-//   1. 決まった文言がすべて入っていて、古い終了時刻「15:00」が無い
+//   1. 決まった文言がすべて入っていて、古い終了時刻「15:00」や旧送料「1,500円」が無い
 //   2. 文字がすべて Web フォント（Cormorant Garamond / しっぽり明朝 / Noto Sans JP）で
 //      描かれている（IPAゴシック等への置きかわりが無い）
 //   3. 文字が額縁の内側に収まり、価格の札の中の文字は札からはみ出さない
@@ -39,11 +39,11 @@ const VARIANTS = [
 ];
 
 const REQUIRED_TEXT = [
-  'CLOSING SALE', '閉店セール', '全商品', '1円', '＋送料1,500円', '（1点ごと）',
+  'CLOSING SALE', '閉店セール', '全商品', '1円', '＋送料1,000円', '（1点ごと）',
   '11.24 TUE', '11.30 MON', '17:00', 'まで', '長い間ありがとうございました',
   'Office Casual Bura.bura',
 ];
-const FORBIDDEN_TEXT = ['15:00'];
+const FORBIDDEN_TEXT = ['15:00', '1,500', '1,501'];
 const ALLOWED_FONT = /^(Cormorant Garamond|Shippori Mincho|Noto Sans JP)/;
 
 if (!fs.existsSync(path.join(here, 'node_modules', '@fontsource'))) {
