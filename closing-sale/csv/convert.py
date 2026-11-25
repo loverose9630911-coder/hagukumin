@@ -12,7 +12,7 @@
 文字コード（Shift_JIS / cp932）と改行（CRLF）は元のCSVと同じにする。
 
 使い方:
-  python3 convert.py 入力.csv 出力.csv [--start 2026112500] [--end 2026113017] [--clear-original-price] [--postage-set 番号]
+  python3 convert.py 入力.csv 出力.csv [--start 2026112500] [--end 2026113016] [--clear-original-price] [--postage-set 番号]
 """
 import argparse
 import csv
@@ -22,7 +22,7 @@ from datetime import datetime
 from pathlib import Path
 
 START = '2026112500'   # 2026年11月25日 0時
-END = '2026113017'     # 2026年11月30日 17時
+END = '2026113016'     # 2026年11月30日 16時台まで（Yahoo! の「17」は17:59まで売れるため、17:00で止めるには16）
 
 NEW_VALUES = {
     'price': lambda s, e: '1',

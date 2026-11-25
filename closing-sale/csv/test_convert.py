@@ -80,6 +80,14 @@ class ConvertTest(unittest.TestCase):
                 with self.assertRaises(convert.ConvertError):
                     convert.convert(self.src, self.dst, '2026112500', '2026113017', postage_set=bad)
 
+    def test_default_end_stops_selling_at_1700(self):
+        # Yahoo! の「17」は 17:59 まで売れる（依頼者確認）。17:00 で止めるため既定は 16 時台まで。
+        self.assertEqual(convert.END, '2026113016')
+        self.assertEqual(convert.main([str(self.src), str(self.dst)]), 0)
+        _, rows = read_csv(self.dst)
+        h = rows[0]
+        self.assertEqual({r[h.index('sale-period-end')] for r in rows[1:]}, {'2026113016'})
+
     def test_sale_period_is_set(self):
         _, rows = self.run_convert()
         h = rows[0]
