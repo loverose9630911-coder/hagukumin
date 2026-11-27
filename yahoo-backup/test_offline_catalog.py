@@ -70,6 +70,9 @@ class SanitizeTest(unittest.TestCase):
     def test_text_is_escaped(self):
         self.assertEqual(self.s('a &lt;b&gt; &amp; c'), 'a &lt;b&gt; &amp; c')
 
+    def test_image_without_src_is_dropped_silently(self):
+        self.assertEqual(self.s('<a><img href="https://x.jp/y" style="display:block"></a>'), '<a></a>')
+
     def test_unknown_tags_are_dropped_but_text_is_kept(self):
         self.assertEqual(self.s('<marquee>文字</marquee><br>'), '文字<br>')
 
@@ -95,7 +98,7 @@ class BuildTest(unittest.TestCase):
         review = {'reviewSummary': {'count': 3, 'average': 4.5},
                   'itemReviews': [{'rating': 5, 'postedDate': '2024/7/7', 'body': '良い<b>', 'subCodeOptions': [{'name': 'カラー', 'value': '黒'}],
                                    'videos': [{'thumbnailUrl': 'https://yvpub.c.yimg.jp/t.jpg'}], 'maskYid': 'ma0****'}]}
-        item = {'name': 'ニット', 'catchCopy': '暖かい', 'information': f'説明<br><img src="{LIB}a.jpg"><script>x</script>',
+        item = {'name': 'ニット', 'catchCopy': '暖かい', 'originalPriceEvidence': f'{LIB}a.jpg', 'information': f'説明<br><img src="{LIB}a.jpg"><script>x</script>',
                 'freeSpace1': '<a href="https://store.shopping.yahoo.co.jp/comburabura/bura00001.html">自分</a><img src="https://s.yimg.jp/q.png">'}
         (data / 'pages' / 'bura00001.html').write_text(
             next_data(item, review, {'footerFreeSpace': f'<img src="{LIB}a.jpg">', 'bannerImage': 'a.jpg'}), encoding='utf-8')
@@ -124,7 +127,7 @@ class BuildTest(unittest.TestCase):
     def test_item_page_has_prices_stock_reviews_and_description(self):
         t = (self.out / '00_catalog' / 'items' / 'bura00001.html').read_text(encoding='utf-8')
         for s in ('5,970円', '1,380円', '<td>7</td>', '★★★★★', '良い&lt;b&gt;', '全3件のうち、ページに出ていた1件', '動画あり：保存していません',
-                  '暖かい', '素材', '<img src="../assets/a.jpg"', '<a href="bura00001.html">自分</a>', '（画像なし）'):
+                  '暖かい', '素材', '<img src="../assets/a.jpg"', '<a href="bura00001.html">自分</a>', 'originalPriceEvidence', '（画像なし）'):
             self.assertIn(s, t)
         self.assertNotIn('ma0****', t)
 

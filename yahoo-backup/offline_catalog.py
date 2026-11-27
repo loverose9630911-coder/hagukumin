@@ -138,7 +138,9 @@ class _Sanitizer(HTMLParser):
         if tag not in ALLOWED:
             return
         if tag == 'img':
-            src = dict(attrs).get('src') or ''
+            src = (dict(attrs).get('src') or '').strip()
+            if not src:
+                return            # src の無い画像は元のページでも何も出ていない
             local = self.img_src(src)
             if not local:
                 self.out.append('<span class="nophoto">（画像なし）</span>')
@@ -290,6 +292,9 @@ def item_page(code, props, item, price, stock, img_src_for, link_href, item_name
     if trs:
         parts.append('<h2>価格（閉店セール前の商品CSV）</h2>'
                      f'<table class="data kv">{trs}<tr><th>配送グループ（postage-set）</th><td>{esc(price.get("postage-set", ""))}</td></tr></table>')
+    if it.get('originalPriceEvidence'):
+        ev = sanitize(f'<img src="{esc(it["originalPriceEvidence"])}">', img_src_for, link_href)
+        parts.append(f'<p class="small">メーカー希望小売価格の根拠として登録していた画像（originalPriceEvidence）</p><div class="html">{ev}</div>')
 
     # 画像
     gal = []
