@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>閉店セール バナー</title>
+<!-- フォント（npm install 済みの @fontsource を読む） -->
+<link rel="stylesheet" href="node_modules/@fontsource/cormorant-garamond/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/cormorant-garamond/500-italic.css">
+<link rel="stylesheet" href="node_modules/@fontsource/cormorant-garamond/600.css">
+<link rel="stylesheet" href="node_modules/@fontsource/shippori-mincho/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/shippori-mincho/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-jp/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-jp/700.css">
+<style>
+  :root {
+    --ink: #151413;        /* 黒（地色） */
+    --ivory: #F3EEE3;      /* アイボリー */
+    --ivory-line: rgba(243, 238, 227, .55);
+    --red: #B5121B;        /* 赤は「1円」だけに使う */
+    --serif-en: 'Cormorant Garamond', serif;
+    --serif-ja: 'Shippori Mincho', serif;
+    --sans-ja: 'Noto Sans JP', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--ink); }
+  body {
+    width: var(--w); height: var(--h);
+    overflow: hidden;
+    color: var(--ivory);
+    font-family: var(--sans-ja);
+    -webkit-font-smoothing: antialiased;
+  }
+  .canvas {
+    position: relative;
+    width: var(--w); height: var(--h);
+    background:
+      radial-gradient(120% 90% at 50% 0%, #24221f 0%, var(--ink) 60%);
+  }
+  /* 細い二重の額縁 */
+  .frame {
+    position: absolute; inset: var(--inset);
+    border: 1px solid var(--ivory-line);
+    pointer-events: none;
+  }
+  .frame::after {
+    content: ""; position: absolute; inset: 6px;
+    border: 1px solid rgba(243, 238, 227, .22);
+  }
+
+  .en-title {
+    font-family: var(--serif-en);
+    font-style: italic; font-weight: 500;
+    letter-spacing: .14em;
+    white-space: nowrap;
+  }
+  .ja-title {
+    font-family: var(--serif-ja);
+    font-weight: 700;
+    letter-spacing: .32em;
+    white-space: nowrap;
+    margin-right: -.32em; /* 最後の字間を打ち消して中央をそろえる */
+  }
+  .rule {
+    height: 1px; background: var(--ivory-line);
+  }
+
+  /* アイボリーの札（価格ブロック） */
+  .card {
+    background: var(--ivory);
+    color: var(--ink);
+    display: flex; align-items: center;
+  }
+  .all {
+    font-family: var(--serif-ja); font-weight: 700;
+    letter-spacing: .2em;
+    white-space: nowrap;
+  }
+  .price {
+    color: var(--red);
+    display: flex; align-items: baseline;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  /* Cormorant の数字は標準だと「I」に見える旧式数字なので、ふつうの高さの数字にそろえる */
+  .num, .date, .brand {
+    font-variant-numeric: lining-nums;
+    font-feature-settings: "lnum" 1;
+  }
+  .price .num {
+    font-family: var(--serif-en); font-weight: 600;
+    line-height: .8;
+  }
+  .price .yen {
+    font-family: var(--serif-ja); font-weight: 700;
+  }
+  .ship {
+    font-family: var(--sans-ja); font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.25;
+  }
+  .ship .per { font-weight: 500; }
+
+  .date {
+    font-family: var(--serif-en); font-weight: 500;
+    letter-spacing: .06em;
+    white-space: nowrap;
+  }
+  .date .arrow { font-family: var(--sans-ja); font-weight: 500; }
+  .date .until { font-family: var(--sans-ja); font-weight: 500; letter-spacing: .04em; }
+  .date .until-time { font-weight: 600; }
+  .thanks {
+    font-family: var(--serif-ja); font-weight: 500;
+    letter-spacing: .18em;
+    white-space: nowrap;
+  }
+  .brand {
+    font-family: var(--serif-en); font-style: italic; font-weight: 500;
+    letter-spacing: .08em;
+    white-space: nowrap;
+  }
+
+  /* ---------- 縦長・正方形（LINE / スレッズ） ---------- */
+  .stack {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+
+  /* ---------- Yahoo 看板（横長） ---------- */
+  .row {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .col { display: flex; flex-direction: column; align-items: center; text-align: center; }
+</style>
+</head>
+<body>
+<div class="canvas" id="canvas"></div>
+
+<template id="tpl-stack">
+  <div class="frame"></div>
+  <div class="stack">
+    <p class="en-title" data-k="en">CLOSING SALE</p>
+    <p class="ja-title" data-k="ja">閉店セール</p>
+    <div class="card" data-k="card">
+      <p class="all" data-k="all">全商品</p>
+      <p class="price" data-k="price"><span class="num" data-k="num">1</span><span class="yen" data-k="yen">円</span></p>
+      <div class="rule card-rule"></div>
+      <p class="ship" data-k="ship"><span data-k="ship-main">＋送料1,000円</span><span class="per">（1点ごと）</span></p>
+    </div>
+    <p class="date" data-k="date">11.25 WED <span class="arrow">→</span> 11.30 MON <span class="until-time">17:00</span><span class="until">まで</span></p>
+    <div class="rule foot-rule"></div>
+    <p class="thanks" data-k="thanks">長い間ありがとうございました</p>
+    <p class="brand" data-k="brand">Office Casual Bura.bura</p>
+  </div>
+</template>
+
+<template id="tpl-row">
+  <div class="frame"></div>
+  <div class="row">
+    <div class="col left">
+      <p class="en-title" data-k="en">CLOSING SALE</p>
+      <p class="ja-title" data-k="ja">閉店セール</p>
+    </div>
+    <div class="card" data-k="card">
+      <div class="col price-col">
+        <p class="all" data-k="all">全商品</p>
+        <p class="price" data-k="price"><span class="num" data-k="num">1</span><span class="yen" data-k="yen">円</span></p>
+      </div>
+      <div class="vrule"></div>
+      <p class="ship" data-k="ship"><span data-k="ship-main">＋送料1,000円</span><br><span class="per">（1点ごと）</span></p>
+    </div>
+    <div class="col right">
+      <p class="date" data-k="date">11.25 WED <span class="arrow">→</span> 11.30 MON</p>
+      <p class="date date2" data-k="date2"><span class="until-time">17:00</span><span class="until">まで</span></p>
+      <div class="rule foot-rule"></div>
+      <p class="thanks" data-k="thanks">長い間ありがとうございました</p>
+      <p class="brand" data-k="brand">Office Casual Bura.bura</p>
+    </div>
+  </div>
+</template>
+
+<style id="variant-css"></style>
+
+<script>
+  // ?v=yahoo | line | threads
+  const VARIANTS = {
+    line: {
+      w: 1040, h: 1040, tpl: 'tpl-stack',
+      css: `
+        :root { --inset: 34px; }
+        .stack { padding-top: 76px; }
+        .en-title { font-size: 46px; }
+        .ja-title { font-size: 92px; margin-top: 8px; }
+        .card { flex-direction: column; width: 640px; margin-top: 34px; padding: 28px 40px 30px; }
+        .all { font-size: 40px; }
+        .price { margin-top: 6px; }
+        .price .num { font-size: 250px; }
+        .price .yen { font-size: 104px; margin-left: 8px; }
+        .card-rule { width: 100%; background: rgba(21,20,19,.35); margin: 22px 0 18px; }
+        .ship { font-size: 44px; }
+        .date { font-size: 46px; margin-top: 38px; }
+        .date .arrow { font-size: 34px; margin: 0 6px; }
+        .date .until { font-size: 34px; margin-left: 6px; }
+        .foot-rule { width: 120px; margin: 26px 0 22px; }
+        .thanks { font-size: 30px; }
+        .brand { font-size: 34px; margin-top: 10px; }
+      `,
+    },
+    threads: {
+      w: 1080, h: 1350, tpl: 'tpl-stack',
+      css: `
+        :root { --inset: 36px; }
+        .stack { padding-top: 150px; }
+        .en-title { font-size: 54px; }
+        .ja-title { font-size: 112px; margin-top: 10px; }
+        .card { flex-direction: column; width: 700px; margin-top: 62px; padding: 40px 44px 42px; }
+        .all { font-size: 46px; }
+        .price { margin-top: 10px; }
+        .price .num { font-size: 300px; }
+        .price .yen { font-size: 124px; margin-left: 10px; }
+        .card-rule { width: 100%; background: rgba(21,20,19,.35); margin: 28px 0 22px; }
+        .ship { font-size: 50px; }
+        .date { font-size: 52px; margin-top: 72px; }
+        .date .arrow { font-size: 38px; margin: 0 8px; }
+        .date .until { font-size: 38px; margin-left: 6px; }
+        .foot-rule { width: 140px; margin: 36px 0 30px; }
+        .thanks { font-size: 34px; }
+        .brand { font-size: 40px; margin-top: 12px; }
+      `,
+    },
+    yahoo: {
+      w: 1180, h: 260, tpl: 'tpl-row',
+      css: `
+        :root { --inset: 12px; }
+        .row { padding: 0 48px 0 56px; }
+        .left .en-title { font-size: 26px; }
+        .left .ja-title { font-size: 46px; letter-spacing: .16em; margin-right: -.16em; margin-top: 4px; }
+        .card { height: 210px; padding: 0 30px 0 28px; gap: 22px; }
+        .price-col { justify-content: center; }
+        .all { font-size: 22px; }
+        .price { margin-top: 6px; }
+        .price .num { font-size: 130px; }
+        .price .yen { font-size: 54px; margin-left: 4px; }
+        .vrule { width: 1px; align-self: stretch; margin: 40px 0; background: rgba(21,20,19,.35); }
+        .ship { font-size: 32px; text-align: left; }
+        .ship .per { font-size: 24px; }
+        .right .date { font-size: 24px; }
+        .right .date .arrow { font-size: 18px; margin: 0 4px; }
+        .right .date2 { font-size: 36px; margin-top: 2px; }
+        .right .date2 .until { font-size: 24px; margin-left: 4px; }
+        .right .foot-rule { width: 64px; margin: 12px 0 10px; }
+        .right .thanks { font-size: 16px; letter-spacing: .12em; }
+        .right .brand { font-size: 20px; margin-top: 4px; }
+      `,
+    },
+  };
+
+  const params = new URLSearchParams(location.search);
+  const key = params.get('v') || 'line';
+  const v = VARIANTS[key];
+  if (!v) throw new Error('unknown variant: ' + key);
+  document.documentElement.style.setProperty('--w', v.w + 'px');
+  document.documentElement.style.setProperty('--h', v.h + 'px');
+  document.getElementById('variant-css').textContent = v.css;
+  const canvas = document.getElementById('canvas');
+  canvas.appendChild(document.getElementById(v.tpl).content.cloneNode(true));
+  document.body.dataset.variant = key;
+  window.__VARIANT__ = { key, w: v.w, h: v.h };
+</script>
+</body>
+</html>
